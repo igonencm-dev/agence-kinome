@@ -1,0 +1,359 @@
+/* eslint-disable @next/next/no-img-element */
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+
+const servicesCrea = [
+  {
+    title: "Création de logo",
+    body: "La conception de logos est réalisée avec une attention particulière à l'unicité et à la pertinence pour chaque marque. En effet, chaque projet est unique. Un processus créatif approfondi est employé pour développer des logos qui non seulement captent l'essence de la marque, mais sont également mémorables et fonctionnels sur divers supports. Cette étape cruciale assure que le logo devienne un symbole reconnaissable et puissant de l'identité de la marque.",
+  },
+  {
+    title: "Développement de charte graphique",
+    body: "Des chartes graphiques complètes sont élaborées, établissant les fondations visuelles de la marque. Ce processus inclut la définition des palettes de couleurs, des polices de caractères, et des styles graphiques, assurant une cohérence visuelle sur tous les supports de communication. La charte graphique sert de guide pour la création de tous les éléments visuels de la marque, garantissant une identité visuelle forte et homogène. On y retrouve également les règles d'usage pour savoir comment utiliser tous les éléments graphiques cités.",
+  },
+  {
+    title: "Stratégie de branding",
+    body: "Des stratégies de branding sont développées pour renforcer l'identité et la présence de la marque sur le marché. Cela inclut l'analyse du positionnement de la marque, la définition des messages clés sur le plan graphique, et la création d'une identité visuelle reconnaissable. L'objectif est de construire une image de marque forte et cohérente qui résonne avec le public cible et soutient les objectifs commerciaux du client.",
+  },
+];
+
+const servicesWeb = [
+  {
+    title: "Sites vitrines",
+    body: "Conception et développement de sites internet vitrines élégants, optimisés SEO et pensés pour convertir. Nous travaillons avec les technologies modernes (Next.js, Astro, WordPress headless) selon les besoins de chaque projet.",
+  },
+  {
+    title: "E-commerce",
+    body: "Mise en place de boutiques en ligne robustes (Shopify, WooCommerce, sur-mesure), avec une attention particulière portée à l'expérience d'achat, à la performance et au tunnel de conversion.",
+  },
+  {
+    title: "Plateformes & dashboards",
+    body: "Développement d'applications web métier, espaces clients, dashboards et outils internes — depuis la conception UX jusqu'au déploiement, en passant par l'intégration aux APIs existantes.",
+  },
+];
+
+const processus = [
+  {
+    title: "Conception et réalisation",
+    body: "Le processus de conception graphique est caractérisé par une approche méthodique et créative. Chaque projet commence par une phase d'analyse approfondie, où vos besoins et vos objectifs sont identifiés. Cette étape est suivie par la création de maquettes et de prototypes au format mockups, permettant aux clients de visualiser les concepts avant leur finalisation. L'accent est mis sur une collaboration étroite pour s'assurer que le produit final correspond parfaitement à vos attentes.",
+    img: "/assets/man-using-laptop.png",
+    reverse: false,
+  },
+  {
+    title: "Outils et logiciels",
+    body: "Des logiciels de pointe dans le domaine du graphisme et du design sont utilisés, tels que Photoshop pour le traitement d'images, Illustrator pour la création de graphiques vectoriels, et Indesign pour la mise en page de documents. Pour garantir un travail complet et global, je peux autant travailler sur Figma que sur Sketch. Ces outils permettent une grande flexibilité et précision dans la réalisation de projets variés, et surtout une réponse adaptée selon le besoin.",
+    img: "/assets/designer-young-lady.png",
+    reverse: true,
+  },
+  {
+    title: "Une relation de confiance",
+    body: "J'ai à cœur d'établir une relation de confiance avec chaque client, un pilier fondamental du processus créatif. Cette confiance se construit à travers une communication transparente, une écoute attentive et une compréhension profonde de vos objectifs. Je m'engage pleinement pour vous satisfaire et répondre à vos exigences. Ainsi, chaque étape du projet est gérée avec un souci constant de répondre aux attentes tout en apportant une expertise et des conseils professionnels. Cette approche permet de créer non seulement des résultats sur-mesure, mais aussi des partenariats durables et fructueux.",
+    img: "/assets/interior-designer-office.png",
+    reverse: false,
+  },
+];
+
+const pourquoiNous = [
+  {
+    num: "01",
+    title: "Une flexibilité et une personnalisation",
+    body: "Grâce à la qualité et la rigueur que j'ai apprise en agence, vous pouvez accéder à un service à 360° de qualité professionnelle. Chaque projet bénéficie d'une approche sur mesure, adaptée à vos besoins spécifiques. Mes compétences en graphisme sont mises au service de l'histoire de votre marque et des valeurs que vous souhaitez véhiculer, afin de trouver l'identité graphique qui correspond et qui saura s'adapter à tous les supports de communication.",
+  },
+  {
+    num: "02",
+    title: "Une communication transparente et efficace",
+    body: "Travailler directement avec un designer freelance garantit une communication claire et efficace. Vous avez accès directement au concepteur de vos éléments graphiques, c'est-à-dire moi-même. Facilitant ainsi les échanges d'idées et les retours rapides. Cette proximité assure une meilleure compréhension des objectifs du projet et une réponse plus rapide aux demandes de modifications ou d'ajustements.",
+  },
+  {
+    num: "03",
+    title: "De la créativité et de l'innovation",
+    body: "Les designers freelances, grâce à leur expérience variée et à leur exposition à de multiples secteurs, apportent une richesse créative et des perspectives innovantes à chaque projet. Avec mon background diversifié, j'offre des solutions de design qui allient esthétique, fonctionnalité et originalité. En étant force de proposition, je permets à votre image de marque de rayonner à travers tous vos supports de communication.",
+  },
+  {
+    num: "04",
+    title: "Une relation privilégiée",
+    body: "Une relation avec un designer freelance est souvent caractérisée par un engagement et une confiance mutuels. Je m'investis pleinement dans chaque projet, avec l'objectif de construire des relations durables basées sur la satisfaction et la réussite. Mon engagement envers mes clients se traduit par une qualité de travail constante et une volonté de dépasser les attentes.",
+  },
+  {
+    num: "05",
+    title: "Un coût-efficacité",
+    body: "Choisir un designer freelance peut également être plus rentable. Sans les frais d'une grande agence, les clients bénéficient souvent de tarifs plus compétitifs, tout en recevant un travail de haute qualité. Cette efficacité coût-qualité est particulièrement avantageuse pour les petites entreprises et les startups.",
+  },
+  {
+    num: "06",
+    title: "Une proximité",
+    body: "Pour permettre de se rencontrer localement, il faut savoir que j'interviens principalement dans le secteur de Genève et parfois en Savoie. Je privilégie un travail à distance avec des échanges réguliers en visio pour réaliser un suivi détaillé de votre projet. Mais il est également possible de se rencontrer physiquement.",
+  },
+];
+
+const projetsApercu = [
+  {
+    src: "/assets/wp/Cabinet-Faraday-780x390px-1.png",
+    alt: "Cabinet Faraday",
+    slug: "cabinet-faraday",
+  },
+  {
+    src: "/assets/wp/Adapt-Project-780x390px-1.png",
+    alt: "Adapt Project",
+    slug: "adapt-project",
+  },
+  {
+    src: "/assets/wp/Alministratif-780x390px-1.png",
+    alt: "Alministratif",
+    slug: "alministratif",
+  },
+  {
+    src: "/assets/wp/Authentik-Peak-780x390px-1.png",
+    alt: "Authentik Peak",
+    slug: "authentik-peak",
+  },
+];
+
+export default function ServicesPage() {
+  const [onglet, setOnglet] = useState<"crea" | "web">("crea");
+  const services = onglet === "crea" ? servicesCrea : servicesWeb;
+
+  return (
+    <main>
+      {/* Hero */}
+      <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+        <img
+          src="/assets/services-hero.png"
+          alt="Studio créatif Kinome — services de communication à Genève"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col items-start justify-end px-[5%] pb-20">
+          <h1 className="mb-6 font-heading text-[5rem] font-normal leading-[1.05] text-white">
+            Expertise &amp; services
+            <br />
+            à Genève
+          </h1>
+          <p className="max-w-[680px] font-body text-[1.2rem] font-light leading-[1.5] text-white/85">
+            De la création de logo à la conception de votre site internet, en
+            passant par votre identité visuelle complète : Kinome regroupe
+            l&rsquo;ensemble des compétences créatives à Genève pour donner
+            corps à votre marque.
+          </p>
+        </div>
+      </section>
+
+      {/* Onglets services */}
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
+        <div className="mb-16 flex flex-wrap justify-center gap-4">
+          <button
+            type="button"
+            onClick={() => setOnglet("crea")}
+            className={`rounded-full px-12 py-3 font-body text-[1.1rem] font-medium transition-colors ${
+              onglet === "crea"
+                ? "bg-kinome-black text-white"
+                : "bg-[#f2f2f2] text-kinome-black hover:bg-[#e5e5e5]"
+            }`}
+          >
+            Services créa
+          </button>
+          <button
+            type="button"
+            onClick={() => setOnglet("web")}
+            className={`rounded-full px-12 py-3 font-body text-[1.1rem] font-medium transition-colors ${
+              onglet === "web"
+                ? "bg-kinome-black text-white"
+                : "bg-[#f2f2f2] text-kinome-black hover:bg-[#e5e5e5]"
+            }`}
+          >
+            Services web design
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {services.map((s) => (
+            <div
+              key={s.title}
+              className="rounded-[24px] bg-kinome-cream p-10 text-center"
+            >
+              <h2 className="mb-6 font-heading text-[1.6rem] font-semibold leading-[1.2]">
+                {s.title}
+              </h2>
+              <p className="font-body text-[1rem] leading-[1.6] text-kinome-grey">
+                {s.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Comment les prestations se déroulent ? */}
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[60px]">
+        <h2 className="mb-16 font-heading text-[3.5rem] font-normal leading-[1.1]">
+          Comment les prestations
+          <br />
+          se déroulent&nbsp;?
+        </h2>
+
+        {processus.map((p) => (
+          <div
+            key={p.title}
+            className="mb-8 grid grid-cols-1 items-center gap-12 rounded-[24px] bg-kinome-cream p-[60px] lg:grid-cols-2"
+          >
+            <div className={p.reverse ? "lg:order-2" : ""}>
+              <h3 className="mb-4 font-heading text-[1.8rem] font-semibold leading-[1.2]">
+                {p.title}
+              </h3>
+              <p className="font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                {p.body}
+              </p>
+            </div>
+            <div
+              className={`overflow-hidden rounded-[20px] aspect-[4/3] ${
+                p.reverse ? "lg:order-1" : ""
+              }`}
+            >
+              <img
+                src={p.img}
+                alt=""
+                className="block h-full w-full object-cover"
+              />
+            </div>
+          </div>
+        ))}
+
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/processus/"
+            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+          >
+            Processus client
+          </Link>
+        </div>
+      </section>
+
+      {/* Aperçu projets */}
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[100px]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {projetsApercu.map((p) => (
+            <Link
+              key={p.alt}
+              href={`/projets/${p.slug}/`}
+              className="group block aspect-[16/9] overflow-hidden rounded-[20px] transition-transform duration-500 hover:scale-[1.02]"
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                className="block h-full w-full object-cover"
+              />
+            </Link>
+          ))}
+        </div>
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/portfolio/"
+            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+          >
+            Découvrir nos projets
+          </Link>
+        </div>
+      </section>
+
+      {/* Pourquoi nous choisir — 6 raisons */}
+      <section className="bg-kinome-cream px-[5%] py-[120px]">
+        <div className="mx-auto max-w-[1400px]">
+          <h2 className="mb-16 text-center font-heading text-[3.5rem] font-normal leading-[1.1]">
+            Pourquoi choisir Kinome&nbsp;?
+          </h2>
+          <ol className="flex flex-col gap-6">
+            {pourquoiNous.map((p) => (
+              <li
+                key={p.num}
+                className="grid grid-cols-1 items-start gap-6 rounded-[24px] bg-white p-12 shadow-sm md:grid-cols-[auto_1fr_auto] md:items-center"
+              >
+                <div>
+                  <h3 className="font-heading text-[2.4rem] font-medium leading-[1.1] md:max-w-[400px]">
+                    {p.title}
+                  </h3>
+                </div>
+                <p className="font-body text-[1.05rem] leading-[1.7] text-kinome-grey md:px-12">
+                  {p.body}
+                </p>
+                <div className="font-heading text-[6rem] font-thin leading-none text-kinome-black md:text-[8rem]">
+                  {p.num}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* FAQ — questions fréquentes services (AEO) */}
+      <section className="mx-auto max-w-[1100px] px-[5%] py-[100px]">
+        <h2 className="mb-12 text-center font-heading text-[3rem] font-normal leading-[1.1]">
+          Questions fréquentes sur nos services
+        </h2>
+        <div className="flex flex-col gap-4">
+          {[
+            {
+              q: "Quelle est la différence entre un logo et une identité visuelle ?",
+              a: "Le logo est le signe distinctif de votre marque ; l'identité visuelle englobe l'ensemble du système graphique : logo, palette de couleurs, typographies, principes de composition, iconographie, ainsi que les règles d'usage. Chez Kinome, nous concevons les deux ensemble pour garantir une marque cohérente dans le temps.",
+            },
+            {
+              q: "Combien de temps faut-il pour créer une identité visuelle complète ?",
+              a: "Un projet d'identité visuelle complet (logo + charte + premières déclinaisons) prend en général 4 à 8 semaines selon le périmètre. Ce délai inclut le cadrage, les premières propositions, les itérations et la livraison finale avec le manuel d'usage. Une création de logo seule peut être livrée en 2 à 3 semaines.",
+            },
+            {
+              q: "Travaillez-vous uniquement avec des entreprises basées à Genève ?",
+              a: "Notre studio est basé à Genève et nous accompagnons en priorité des clients de Suisse romande, mais nous travaillons aussi avec des entreprises et indépendants en France et à l'international. Les échanges se font en visio, par téléphone et lors de rendez-vous physiques selon votre localisation.",
+            },
+            {
+              q: "Proposez-vous la refonte de sites internet existants ?",
+              a: "Oui. Nous accompagnons aussi bien la création de sites depuis zéro que la refonte d'un site existant : audit, recommandations stratégiques, redesign de l'identité numérique, refonte UX/UI, optimisation SEO et migration vers une stack moderne (Next.js, Astro, WordPress, Webflow…).",
+            },
+          ].map(({ q, a }) => (
+            <details
+              key={q}
+              className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[1.15rem] font-semibold text-kinome-black list-none">
+                <span>{q}</span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-kinome-cream text-[1.4rem] font-light leading-none transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                {a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[80px] text-center text-white">
+        <h2 className="mb-6 font-heading text-[2.8rem] font-normal leading-[1.1]">
+          Un projet en tête&nbsp;?
+        </h2>
+        <p className="mx-auto mb-10 max-w-[640px] font-body text-[1.05rem] leading-[1.6] text-white/80">
+          Parlez-nous de vos enjeux et de vos contraintes : nous reviendrons
+          vers vous avec une proposition cadrée.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link
+            href="/contact/"
+            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
+          >
+            Discutons de votre projet
+          </Link>
+          <Link
+            href="/portfolio/"
+            className="inline-flex min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
+          >
+            Voir nos projets
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+}

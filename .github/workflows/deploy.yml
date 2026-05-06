@@ -1,0 +1,74 @@
+name: Build & Deploy → Hostinger SFTP
+
+# Déclencheurs : push sur main + bouton manuel "Run workflow" dans GitHub Actions
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Empêche deux déploiements concurrents (le second annule le premier)
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build statique Next.js + upload SFTP
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      # 1. Récupérer le code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js 20
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # 3. Installation propre (lockfile-based)
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Build statique → dossier `out/`
+      - name: Build (export statique)
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      # 5. Vérification : `config.php` ne doit JAMAIS être uploadé
+      #    (il vit uniquement sur Hostinger, mis en place manuellement une fois)
+      - name: Safety check — pas de config.php dans out/
+        run: |
+          if [ -f out/api/config.php ]; then
+            echo "::error::out/api/config.php est présent ! Cela écraserait les secrets SMTP de production."
+            exit 1
+          fi
+          echo "✓ out/api/config.php absent — config Hostinger préservé."
+
+      # 6. Upload SFTP vers Hostinger
+      #    Action lftp-mirror : transfert différentiel (uploade uniquement ce qui change)
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          port: ${{ secrets.SFTP_PORT }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          local_path: "./out/*"
+          remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
+          sftp_only: true
+          # IMPORTANT : on n'efface PAS les fichiers distants absents en local
+          # → préserve `api/config.php` (secret SMTP) et tout fichier ajouté manuellement
+          delete_remote_files: false
+
+      # 7. Récap
+      - name: Récapitulatif
+        if: success()
+        run: |
+          echo "✅ Déploiement réussi sur https://agence-kinome.ch"
+          echo "Build : ${{ github.sha }}"
+          echo "Auteur : ${{ github.actor }}"
