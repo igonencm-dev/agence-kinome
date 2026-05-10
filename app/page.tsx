@@ -105,29 +105,14 @@ const expertises = [
   },
 ];
 
-const nouvelles = [
-  {
-    title:
-      "Création de logo à Genève : processus créatif et erreurs à éviter",
-    excerpt:
-      "Découvrez les étapes clés pour concevoir un logo percutant à Genève, les pièges courants à éviter et comment travailler avec une agence locale pour un résultat à la hauteur de vos ambitions.",
-    href: "/blog",
-  },
-  {
-    title:
-      "Combien coûte une agence de communication à Genève ? Tarifs et budgets 2026",
-    excerpt:
-      "Tour d'horizon des prix pratiqués par les agences de communication à Genève en 2026 : identité visuelle, site web, campagnes — pour budgéter votre projet sereinement.",
-    href: "/blog",
-  },
-  {
-    title:
-      "Création de site internet à Genève : le guide ultime pour votre projet web",
-    excerpt:
-      "De la stratégie au lancement, toutes les étapes pour réussir la création de votre site internet à Genève : design, SEO, budget et choix de l'agence.",
-    href: "/blog",
-  },
-];
+// "Les nouvelles" : reprend dynamiquement les 3 derniers articles publiés
+// dans le blog (cohérence + zéro duplication).
+import { blogPosts as _blogPosts } from "./lib/blog";
+const nouvelles = _blogPosts.slice(0, 3).map((p) => ({
+  title: p.title,
+  excerpt: p.excerpt,
+  href: `/blog/${p.slug}/`,
+}));
 
 const portfolio = [
   {
@@ -187,14 +172,13 @@ export default function Home() {
         <div className="relative z-[3] mx-auto flex w-full max-w-[1400px] flex-col items-start px-[5%]">
           <div className="max-w-[800px] text-left text-white">
             <h1 className="mb-[30px] font-heading text-[5rem] font-semibold leading-[1.1]">
-              Agence de création
-              <br />
-              stratégique <HeroAnimatedWord />
+              Agence de communication
+              <br />à Genève — <HeroAnimatedWord />
             </h1>
             <p className="mb-[35px] max-w-[520px] text-[1.15rem] leading-[1.7]">
-              Nous concevons l&rsquo;image de marque de demain
+              Branding, identité visuelle et sites internet
               <br />
-              en alliant stratégie et émotion.
+              en alliant stratégie et émotion, depuis la Suisse romande.
             </p>
             <div className="flex flex-wrap gap-5">
               <Link
@@ -487,7 +471,7 @@ export default function Home() {
         </div>
         <div className="mt-10 flex justify-center">
           <Link
-            href="/blog"
+            href="/blog/"
             className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrir nos articles

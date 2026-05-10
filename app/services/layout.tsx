@@ -1,4 +1,4 @@
-import { buildMetadata, jsonLdScript, faqJsonLd } from "../lib/seo";
+import { buildMetadata, jsonLdScript, faqJsonLd, SITE, BUSINESS } from "../lib/seo";
 
 export const metadata = buildMetadata({
   title: "Nos services",
@@ -39,6 +39,84 @@ const faqServices = [
   },
 ];
 
+// OfferCatalog : liste structurée des services proposés (boost AEO/GEO sur les
+// requêtes type "agence de logo à Genève", "site internet PME suisse romande").
+const offerCatalogLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${SITE.url}/services/#service`,
+  serviceType: "Communication, branding, design, web",
+  name: "Services de communication — Agence Kinome",
+  provider: { "@id": `${SITE.url}/#organization` },
+  areaServed: BUSINESS.areaServed.map((n) => ({
+    "@type": "AdministrativeArea",
+    name: n,
+  })),
+  description:
+    "Création de logo, identité visuelle, charte graphique, branding et conception de sites internet pour entreprises et marques en Suisse romande.",
+  url: `${SITE.url}/services/`,
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Prestations Agence Kinome",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Création de logo",
+          description:
+            "Conception d'un logo unique, mémorable et fonctionnel sur tous supports.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Identité visuelle & charte graphique",
+          description:
+            "Système graphique complet : palette, typographies, principes, règles d'usage.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Stratégie de branding",
+          description:
+            "Positionnement, messages-clés, et système visuel cohérent pour soutenir vos objectifs.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Sites internet vitrines",
+          description:
+            "Conception et développement de sites élégants, optimisés SEO et pensés pour convertir.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "E-commerce",
+          description:
+            "Boutiques en ligne robustes, attention portée au tunnel de conversion et à la performance.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Plateformes & dashboards",
+          description:
+            "Applications web métier, espaces clients, dashboards et outils internes sur mesure.",
+        },
+      },
+    ],
+  },
+};
+
 export default function ServicesLayout({
   children,
 }: {
@@ -50,6 +128,12 @@ export default function ServicesLayout({
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: jsonLdScript(faqJsonLd(faqServices)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(offerCatalogLd),
         }}
       />
       {children}

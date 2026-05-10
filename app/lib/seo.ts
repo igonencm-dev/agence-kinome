@@ -109,6 +109,9 @@ export function buildMetadata({
   noIndex = false,
 }: BuildArgs): Metadata {
   const url = `${SITE.url}${path}`;
+  // Le suffixe " — Kinome | Agence à Genève" est ajouté automatiquement par
+  // le `template` défini dans app/layout.tsx. Pour OG/Twitter (qui n'utilisent
+  // PAS le template Next.js), on l'inclut manuellement sauf si bareTitle.
   const fullTitle = bareTitle ? title : `${title} — Kinome | Agence à Genève`;
   const image = ogImage ?? SITE.ogImage;
   const fullImage = image.startsWith("http") ? image : `${SITE.url}${image}`;
@@ -116,7 +119,9 @@ export function buildMetadata({
   const allKeywords = [...KEYWORDS_BASE, ...(keywords ?? [])];
 
   return {
-    title: fullTitle,
+    // bareTitle = true : on bypasse le template du layout (utile pour la home)
+    // bareTitle = false : on laisse le template du layout ajouter "— Kinome | Agence à Genève"
+    title: bareTitle ? { absolute: title } : title,
     description,
     keywords: [...new Set(allKeywords)].join(", "),
     metadataBase: new URL(SITE.url),

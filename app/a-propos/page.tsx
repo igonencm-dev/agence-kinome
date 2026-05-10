@@ -163,11 +163,11 @@ export default function AProposPage() {
 
           <div className="mx-auto mt-[clamp(50px,6vw,90px)] grid max-w-[1200px] grid-cols-1 gap-[clamp(30px,3vw,50px)] md:grid-cols-2">
             <article>
-              <div className="mb-8 aspect-[517/607] overflow-hidden rounded-[20px] bg-[#e9e4d8]">
+              <div className="mb-8 aspect-[3/4] overflow-hidden rounded-[20px] bg-[#e9e4d8]">
                 <img
                   src="/assets/wp/apropos-team-mathias.png"
                   alt="Mathias Igonenc — fondateur de Kinome"
-                  className="block h-full w-full object-cover"
+                  className="block h-full w-full object-cover object-[center_top]"
                   loading="lazy"
                 />
               </div>
@@ -194,11 +194,11 @@ export default function AProposPage() {
             </article>
 
             <article>
-              <div className="mb-8 aspect-[517/607] overflow-hidden rounded-[20px] bg-[#e9e4d8]">
+              <div className="mb-8 aspect-[3/4] overflow-hidden rounded-[20px] bg-[#e9e4d8]">
                 <img
                   src="/assets/wp/apropos-team-tanguy.png"
                   alt="Tanguy Deniel — Kinome"
-                  className="block h-full w-full object-cover"
+                  className="block h-full w-full object-cover object-[center_top]"
                   loading="lazy"
                 />
               </div>
@@ -261,7 +261,7 @@ export default function AProposPage() {
                   <img
                     src={p.src}
                     alt=""
-                    className="block h-full w-full object-cover"
+                    className="block h-full w-full object-cover object-[center_top]"
                     loading="lazy"
                   />
                 </div>
@@ -294,7 +294,7 @@ export default function AProposPage() {
                   <img
                     src={s.img}
                     alt=""
-                    className="block h-full w-full object-cover"
+                    className="block h-full w-full object-cover object-[center_top]"
                     loading="lazy"
                   />
                 </div>

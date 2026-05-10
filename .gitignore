@@ -45,3 +45,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Sources HTML WordPress (parsés dans app/lib/blog.ts)
+/.blog-raw/

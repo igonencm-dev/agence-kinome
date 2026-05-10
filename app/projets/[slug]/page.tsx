@@ -24,10 +24,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const projet = projets.find((p) => p.slug === slug);
   if (!projet) return { title: "Projet — Kinome" };
+  // Description : on privilégie `resume` (court, calibré 140-160 char) plutôt
+  // que `description` (souvent 500+ char tronqués au milieu d'un mot).
   return buildMetadata({
     title: `${projet.nom} — projet ${projet.domaine ?? "communication"}`,
-    description:
-      projet.description?.slice(0, 200) ?? projet.resume,
+    description: projet.resume,
     path: `/projets/${projet.slug}/`,
     ogType: "article",
     ogImage: projet.cover,

@@ -51,7 +51,7 @@ const partenaires: Partenaire[] = [
     pays: "Canada",
     description:
       "Notre partenaire montréalais, expert en direction artistique pour la scène nord-américaine. Sa connaissance du marché et son réseau étendu nous permettent d'ouvrir Kinome à de nouveaux territoires.",
-    visuel: { type: "image", src: "/assets/partenaire-lucille.png", bg: "#000" },
+    visuel: { type: "image", src: "/assets/partenaire-lucille.svg", bg: "#000" },
   },
   {
     nom: "Propagande Guerilla",

@@ -4,6 +4,7 @@ import { contact } from "../lib/contact";
 
 const navLinks = [
   { href: "/portfolio", label: "Portfolio" },
+  { href: "/blog", label: "Blog" },
   { href: "/a-propos", label: "À propos" },
   { href: "/partenaires", label: "Nos Partenaires" },
   { href: "/services", label: "Services" },
