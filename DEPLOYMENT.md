@@ -19,6 +19,9 @@ GitHub (main)  ──push──►  GitHub Actions
 
 Aller sur : `https://github.com/igonencm-dev/agence-kinome/settings/secrets/actions`
 
+Authentification **par clé SSH** (jamais par mot de passe — évite tout problème
+de caractères spéciaux dans le pipeline CI).
+
 Ajouter ces 5 **Repository secrets** :
 
 | Nom                  | Valeur                                                              |
@@ -26,11 +29,15 @@ Ajouter ces 5 **Repository secrets** :
 | `SFTP_HOST`          | `31.170.164.63`                                                     |
 | `SFTP_PORT`          | `65002`                                                             |
 | `SFTP_USERNAME`      | `u334827235`                                                        |
-| `SFTP_PASSWORD`      | _(le mdp SSH Hostinger)_                                            |
-| `SFTP_REMOTE_PATH`   | `/home/u334827235/domains/agence-kinome.ch/public_html` _(à confirmer après SSH ci-dessous)_ |
+| `SSH_PRIVATE_KEY`    | _(contenu du fichier `~/.ssh/kinome_deploy` — clé privée OPENSSH)_  |
+| `SFTP_REMOTE_PATH`   | `/home/u334827235/domains/agence-kinome.ch/public_html`             |
 
 > ⚠️  Une fois ajoutés, ces secrets ne sont **plus jamais lisibles** depuis
 > l'interface GitHub : ils s'écrasent uniquement.
+>
+> ⚠️  La clé privée doit être copiée **intégralement**, avec les lignes
+> `-----BEGIN OPENSSH PRIVATE KEY-----` et `-----END OPENSSH PRIVATE KEY-----`
+> incluses, et sans modification (espaces / retours à la ligne préservés).
 
 ### 2. Vérifier le chemin distant Hostinger
 
