@@ -1,8 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { contact } from "../lib/contact";
+import ManageCookiesButton from "./ManageCookiesButton";
 
 const navLinks = [
   { href: "/services", label: "Services" },
@@ -139,15 +138,7 @@ export default function Footer() {
             Politique de confidentialité
           </Link>
           <span aria-hidden="true">·</span>
-          <button
-            type="button"
-            onClick={() =>
-              window.dispatchEvent(new Event("open-cookie-settings"))
-            }
-            className="cursor-pointer underline-offset-4 hover:text-kinome-cream hover:underline"
-          >
-            Gérer les cookies
-          </button>
+          <ManageCookiesButton />
         </nav>
       </div>
     </footer>

@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import CauserieBotWidget from "./components/CauserieBotWidget";
 import {
   SITE,
   KEYWORDS_BASE,
@@ -118,6 +119,23 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${krub.variable} ${inter.variable}`}>
       <head>
+        {/* DNS prefetch + preconnect vers les origines tierces.
+            Réduit le temps de la 1ère requête vers ces hôtes une fois
+            qu'on en a besoin (chatbot, Analytics, fonts). */}
+        <link rel="dns-prefetch" href="https://dashboard.causeriebot.com" />
+        <link
+          rel="preconnect"
+          href="https://dashboard.causeriebot.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link
+          rel="preconnect"
+          href="https://www.googletagmanager.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
         {/* JSON-LD Organization + LocalBusiness — visible sur toutes les pages */}
         <Script
           id="ld-organization"
@@ -135,14 +153,9 @@ export default function RootLayout({
         <CookieConsent />
         <GoogleAnalytics />
 
-        {/* Chatbot CauserieBot (widget JS, charge après interactivité) */}
-        <Script
-          id="causeriebot-widget"
-          src="https://dashboard.causeriebot.com/widget.js"
-          data-id="61a7f539-597f-42f1-b362-1e5e255ae408"
-          data-url="https://dashboard.causeriebot.com"
-          strategy="afterInteractive"
-        />
+        {/* Chatbot CauserieBot : chargé après la 1ère interaction utilisateur
+            ou 8 s d'inactivité — préserve les Core Web Vitals (TBT, LCP). */}
+        <CauserieBotWidget />
       </body>
     </html>
   );
