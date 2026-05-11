@@ -90,17 +90,18 @@ export default function PartenairesPage() {
         </div>
       </section>
 
-      {/* Une expérience internationale — section avec la carte du monde en fond */}
+      {/* Une expérience internationale — section avec la carte du monde en fond.
+          Retour #102 : carte plus visible (opacité 0.3 → 0.55) pour
+          retrouver l'effet apprécié par Tanguy. */}
       <section className="relative overflow-hidden bg-kinome-cream px-[5%] py-[120px]">
-        {/* Map en background, opacité subtile pour ne pas masquer le texte */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-30"
+          className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-55"
         >
           <img
             src="/assets/world-map.png"
             alt=""
-            className="block w-full max-w-[1600px] object-contain"
+            className="block w-full max-w-[1500px] object-contain"
             loading="lazy"
           />
         </div>
@@ -156,7 +157,14 @@ export default function PartenairesPage() {
                     <img
                       src={p.visuel.src}
                       alt={p.nom}
-                      className="block h-auto max-h-[70%] w-auto max-w-[80%] object-contain"
+                      // Retour #103 : logo Koté un peu plus contenu (cap 60% au
+                      // lieu de 70/80) pour l'équilibrer optiquement avec les
+                      // autres logos partenaires.
+                      className={`block h-auto w-auto object-contain ${
+                        p.nom === "Koté"
+                          ? "max-h-[55%] max-w-[68%]"
+                          : "max-h-[70%] max-w-[80%]"
+                      }`}
                     />
                   ) : null}
                 </div>
@@ -211,7 +219,8 @@ export default function PartenairesPage() {
       {/* Témoignages (composant partagé) */}
       <Testimonials />
 
-      {/* CTA */}
+      {/* CTA — retour #104 : bug d'affichage du bouton (texte avalé par le
+          fill noir au hover, manque le span z-10 + bascule de couleur). */}
       <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[80px] text-center text-white">
         <h2 className="mb-6 font-heading text-[clamp(28px,3vw,44px)] font-normal leading-[1.1]">
           Un projet international&nbsp;?
@@ -222,9 +231,9 @@ export default function PartenairesPage() {
         </p>
         <Link
           href="/contact/"
-          className="inline-flex min-w-[280px] items-center justify-center btn-fill-dark rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
+          className="btn-fill-dark group inline-flex min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
         >
-          Discutons-en
+          <span className="relative z-10">Discutons-en</span>
         </Link>
       </section>
     </main>

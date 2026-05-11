@@ -169,30 +169,40 @@ export default function Home() {
         >
           <source src={HERO_VIDEO} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 z-[2] bg-black/40" />
+        {/* Overlay gradient : plus sombre en bas (zone CTA) pour assurer la
+            lisibilité des boutons même quand la vidéo de fond montre des
+            frames clairs (retours #86 #88). Au-dessus, voile uniforme léger
+            pour conserver le contraste du titre (retour #87 — apprécié). */}
+        <div className="pointer-events-none absolute inset-0 z-[2] bg-black/35" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[55%] bg-gradient-to-t from-black/70 via-black/45 to-transparent" />
         <div className="relative z-[3] mx-auto flex w-full max-w-[1400px] flex-col items-start px-[5%]">
           <div className="max-w-[800px] text-left text-white">
-            <h1 className="mb-[30px] font-heading text-[clamp(30px,5.5vw,76px)] font-semibold leading-[1.05]">
+            <h1 className="mb-[30px] font-heading text-[clamp(30px,5.5vw,76px)] font-semibold leading-[1.05] [text-shadow:0_2px_18px_rgba(0,0,0,0.35)]">
               Agence de communication
               <br />à Genève — <HeroAnimatedWord />
             </h1>
-            <p className="mb-[35px] max-w-[520px] text-[1.15rem] leading-[1.7]">
+            <p className="mb-[35px] max-w-[520px] text-[1.15rem] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)]">
               Branding, identité visuelle et sites internet
               <br />
               en alliant stratégie et émotion, depuis la Suisse romande.
             </p>
             <div className="flex flex-wrap gap-5">
+              {/* Bouton 1 (primaire) : fond blanc/texte noir + ombre pour
+                  rester lisible même devant les frames vidéo blancs. */}
               <Link
                 href="#contact"
-                className="inline-flex min-w-[280px] items-center justify-center whitespace-nowrap rounded-full bg-white px-8 py-4 text-center font-heading text-[1rem] font-bold text-black transition-transform hover:scale-105"
+                className="btn-fill-dark group inline-flex min-w-[280px] items-center justify-center whitespace-nowrap rounded-full bg-white px-8 py-4 text-center font-heading text-[1rem] font-bold text-black shadow-[0_6px_24px_rgba(0,0,0,0.25)] transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
               >
-                Vous avez un projet&nbsp;?
+                <span className="relative z-10">Vous avez un projet&nbsp;?</span>
               </Link>
+              {/* Bouton 2 (secondaire) : bordure + texte blanc avec ombre.
+                  Au hover, fond se remplit en blanc → texte doit passer
+                  noir pour rester lisible (retour #86). */}
               <Link
                 href="/portfolio"
-                className="inline-flex min-w-[280px] items-center justify-center whitespace-nowrap btn-fill-white rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-bold text-white transition-transform hover:scale-105"
+                className="btn-fill-white group inline-flex min-w-[280px] items-center justify-center whitespace-nowrap rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-bold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.45)] transition-[transform,color,text-shadow] duration-300 hover:scale-105 hover:text-black hover:[text-shadow:none]"
               >
-                Découvrir nos projets
+                <span className="relative z-10">Découvrir nos projets</span>
               </Link>
             </div>
           </div>
@@ -385,11 +395,12 @@ export default function Home() {
               tout de l&rsquo;émotion&nbsp;!
             </h2>
             <div className="relative mt-20 w-full max-w-[420px]">
-              <div className="absolute -bottom-5 left-[30px] z-0 h-[340px] w-[340px] rounded-full border-[1.5px] border-[#ccc]" />
+              {/* Cercle décoratif retiré (retour #89 : trait parasite gênant).
+                  En attente du PNG transparent HD côté Tanguy pour finaliser. */}
               <img
                 src="/assets/wp/Poster-Design.png"
                 alt="Poster Design Kinome"
-                className="relative z-[1] block w-full object-contain"
+                className="relative z-[1] block w-full object-contain mix-blend-multiply"
               />
             </div>
           </div>

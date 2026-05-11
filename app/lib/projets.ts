@@ -50,7 +50,7 @@ export const projets: Projet[] = [
       "/assets/projets/codecircle/5.png",
       "/assets/projets/codecircle/6.png",
     ],
-    siteUrl: "https://codecircle.com",
+    siteUrl: "https://codecircle.fr",
     resume_en:
       "Sober, elegant identity for a web development studio that prefers to let its client projects shine.",
     domaine_en: "Logo",

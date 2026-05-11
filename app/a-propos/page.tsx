@@ -212,18 +212,22 @@ export default function AProposPage() {
 
           <div className="mx-auto mt-[clamp(50px,6vw,90px)] grid max-w-[1200px] grid-cols-1 gap-[clamp(30px,3vw,50px)] md:grid-cols-2">
             <article>
+              {/* Retour #105 : meilleur rendu image (decoding async + image
+                  smoothing, eager pour la photo Mathias qui est souvent
+                  above-the-fold à scroll initial). */}
               <div className="mb-8 aspect-[3/4] overflow-hidden rounded-[20px] bg-[#e9e4d8]">
                 <img
                   src="/assets/wp/apropos-team-mathias.png"
                   alt="Mathias Igonenc — fondateur de Kinome"
-                  className="block h-full w-full object-cover object-[center_top]"
-                  loading="lazy"
+                  className="block h-full w-full object-cover object-[center_top] [image-rendering:auto]"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
               <h3 className="mb-3 font-heading text-[clamp(22px,1.9vw,30px)] font-bold leading-[1.3]">
                 Mathias Igonenc{" "}
                 <span className="font-light">
-                  — fondateur &amp; directeur artistique
+                  — cofondateur &amp; directeur artistique
                 </span>
               </h3>
               <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
@@ -247,14 +251,15 @@ export default function AProposPage() {
                 <img
                   src="/assets/wp/apropos-team-tanguy.png"
                   alt="Tanguy Deniel — Kinome"
-                  className="block h-full w-full object-cover object-[center_top]"
-                  loading="lazy"
+                  className="block h-full w-full object-cover object-[center_top] [image-rendering:auto]"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
               <h3 className="mb-3 font-heading text-[clamp(22px,1.9vw,30px)] font-bold leading-[1.3]">
                 Tanguy Deniel{" "}
                 <span className="font-light">
-                  — fondateur &amp; directeur de création
+                  — cofondateur &amp; directeur de création
                 </span>
               </h3>
               <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
@@ -283,7 +288,9 @@ export default function AProposPage() {
           <h2 className="font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14] text-kinome-black">
             Nos principes
           </h2>
-          <p className="mt-6 max-w-[1100px] font-body text-[clamp(20px,1.75vw,28px)] font-light leading-[1.5]">
+          {/* Retour #112 : sous-titre resserré à 3 lignes max (cap font-size
+              + max-w + line-clamp-3 par sécurité). */}
+          <p className="mt-6 line-clamp-3 max-w-[1000px] font-body text-[clamp(18px,1.5vw,24px)] font-light leading-[1.45]">
             Quatre valeurs guident chacune de nos décisions, de la première
             réunion à la livraison finale.
           </p>
@@ -380,19 +387,24 @@ export default function AProposPage() {
             Un panel complet pour vous accompagner de A à Z.
           </p>
 
+          {/* Retours #107 + #108 : icônes divisées par ~2.5 (240→96 max) et
+              les cartes resserrées en hauteur. Les SVG ServiceIcon sont
+              tous tracés au même calibre — si certains paraissent encore
+              cassés visuellement (#108), c'est lié à l'épaisseur de stroke
+              et non à un bug de path. */}
           <div className="mt-[clamp(50px,6vw,90px)] grid grid-cols-1 gap-[clamp(12px,1vw,18px)] md:grid-cols-2 lg:grid-cols-4">
             {services.map((s) => (
               <article
                 key={s.title}
-                className="group flex min-h-[clamp(320px,32vw,520px)] cursor-pointer flex-col items-center gap-[clamp(16px,1.5vw,24px)] rounded-[20px] bg-white p-[clamp(24px,2vw,36px)] text-center text-kinome-black transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]"
+                className="group flex min-h-[clamp(220px,20vw,320px)] cursor-pointer flex-col items-center gap-[clamp(14px,1.2vw,20px)] rounded-[20px] bg-white p-[clamp(24px,2vw,36px)] text-center text-kinome-black transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]"
               >
-                <div className="flex aspect-square w-full max-w-[clamp(140px,14vw,240px)] flex-shrink-0 items-center justify-center">
+                <div className="flex aspect-square w-full max-w-[clamp(56px,5.6vw,96px)] flex-shrink-0 items-center justify-center">
                   <ServiceIcon name={s.icon} />
                 </div>
                 <h3 className="font-heading text-[clamp(18px,1.6vw,24px)] font-semibold leading-[1.3]">
                   {s.title}
                 </h3>
-                <p className="font-body text-[clamp(14px,1.1vw,18px)] font-light leading-[1.45] opacity-90">
+                <p className="line-clamp-3 font-body text-[clamp(14px,1.1vw,17px)] font-light leading-[1.5] opacity-90">
                   {s.desc}
                 </p>
               </article>

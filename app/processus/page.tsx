@@ -72,14 +72,16 @@ export default function ProcessusPage() {
         </div>
       </section>
 
-      {/* Tout commence par un appel — fond blanc */}
+      {/* Tout commence par un appel — fond blanc.
+          Retour #96 : illustration agrandie ×2.5 pour s'aligner visuellement
+          avec les autres illustrations du processus. */}
       <section className="bg-white px-[5%] py-[120px]">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-start gap-12 lg:grid-cols-[280px_1fr] lg:gap-20">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div className="flex justify-center lg:justify-start">
             <img
               src="/assets/processus/online-chat.svg"
               alt=""
-              className="block w-full max-w-[260px] object-contain"
+              className="block w-full max-w-[640px] object-contain"
             />
           </div>
           <div>
@@ -124,7 +126,8 @@ export default function ProcessusPage() {
                 key={c.title}
                 className="flex flex-col items-center gap-10 rounded-[24px] bg-white p-[clamp(40px,4vw,80px)] text-center"
               >
-                <div className="flex h-[clamp(180px,22vw,260px)] w-[clamp(180px,22vw,260px)] items-center justify-center text-kinome-dark">
+                {/* Retour #97 : icônes divisées par ~2 (260→130). */}
+                <div className="flex h-[clamp(90px,11vw,130px)] w-[clamp(90px,11vw,130px)] items-center justify-center text-kinome-dark">
                   <img
                     src={c.icon}
                     alt=""
@@ -152,13 +155,17 @@ export default function ProcessusPage() {
             de conception
           </h2>
 
+          {/* Retour #99 : images étapes passées d'un ratio 2:3 portrait
+              très étiré à un 4:5 plus compact (réduction ~20 % de hauteur).
+              Retour #98 : descriptions ramenées à la taille body standard
+              (cap à 18 px au lieu de 22). */}
           {etapes.map((e) => (
             <div
               key={e.num}
               className="mb-16 grid grid-cols-1 items-center gap-[clamp(40px,5vw,90px)] last:mb-0 lg:grid-cols-2"
             >
               <div
-                className={`overflow-hidden rounded-[24px] aspect-[515/767] ${
+                className={`overflow-hidden rounded-[24px] aspect-[4/5] ${
                   e.reverse ? "lg:order-2" : ""
                 }`}
               >
@@ -175,7 +182,7 @@ export default function ProcessusPage() {
                 <h3 className="mb-8 font-heading text-[clamp(22px,2vw,30px)] font-semibold leading-[1.3]">
                   {e.title}
                 </h3>
-                <p className="font-body text-[clamp(15px,1.35vw,22px)] font-light leading-[1.55] text-kinome-dark">
+                <p className="font-body text-[clamp(15px,1.1vw,17px)] font-light leading-[1.65] text-kinome-dark">
                   {e.body}
                 </p>
               </div>

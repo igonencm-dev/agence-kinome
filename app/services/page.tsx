@@ -125,13 +125,15 @@ export default function ServicesPage() {
       {/* Onglets services */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
         <div className="mb-16 flex flex-wrap justify-center gap-4">
+          {/* Couleur retours #90 : passer du gris froid #f2f2f2 au beige
+              chaud #dfdbd0 (cohérence avec la charte cream/sable Kinome). */}
           <button
             type="button"
             onClick={() => setOnglet("crea")}
             className={`rounded-full px-12 py-3 font-body text-[1.1rem] font-medium transition-colors ${
               onglet === "crea"
                 ? "bg-kinome-black text-white"
-                : "bg-[#f2f2f2] text-kinome-black hover:bg-[#e5e5e5]"
+                : "bg-[#dfdbd0] text-kinome-black hover:bg-[#cbc6b8]"
             }`}
           >
             Services créa
@@ -142,7 +144,7 @@ export default function ServicesPage() {
             className={`rounded-full px-12 py-3 font-body text-[1.1rem] font-medium transition-colors ${
               onglet === "web"
                 ? "bg-kinome-black text-white"
-                : "bg-[#f2f2f2] text-kinome-black hover:bg-[#e5e5e5]"
+                : "bg-[#dfdbd0] text-kinome-black hover:bg-[#cbc6b8]"
             }`}
           >
             Services web design
@@ -244,11 +246,13 @@ export default function ServicesPage() {
           <h2 className="mb-16 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
             Pourquoi choisir Kinome&nbsp;?
           </h2>
+          {/* Retour #92 : hauteur uniforme sur les blocs "raisons" pour
+              éviter l'effet escalier (textes de longueur variable). */}
           <ol className="flex flex-col gap-6">
             {pourquoiNous.map((p) => (
               <li
                 key={p.num}
-                className="grid grid-cols-1 items-start gap-6 rounded-[24px] bg-white p-12 shadow-sm md:grid-cols-[auto_1fr_auto] md:items-center"
+                className="grid min-h-[220px] grid-cols-1 items-start gap-6 rounded-[24px] bg-white p-12 shadow-sm md:grid-cols-[auto_1fr_auto] md:items-center"
               >
                 <div>
                   <h3 className="font-heading text-[2.4rem] font-medium leading-[1.1] md:max-w-[400px]">
@@ -321,18 +325,23 @@ export default function ServicesPage() {
           Parlez-nous de vos enjeux et de vos contraintes : nous reviendrons
           vers vous avec une proposition cadrée.
         </p>
+        {/* Retour #93 : bug d'affichage des deux CTA bas de page.
+            Cause : le texte n'était pas dans un <span relative z-10>, donc
+            le fill au hover passait DEVANT le texte (illisible). On enveloppe
+            le texte + on bascule sa couleur au hover (noir↔blanc selon le
+            fill). */}
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/contact/"
-            className="inline-flex min-w-[280px] items-center justify-center btn-fill-dark rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
+            className="btn-fill-dark group inline-flex min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
           >
-            Discutons de votre projet
+            <span className="relative z-10">Discutons de votre projet</span>
           </Link>
           <Link
             href="/portfolio/"
-            className="inline-flex min-w-[280px] items-center justify-center btn-fill-white rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
+            className="btn-fill-white group inline-flex min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105 hover:text-kinome-black"
           >
-            Voir nos projets
+            <span className="relative z-10">Voir nos projets</span>
           </Link>
         </div>
       </section>

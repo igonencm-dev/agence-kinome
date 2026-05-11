@@ -50,7 +50,8 @@ export default function PortfolioPage() {
         </Link>
       </section>
 
-      {/* Filtres */}
+      {/* Filtres — couleur retour #94 : passer du gris froid #f2f2f2 au
+          beige chaud #dfdbd0, cohérent avec la charte sable Kinome. */}
       <section className="mx-auto mt-24 max-w-[1400px]">
         <div className="flex flex-wrap items-center justify-center gap-3">
           {filtres.map((f) => (
@@ -61,7 +62,7 @@ export default function PortfolioPage() {
               className={`min-w-[180px] rounded-full px-8 py-3 font-body text-[1.05rem] font-semibold transition-colors ${
                 actif === f
                   ? "bg-kinome-black text-white"
-                  : "bg-[#f2f2f2] text-kinome-black hover:bg-[#e5e5e5]"
+                  : "bg-[#dfdbd0] text-kinome-black hover:bg-[#cbc6b8]"
               }`}
             >
               {filtreLabels[f]}
@@ -132,6 +133,38 @@ export default function PortfolioPage() {
       <div className="-mx-[5%] mt-24">
         <Testimonials />
       </div>
+
+      {/* Bloc contact bas de page (retour #95 : combler la zone vide avant
+          le footer avec un CTA conversion). */}
+      <section className="-mx-[5%] mt-0 bg-kinome-dark px-[5%] py-[clamp(70px,10vw,120px)] text-center text-white">
+        <div className="mx-auto max-w-[900px]">
+          <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
+            Parlons de votre projet
+          </p>
+          <h2 className="mb-6 font-heading text-[clamp(28px,4.5vw,52px)] font-normal leading-[1.1]">
+            Un nouveau projet à faire éclore&nbsp;?
+          </h2>
+          <p className="mx-auto mb-10 max-w-[680px] font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.6] text-white/80">
+            Branding, identité visuelle, site internet&nbsp;: racontez-nous
+            votre projet, on revient vers vous sous 48 h avec une première
+            piste de travail.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact/"
+              className="btn-fill-accent group inline-flex min-w-[260px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
+            >
+              <span className="relative z-10">Vous avez un projet&nbsp;?</span>
+            </Link>
+            <Link
+              href="/processus/"
+              className="btn-fill-white group inline-flex min-w-[260px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105 hover:text-kinome-black"
+            >
+              <span className="relative z-10">Notre processus</span>
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
