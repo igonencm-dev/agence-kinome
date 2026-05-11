@@ -12,6 +12,51 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.agence-kinome\.ch [NC]
 RewriteRule ^(.*)$ https://agence-kinome.ch/$1 [L,R=301]
 
+# ============================================================================
+# REDIRECTIONS 301 — ancien WordPress → nouvelle structure Next.js
+# Conserve le SEO accumulé par l'ancien site (Google transfère le jus
+# d'indexation via les 301 permanentes).
+# ============================================================================
+
+# Pages projets : /microclimat/ → /projets/microclimat/ (etc.)
+RewriteRule ^codecircle/?$            /projets/codecircle/          [L,R=301]
+RewriteRule ^adapt-project/?$         /projets/adapt-project/       [L,R=301]
+RewriteRule ^cabinet-faraday/?$       /projets/cabinet-faraday/     [L,R=301]
+RewriteRule ^alministratif/?$         /projets/alministratif/       [L,R=301]
+RewriteRule ^authentik-peak/?$        /projets/authentik-peak/      [L,R=301]
+RewriteRule ^la-voyagiste/?$          /projets/la-voyagiste/        [L,R=301]
+RewriteRule ^cinars/?$                /projets/cinars/              [L,R=301]
+RewriteRule ^black-sheep-valley/?$    /projets/black-sheep-valley/  [L,R=301]
+RewriteRule ^microclimat/?$           /projets/microclimat/         [L,R=301]
+RewriteRule ^elips/?$                 /projets/elips/               [L,R=301]
+RewriteRule ^le-ravenala/?$           /projets/le-ravenala/         [L,R=301]
+
+# Pages principales renommées
+RewriteRule ^nos-services/?$          /services/                    [L,R=301]
+RewriteRule ^nos-partenaires/?$       /partenaires/                 [L,R=301]
+RewriteRule ^processus-client/?$      /processus/                   [L,R=301]
+RewriteRule ^homepage/?$              /                             [L,R=301]
+
+# Anciens slugs d'articles de blog (WordPress avait un slug bizarre pour celui-ci)
+RewriteRule ^agence-kinome-ch-blog-creation-site-internet-geneve-guide/?$  /blog/creation-site-internet-geneve-guide/  [L,R=301]
+
+# Anciennes pages publiques /blog/{slug} qui étaient à la racine pendant la migration
+RewriteRule ^choisir-agence-communication-geneve/?$           /blog/choisir-agence-communication-geneve/           [L,R=301]
+RewriteRule ^creer-identite-visuelle-entreprise-geneve/?$    /blog/creer-identite-visuelle-entreprise-geneve/    [L,R=301]
+RewriteRule ^creation-logo-geneve-processus/?$               /blog/creation-logo-geneve-processus/               [L,R=301]
+RewriteRule ^tarifs-agence-communication-geneve/?$           /blog/tarifs-agence-communication-geneve/           [L,R=301]
+RewriteRule ^creation-site-internet-geneve-guide/?$          /blog/creation-site-internet-geneve-guide/          [L,R=301]
+
+# Anciennes pages de proposition / cas client (peuvent rester 410 Gone ou
+# rediriger vers /portfolio/ — on choisit le portfolio pour ne pas frustrer
+# d'éventuels visiteurs qui les avaient bookmarkées)
+RewriteRule ^proposition-proxycore/?$  /portfolio/                  [L,R=301]
+RewriteRule ^retour-graphiplus/?$      /portfolio/                  [L,R=301]
+
+# WordPress feed / xmlrpc (Google les avait peut-être indexés)
+RewriteRule ^feed/?$                /sitemap.xml                    [L,R=301]
+RewriteRule ^xmlrpc\.php$           /                               [L,R=410]
+
 # Index par défaut
 DirectoryIndex index.html index.php
 
