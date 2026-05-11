@@ -3,6 +3,7 @@ import Link from "next/link";
 import { contact } from "../lib/contact";
 import ContactForm from "./ContactForm";
 import Testimonials from "../components/Testimonials";
+import LogosMarqueeVertical from "../components/LogosMarqueeVertical";
 import { buildMetadata } from "../lib/seo";
 
 export const metadata = buildMetadata({
@@ -102,14 +103,23 @@ export default function ContactPage() {
         <ContactForm />
       </section>
 
-      {/* Bandeau Plan de travail */}
-      <section className="my-[60px] bg-kinome-cream py-[80px]">
-        <div className="mx-auto max-w-[1728px]">
-          <img
-            src="/assets/plan-de-travail.png"
-            alt="Notre plan de travail"
-            className="block h-auto w-full object-cover"
-          />
+      {/* Carrousel vertical des logos clients */}
+      <section className="my-[60px] bg-kinome-cream py-[clamp(50px,8vw,80px)]">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-[5%] lg:grid-cols-[1fr_320px]">
+          <div className="text-center lg:text-left">
+            <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
+              Ils nous font confiance
+            </p>
+            <h2 className="mb-6 font-heading text-[clamp(28px,4.5vw,56px)] font-normal leading-[1.1] text-kinome-black">
+              Une trentaine de marques accompagnées depuis Genève
+            </h2>
+            <p className="max-w-[480px] font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey lg:mx-0 mx-auto">
+              Identités, sites internet, campagnes — de la PME au cabinet de
+              conseil, du restaurant à l&rsquo;agence de voyage, des marques
+              variées choisissent Kinome pour porter leur image.
+            </p>
+          </div>
+          <LogosMarqueeVertical />
         </div>
       </section>
 

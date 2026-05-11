@@ -85,6 +85,15 @@ body.no-scroll {
   }
 }
 
+@keyframes marquee-scroll-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
 .anim-fade-out {
   animation: fade-out-layer 0.5s ease-in forwards;
 }
@@ -105,6 +114,10 @@ body.no-scroll {
 
 .anim-marquee {
   animation: marquee-scroll 18s linear infinite;
+}
+
+.anim-marquee-vertical {
+  animation: marquee-scroll-vertical 22s linear infinite;
 }
 
 .anim-marquee.paused {

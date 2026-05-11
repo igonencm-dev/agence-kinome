@@ -105,8 +105,8 @@ export default async function ProjetPage({ params }: { params: Params }) {
         dangerouslySetInnerHTML={{ __html: jsonLdScript(ld.breadcrumb) }}
       />
 
-      {/* Hero plein écran */}
-      <section className="relative h-screen min-h-[700px] w-full overflow-hidden">
+      {/* Hero plein écran (responsive : 100vh desktop, hauteur min 480px mobile) */}
+      <section className="relative h-[100vh] min-h-[480px] w-full overflow-hidden">
         <img
           src={heroImg}
           alt={projet.nom}
@@ -115,37 +115,37 @@ export default async function ProjetPage({ params }: { params: Params }) {
       </section>
 
       {/* Bloc intro : titre + métadonnées + description */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[140px]">
-        <h1 className="mb-16 font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,10vw,140px)]">
+        <h1 className="mb-[clamp(40px,6vw,80px)] font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
           {projet.nom}
         </h1>
 
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_2fr]">
+        <div className="grid grid-cols-1 gap-[clamp(32px,4vw,64px)] lg:grid-cols-[1fr_2fr]">
           <dl className="font-heading">
-            <div className="mb-10">
-              <dt className="font-semibold text-[1.6rem] text-kinome-black">
+            <div className="mb-[clamp(24px,3vw,40px)]">
+              <dt className="font-semibold text-[clamp(18px,1.5vw,26px)] text-kinome-black">
                 Année
               </dt>
-              <dd className="mt-2 font-light text-[1.3rem] text-kinome-black">
+              <dd className="mt-2 font-light text-[clamp(16px,1.2vw,21px)] text-kinome-black">
                 {projet.annee}
               </dd>
             </div>
             {projet.domaine && (
-              <div className="mb-10">
-                <dt className="font-semibold text-[1.6rem] text-kinome-black">
+              <div className="mb-[clamp(24px,3vw,40px)]">
+                <dt className="font-semibold text-[clamp(18px,1.5vw,26px)] text-kinome-black">
                   Domaine
                 </dt>
-                <dd className="mt-2 font-light text-[1.3rem] text-kinome-black">
+                <dd className="mt-2 font-light text-[clamp(16px,1.2vw,21px)] text-kinome-black">
                   {projet.domaine}
                 </dd>
               </div>
             )}
             {projet.role && (
               <div>
-                <dt className="font-semibold text-[1.6rem] text-kinome-black">
+                <dt className="font-semibold text-[clamp(18px,1.5vw,26px)] text-kinome-black">
                   Rôle
                 </dt>
-                <dd className="mt-2 font-light text-[1.3rem] text-kinome-black">
+                <dd className="mt-2 font-light text-[clamp(16px,1.2vw,21px)] text-kinome-black">
                   {projet.role}
                 </dd>
               </div>
@@ -153,10 +153,10 @@ export default async function ProjetPage({ params }: { params: Params }) {
           </dl>
 
           <div>
-            <h2 className="mb-6 font-heading text-[1.8rem] font-semibold">
+            <h2 className="mb-6 font-heading text-[clamp(20px,2vw,32px)] font-semibold">
               Description
             </h2>
-            <p className="font-body text-[1.25rem] font-light leading-[1.5] text-kinome-black">
+            <p className="font-body text-[clamp(15px,1.2vw,20px)] font-light leading-[1.6] text-kinome-black">
               {projet.description ?? projet.resume}
             </p>
           </div>
@@ -185,15 +185,15 @@ export default async function ProjetPage({ params }: { params: Params }) {
 
       {/* Section "point fort" / graphisme avec goût (sur fond cream) */}
       {projet.pointFortTitle && (
-        <section className="mt-[100px] bg-kinome-cream px-[5%] py-[120px]">
+        <section className="mt-[clamp(60px,10vw,100px)] bg-kinome-cream px-[5%] py-[clamp(60px,10vw,120px)]">
           <div className="mx-auto max-w-[1400px] text-center">
-            <h2 className="mb-10 font-heading text-[6rem] font-normal leading-[1.05] sm:text-[3rem]">
+            <h2 className="mb-10 font-heading text-[clamp(28px,5vw,76px)] font-normal leading-[1.05]">
               {projet.pointFortTitle}
             </h2>
-            <p className="mx-auto max-w-[1100px] font-body text-[1.3rem] font-light leading-[1.5] text-kinome-black">
+            <p className="mx-auto max-w-[1100px] font-body text-[clamp(15px,1.3vw,21px)] font-light leading-[1.55] text-kinome-black">
               {projet.pointFortBody}
             </p>
-            <h3 className="mt-20 mb-8 font-heading text-[3.5rem] font-normal leading-[1.1] sm:text-[2.2rem]">
+            <h3 className="mt-[clamp(40px,6vw,80px)] mb-8 font-heading text-[clamp(24px,3.5vw,56px)] font-normal leading-[1.1]">
               Vous souhaitez concrétiser une idée&nbsp;?
             </h3>
             <Link
@@ -208,7 +208,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
 
       {/* Galerie secondaire (3 images suivantes) */}
       {projet.gallery && projet.gallery.length > 2 && (
-        <section className="mx-auto max-w-[1588px] px-[5%] py-[100px]">
+        <section className="mx-auto max-w-[1588px] px-[5%] py-[clamp(60px,8vw,100px)]">
           <div className="flex flex-col gap-8">
             {projet.gallery.slice(2).map((src, i) => (
               <div
@@ -228,17 +228,17 @@ export default async function ProjetPage({ params }: { params: Params }) {
 
       {/* Site client + crédit */}
       {projet.siteUrl && (
-        <section className="mx-auto max-w-[1400px] px-[5%] py-[100px]">
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+        <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,8vw,100px)]">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
-              <h3 className="mb-4 font-heading text-[1.8rem] font-semibold">
+              <h3 className="mb-4 font-heading text-[clamp(20px,2vw,30px)] font-semibold">
                 Site internet du client
               </h3>
               <a
                 href={projet.siteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-[1.4rem] font-light text-kinome-black underline transition-opacity hover:opacity-70"
+                className="font-body text-[clamp(16px,1.4vw,22px)] font-light text-kinome-black underline transition-opacity hover:opacity-70 break-words"
               >
                 {projet.siteUrl.replace(/^https?:\/\//, "")}
               </a>

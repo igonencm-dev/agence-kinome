@@ -5,11 +5,12 @@ import Link from "next/link";
 import { contact } from "../lib/contact";
 
 const navLinks = [
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/blog", label: "Blog" },
-  { href: "/a-propos", label: "À propos" },
-  { href: "/partenaires", label: "Nos Partenaires" },
   { href: "/services", label: "Services" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/processus", label: "Notre processus" },
+  { href: "/blog", label: "Blog" },
+  { href: "/partenaires", label: "Nos Partenaires" },
+  { href: "/a-propos", label: "À propos" },
 ];
 
 export default function Footer() {
