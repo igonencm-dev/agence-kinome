@@ -118,6 +118,34 @@ export function buildMetadata({
 
   const allKeywords = [...KEYWORDS_BASE, ...(keywords ?? [])];
 
+  // Calcul automatique des alternates hreflang (FR ↔ EN) basé sur le path
+  // courant. Mapping des slugs traduits pour les pages avec slug différent.
+  const FR_TO_EN: Record<string, string> = {
+    "/": "/en/",
+    "/services/": "/en/services/",
+    "/portfolio/": "/en/portfolio/",
+    "/blog/": "/en/blog/",
+    "/contact/": "/en/contact/",
+    "/a-propos/": "/en/about/",
+    "/processus/": "/en/process/",
+    "/partenaires/": "/en/partners/",
+    "/mentions-legales/": "/en/legal/",
+    "/politique-de-confidentialite/": "/en/privacy/",
+  };
+  const EN_TO_FR = Object.fromEntries(
+    Object.entries(FR_TO_EN).map(([fr, en]) => [en, fr])
+  );
+
+  const isEn = path.startsWith("/en");
+  const altPath = isEn ? EN_TO_FR[path] : FR_TO_EN[path];
+
+  const languages: Record<string, string> = {};
+  if (altPath) {
+    languages[isEn ? "fr" : "en"] = `${SITE.url}${altPath}`;
+    languages[isEn ? "en" : "fr"] = url;
+    languages["x-default"] = isEn ? `${SITE.url}${altPath}` : url;
+  }
+
   return {
     // bareTitle = true : on bypasse le template du layout (utile pour la home)
     // bareTitle = false : on laisse le template du layout ajouter "— Kinome | Agence à Genève"
@@ -127,6 +155,7 @@ export function buildMetadata({
     metadataBase: new URL(SITE.url),
     alternates: {
       canonical: url,
+      ...(Object.keys(languages).length > 0 && { languages }),
     },
     robots: noIndex
       ? { index: false, follow: false }

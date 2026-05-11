@@ -4,37 +4,37 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-
-const navLinks = [
-  { href: "/services/", label: "Nos services" },
-  { href: "/portfolio/", label: "Portfolio" },
-  { href: "/processus/", label: "Processus" },
-  { href: "/blog/", label: "Blog" },
-  { href: "/partenaires/", label: "Partenaires" },
-  { href: "/a-propos/", label: "À propos" },
-];
+import {
+  getLocaleFromPath,
+  getAlternateUrl,
+  ROUTES,
+  t,
+} from "../lib/i18n";
 
 export default function Header() {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
+  const pathname = usePathname() ?? "/";
+  const locale = getLocaleFromPath(pathname);
+  const r = ROUTES[locale];
+
+  const navLinks = [
+    { href: r.services, label: t("nav_services", locale) },
+    { href: r.portfolio, label: t("nav_portfolio", locale) },
+    { href: r.process, label: t("nav_process", locale) },
+    { href: r.blog, label: t("nav_blog", locale) },
+    { href: r.partners, label: t("nav_partners", locale) },
+    { href: r.about, label: t("nav_about", locale) },
+  ];
+
+  const isHome = pathname === r.home;
   const isProjet = pathname?.startsWith("/projets/") ?? false;
   const isServices =
-    pathname === "/services/" || pathname === "/services";
-
-  // Pages avec un hero plein écran (image / vidéo) :
-  // - Home : vidéo MP4 plein écran
-  // - Services : vidéo scroll-driven
-  // - Pages projet : image hero plein écran
-  // Sur ces pages, le header est transparent au start, s'opacifie au scroll.
-  // Sur les pages projet uniquement, comportement « auto-hide » au mouvement
-  // souris pour ne pas masquer l'image.
+    pathname === r.services || pathname === r.services.replace(/\/$/, "");
   const isHero = isHome || isProjet || isServices;
 
   const [scrolled, setScrolled] = useState(false);
   const [mouseActive, setMouseActive] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Détection du scroll sur les pages hero
   useEffect(() => {
     if (!isHero) return;
     const onScroll = () => setScrolled(window.scrollY > 150);
@@ -43,7 +43,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHero]);
 
-  // Auto-hide uniquement sur pages projet (le header peut masquer la photo)
   useEffect(() => {
     if (!isProjet) return;
     let timeoutId: number;
@@ -62,23 +61,22 @@ export default function Header() {
     };
   }, [isProjet]);
 
-  // Bloque le scroll du body quand le menu mobile est ouvert
   useEffect(() => {
-    if (menuOpen) {
-      document.body.classList.add("no-scroll");
-    } else {
-      document.body.classList.remove("no-scroll");
-    }
+    if (menuOpen) document.body.classList.add("no-scroll");
+    else document.body.classList.remove("no-scroll");
     return () => document.body.classList.remove("no-scroll");
   }, [menuOpen]);
 
-  // Ferme le menu mobile si on change de page
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
   const visible = !isProjet || scrolled || mouseActive;
   const solid = !isHero || scrolled;
+
+  const altLocale: "fr" | "en" = locale === "fr" ? "en" : "fr";
+  const altUrl = getAlternateUrl(pathname);
+  const altLabel = altLocale.toUpperCase();
 
   return (
     <>
@@ -95,7 +93,11 @@ export default function Header() {
         aria-hidden={!visible}
       >
         <div className="mx-auto flex max-w-[1728px] items-center justify-between px-[5%] py-4">
-          <Link href="/" aria-label="Accueil Kinome" className="block">
+          <Link
+            href={r.home}
+            aria-label={locale === "fr" ? "Accueil Kinome" : "Kinome Home"}
+            className="block"
+          >
             <Image
               src="/assets/logo-kinome.svg"
               alt="Kinome"
@@ -120,36 +122,21 @@ export default function Header() {
               </Link>
             ))}
 
-            <a
-              href="https://agence--kinome-ch.translate.goog/?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Toggle FR/EN — pointe vers la même page dans l'autre langue */}
+            <Link
+              href={altUrl}
+              hrefLang={altLocale}
+              aria-label={t("nav_locale_label", locale)}
+              title={t("nav_locale_label", locale)}
               className={`flex items-center gap-1.5 text-[0.95rem] font-medium transition-opacity hover:opacity-70 ${
                 solid ? "text-kinome-black" : "text-white"
               }`}
-              aria-label="View site in English (Google Translate)"
-              title="View in English"
             >
-              EN
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M14 3h7v7m0-7L10 14M5 6a1 1 0 0 1 1-1h4v2H7v10h10v-3h2v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6z"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
+              {altLabel}
+            </Link>
 
             <Link
-              href="/contact/"
+              href={r.contact}
               className={`btn-fill-accent group inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[0.9rem] font-semibold shadow-sm transition-[color,box-shadow] duration-300 hover:shadow-md hover:text-white ${
                 solid
                   ? "bg-kinome-black text-white"
@@ -157,7 +144,7 @@ export default function Header() {
               }`}
             >
               <span className="relative z-10 inline-flex items-center gap-2">
-                Nous contacter
+                {t("nav_contact", locale)}
                 <span
                   aria-hidden="true"
                   className="inline-block transition-transform duration-300 group-hover:translate-x-1"
@@ -168,12 +155,20 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Mobile : burger (toggle menu) */}
+          {/* Mobile : burger */}
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
             className="flex h-11 w-11 items-center justify-center rounded-full lg:hidden"
-            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-label={
+              menuOpen
+                ? locale === "fr"
+                  ? "Fermer le menu"
+                  : "Close menu"
+                : locale === "fr"
+                  ? "Ouvrir le menu"
+                  : "Open menu"
+            }
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
@@ -203,19 +198,16 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Drawer menu mobile — full screen overlay */}
+      {/* Drawer menu mobile */}
       <div
         id="mobile-menu"
         role="dialog"
         aria-modal="true"
-        aria-label="Menu principal"
+        aria-label="Menu"
         className={`fixed inset-0 z-[999] lg:hidden ${
-          menuOpen
-            ? "pointer-events-auto"
-            : "pointer-events-none"
+          menuOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
       >
-        {/* Overlay sombre derrière */}
         <div
           aria-hidden="true"
           onClick={() => setMenuOpen(false)}
@@ -224,7 +216,6 @@ export default function Header() {
           }`}
         />
 
-        {/* Panneau du menu */}
         <nav
           className={`absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col bg-kinome-cream pt-[88px] transition-transform duration-400 ease-out ${
             menuOpen ? "translate-x-0" : "translate-x-full"
@@ -248,7 +239,7 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   className="group block border-b border-kinome-black/10 py-5 font-heading text-[1.5rem] font-medium leading-[1.2] text-kinome-black transition-colors hover:text-kinome-accent"
                 >
-                  <span className="inline-flex items-center justify-between gap-3 w-full">
+                  <span className="inline-flex w-full items-center justify-between gap-3">
                     {link.label}
                     <span
                       aria-hidden="true"
@@ -260,16 +251,30 @@ export default function Header() {
                 </Link>
               </li>
             ))}
+
+            {/* Toggle locale dans le drawer */}
+            <li className="mt-4 pt-2">
+              <Link
+                href={altUrl}
+                hrefLang={altLocale}
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex items-center gap-2 rounded-full border border-kinome-black/15 px-4 py-2 font-body text-[0.85rem] font-medium text-kinome-grey hover:text-kinome-black"
+              >
+                <span aria-hidden="true">🌐</span>
+                {locale === "fr" ? "View in English" : "Voir en français"}
+              </Link>
+            </li>
           </ul>
 
-          {/* CTA Contact + infos en bas du drawer */}
           <div className="border-t border-kinome-black/10 px-8 py-6">
             <Link
-              href="/contact/"
+              href={r.contact}
               onClick={() => setMenuOpen(false)}
-              className="mb-5 flex w-full items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-6 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-[1.02]"
+              className="btn-fill-accent mb-5 flex w-full items-center justify-center rounded-full bg-kinome-black px-6 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-[1.02]"
             >
-              Nous contacter
+              <span className="relative z-10">
+                {t("nav_contact", locale)}
+              </span>
             </Link>
             <div className="space-y-1 font-body text-[0.85rem] text-kinome-grey">
               <p>
@@ -280,7 +285,7 @@ export default function Header() {
                   contact@agence-kinome.ch
                 </a>
               </p>
-              <p>Genève, Suisse</p>
+              <p>{locale === "fr" ? "Genève, Suisse" : "Geneva, Switzerland"}</p>
             </div>
           </div>
         </nav>
