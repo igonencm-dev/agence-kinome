@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { contact } from "../lib/contact";
@@ -104,11 +106,39 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-16 max-w-[1588px] border-t border-kinome-cream/10 pt-8 font-body text-[14px] font-light text-kinome-cream/60">
+      <div className="mx-auto mt-16 flex max-w-[1588px] flex-col items-start justify-between gap-4 border-t border-kinome-cream/10 pt-8 font-body text-[14px] font-light text-kinome-cream/60 md:flex-row md:items-center">
         <p>
           © {new Date().getFullYear()} {contact.agency.name}. Tous droits
           réservés.
         </p>
+        <nav
+          aria-label="Liens légaux"
+          className="flex flex-wrap items-center gap-x-5 gap-y-2"
+        >
+          <Link
+            href="/mentions-legales/"
+            className="hover:text-kinome-cream hover:underline"
+          >
+            Mentions légales
+          </Link>
+          <span aria-hidden="true">·</span>
+          <Link
+            href="/politique-de-confidentialite/"
+            className="hover:text-kinome-cream hover:underline"
+          >
+            Politique de confidentialité
+          </Link>
+          <span aria-hidden="true">·</span>
+          <button
+            type="button"
+            onClick={() =>
+              window.dispatchEvent(new Event("open-cookie-settings"))
+            }
+            className="cursor-pointer underline-offset-4 hover:text-kinome-cream hover:underline"
+          >
+            Gérer les cookies
+          </button>
+        </nav>
       </div>
     </footer>
   );

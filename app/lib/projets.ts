@@ -158,7 +158,7 @@ export const projets: Projet[] = [
     client: "Manon Pichereau",
     categories: ["identite", "branding"],
     cover: "/assets/wp/La-Voyagist-780x390px-1.png",
-    heroImage: "/assets/projets/la-voyagiste/1.png",
+    heroImage: "/assets/projets/la-voyagiste/hero.png",
     resume:
       "Logo élégant et solide pour une agence française de voyages romantiques de luxe.",
     annee: "2023",
@@ -234,7 +234,7 @@ export const projets: Projet[] = [
     client: "Microclimat",
     categories: ["identite", "branding"],
     cover: "/assets/projets/microclimat/1.png",
-    heroImage: "/assets/projets/microclimat/1.png",
+    heroImage: "/assets/projets/microclimat/hero.png",
     resume:
       "Logo poétique et naturel pour une agence d'architecture en Haute-Savoie.",
     annee: "2024",

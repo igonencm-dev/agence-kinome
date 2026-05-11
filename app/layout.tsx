@@ -4,6 +4,8 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CookieConsent from "./components/CookieConsent";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import {
   SITE,
   KEYWORDS_BASE,
@@ -86,6 +88,12 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   category: "Communication, design, branding",
+  // Google Search Console : laissé vide tant que le code n'est pas fourni
+  // (NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION dans .env). Évite une balise
+  // <meta name="google-site-verification" content=""> qui peut bloquer la vérif.
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
   other: {
     // Géolocalisation explicite (héritage SEO local)
     "geo.region": "CH-GE",
@@ -124,6 +132,8 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <CookieConsent />
+        <GoogleAnalytics />
       </body>
     </html>
   );
