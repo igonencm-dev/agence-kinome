@@ -31,6 +31,22 @@ RewriteRule ^microclimat/?$           /projets/microclimat/         [L,R=301]
 RewriteRule ^elips/?$                 /projets/elips/               [L,R=301]
 RewriteRule ^le-ravenala/?$           /projets/le-ravenala/         [L,R=301]
 
+# Projets récents (ajoutés post-migration) — anciens slugs WP qui retournaient
+# 404 et faisaient remonter "Introuvable (404)" dans Search Console.
+RewriteRule ^causerie-bot/?$          /projets/causerie-bot/        [L,R=301]
+RewriteRule ^causeriebot/?$           /projets/causerie-bot/        [L,R=301]
+RewriteRule ^lea-vigier/?$            /projets/lea-vigier/          [L,R=301]
+RewriteRule ^leavigier/?$             /projets/lea-vigier/          [L,R=301]
+RewriteRule ^manaloa/?$               /projets/manaloa/             [L,R=301]
+RewriteRule ^mana-loa/?$              /projets/manaloa/             [L,R=301]
+RewriteRule ^mana-loa-formations/?$   /projets/manaloa/             [L,R=301]
+RewriteRule ^vp-conseils/?$           /projets/vp-conseils/         [L,R=301]
+RewriteRule ^vpconseils/?$            /projets/vp-conseils/         [L,R=301]
+RewriteRule ^no-code/?$               /projets/no-code/             [L,R=301]
+RewriteRule ^nocode/?$                /projets/no-code/             [L,R=301]
+RewriteRule ^nocode-ia/?$             /projets/no-code/             [L,R=301]
+RewriteRule ^nocodeia/?$              /projets/no-code/             [L,R=301]
+
 # Pages principales renommées
 RewriteRule ^nos-services/?$          /services/                    [L,R=301]
 RewriteRule ^nos-partenaires/?$       /partenaires/                 [L,R=301]
