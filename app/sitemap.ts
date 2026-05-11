@@ -37,6 +37,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Versions anglaises des pages projet (slug identique, prefix /en/)
+  const projetPagesEn: MetadataRoute.Sitemap = projets.map((p) => ({
+    url: `${base}/en/projets/${p.slug}/`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.65,
+  }));
+
   const blogPages: MetadataRoute.Sitemap = blogPosts.map((p) => ({
     url: `${base}/blog/${p.slug}/`,
     lastModified: new Date(p.date),
@@ -58,5 +66,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/en/privacy/`, lastModified: now, changeFrequency: "yearly", priority: 0.15 },
   ];
 
-  return [...staticPages, ...projetPages, ...blogPages, ...enPages];
+  return [
+    ...staticPages,
+    ...projetPages,
+    ...projetPagesEn,
+    ...blogPages,
+    ...enPages,
+  ];
 }

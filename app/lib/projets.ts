@@ -16,6 +16,13 @@ export type Projet = {
   pointFortBody?: string;
   gallery?: string[];
   siteUrl?: string;
+  // --- Traductions anglaises (optionnelles, fallback vers FR si absentes) ---
+  resume_en?: string;
+  domaine_en?: string;
+  role_en?: string;
+  description_en?: string;
+  pointFortTitle_en?: string;
+  pointFortBody_en?: string;
 };
 
 export const projets: Projet[] = [
@@ -44,6 +51,15 @@ export const projets: Projet[] = [
       "/assets/projets/codecircle/6.png",
     ],
     siteUrl: "https://codecircle.com",
+    resume_en:
+      "Sober, elegant identity for a web development studio that prefers to let its client projects shine.",
+    domaine_en: "Logo",
+    role_en: "Branding",
+    description_en:
+      "Codecircle is a web development studio that supports its clients in designing and delivering complete digital projects, from A to Z. The team builds turnkey, performance-focused websites tailored to each business, and integrates AI-powered tools to streamline processes and unlock advanced features.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "As a web agency, Codecircle handles a wide variety of projects, each with its own visual world. To avoid competing visually with the portfolio, we opted for a sober, elegant identity, with most of the creative energy concentrated on the logo itself.",
   },
   {
     slug: "adapt-project",
@@ -71,6 +87,15 @@ export const projets: Projet[] = [
       "/assets/projets/adapt-project/6.png",
     ],
     siteUrl: "https://adaptproject.ch",
+    resume_en:
+      "Bold identity with warm hues for a consultancy specialised in project ownership assistance.",
+    domaine_en: "Identity",
+    role_en: "Branding / Logo",
+    description_en:
+      "Adapt Project is a Swiss company based in Thônex, active across French-speaking Switzerland, specialised in project ownership assistance. It supports companies through the framing and delivery of their internal projects. We designed a logo with warm, soft hues, balancing visual impact and stability — reflecting the firm's rigour and professionalism.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "Adapt Project stands out through a distinctive identity, both symbolic and abstract. We had the opportunity to build a colour palette that breaks away from the conventional codes of the consulting industry. The logo was designed as a single, assertive stroke, almost reminiscent of a Japanese kanji. The warm, vibrant colour reinforces this singularity and helps establish a strong identity.",
   },
   {
     slug: "cabinet-faraday",
@@ -98,6 +123,15 @@ export const projets: Projet[] = [
       "/assets/projets/cabinet-faraday/6.png",
     ],
     siteUrl: "https://cabinetfaraday.com",
+    resume_en:
+      "Warm identity with Mexican-inspired tones for a paediatric dental practice.",
+    domaine_en: "Identity",
+    role_en: "Branding / Logo / Signage",
+    description_en:
+      "Cabinet Faraday was a creative challenge! While staying true to a brand identity consistent with the chosen colours for the practice's space, we had to design an identity rich in warm, Mexican-inspired hues — welcoming for families. The visual look may feel hand-drawn and spontaneous, but the colour choices are precise and the overall structure carefully built.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "A vibrant colour palette and an identity that is warm, festive and raw at the same time were designed to dress a richly coloured space, while preserving the standing expected by a clientele from upscale Parisian neighbourhoods. Particular attention was paid to our client's target audience and her wish to evoke the atmosphere of haciendas in her brand world. The logo embodies this intent with expressive typography, raw forms and dazzling hues.",
   },
   {
     slug: "alministratif",
@@ -124,6 +158,15 @@ export const projets: Projet[] = [
       "/assets/projets/alministratif/5.png",
       "/assets/projets/alministratif/6.png",
     ],
+    resume_en:
+      "Turquoise bee logo designed to make administrative services feel warmer.",
+    domaine_en: "Identity",
+    role_en: "Logo",
+    description_en:
+      "Alministratif is a company specialised in supporting, advising on and handling administrative procedures. Its founder wanted to put the spotlight on the bee — hardworking and persevering — as the symbol and mascot of the company. The goal: to make the very idea of administration more appealing, warmer and friendlier.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "This logo features a modern, refined visual identity that plays on a strong contrast between a vivid turquoise blue and pure white, lending both energy and legibility. The overall shape is organic and slightly asymmetrical, breaking with the rigidity of classic geometry to introduce a human, welcoming touch. The stylised calligraphic symbol and the rounded lowercase typography create a balance between fluidity and stability. Turquoise — often associated with clarity, reliability and freshness — reinforces the sense of a professional yet approachable service.",
   },
   {
     slug: "authentik-peak",
@@ -151,6 +194,15 @@ export const projets: Projet[] = [
       "/assets/projets/authentik-peak/6.png",
     ],
     siteUrl: "https://authentikpeak.com",
+    resume_en:
+      "Mountain-inspired mascot identity for a professional training organisation.",
+    domaine_en: "Identity",
+    role_en: "Branding / Logo / Website",
+    description_en:
+      "Authentik Peak is a training organisation that uses the mountain world as its educational backbone. This symbolic framework invites participants to explore new challenges around management, team dynamics and professional commitment. The logo reflects this vision through assertive yet calming and reassuring colours. The overall identity conveys a feeling of balance, stability and closeness.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "Authentik Peak's logo follows a mascot approach. The idea was to create a totem animal that is both a symbol of the client's activity and a reflection of the environment in which they operate. Colours were chosen to evoke reassuring, calming and natural sensations. The overall identity is warm, approachable and easy to understand for everyone.",
   },
   {
     slug: "la-voyagiste",
@@ -177,6 +229,15 @@ export const projets: Projet[] = [
       "/assets/projets/la-voyagiste/6.png",
     ],
     siteUrl: "https://lavoyagisteparis.com",
+    resume_en:
+      "Elegant, solid logo for a French agency specialised in luxury romantic travel.",
+    domaine_en: "Logo",
+    role_en: "Branding",
+    description_en:
+      "La Voyagiste is a French high-end travel design company. The brand crafts bespoke luxury romantic getaways, always rooted in exclusive, local and authentic French experiences. For this brand, we designed an elegant and solid logo that mirrors the voice of the company.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "La Voyagiste Paris's logo asserts a luxurious, contemporary identity. The contrast between the dark background and the golden typography creates a sophisticated, premium effect. The clean, generously spaced letters reinforce a sense of elegance and mastery. The whole evokes a premium world dedicated to exceptional travel.",
   },
   {
     slug: "cinars",
@@ -201,6 +262,15 @@ export const projets: Projet[] = [
       "/assets/projets/cinars/4.png",
       "/assets/projets/cinars/5.png",
     ],
+    resume_en:
+      "Illustrations for the 2024 season of CINARS, an organisation dedicated to Québécois and Canadian performing arts.",
+    domaine_en: "Illustration",
+    role_en: "Campaign",
+    description_en:
+      "CINARS is a non-profit organisation dedicated to promoting Québécois and Canadian performing arts internationally. For its 2024 season, the organisation commissioned two main illustrations: one featuring hands, in line with its visual world, and another bringing together the various invited artists of the event.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "For this project, we initially set out with a much more illustrative approach, depicting the festival's speakers and artists. However, the creative direction was substantially revised by management mid-process. The project then refocused on a representation of the artists' hands, fitting more closely with CINARS's visual identity.",
   },
   {
     slug: "black-sheep-valley",
@@ -227,6 +297,15 @@ export const projets: Projet[] = [
       "/assets/projets/black-sheep-valley/6.png",
     ],
     siteUrl: "https://blacksheepvalley.com",
+    resume_en:
+      "Playful, warm logo for a family-run dog breeding farm between Tarn and Aveyron.",
+    domaine_en: "Logo",
+    role_en: "Branding",
+    description_en:
+      "Blacksheep Valley is a family-run dog breeding business based between Tarn and Aveyron. It offers two breeds to its clientele: the Border Collie and the Shetland Sheepdog. This growing breeder needed a logo worthy of its new offering. Many communication materials were then produced based on this rebranding.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "For this project, the mood was intended to be playful, warm and accessible. Our client came in with a clear vision of her concept and a composition already in mind. We supported her throughout the process with many preparatory sketches, ultimately reaching a result that fully satisfied both parties.",
   },
   {
     slug: "microclimat",
@@ -251,6 +330,15 @@ export const projets: Projet[] = [
       "/assets/projets/microclimat/4.png",
       "/assets/projets/microclimat/5.png",
     ],
+    resume_en:
+      "Poetic, natural logo for an architecture studio in Haute-Savoie.",
+    domaine_en: "Logo",
+    role_en: "Branding",
+    description_en:
+      "Microclimat is a small architecture studio based in Haute-Savoie (France). They wanted an illustrative logo with a literary, poetic spirit. It is used on the company's website, across social media and on their communication materials.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "Microclimat's logo expresses a soft, natural identity. The calming green and the symbol mixing tree and architecture translate a harmonious balance between environment and design. The thin, airy typography reinforces this feeling of calm and sensitivity. The whole is elegant, coherent and carries a contemporary, committed approach.",
   },
   {
     slug: "elips",
@@ -276,6 +364,15 @@ export const projets: Projet[] = [
       "/assets/projets/elips/5.png",
     ],
     siteUrl: "https://elips-3d.com",
+    resume_en:
+      "Pixel-based technological logo for a team of experts in 3D visual production.",
+    domaine_en: "Logo",
+    role_en: "Branding",
+    description_en:
+      "Elips is a team of experts passionate about 3D visual production. Specialised in the creation and sale of digital products for professionals, the team offers a range of services from photorealistic or lightweight VR tours readable on any device, to 3D perspectives and 3D videos.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "Elips embodies a resolutely technological, contemporary and modern identity. Through a play of illustrative pixels forming a capital E, the concept aims to bring relief to a shape that initially appears flat but unfolds to reveal depth. True to its name, the intention is to bring a dual reading to this form while keeping a simplicity that avoids any anecdotal effect.",
   },
   {
     slug: "le-ravenala",
@@ -300,6 +397,15 @@ export const projets: Projet[] = [
       "/assets/projets/le-ravenala/4.png",
       "/assets/projets/le-ravenala/5.png",
     ],
+    resume_en:
+      "Elegant identity with coral tones for a Réunion and Madagascan restaurant in Lyon.",
+    domaine_en: "Logo",
+    role_en: "Branding",
+    description_en:
+      "Le Ravenala is a Réunion and Madagascan restaurant that opened in Lyon (France) in early 2024. We designed the logo and the restaurant's overall identity in line with the client's wishes and expectations. The client wanted illustrations to enrich the brand's communication, both for print materials (menus, coasters, etc.) and digital channels.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "The logo gives off an elegant and refined identity. The thin, symmetrical lines of the plant symbol evoke both exoticism and precision, echoing the idea of travel. The coral hue brings warmth and indulgence, while the serif typography asserts a chic, polished positioning. The whole is harmonious, evocative and delicately sophisticated.",
   },
   {
     slug: "causerie-bot",
@@ -326,6 +432,15 @@ export const projets: Projet[] = [
       "/assets/projets/causerie-bot/6.png",
     ],
     siteUrl: "https://causeriebot.com",
+    resume_en:
+      "Website and brand identity for a French AI chatbot SaaS — the European, GDPR-friendly alternative to Intercom and Crisp.",
+    domaine_en: "Web design",
+    role_en: "Branding / Website",
+    description_en:
+      "CauserieBot is a French SaaS solution that lets any website embed a smart conversational assistant in five minutes. The product positions itself as a European, GDPR-compliant alternative to American tools like Intercom, Tidio or Crisp — with a fully French-language interface, European hosting and a choice between several AI models (GPT-4o, Claude, Gemini). We supported the project on the design of its marketing website and the rollout of its visual identity.",
+    pointFortTitle_en: "A clear identity for a clear product",
+    pointFortBody_en:
+      "The challenge: visually translating a promise of radical simplicity (\"launch your bot before you finish your coffee\"). The art direction relies on bold typography, generous whitespace and a system of colourful icons that guide visitors to the key features. The tone — both reassuring and playfully mischievous — comes through on every screen: within seconds, you understand what the tool does and why you'd pick it.",
   },
   {
     slug: "lea-vigier",
@@ -349,6 +464,15 @@ export const projets: Projet[] = [
       "/assets/projets/lea-vigier/3.png",
     ],
     siteUrl: "https://leavigier.com",
+    resume_en:
+      "Identity and website for an adventurer and keynote speaker who champions resilience and helps de-stigmatise mental health.",
+    domaine_en: "Web design",
+    role_en: "Branding / Website",
+    description_en:
+      "Léa Vigier is an adventurer and keynote speaker. Through her extreme expeditions — including her documentary \"7000 m to overcome my bipolar disorder\" — she shares a message of resilience and fights the stigma around mental health. To support her work, we designed a personal identity and a website that hosts her talks, newsletter and video content, and makes it easier for companies to get in touch and book her.",
+    pointFortTitle_en: "An identity at the service of the message",
+    pointFortBody_en:
+      "The graphic stance is intentionally minimal, to leave all the room to the power of Léa's journey. A sober logotype, a neutral palette and large documentary visuals set a tone that is both serious and deeply human. The site offers her a professional stage where the strength of her testimony can be heard without distraction.",
   },
   {
     slug: "manaloa",
@@ -372,6 +496,15 @@ export const projets: Projet[] = [
       "/assets/projets/manaloa/3.png",
     ],
     siteUrl: "https://manaloa-formations.fr",
+    resume_en:
+      "Visual identity for a training centre specialised in massage techniques and professional wellbeing, based in Savoie.",
+    domaine_en: "Branding",
+    role_en: "Visual identity",
+    description_en:
+      "Mana Loa Formations is a French organisation specialised in passing on massage techniques: fundamentals, neuromuscular and energetic massages (Ayurvedic, Balinese, Hawaiian, shiatsu), beauty/wellbeing, and \"Alchemy of Touch\" workshops. Founded by Florence Igonenc, it trains both independent practitioners and teams from hotel spas and thalassotherapies, from its bases in Aix-les-Bains and Allevard-les-Bains. Our mission was to give the project an identity worthy of its pedagogical standards.",
+    pointFortTitle_en: "An identity rooted in wellbeing",
+    pointFortBody_en:
+      "The visual system draws on water, breath and natural materials to translate Mana Loa's holistic approach. Calming colours, soft curves and a sober typography set a professional, restorative atmosphere. The goal: to convey, at first glance, the authenticity and quality of the training programme.",
   },
   {
     slug: "vp-conseils",
@@ -395,6 +528,15 @@ export const projets: Projet[] = [
       "/assets/projets/vp-conseils/3.png",
     ],
     siteUrl: "https://vpconseils-immo.com",
+    resume_en:
+      "Identity and showcase website for a cross-border real estate and financial advisory firm dedicated to French-Swiss cross-border workers.",
+    domaine_en: "Web design",
+    role_en: "Branding / Website",
+    description_en:
+      "VP Conseils is a hybrid real estate and financial advisory firm that supports individuals, cross-border workers and investors with their purchase, sale and investment operations, with particular expertise in cross-border taxation. Based in Haute-Savoie close to Geneva, founder Valentin Ponthet champions a personal, available approach. We structured his brand image and then designed and developed a showcase site built as a genuine prospecting tool.",
+    pointFortTitle_en: "A reassuring, local presence",
+    pointFortBody_en:
+      "The logo, built around a minimalist V, establishes a clear, premium signature. The site is, above all, easy to read: a smooth journey takes visitors from valuation to booking a meeting, through the firm's areas of expertise (buying, selling, investment, tax advice). The art direction is built around trust — essential in real estate — while preserving the warmth of a human-scale firm.",
   },
   {
     slug: "no-code",
@@ -421,6 +563,15 @@ export const projets: Projet[] = [
       "/assets/projets/no-code/6.png",
     ],
     siteUrl: "https://nocodetoulouse.fr",
+    resume_en:
+      "Website and identity for a Toulouse-based AI and no-code training centre, Qualiopi-certified.",
+    domaine_en: "Web design",
+    role_en: "Branding / Website",
+    description_en:
+      "NOCODE IA is a Toulouse-based training organisation specialised in artificial intelligence and no-code automation. The programme: 27 Qualiopi-certified courses (ChatGPT, Claude, Copilot, N8N, Make…), industry-specific training (legal, HR, accounting, real estate, healthcare), strategic support with AI audits, plus a creative agency activity and bespoke SaaS creation. We set the brand's identity and then designed a clear site, built to convince executives, leadership teams and professionals to engage in their AI transformation.",
+    pointFortTitle_en: "No jargon, straight to the point",
+    pointFortBody_en:
+      "NOCODE IA's promise can be stated in one sentence: a concrete return on investment, with no gimmicks or unnecessary complexity. The art direction mirrors that stance: bold composition, sharp typographic hierarchy, prominent key figures (732 professionals trained, 4.9/5, +80 sessions). The market's tool logos are owned, the Qualiopi accreditation showcased — everything to reassure visitors quickly and trigger the first contact.",
   },
 ];
 

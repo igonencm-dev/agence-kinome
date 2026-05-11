@@ -77,7 +77,7 @@ export default function PortfolioEN() {
           {list.map((p) => (
             <Link
               key={p.slug}
-              href={`/projets/${p.slug}/`}
+              href={`/en/projets/${p.slug}/`}
               className="group block overflow-hidden rounded-[20px] bg-white shadow-sm transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(0,0,0,0.10)]"
             >
               <div className="relative aspect-[16/9] overflow-hidden">
@@ -92,7 +92,7 @@ export default function PortfolioEN() {
                   {p.nom}
                 </h3>
                 <p className="mb-3 font-body text-[0.9rem] text-kinome-grey">
-                  {p.resume}
+                  {p.resume_en ?? p.resume}
                 </p>
                 <div className="flex flex-wrap gap-2 text-[0.78rem] font-medium text-kinome-grey">
                   {p.categories.map((c) => (

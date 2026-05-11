@@ -137,7 +137,20 @@ export function buildMetadata({
   );
 
   const isEn = path.startsWith("/en");
-  const altPath = isEn ? EN_TO_FR[path] : FR_TO_EN[path];
+
+  // Cas spécial pages projet : `/projets/:slug/` ↔ `/en/projets/:slug/`
+  // (même slug, on miroite juste le préfixe `/en`).
+  const projetFrMatch = !isEn && path.match(/^\/projets\/([^/]+)\/$/);
+  const projetEnMatch = isEn && path.match(/^\/en\/projets\/([^/]+)\/$/);
+
+  let altPath: string | undefined;
+  if (projetFrMatch) {
+    altPath = `/en/projets/${projetFrMatch[1]}/`;
+  } else if (projetEnMatch) {
+    altPath = `/projets/${projetEnMatch[1]}/`;
+  } else {
+    altPath = isEn ? EN_TO_FR[path] : FR_TO_EN[path];
+  }
 
   const languages: Record<string, string> = {};
   if (altPath) {
