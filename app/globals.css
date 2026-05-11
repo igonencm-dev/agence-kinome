@@ -15,6 +15,10 @@
   --radius-card: 24px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   font-family: var(--font-body);
@@ -22,6 +26,54 @@ body {
   color: var(--color-kinome-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sélection de texte aux couleurs Kinome (au lieu du bleu navigateur) */
+::selection {
+  background-color: var(--color-kinome-accent);
+  color: #ffffff;
+}
+::-moz-selection {
+  background-color: var(--color-kinome-accent);
+  color: #ffffff;
+}
+
+/* Focus visible accessible : ring soft accent au lieu de l'outline système */
+*:focus-visible {
+  outline: 2px solid var(--color-kinome-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+/* Mais on n'affiche pas le focus au simple clic souris (juste au clavier) */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Underline animé pour les liens du menu (de gauche à droite) — utilisé via
+   la classe utilitaire .nav-link */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+/* Variante "active" : underline déjà étendu */
+.nav-link[data-active="true"]::after {
+  transform: scaleX(1);
+  background-color: var(--color-kinome-accent);
 }
 
 body.no-scroll {

@@ -75,17 +75,22 @@ export default function PortfolioPage() {
             <Link
               key={p.slug}
               href={`/projets/${p.slug}/`}
-              className="group block overflow-hidden rounded-[20px] bg-white shadow-sm transition-transform duration-500 hover:-translate-y-1"
+              className="group block overflow-hidden rounded-[20px] bg-white shadow-sm transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(0,0,0,0.10)]"
             >
               <div className="relative aspect-[16/9] overflow-hidden">
                 <img
                   src={p.cover}
                   alt={p.nom}
-                  className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                {/* Voile subtil + flèche au hover */}
+                <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
+                <div className="absolute right-4 bottom-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-kinome-black opacity-0 transition-[opacity,transform] duration-500 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                  <span aria-hidden="true" className="font-heading text-[1.1rem]">→</span>
+                </div>
               </div>
               <div className="px-6 py-5">
-                <h3 className="mb-1 font-heading text-[1.3rem] font-semibold text-kinome-black">
+                <h3 className="mb-1 font-heading text-[1.3rem] font-semibold text-kinome-black transition-colors duration-300 group-hover:text-kinome-accent">
                   {p.nom}
                 </h3>
                 <p className="mb-3 font-body text-[0.9rem] text-kinome-grey">
