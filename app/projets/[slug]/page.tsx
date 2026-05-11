@@ -106,36 +106,24 @@ export default async function ProjetPage({ params }: { params: Params }) {
       />
 
       {/* Hero responsive :
-          - Mobile (< md) : image en ratio natif (object-contain) avec fond
-            flouté et zoomé de la même image (technique "ambient background"
-            façon Apple/Spotify). Logo client toujours visible en entier,
-            zéro déformation, fond qui prend les couleurs dominantes.
+          - Mobile (< md) : carte portrait (aspect 4/5) avec object-cover
+            centré, marges latérales pour que ça respire. Format adapté
+            à l'écran vertical, image bien cadrée sans étirement.
           - Desktop (md+) : plein écran classique en object-cover. */}
-      <section className="relative w-full overflow-hidden">
-        {/* MOBILE */}
-        <div className="relative h-[clamp(440px,80vh,640px)] overflow-hidden md:hidden">
-          {/* Fond flouté & agrandi (même image) */}
-          <img
-            src={heroImg}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover scale-125 blur-[40px] brightness-90"
-          />
-          {/* Voile sombre subtil pour homogénéiser */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-black/20"
-          />
-          {/* Image nette en ratio natif au centre */}
-          <img
-            src={heroImg}
-            alt={projet.nom}
-            className="relative h-full w-full object-contain"
-            fetchPriority="high"
-          />
+      <section className="relative w-full overflow-hidden bg-kinome-cream">
+        {/* MOBILE : carte CARRÉE dans un container avec marges + ombre douce */}
+        <div className="px-[5%] pt-[100px] pb-6 md:hidden">
+          <div className="overflow-hidden rounded-[24px] aspect-square bg-kinome-cream shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+            <img
+              src={heroImg}
+              alt={projet.nom}
+              className="block h-full w-full object-cover"
+              fetchPriority="high"
+            />
+          </div>
         </div>
 
-        {/* DESKTOP */}
+        {/* DESKTOP : plein écran */}
         <div className="relative hidden h-[100vh] min-h-[600px] overflow-hidden md:block">
           <img
             src={heroImg}
