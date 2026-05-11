@@ -105,13 +105,45 @@ export default async function ProjetPage({ params }: { params: Params }) {
         dangerouslySetInnerHTML={{ __html: jsonLdScript(ld.breadcrumb) }}
       />
 
-      {/* Hero plein écran (responsive : 100vh desktop, hauteur min 480px mobile) */}
-      <section className="relative h-[100vh] min-h-[480px] w-full overflow-hidden">
-        <img
-          src={heroImg}
-          alt={projet.nom}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+      {/* Hero responsive :
+          - Mobile (< md) : image en ratio natif (object-contain) avec fond
+            flouté et zoomé de la même image (technique "ambient background"
+            façon Apple/Spotify). Logo client toujours visible en entier,
+            zéro déformation, fond qui prend les couleurs dominantes.
+          - Desktop (md+) : plein écran classique en object-cover. */}
+      <section className="relative w-full overflow-hidden">
+        {/* MOBILE */}
+        <div className="relative h-[clamp(440px,80vh,640px)] overflow-hidden md:hidden">
+          {/* Fond flouté & agrandi (même image) */}
+          <img
+            src={heroImg}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover scale-125 blur-[40px] brightness-90"
+          />
+          {/* Voile sombre subtil pour homogénéiser */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-black/20"
+          />
+          {/* Image nette en ratio natif au centre */}
+          <img
+            src={heroImg}
+            alt={projet.nom}
+            className="relative h-full w-full object-contain"
+            fetchPriority="high"
+          />
+        </div>
+
+        {/* DESKTOP */}
+        <div className="relative hidden h-[100vh] min-h-[600px] overflow-hidden md:block">
+          <img
+            src={heroImg}
+            alt={projet.nom}
+            className="absolute inset-0 h-full w-full object-cover"
+            fetchPriority="high"
+          />
+        </div>
       </section>
 
       {/* Bloc intro : titre + métadonnées + description */}
