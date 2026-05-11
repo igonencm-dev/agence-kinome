@@ -3,6 +3,7 @@ import Link from "next/link";
 import { contact } from "../lib/contact";
 import ServiceIcon, { type ServiceIconName } from "../components/ServiceIcon";
 import VisualDiary from "../components/VisualDiary";
+import Testimonials from "../components/Testimonials";
 import { buildMetadata } from "../lib/seo";
 
 export const metadata = buildMetadata({
@@ -361,45 +362,8 @@ export default function AProposPage() {
         </div>
       </section>
 
-      {/* Témoignages dark */}
-      <section className="bg-kinome-dark px-[5%] py-[clamp(70px,9vw,150px)] text-center text-white">
-        <h2 className="mb-[clamp(40px,5vw,70px)] font-heading text-[clamp(34px,4.4vw,70px)] font-normal text-white">
-          Ils nous font confiance
-        </h2>
-        <div className="mx-auto flex max-w-[1100px] flex-col items-center">
-          <img
-            src="/assets/wp/La-Voyagist-780x390px-1.png"
-            alt="La Voyagiste — témoignage client Kinome"
-            className="mb-8 aspect-[837/313] w-full max-w-[1050px] rounded-[20px] object-cover"
-            loading="lazy"
-          />
-          <p className="mx-auto mb-8 max-w-[900px] font-body text-[clamp(15px,1.1vw,18px)] font-light italic leading-[1.55]">
-            «&nbsp;Très belle expérience pour la création du logo de mon
-            agence, de sa charte graphique et des différents éléments de
-            communication réalisés tout au long de l&rsquo;année. Une équipe
-            créative, à l&rsquo;écoute et toujours avant-gardiste. Je les
-            recommande fortement.&nbsp;»
-          </p>
-          <p className="mb-1 font-heading text-[clamp(22px,2vw,30px)] font-semibold text-white">
-            Manon Pichereau
-          </p>
-          <p className="mb-4 font-heading text-[clamp(18px,1.6vw,24px)] font-semibold italic text-white/85">
-            La Voyagiste
-          </p>
-          <span className="flex justify-center gap-1.5" aria-label="5 sur 5">
-            {[...Array(5)].map((_, i) => (
-              <svg
-                key={i}
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                className="h-7 w-7 fill-white"
-              >
-                <path d="M12 2l2.9 7.1 7.6.6-5.8 4.9 1.8 7.4L12 18l-6.5 4 1.8-7.4-5.8-4.9 7.6-.6z" />
-              </svg>
-            ))}
-          </span>
-        </div>
-      </section>
+      {/* Témoignages (composant partagé) */}
+      <Testimonials />
 
       {/* CTA contact form */}
       <section

@@ -4,6 +4,7 @@ import SplashScreen from "./components/SplashScreen";
 import HeroAnimatedWord from "./components/HeroAnimatedWord";
 import LogosMarquee from "./components/LogosMarquee";
 import ContactForm from "./contact/ContactForm";
+import Testimonials from "./components/Testimonials";
 import { contact } from "./lib/contact";
 import {
   buildMetadata,
@@ -171,7 +172,7 @@ export default function Home() {
         <div className="absolute inset-0 z-[2] bg-black/40" />
         <div className="relative z-[3] mx-auto flex w-full max-w-[1400px] flex-col items-start px-[5%]">
           <div className="max-w-[800px] text-left text-white">
-            <h1 className="mb-[30px] font-heading text-[5rem] font-semibold leading-[1.1]">
+            <h1 className="mb-[30px] font-heading text-[clamp(42px,6vw,90px)] font-semibold leading-[1.05]">
               Agence de communication
               <br />à Genève — <HeroAnimatedWord />
             </h1>
@@ -412,31 +413,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Témoignages */}
-      <section className="bg-kinome-dark px-[5%] py-[120px] text-center text-white">
-        <h2 className="mb-16 font-heading text-[3.5rem] font-normal">
-          Ils nous font confiance
-        </h2>
-        <div className="mx-auto flex max-w-[750px] flex-col items-center">
-          <img
-            src="/assets/wp/La-Voyagist-780x390px-1.png"
-            alt="La Voyagiste"
-            className="mb-8 max-w-[480px] w-full rounded-[20px]"
-          />
-          <p className="mb-10 font-body text-[1.2rem] font-light italic leading-[1.6]">
-            &ldquo;Très belle expérience pour la création du logo de mon
-            agence, de sa charte graphique et des différents éléments de
-            communication réalisés tout au long de l&rsquo;année. Une équipe
-            créative, à l&rsquo;écoute et toujours avant-gardiste. Je les
-            recommande fortement.&rdquo;
-          </p>
-          <div className="mb-1 font-heading text-[1.4rem] font-semibold">
-            Manon Pichereau
-          </div>
-          <div className="mb-8 text-[1rem] text-[#888]">La Voyagiste</div>
-          <div className="text-[1.4rem] tracking-[5px] text-white">★★★★★</div>
-        </div>
-      </section>
+      {/* Témoignages (composant partagé) */}
+      <Testimonials />
 
       {/* Les nouvelles (blog) */}
       <section className="mx-auto my-[60px] max-w-[1300px] rounded-[20px] bg-kinome-cream px-[60px] py-[80px]">

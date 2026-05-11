@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { contact } from "../lib/contact";
 import ContactForm from "./ContactForm";
+import Testimonials from "../components/Testimonials";
 import { buildMetadata } from "../lib/seo";
 
 export const metadata = buildMetadata({
@@ -23,7 +24,7 @@ export default function ContactPage() {
       {/* Bloc principal : adresse + formulaire */}
       <section className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-[5%] py-[40px] lg:grid-cols-[1fr_1.3fr]">
         <div className="font-body text-[1.15rem] leading-[1.6] text-kinome-black">
-          <h1 className="mb-12 font-heading text-[3rem] font-normal leading-[1.1]">
+          <h1 className="mb-12 font-heading text-[clamp(42px,6vw,90px)] font-normal leading-[1.05] text-kinome-black">
             Échangeons.
           </h1>
 
@@ -112,31 +113,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Témoignages */}
-      <section className="bg-kinome-dark px-[5%] py-[120px] text-center text-white">
-        <h2 className="mb-16 font-heading text-[3.5rem] font-normal">
-          Ils nous font confiance
-        </h2>
-        <div className="mx-auto flex max-w-[1100px] flex-col items-center">
-          <img
-            src="/assets/wp/La-Voyagist-780x390px-1.png"
-            alt="La Voyagiste"
-            className="mb-8 max-w-[480px] w-full rounded-[20px]"
-          />
-          <p className="mb-8 max-w-[900px] font-body text-[1.15rem] font-light italic leading-[1.6]">
-            &ldquo;Très belle expérience pour la création du logo de mon
-            agence, de sa charte graphique et des différents éléments de
-            communication réalisés tout au long de l&rsquo;année. Une équipe
-            créative, à l&rsquo;écoute et toujours avant-gardiste. Je les
-            recommande fortement.&rdquo;
-          </p>
-          <div className="mb-1 font-heading text-[1.4rem] font-semibold">
-            Manon Pichereau
-          </div>
-          <div className="mb-6 italic text-[#888]">La Voyagiste</div>
-          <div className="text-[1.4rem] tracking-[5px]">★★★★★</div>
-        </div>
-      </section>
+      {/* Témoignages (composant partagé) */}
+      <Testimonials />
 
       {/* CTA bas (section "Vous avez un projet ?") */}
       <section className="mx-auto my-[100px] max-w-[1300px] rounded-[24px] bg-kinome-cream px-[5%] py-[80px] text-center">

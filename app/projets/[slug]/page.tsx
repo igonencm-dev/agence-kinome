@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projets, categoriesLabels } from "../../lib/projets";
+import Testimonials from "../../components/Testimonials";
 import {
   buildMetadata,
   breadcrumbJsonLd,
@@ -47,7 +48,31 @@ export default async function ProjetPage({ params }: { params: Params }) {
   const projet = projets.find((p) => p.slug === slug);
   if (!projet) notFound();
 
-  const autres = projets.filter((p) => p.slug !== projet.slug).slice(0, 4);
+  // "Autres projets" : on privilégie ceux qui partagent au moins une catégorie
+  // avec le projet courant (= projets similaires), puis on mélange pour la
+  // variété. Seed déterministe basée sur le slug pour éviter un re-render
+  // différent à chaque build (SSG = même résultat pour une même page).
+  const seed = projet.slug
+    .split("")
+    .reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  const pseudoShuffle = <T,>(arr: T[]): T[] => {
+    const out = [...arr];
+    for (let i = out.length - 1; i > 0; i--) {
+      const j = (seed * (i + 31)) % (i + 1);
+      [out[i], out[j]] = [out[j], out[i]];
+    }
+    return out;
+  };
+  const ownCats = new Set(projet.categories);
+  const candidats = projets.filter((p) => p.slug !== projet.slug);
+  const similaires = candidats.filter((p) =>
+    p.categories.some((c) => ownCats.has(c))
+  );
+  const autres = pseudoShuffle([
+    ...similaires,
+    ...candidats.filter((p) => !similaires.includes(p)),
+  ]).slice(0, 4);
+
   const heroImg = projet.heroImage ?? projet.cover;
   const projetUrl = `/projets/${projet.slug}/`;
 
@@ -91,7 +116,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
 
       {/* Bloc intro : titre + métadonnées + description */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[140px]">
-        <h1 className="mb-16 font-heading text-[6rem] font-normal leading-[1] sm:text-[3.5rem]">
+        <h1 className="mb-16 font-heading text-[clamp(42px,6vw,90px)] font-normal leading-[1.05] text-kinome-black">
           {projet.nom}
         </h1>
 
@@ -222,38 +247,18 @@ export default async function ProjetPage({ params }: { params: Params }) {
         </section>
       )}
 
-      {/* Témoignages dark (Ils nous font confiance) */}
-      <section className="bg-kinome-dark px-[5%] py-[120px] text-center text-white">
-        <h2 className="mb-12 font-heading text-[3.5rem] font-normal">
-          Ils nous font confiance
-        </h2>
-        <div className="mx-auto flex max-w-[1100px] flex-col items-center">
-          <img
-            src="/assets/wp/La-Voyagist-780x390px-1.png"
-            alt="La Voyagiste"
-            className="mb-8 max-w-[480px] w-full rounded-[20px]"
-          />
-          <p className="mb-8 max-w-[900px] font-body text-[1.15rem] font-light italic leading-[1.6]">
-            &ldquo;Très belle expérience pour la création du logo de mon
-            agence, de sa charte graphique et des différents éléments de
-            communication réalisés tout au long de l&rsquo;année. Une équipe
-            créative, à l&rsquo;écoute et toujours avant-gardiste. Je les
-            recommande fortement.&rdquo;
-          </p>
-          <div className="mb-1 font-heading text-[1.4rem] font-semibold">
-            Manon Pichereau
-          </div>
-          <div className="mb-6 italic text-[#888]">La Voyagiste</div>
-          <div className="text-[1.4rem] tracking-[5px]">★★★★★</div>
-        </div>
-      </section>
+      {/* Témoignages (composant partagé) */}
+      <Testimonials />
 
-      {/* Autres projets */}
+      {/* Projets similaires (recommandation basée sur catégories communes) */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
         <div className="mb-12 flex items-end justify-between gap-8">
-          <h2 className="font-heading text-[3rem] font-normal leading-[1.1]">
-            D&rsquo;autres projets
+          <h2 className="font-heading text-[clamp(28px,3vw,48px)] font-normal leading-[1.1]">
+            Vous aimerez aussi
           </h2>
+          <p className="hidden font-body text-[0.9rem] text-kinome-grey md:block">
+            Projets dans des registres proches
+          </p>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {autres.slice(0, 4).map((p) => (

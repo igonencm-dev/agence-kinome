@@ -117,7 +117,8 @@ export default function ServicesPage() {
 
   return (
     <main>
-      {/* Hero — vidéo en background (récupérée du WP : Modern-Intro_Fevrier-2026) */}
+      {/* Hero — vidéo en background (Modern-Intro WP) avec gradient bottom
+          pour garder la vidéo visible en haut + le texte ultra lisible en bas */}
       <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
         <video
           autoPlay
@@ -128,21 +129,24 @@ export default function ServicesPage() {
           className="absolute inset-0 h-full w-full object-cover"
         >
           <source src="/assets/videos/services-hero.mp4" type="video/mp4" />
-          {/* Fallback image si le navigateur ne supporte pas la vidéo */}
           <img
             src="/assets/services-hero.png"
             alt="Studio créatif Kinome — services de communication à Genève"
             className="block h-full w-full object-cover"
           />
         </video>
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col items-start justify-end px-[5%] pb-20">
-          <h1 className="mb-6 font-heading text-[5rem] font-normal leading-[1.05] text-white">
+        {/* Gradient sombre uniquement en bas (50% transparent en haut → 85% noir en bas)
+            + léger voile global pour préserver le contraste sur les vidéos claires */}
+        <div className="absolute inset-0 bg-black/15" />
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-b from-transparent via-black/40 to-black/85" />
+
+        <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col items-start justify-end px-[5%] pb-[clamp(40px,7vh,90px)]">
+          <h1 className="mb-6 font-heading text-[clamp(42px,6vw,90px)] font-normal leading-[1.05] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
             Expertise &amp; services
             <br />
             à Genève
           </h1>
-          <p className="max-w-[680px] font-body text-[1.2rem] font-light leading-[1.5] text-white/85">
+          <p className="max-w-[680px] font-body text-[clamp(16px,1.4vw,22px)] font-light leading-[1.5] text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
             De la création de logo à la conception de votre site internet, en
             passant par votre identité visuelle complète : Kinome regroupe
             l&rsquo;ensemble des compétences créatives à Genève pour donner

@@ -134,6 +134,15 @@ export default function RootLayout({
         <Footer />
         <CookieConsent />
         <GoogleAnalytics />
+
+        {/* Chatbot CauserieBot (widget JS, charge après interactivité) */}
+        <Script
+          id="causeriebot-widget"
+          src="https://dashboard.causeriebot.com/widget.js"
+          data-id="61a7f539-597f-42f1-b362-1e5e255ae408"
+          data-url="https://dashboard.causeriebot.com"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

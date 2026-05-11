@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import Testimonials from "../components/Testimonials";
 import { buildMetadata } from "../lib/seo";
 
 export const metadata = buildMetadata({
@@ -44,14 +45,14 @@ const partenaires: Partenaire[] = [
     pays: "France & Canada",
     description:
       "Designer expérimentée travaillant entre la France et le Canada, Lucille apporte son regard sensible et son exigence créative sur de nombreux projets. Sa pluridisciplinarité fait d'elle un atout majeur pour les projets transversaux.",
-    visuel: { type: "color", bg: "#d9d9d9" },
+    visuel: { type: "image", src: "/assets/partenaire-lucille.svg", bg: "#000" },
   },
   {
     nom: "Gianluca",
     pays: "Canada",
     description:
       "Notre partenaire montréalais, expert en direction artistique pour la scène nord-américaine. Sa connaissance du marché et son réseau étendu nous permettent d'ouvrir Kinome à de nouveaux territoires.",
-    visuel: { type: "image", src: "/assets/partenaire-lucille.svg", bg: "#000" },
+    visuel: { type: "image", src: "/assets/partenaire-gianluca.png", bg: "#000" },
   },
   {
     nom: "Propagande Guerilla",
@@ -72,10 +73,10 @@ const partenaires: Partenaire[] = [
 export default function PartenairesPage() {
   return (
     <main>
-      {/* Hero */}
+      {/* Hero — H1 standardisé sur le standard du site */}
       <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
-          <h1 className="font-heading text-[5rem] font-normal leading-[1.1] sm:text-[2.8rem]">
+          <h1 className="font-heading text-[clamp(42px,6vw,90px)] font-normal leading-[1.05] text-kinome-black">
             Kinome travaille avec de nombreux consultants, et ça fait
             plaisir&nbsp;!
           </h1>
@@ -89,42 +90,45 @@ export default function PartenairesPage() {
         </div>
       </section>
 
-      {/* Une expérience à l'international */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
-        <h2 className="mb-12 text-center font-heading text-[3.5rem] font-normal leading-[1.1] sm:text-[2.2rem]">
-          Une expérience à l&rsquo;internationale
-          <br />
-          &amp; des partenaires sur différents territoires
-        </h2>
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr]">
-          <div>
-            <div className="aspect-[4/3] overflow-hidden rounded-[20px]">
-              <img
-                src="/assets/plan-de-travail-3.png"
-                alt=""
-                className="block h-full w-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="font-body text-[1.05rem] leading-[1.7] text-kinome-grey">
-            <p className="mb-5">
-              Fort de notre expérience à l&rsquo;international, nous avons eu le
-              privilège de collaborer avec des clients et des partenaires sur
-              plusieurs territoires, dont le Canada, la Suisse et la France.
-            </p>
-            <p className="mb-5">
-              Cette diversité géographique nous a permis d&rsquo;enrichir notre
-              expertise et de développer une compréhension fine des
-              spécificités culturelles, économiques et sociales de chaque
-              marché. Nous avons su adapter nos stratégies de communication
-              pour répondre aux besoins uniques de chaque région tout en
-              maintenant une cohérence globale et une approche sur-mesure.
-              Nos collaborations internationales sont un gage de notre
-              capacité à penser globalement tout en agissant localement.
+      {/* Une expérience internationale — section avec la carte du monde en fond */}
+      <section className="relative overflow-hidden bg-kinome-cream px-[5%] py-[120px]">
+        {/* Map en background, opacité subtile pour ne pas masquer le texte */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-30"
+        >
+          <img
+            src="/assets/world-map.png"
+            alt=""
+            className="block w-full max-w-[1600px] object-contain"
+            loading="lazy"
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-[1400px]">
+          <h2 className="mb-14 text-center font-heading text-[clamp(28px,4vw,56px)] font-normal leading-[1.1] text-kinome-black">
+            Une expérience à l&rsquo;internationale
+            <br />
+            &amp; des partenaires sur différents territoires
+          </h2>
+          <div className="mx-auto max-w-[900px] space-y-5 text-center font-body text-[clamp(15px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
+            <p>
+              Fort de notre expérience à l&rsquo;international, nous avons eu
+              le privilège de collaborer avec des clients et des partenaires
+              sur plusieurs territoires, dont le Canada, la Suisse et la
+              France.
             </p>
             <p>
-              Travailler avec des partenaires reste répandu dans le milieu de
-              la communication. Autant vous présenter les visages de nos
+              Cette diversité géographique nous a permis d&rsquo;enrichir
+              notre expertise et de développer une compréhension fine des
+              spécificités culturelles, économiques et sociales de chaque
+              marché. Nous adaptons nos stratégies de communication pour
+              répondre aux besoins uniques de chaque région tout en
+              maintenant une cohérence globale et une approche sur-mesure.
+            </p>
+            <p>
+              Travailler avec des partenaires reste répandu dans le milieu
+              de la communication. Autant vous présenter les visages de nos
               collègues travaillant sur vos projets&nbsp;!
             </p>
           </div>
@@ -134,7 +138,7 @@ export default function PartenairesPage() {
       {/* Liste des partenaires */}
       <section className="bg-kinome-cream px-[5%] py-[120px]">
         <div className="mx-auto max-w-[1400px]">
-          <h2 className="mb-16 text-center font-heading text-[3.5rem] font-normal leading-[1.1] sm:text-[2.2rem]">
+          <h2 className="mb-16 text-center font-heading text-[clamp(28px,4vw,56px)] font-normal leading-[1.1] text-kinome-black">
             Nos partenaires
           </h2>
 
@@ -204,9 +208,12 @@ export default function PartenairesPage() {
         </div>
       </section>
 
+      {/* Témoignages (composant partagé) */}
+      <Testimonials />
+
       {/* CTA */}
       <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[80px] text-center text-white">
-        <h2 className="mb-6 font-heading text-[2.8rem] font-normal leading-[1.1]">
+        <h2 className="mb-6 font-heading text-[clamp(28px,3vw,44px)] font-normal leading-[1.1]">
           Un projet international&nbsp;?
         </h2>
         <p className="mx-auto mb-10 max-w-[640px] font-body text-[1.05rem] leading-[1.6] text-white/80">
