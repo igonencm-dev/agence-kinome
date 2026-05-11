@@ -117,13 +117,24 @@ export default function ServicesPage() {
 
   return (
     <main>
-      {/* Hero */}
+      {/* Hero — vidéo en background (récupérée du WP : Modern-Intro_Fevrier-2026) */}
       <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
-        <img
-          src="/assets/services-hero.png"
-          alt="Studio créatif Kinome — services de communication à Genève"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/assets/services-hero.png"
           className="absolute inset-0 h-full w-full object-cover"
-        />
+        >
+          <source src="/assets/videos/services-hero.mp4" type="video/mp4" />
+          {/* Fallback image si le navigateur ne supporte pas la vidéo */}
+          <img
+            src="/assets/services-hero.png"
+            alt="Studio créatif Kinome — services de communication à Genève"
+            className="block h-full w-full object-cover"
+          />
+        </video>
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col items-start justify-end px-[5%] pb-20">
           <h1 className="mb-6 font-heading text-[5rem] font-normal leading-[1.05] text-white">
