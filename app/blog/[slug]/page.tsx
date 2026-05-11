@@ -44,7 +44,6 @@ function formatDate(iso: string) {
   });
 }
 
-/** Estime le temps de lecture (250 mots/min) */
 function readingTime(html: string): number {
   const text = html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
   const words = text.split(" ").length;
@@ -111,67 +110,76 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         />
       )}
 
-      {/* HERO en pleine largeur avec image en arrière-plan */}
-      <section className="relative w-full overflow-hidden">
-        <div className="relative h-[clamp(420px,55vh,640px)] w-full">
-          <img
-            src={post.featuredImage}
-            alt={post.title}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-kinome-cream" />
+      {/* HERO ÉDITORIAL — fond cream, titre lisible, pas d'image en background */}
+      <section className="pt-[160px] pb-[40px]">
+        <div className="mx-auto max-w-[960px] px-[5%]">
+          {/* Breadcrumb */}
+          <nav
+            aria-label="Fil d'Ariane"
+            className="mb-8 font-body text-[0.85rem] text-kinome-grey"
+          >
+            <Link href="/" className="hover:text-kinome-black">
+              Accueil
+            </Link>
+            <span aria-hidden="true" className="mx-2">
+              ›
+            </span>
+            <Link href="/blog/" className="hover:text-kinome-black">
+              Blog
+            </Link>
+            <span aria-hidden="true" className="mx-2">
+              ›
+            </span>
+            <span className="text-kinome-black">{post.focusKeyword}</span>
+          </nav>
+
+          {/* Meta + tag */}
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <span className="rounded-full bg-kinome-accent px-4 py-1.5 font-heading text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-white">
+              {post.focusKeyword}
+            </span>
+            <span className="font-body text-[0.88rem] text-kinome-grey">
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+            </span>
+            <span className="font-body text-[0.88rem] text-kinome-grey">
+              · {minutes} min de lecture
+            </span>
+            <span className="font-body text-[0.88rem] text-kinome-grey">
+              · L&rsquo;équipe Kinome
+            </span>
+          </div>
+
+          {/* H1 GRAND */}
+          <h1 className="mb-7 font-heading text-[clamp(34px,5vw,64px)] font-normal leading-[1.05] text-kinome-black">
+            {post.title}
+          </h1>
+
+          {/* Description / chapô */}
+          <p className="max-w-[800px] font-body text-[clamp(17px,1.45vw,22px)] font-light leading-[1.5] text-kinome-grey">
+            {post.description}
+          </p>
         </div>
+      </section>
 
-        {/* Bloc titre + meta superposé en bas du hero */}
-        <div className="relative z-10 -mt-[260px] pb-[60px]">
-          <div className="mx-auto max-w-[960px] px-[5%]">
-            <nav
-              aria-label="Fil d'Ariane"
-              className="mb-6 font-body text-[0.8rem] text-white/80"
-            >
-              <Link href="/" className="hover:text-white">
-                Accueil
-              </Link>
-              <span aria-hidden="true" className="mx-2">
-                ›
-              </span>
-              <Link href="/blog/" className="hover:text-white">
-                Blog
-              </Link>
-              <span aria-hidden="true" className="mx-2">
-                ›
-              </span>
-              <span className="text-white">{post.focusKeyword}</span>
-            </nav>
-
-            <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className="rounded-full bg-kinome-accent px-4 py-1.5 font-heading text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-white">
-                {post.focusKeyword}
-              </span>
-              <span className="font-body text-[0.85rem] text-white/85">
-                <time dateTime={post.date}>{formatDate(post.date)}</time>
-              </span>
-              <span className="font-body text-[0.85rem] text-white/85">
-                · {minutes} min de lecture
-              </span>
-            </div>
-
-            <h1 className="font-heading text-[clamp(30px,4.2vw,56px)] font-normal leading-[1.1] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)]">
-              {post.title}
-            </h1>
+      {/* IMAGE FEATURED — pleine largeur, ratio naturel, pas de crop, pas d'overlay */}
+      <section className="mb-[60px]">
+        <div className="mx-auto max-w-[1300px] px-[5%]">
+          <div className="overflow-hidden rounded-[24px] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
+            <img
+              src={post.featuredImage}
+              alt={post.title}
+              className="block w-full h-auto"
+              fetchPriority="high"
+            />
           </div>
         </div>
       </section>
 
-      {/* Layout 2 colonnes : contenu + sticky author/share */}
-      <section className="mx-auto max-w-[1200px] px-[5%] pb-[80px]">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_240px]">
-          {/* Colonne principale : contenu */}
+      {/* CONTENU — 2 colonnes desktop : article + sidebar sticky */}
+      <section className="mx-auto max-w-[1300px] px-[5%] pb-[80px]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_280px]">
+          {/* Colonne principale : contenu de l'article */}
           <article className="min-w-0">
-            <p className="mb-10 font-body text-[clamp(17px,1.35vw,21px)] font-light leading-[1.55] text-kinome-grey">
-              {post.description}
-            </p>
-
             <div
               className="blog-prose"
               dangerouslySetInnerHTML={{ __html: post.articleHtml }}
@@ -179,9 +187,9 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
             {/* Tags + partage */}
             <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-[#e0ddd6] pt-8">
-              <div className="flex flex-wrap gap-2">
-                <span className="font-heading text-[0.85rem] font-semibold uppercase tracking-[0.05em] text-kinome-grey">
-                  Mots-clés :
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-heading text-[0.8rem] font-semibold uppercase tracking-[0.06em] text-kinome-grey">
+                  Mots-clés
                 </span>
                 {post.focusKeyword
                   .split(/[ /]/)
@@ -224,7 +232,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             </div>
           </article>
 
-          {/* Colonne droite : sticky author card */}
+          {/* Colonne droite : sticky author card + CTA contact */}
           <aside className="hidden lg:block">
             <div className="sticky top-32 space-y-5">
               <div className="rounded-[20px] bg-white p-6">
@@ -264,21 +272,20 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         </div>
       </section>
 
-      {/* CTA fond cream */}
+      {/* Articles liés */}
       <section className="bg-white py-[100px]">
-        <div className="mx-auto max-w-[1100px] px-[5%]">
-          {/* Articles liés */}
+        <div className="mx-auto max-w-[1300px] px-[5%]">
           <h2 className="mb-12 text-center font-heading text-[clamp(28px,3vw,44px)] font-normal leading-[1.1] text-kinome-black">
             À lire aussi
           </h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {related.map((p) => (
               <Link
                 key={p.slug}
                 href={`/blog/${p.slug}/`}
                 className="group flex flex-col overflow-hidden rounded-[16px] bg-kinome-cream transition-shadow hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
               >
-                <div className="aspect-[16/10] overflow-hidden bg-white">
+                <div className="aspect-[3/2] overflow-hidden bg-white">
                   <img
                     src={p.featuredImage}
                     alt={p.title}
@@ -290,7 +297,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                   <p className="mb-2 font-body text-[0.8rem] text-kinome-accent">
                     {formatDate(p.date)} · {readingTime(p.articleHtml)} min
                   </p>
-                  <h3 className="font-heading text-[1.1rem] font-semibold leading-[1.3] text-kinome-black group-hover:underline">
+                  <h3 className="font-heading text-[1.05rem] font-semibold leading-[1.3] text-kinome-black group-hover:underline">
                     {p.title}
                   </h3>
                 </div>
