@@ -214,6 +214,45 @@ body.no-scroll {
   font-weight: 600;
 }
 
+/* Listes avec icônes SVG inline (cas Elementor : <li><svg/>texte</li>) :
+   on neutralise la puce native + on contraint l'icône à une petite taille
+   alignée verticalement. */
+.blog-prose ul li:has(> svg:first-child),
+.blog-prose ol li:has(> svg:first-child) {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6em;
+}
+
+.blog-prose ul li:has(> svg:first-child)::marker,
+.blog-prose ol li:has(> svg:first-child)::marker {
+  content: "";
+}
+
+.blog-prose li > svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 0.25em;
+  /* Bulle ronde verte autour du tick */
+  background: var(--color-kinome-accent);
+  color: #fff;
+  border-radius: 999px;
+  padding: 4px;
+  stroke: currentColor !important;
+}
+
+/* SVG dans paragraphe (cas plus rare) : contrainte douce */
+.blog-prose p > svg {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin: 0 0.2em;
+}
+
 .blog-prose blockquote {
   margin: 2em 0;
   padding: 1.5em 2em;
