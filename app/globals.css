@@ -93,6 +93,30 @@ body {
   transform: scaleY(1);
 }
 
+/* Bascule automatique de la couleur du texte au hover, alignée sur le
+   remplissage (sinon texte foncé sur fond foncé = illisible).
+     • .btn-fill-accent → fond rouge accent  → texte blanc
+     • .btn-fill-dark   → fond noir          → texte blanc
+     • .btn-fill-white  → fond blanc         → texte noir Kinome
+   La règle vise <a>/<button> pour battre la spécificité des classes
+   utilitaires Tailwind type `text-kinome-black`. */
+a.btn-fill-accent:hover,
+a.btn-fill-accent:focus-visible,
+button.btn-fill-accent:hover,
+button.btn-fill-accent:focus-visible,
+a.btn-fill-dark:hover,
+a.btn-fill-dark:focus-visible,
+button.btn-fill-dark:hover,
+button.btn-fill-dark:focus-visible {
+  color: #ffffff;
+}
+a.btn-fill-white:hover,
+a.btn-fill-white:focus-visible,
+button.btn-fill-white:hover,
+button.btn-fill-white:focus-visible {
+  color: var(--color-kinome-black);
+}
+
 body.no-scroll {
   overflow: hidden;
   height: 100vh;
