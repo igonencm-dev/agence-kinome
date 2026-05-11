@@ -4,7 +4,7 @@ import { contact } from "../lib/contact";
 import ServiceIcon, { type ServiceIconName } from "../components/ServiceIcon";
 import VisualDiary from "../components/VisualDiary";
 import Testimonials from "../components/Testimonials";
-import { buildMetadata } from "../lib/seo";
+import { buildMetadata, jsonLdScript, SITE } from "../lib/seo";
 
 export const metadata = buildMetadata({
   title: "À propos de l'agence",
@@ -18,6 +18,48 @@ export const metadata = buildMetadata({
     "branding humain",
   ],
 });
+
+// JSON-LD Person pour Mathias + Tanguy — apparition possible dans le
+// Knowledge Graph Google avec leurs photos + intitulés.
+const personsLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE.url}/a-propos/#mathias`,
+      name: "Mathias Igonenc",
+      jobTitle: "Cofondateur & directeur artistique",
+      worksFor: { "@id": `${SITE.url}/#organization` },
+      image: `${SITE.url}/assets/wp/apropos-team-mathias.png`,
+      email: contact.emails.mathias,
+      telephone: contact.phones.mathias.e164,
+      url: `${SITE.url}/a-propos/`,
+      sameAs: [contact.social.linkedinMathias],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Genève",
+        addressCountry: "CH",
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE.url}/a-propos/#tanguy`,
+      name: "Tanguy Deniel",
+      jobTitle: "Cofondateur",
+      worksFor: { "@id": `${SITE.url}/#organization` },
+      image: `${SITE.url}/assets/wp/apropos-team-tanguy.png`,
+      email: contact.emails.tanguy,
+      telephone: contact.phones.tanguy.e164,
+      url: `${SITE.url}/a-propos/`,
+      sameAs: [contact.social.linkedinTanguy],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Genève",
+        addressCountry: "CH",
+      },
+    },
+  ],
+};
 
 const principes = [
   {
@@ -135,6 +177,12 @@ const services: { title: string; icon: ServiceIconName; desc: string }[] = [
 export default function AProposPage() {
   return (
     <main>
+      {/* JSON-LD : Person × 2 (Mathias + Tanguy) — Knowledge Graph */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(personsLd) }}
+      />
+
       {/* Hero — 2 colonnes : titre + Visual Diary */}
       <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
         <div className="mx-auto grid max-w-[1588px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_0.9fr]">

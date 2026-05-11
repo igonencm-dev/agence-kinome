@@ -114,7 +114,30 @@ ErrorDocument 404 /404.html
   Header set X-Content-Type-Options    "nosniff"
   Header set X-Frame-Options           "SAMEORIGIN"
   Header set Referrer-Policy           "strict-origin-when-cross-origin"
-  Header set Permissions-Policy        "geolocation=(), microphone=(), camera=()"
+  Header set Permissions-Policy        "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # CSP (Content Security Policy) — protège contre les injections XSS.
+  # Autorise :
+  #   - notre domaine + assets locaux (default-src 'self')
+  #   - styles/scripts inline générés par Next.js ('unsafe-inline' nécessaire
+  #     pour les <script> JSON-LD et les styles inline Tailwind)
+  #   - Google Analytics (gtag) + Tag Manager
+  #   - CauserieBot widget
+  #   - data: et blob: pour les fonts/images embarquées
+  Header set Content-Security-Policy "\
+    default-src 'self'; \
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://dashboard.causeriebot.com; \
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \
+    img-src 'self' data: blob: https: ; \
+    font-src 'self' data: https://fonts.gstatic.com; \
+    media-src 'self'; \
+    connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://dashboard.causeriebot.com wss://dashboard.causeriebot.com; \
+    frame-src 'self' https://dashboard.causeriebot.com; \
+    object-src 'none'; \
+    base-uri 'self'; \
+    form-action 'self'; \
+    upgrade-insecure-requests"
 </IfModule>
 
 # Verrouille les fichiers sensibles (config PHP, dotfiles, etc.)

@@ -120,29 +120,33 @@ export default function Header() {
               </Link>
             ))}
 
-            <button
-              type="button"
-              className={`flex items-center gap-1.5 text-[0.95rem] font-medium ${
+            <a
+              href="https://agence--kinome-ch.translate.goog/?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center gap-1.5 text-[0.95rem] font-medium transition-opacity hover:opacity-70 ${
                 solid ? "text-kinome-black" : "text-white"
               }`}
-              aria-label="Changer la langue"
+              aria-label="View site in English (Google Translate)"
+              title="View in English"
             >
               EN
               <svg
-                width="10"
-                height="6"
-                viewBox="0 0 10 6"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
                 fill="none"
                 aria-hidden="true"
               >
                 <path
-                  d="M1 1l4 4 4-4"
+                  d="M14 3h7v7m0-7L10 14M5 6a1 1 0 0 1 1-1h4v2H7v10h10v-3h2v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6z"
                   stroke="currentColor"
-                  strokeWidth="1.5"
+                  strokeWidth="1.8"
                   strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
-            </button>
+            </a>
 
             <Link
               href="/contact/"

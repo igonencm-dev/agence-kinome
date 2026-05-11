@@ -134,52 +134,58 @@ export default function ContactForm() {
           type="text"
           name="prenom"
           placeholder="Prénom*"
+          aria-label="Prénom (requis)"
           required
           maxLength={80}
           autoComplete="given-name"
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f]"
+          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
         />
         <input
           type="text"
           name="nom"
           placeholder="Nom*"
+          aria-label="Nom de famille (requis)"
           required
           maxLength={80}
           autoComplete="family-name"
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f]"
+          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
         />
         <input
           type="email"
           name="email"
           placeholder="Email*"
+          aria-label="Adresse e-mail (requis)"
           required
           autoComplete="email"
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f]"
+          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
         />
         <input
           type="text"
           name="societe"
           placeholder="Société*"
+          aria-label="Société (requis)"
           required
           maxLength={120}
           autoComplete="organization"
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f]"
+          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
         />
         <input
           type="text"
           name="besoin"
           placeholder="Votre besoin ? (logo, charte, site internet…)"
+          aria-label="Votre besoin (optionnel)"
           maxLength={200}
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f]"
+          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
         />
         <textarea
           name="message"
           placeholder="Message*"
+          aria-label="Votre message (requis, 10 caractères minimum)"
           required
           rows={6}
           minLength={10}
           maxLength={5000}
-          className="w-full resize-none rounded-[15px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f]"
+          className="w-full resize-none rounded-[15px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
         />
 
         {etat === "erreur" && (
