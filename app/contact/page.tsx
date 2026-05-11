@@ -24,7 +24,7 @@ export default function ContactPage() {
       {/* Bloc principal : adresse + formulaire */}
       <section className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-[5%] py-[40px] lg:grid-cols-[1fr_1.3fr]">
         <div className="font-body text-[1.15rem] leading-[1.6] text-kinome-black">
-          <h1 className="mb-12 font-heading text-[clamp(42px,6vw,90px)] font-normal leading-[1.05] text-kinome-black">
+          <h1 className="mb-12 font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
             Échangeons.
           </h1>
 
@@ -118,7 +118,7 @@ export default function ContactPage() {
 
       {/* CTA bas (section "Vous avez un projet ?") */}
       <section className="mx-auto my-[100px] max-w-[1300px] rounded-[24px] bg-kinome-cream px-[5%] py-[80px] text-center">
-        <h2 className="mx-auto mb-6 max-w-[900px] font-heading text-[3rem] font-normal leading-[1.1]">
+        <h2 className="mx-auto mb-6 max-w-[900px] font-heading text-[clamp(24px,4.5vw,48px)] font-normal leading-[1.1]">
           Vous avez un projet sur lequel vous souhaitez échanger&nbsp;?
         </h2>
         <p className="mx-auto mb-10 max-w-[700px] font-body text-[1.1rem] font-light leading-[1.6] text-kinome-grey">

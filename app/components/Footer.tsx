@@ -14,8 +14,8 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-kinome-dark px-[70px] py-20 text-kinome-cream">
-      <div className="mx-auto grid max-w-[1588px] grid-cols-[auto_1fr_1fr_1fr] gap-12">
+    <footer className="bg-kinome-dark px-[clamp(20px,5vw,70px)] py-[clamp(60px,8vw,80px)] text-kinome-cream">
+      <div className="mx-auto grid max-w-[1588px] grid-cols-1 gap-10 md:grid-cols-2 md:gap-12 lg:grid-cols-[auto_1fr_1fr_1fr]">
         <Link href="/" aria-label="Accueil Kinome" className="block">
           <Image
             src="/assets/logo-kinome.svg"

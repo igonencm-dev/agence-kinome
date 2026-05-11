@@ -172,7 +172,7 @@ export default function Home() {
         <div className="absolute inset-0 z-[2] bg-black/40" />
         <div className="relative z-[3] mx-auto flex w-full max-w-[1400px] flex-col items-start px-[5%]">
           <div className="max-w-[800px] text-left text-white">
-            <h1 className="mb-[30px] font-heading text-[clamp(42px,6vw,90px)] font-semibold leading-[1.05]">
+            <h1 className="mb-[30px] font-heading text-[clamp(30px,5.5vw,76px)] font-semibold leading-[1.05]">
               Agence de communication
               <br />à Genève — <HeroAnimatedWord />
             </h1>
@@ -200,10 +200,10 @@ export default function Home() {
       </section>
 
       {/* "Ki" sommes-nous ? */}
-      <section className="mx-auto my-[60px] max-w-[1300px] rounded-[20px] px-[60px] py-[80px]">
+      <section className="mx-auto my-[60px] max-w-[1300px] rounded-[20px] px-[clamp(20px,5vw,60px)] py-[clamp(50px,8vw,80px)]">
         <div className="grid grid-cols-1 items-start gap-20 lg:grid-cols-2">
           <div>
-            <h2 className="mb-10 font-heading text-[4rem] font-normal leading-[1.1]">
+            <h2 className="mb-10 font-heading text-[clamp(28px,5.2vw,64px)] font-normal leading-[1.1]">
               &ldquo;Ki&rdquo; sommes-nous&nbsp;?
             </h2>
             <p className="my-10 font-body text-[1.15rem] leading-[1.6] text-kinome-black">
@@ -250,7 +250,7 @@ export default function Home() {
 
       {/* Préparons ensemble les enjeux de demain */}
       <section className="mx-auto max-w-[1400px] bg-kinome-cream px-[5%] py-[100px]">
-        <h2 className="mb-20 max-w-[600px] font-heading text-[3.8rem] font-normal leading-[1.1]">
+        <h2 className="mb-20 max-w-[600px] font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1]">
           Préparons ensemble
           <br />
           les enjeux de demain
@@ -299,7 +299,7 @@ export default function Home() {
 
       {/* Notre expertise & notre accompagnement */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
-        <h2 className="mb-20 text-center font-heading text-[3.5rem] font-normal leading-[1.1]">
+        <h2 className="mb-20 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Notre expertise
           <br />
           &amp; notre accompagnement
@@ -364,7 +364,7 @@ export default function Home() {
 
       {/* CTA processus */}
       <section className="px-[5%] py-[140px] text-center">
-        <h2 className="mx-auto mb-16 max-w-[1000px] font-heading text-[3.8rem] font-normal leading-[1.1]">
+        <h2 className="mx-auto mb-16 max-w-[1000px] font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1]">
           Parlons de ce dont vous avez besoin, avant ce que nous offrons&nbsp;!
         </h2>
         <Link
@@ -379,7 +379,7 @@ export default function Home() {
       <section className="mx-auto max-w-[1400px] px-[5%] py-[60px]">
         <div className="grid grid-cols-1 items-center gap-[100px] py-[60px] lg:grid-cols-2">
           <div>
-            <h2 className="mb-2 font-heading text-[3.5rem] font-normal leading-[1.1]">
+            <h2 className="mb-2 font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
               Kinome, c&rsquo;est avant
               <br />
               tout de l&rsquo;émotion&nbsp;!
@@ -417,8 +417,8 @@ export default function Home() {
       <Testimonials />
 
       {/* Les nouvelles (blog) */}
-      <section className="mx-auto my-[60px] max-w-[1300px] rounded-[20px] bg-kinome-cream px-[60px] py-[80px]">
-        <h2 className="mb-12 font-heading text-[3rem] font-normal">
+      <section className="mx-auto my-[60px] max-w-[1300px] rounded-[20px] bg-kinome-cream px-[clamp(20px,5vw,60px)] py-[clamp(50px,8vw,80px)]">
+        <h2 className="mb-12 font-heading text-[clamp(24px,4.5vw,48px)] font-normal">
           Les nouvelles
         </h2>
         <div className="flex flex-col">
@@ -460,7 +460,7 @@ export default function Home() {
       {/* Contact */}
       <div id="contact">
         <section className="px-[5%] pt-[120px] pb-10 text-center">
-          <h2 className="mx-auto max-w-[900px] font-heading text-[3.5rem] font-normal leading-[1.1]">
+          <h2 className="mx-auto max-w-[900px] font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
             Vous avez un projet sur lequel vous souhaitez échanger&nbsp;?
           </h2>
         </section>
@@ -540,7 +540,7 @@ export default function Home() {
 
       {/* FAQ — questions posées sur Kinome (AEO + GEO Genève) */}
       <section className="mx-auto max-w-[1100px] px-[5%] py-[120px]">
-        <h2 className="mb-12 text-center font-heading text-[3rem] font-normal leading-[1.1]">
+        <h2 className="mb-12 text-center font-heading text-[clamp(24px,4.5vw,48px)] font-normal leading-[1.1]">
           Questions fréquentes
         </h2>
         <div className="flex flex-col gap-4">

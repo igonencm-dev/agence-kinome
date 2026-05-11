@@ -64,7 +64,7 @@ export default function ContactForm() {
 
   if (etat === "succes") {
     return (
-      <div className="rounded-[24px] bg-kinome-dark p-[60px] text-center text-white">
+      <div className="rounded-[24px] bg-kinome-dark p-[clamp(24px,5vw,60px)] text-center text-white">
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-kinome-cream">
           <svg
             width="32"
@@ -103,7 +103,7 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="rounded-[24px] bg-kinome-dark p-[60px] text-white">
+    <div className="rounded-[24px] bg-kinome-dark p-[clamp(24px,5vw,60px)] text-white">
       <h2 className="mb-10 text-center font-heading text-[2.2rem] font-semibold">
         Formulaire de contact
       </h2>

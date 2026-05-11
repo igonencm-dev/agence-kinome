@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import ServicesHero from "./ServicesHero";
 
 const servicesCrea = [
   {
@@ -117,43 +118,9 @@ export default function ServicesPage() {
 
   return (
     <main>
-      {/* Hero — vidéo en background (Modern-Intro WP) avec gradient bottom
-          pour garder la vidéo visible en haut + le texte ultra lisible en bas */}
-      <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/assets/services-hero.png"
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src="/assets/videos/services-hero.mp4" type="video/mp4" />
-          <img
-            src="/assets/services-hero.png"
-            alt="Studio créatif Kinome — services de communication à Genève"
-            className="block h-full w-full object-cover"
-          />
-        </video>
-        {/* Gradient sombre uniquement en bas (50% transparent en haut → 85% noir en bas)
-            + léger voile global pour préserver le contraste sur les vidéos claires */}
-        <div className="absolute inset-0 bg-black/15" />
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-b from-transparent via-black/40 to-black/85" />
-
-        <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col items-start justify-end px-[5%] pb-[clamp(40px,7vh,90px)]">
-          <h1 className="mb-6 font-heading text-[clamp(42px,6vw,90px)] font-normal leading-[1.05] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
-            Expertise &amp; services
-            <br />
-            à Genève
-          </h1>
-          <p className="max-w-[680px] font-body text-[clamp(16px,1.4vw,22px)] font-light leading-[1.5] text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
-            De la création de logo à la conception de votre site internet, en
-            passant par votre identité visuelle complète : Kinome regroupe
-            l&rsquo;ensemble des compétences créatives à Genève pour donner
-            corps à votre marque.
-          </p>
-        </div>
-      </section>
+      {/* Hero scroll-driven : vidéo seule au load, titre apparait au scroll
+          (composant client dédié, voir ServicesHero.tsx) */}
+      <ServicesHero />
 
       {/* Onglets services */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
@@ -201,7 +168,7 @@ export default function ServicesPage() {
 
       {/* Comment les prestations se déroulent ? */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[60px]">
-        <h2 className="mb-16 font-heading text-[3.5rem] font-normal leading-[1.1]">
+        <h2 className="mb-16 font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Comment les prestations
           <br />
           se déroulent&nbsp;?
@@ -210,7 +177,7 @@ export default function ServicesPage() {
         {processus.map((p) => (
           <div
             key={p.title}
-            className="mb-8 grid grid-cols-1 items-center gap-12 rounded-[24px] bg-kinome-cream p-[60px] lg:grid-cols-2"
+            className="mb-8 grid grid-cols-1 items-center gap-12 rounded-[24px] bg-kinome-cream p-[clamp(24px,5vw,60px)] lg:grid-cols-2"
           >
             <div className={p.reverse ? "lg:order-2" : ""}>
               <h3 className="mb-4 font-heading text-[1.8rem] font-semibold leading-[1.2]">
@@ -274,7 +241,7 @@ export default function ServicesPage() {
       {/* Pourquoi nous choisir — 6 raisons */}
       <section className="bg-kinome-cream px-[5%] py-[120px]">
         <div className="mx-auto max-w-[1400px]">
-          <h2 className="mb-16 text-center font-heading text-[3.5rem] font-normal leading-[1.1]">
+          <h2 className="mb-16 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
             Pourquoi choisir Kinome&nbsp;?
           </h2>
           <ol className="flex flex-col gap-6">
@@ -302,7 +269,7 @@ export default function ServicesPage() {
 
       {/* FAQ — questions fréquentes services (AEO) */}
       <section className="mx-auto max-w-[1100px] px-[5%] py-[100px]">
-        <h2 className="mb-12 text-center font-heading text-[3rem] font-normal leading-[1.1]">
+        <h2 className="mb-12 text-center font-heading text-[clamp(24px,4.5vw,48px)] font-normal leading-[1.1]">
           Questions fréquentes sur nos services
         </h2>
         <div className="flex flex-col gap-4">
@@ -346,7 +313,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[80px] text-center text-white">
+      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[clamp(50px,8vw,80px)] text-center text-white">
         <h2 className="mb-6 font-heading text-[2.8rem] font-normal leading-[1.1]">
           Un projet en tête&nbsp;?
         </h2>
