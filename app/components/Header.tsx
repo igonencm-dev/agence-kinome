@@ -108,21 +108,17 @@ export default function Header() {
 
           {/* Nav desktop (lg+) */}
           <nav className="hidden items-center gap-9 font-body lg:flex">
-            {navLinks.map((link) => {
-              const isActive = pathname?.startsWith(link.href.replace(/\/$/, "")) ?? false;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  data-active={isActive}
-                  className={`nav-link text-[0.95rem] font-medium transition-colors ${
-                    solid ? "text-kinome-black" : "text-white"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-[0.95rem] font-medium transition-opacity hover:opacity-70 ${
+                  solid ? "text-kinome-black" : "text-white"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
 
             <button
               type="button"
@@ -150,18 +146,20 @@ export default function Header() {
 
             <Link
               href="/contact/"
-              className={`group inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[0.9rem] font-semibold shadow-sm transition-[transform,background-color,box-shadow] duration-300 hover:scale-[1.03] hover:shadow-md ${
+              className={`btn-fill-accent group inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[0.9rem] font-semibold shadow-sm transition-[color,box-shadow] duration-300 hover:shadow-md hover:text-white ${
                 solid
-                  ? "bg-kinome-black text-white hover:bg-[#333]"
-                  : "bg-white text-kinome-black hover:bg-kinome-cream"
+                  ? "bg-kinome-black text-white"
+                  : "bg-white text-kinome-black"
               }`}
             >
-              Nous contacter
-              <span
-                aria-hidden="true"
-                className="inline-block transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
+              <span className="relative z-10 inline-flex items-center gap-2">
+                Nous contacter
+                <span
+                  aria-hidden="true"
+                  className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  →
+                </span>
               </span>
             </Link>
           </nav>
@@ -265,7 +263,7 @@ export default function Header() {
             <Link
               href="/contact/"
               onClick={() => setMenuOpen(false)}
-              className="mb-5 flex w-full items-center justify-center rounded-full bg-kinome-black px-6 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-[1.02]"
+              className="mb-5 flex w-full items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-6 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-[1.02]"
             >
               Nous contacter
             </Link>

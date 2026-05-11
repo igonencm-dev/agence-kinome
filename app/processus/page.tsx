@@ -202,7 +202,7 @@ export default function ProcessusPage() {
           </p>
           <Link
             href="/contact/"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-10 py-4 font-heading text-[1.05rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[1.05rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Contactez-nous
           </Link>

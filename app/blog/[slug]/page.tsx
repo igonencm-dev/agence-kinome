@@ -213,7 +213,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Partager sur LinkedIn"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-kinome-black text-white transition-transform hover:scale-110"
+                  className="flex h-9 w-9 items-center justify-center btn-fill-accent rounded-full bg-kinome-black text-white transition-transform hover:scale-110"
                 >
                   in
                 </a>
@@ -224,7 +224,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                     `https://agence-kinome.ch/blog/${post.slug}/`
                   )}`}
                   aria-label="Partager par mail"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-kinome-black text-white transition-transform hover:scale-110"
+                  className="flex h-9 w-9 items-center justify-center btn-fill-accent rounded-full bg-kinome-black text-white transition-transform hover:scale-110"
                 >
                   ✉
                 </a>

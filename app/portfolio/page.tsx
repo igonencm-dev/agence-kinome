@@ -44,7 +44,7 @@ export default function PortfolioPage() {
         </p>
         <Link
           href="/a-propos/"
-          className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+          className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
         >
           Découvrir l&rsquo;équipe
         </Link>
@@ -90,7 +90,7 @@ export default function PortfolioPage() {
                 </div>
               </div>
               <div className="px-6 py-5">
-                <h3 className="mb-1 font-heading text-[1.3rem] font-semibold text-kinome-black transition-colors duration-300 group-hover:text-kinome-accent">
+                <h3 className="mb-1 font-heading text-[1.3rem] font-semibold text-kinome-black">
                   {p.nom}
                 </h3>
                 <p className="mb-3 font-body text-[0.9rem] text-kinome-grey">
@@ -121,7 +121,7 @@ export default function PortfolioPage() {
         <div className="mt-20 flex justify-center">
           <Link
             href="/contact/"
-            className="inline-flex min-w-[300px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="inline-flex min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrir d&rsquo;autres projets
           </Link>

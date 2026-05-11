@@ -311,7 +311,7 @@ export default function AProposPage() {
                   </p>
                   <Link
                     href={s.cta.href}
-                    className="inline-flex items-center justify-center rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
+                    className="inline-flex items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
                   >
                     {s.cta.label}
                   </Link>
@@ -354,7 +354,7 @@ export default function AProposPage() {
           <div className="mt-[clamp(40px,4vw,60px)] text-center">
             <Link
               href="/services/"
-              className="inline-flex items-center justify-center rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
+              className="inline-flex items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
             >
               En savoir plus
             </Link>
@@ -399,7 +399,7 @@ export default function AProposPage() {
           <div className="mx-auto flex justify-center">
             <Link
               href="/contact/"
-              className="inline-flex min-w-[300px] items-center justify-center rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
+              className="inline-flex min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
             >
               Discutons de votre projet
             </Link>

@@ -49,31 +49,48 @@ body {
   outline: none;
 }
 
-/* Underline animé pour les liens du menu (de gauche à droite) — utilisé via
-   la classe utilitaire .nav-link */
-.nav-link {
+/* Animation "remplissage" pour boutons : un pseudo-élément remonte depuis le
+   bas en scaleY au hover. À combiner avec position: relative + overflow:
+   hidden sur le bouton parent.
+     • .btn-fill-accent : fond cream/transparent → rouge accent
+     • .btn-fill-dark   : fond cream/transparent → noir
+     • .btn-fill-white  : fond noir/sombre        → blanc
+   Le contenu doit être placé dans un <span class="relative z-10"> pour
+   rester au-dessus du fill. */
+.btn-fill-accent,
+.btn-fill-dark,
+.btn-fill-white {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
-.nav-link::after {
+.btn-fill-accent::before,
+.btn-fill-dark::before,
+.btn-fill-white::before {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: -4px;
-  height: 2px;
-  width: 100%;
-  background-color: currentColor;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+  inset: 0;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: -1;
 }
-.nav-link:hover::after,
-.nav-link:focus-visible::after {
-  transform: scaleX(1);
-}
-/* Variante "active" : underline déjà étendu */
-.nav-link[data-active="true"]::after {
-  transform: scaleX(1);
+.btn-fill-accent::before {
   background-color: var(--color-kinome-accent);
+}
+.btn-fill-dark::before {
+  background-color: var(--color-kinome-black);
+}
+.btn-fill-white::before {
+  background-color: #ffffff;
+}
+.btn-fill-accent:hover::before,
+.btn-fill-accent:focus-visible::before,
+.btn-fill-dark:hover::before,
+.btn-fill-dark:focus-visible::before,
+.btn-fill-white:hover::before,
+.btn-fill-white:focus-visible::before {
+  transform: scaleY(1);
 }
 
 body.no-scroll {

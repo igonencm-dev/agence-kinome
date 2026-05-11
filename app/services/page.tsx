@@ -204,7 +204,7 @@ export default function ServicesPage() {
         <div className="mt-12 flex justify-center">
           <Link
             href="/processus/"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Processus client
           </Link>
@@ -231,7 +231,7 @@ export default function ServicesPage() {
         <div className="mt-12 flex justify-center">
           <Link
             href="/portfolio/"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrir nos projets
           </Link>
@@ -324,13 +324,13 @@ export default function ServicesPage() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/contact/"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-dark rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
           >
             Discutons de votre projet
           </Link>
           <Link
             href="/portfolio/"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-white rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
           >
             Voir nos projets
           </Link>

@@ -190,7 +190,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/portfolio"
-                className="inline-flex min-w-[280px] items-center justify-center whitespace-nowrap rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-bold text-white transition-transform hover:scale-105"
+                className="inline-flex min-w-[280px] items-center justify-center whitespace-nowrap btn-fill-white rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-bold text-white transition-transform hover:scale-105"
               >
                 Découvrir nos projets
               </Link>
@@ -240,7 +240,7 @@ export default function Home() {
             </p>
             <Link
               href="/a-propos"
-              className="inline-block rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              className="inline-block btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
             >
               Notre agence
             </Link>
@@ -288,7 +288,7 @@ export default function Home() {
               </p>
               <Link
                 href={bloc.cta.href}
-                className="inline-block rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+                className="inline-block btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
               >
                 {bloc.cta.label}
               </Link>
@@ -319,13 +319,13 @@ export default function Home() {
         <div className="mt-16 flex flex-wrap justify-center gap-5">
           <Link
             href="/services"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrez nos services
           </Link>
           <Link
             href="/portfolio"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full border-2 border-kinome-black bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-dark rounded-full border-2 border-kinome-black bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
           >
             Découvrir nos projets
           </Link>
@@ -352,7 +352,7 @@ export default function Home() {
         <div className="mt-16 flex justify-center pb-5">
           <Link
             href="/portfolio"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-white/10"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-white rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-white/10"
           >
             Découvrir nos projets
           </Link>
@@ -369,7 +369,7 @@ export default function Home() {
         </h2>
         <Link
           href="/processus"
-          className="inline-block rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+          className="inline-block btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
         >
           Découvrir notre processus de travail
         </Link>
@@ -450,7 +450,7 @@ export default function Home() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/blog/"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrir nos articles
           </Link>

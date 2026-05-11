@@ -213,7 +213,7 @@ export default function BlogIndexPage() {
           </p>
           <Link
             href="/contact/"
-            className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
+            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
           >
             Échanger avec l&rsquo;équipe
           </Link>

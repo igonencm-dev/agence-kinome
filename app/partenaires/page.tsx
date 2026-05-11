@@ -200,7 +200,7 @@ export default function PartenairesPage() {
           <div className="mt-20 flex justify-center">
             <Link
               href="/contact/"
-              className="inline-flex min-w-[300px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              className="inline-flex min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
             >
               Vous souhaitez vous présenter&nbsp;?
             </Link>
@@ -222,7 +222,7 @@ export default function PartenairesPage() {
         </p>
         <Link
           href="/contact/"
-          className="inline-flex min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
+          className="inline-flex min-w-[280px] items-center justify-center btn-fill-dark rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
         >
           Discutons-en
         </Link>
