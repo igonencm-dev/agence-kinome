@@ -23,6 +23,17 @@ export default function ServicesHero() {
   const [revealed, setRevealed] = useState(false);
   const [isTouchOnly, setIsTouchOnly] = useState(false);
 
+  // Force muted/volume 0 côté JS (ceinture+bretelles, fix bug React où
+  // l'attribut HTML `muted` peut être ignoré au 1er render SSR).
+  useEffect(() => {
+    const v = videoRef.current;
+    if (v) {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.volume = 0;
+    }
+  }, []);
+
   useEffect(() => {
     // Détection des appareils sans hover (mobile / tactile pur).
     // On affiche alors le titre en permanence, sinon il serait inaccessible.

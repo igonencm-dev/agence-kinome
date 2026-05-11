@@ -46,6 +46,11 @@ export default function SplashScreen() {
     const fallback = setTimeout(goToTransition, 10000);
 
     if (v) {
+      // Force muted (ceinture+bretelles — fix bug React 1er render)
+      v.muted = true;
+      v.defaultMuted = true;
+      v.volume = 0;
+
       const onTimeUpdate = () => {
         if (v.duration && v.currentTime >= v.duration - 1) goToTransition();
       };
