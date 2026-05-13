@@ -25,13 +25,14 @@ import Link from "next/link";
 import { projets } from "../lib/projets";
 import type { Locale } from "../lib/i18n";
 
-// 4 projets vedettes : sélection diversifiée (SaaS récent + identité
-// créative + identité sobre) qui montre la palette Kinome.
+// 4 projets vedettes — sélection qui couvre les 4 catégories du data
+// (identité, branding, website, campagne) et mélange des styles visuels
+// variés (sobre/tech, créatif chaleureux, humain, illustration).
 const FEATURED_SLUGS = [
-  "causerie-bot",
-  "no-code",
-  "cabinet-faraday",
-  "codecircle",
+  "codecircle",       // identité + branding — sobre, tech
+  "cabinet-faraday",  // identité + branding — chaleureux, créatif fort
+  "lea-vigier",       // website + identité — projet humain, message fort
+  "cinars",           // campagne + branding — illustration, arts de la scène
 ] as const;
 
 const ROTATION_MS = 3000;
