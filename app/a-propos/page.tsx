@@ -138,7 +138,9 @@ const services: { title: string; icon: ServiceIconName; desc: string }[] = [
     desc: "Icônes et pictogrammes créés pour renforcer votre identité visuelle.",
   },
   {
-    title: "Site interactif",
+    // Retour #111 : "Site interactif" remplacé par "Site internet" — terme
+    // plus standard et plus aligné sur le SEO recherché par les visiteurs.
+    title: "Site internet",
     icon: "site-interactif",
     desc: "Sites web modernes, rapides, performants et adaptés à tous les écrans.",
   },
@@ -387,18 +389,20 @@ export default function AProposPage() {
             Un panel complet pour vous accompagner de A à Z.
           </p>
 
-          {/* Retours #107 + #108 : icônes divisées par ~2.5 (240→96 max) et
-              les cartes resserrées en hauteur. Les SVG ServiceIcon sont
-              tous tracés au même calibre — si certains paraissent encore
-              cassés visuellement (#108), c'est lié à l'épaisseur de stroke
-              et non à un bug de path. */}
+          {/* Retours #107 + #108 :
+              - #107 : icônes divisées par ~2.5 (240→96 max)
+              - #108 : standardisation visuelle des SVG via un padding interne
+                de 12 % sur le wrapper. Les 12 SVG ont des viewBox différents
+                (114×98, 104×95, etc.) qui les faisaient paraître plus ou moins
+                "remplis" dans leur carré → certaines avaient l'air cassées.
+                Le padding force une marge visuelle constante qui les harmonise. */}
           <div className="mt-[clamp(50px,6vw,90px)] grid grid-cols-1 gap-[clamp(12px,1vw,18px)] md:grid-cols-2 lg:grid-cols-4">
             {services.map((s) => (
               <article
                 key={s.title}
                 className="group flex min-h-[clamp(220px,20vw,320px)] cursor-pointer flex-col items-center gap-[clamp(14px,1.2vw,20px)] rounded-[20px] bg-white p-[clamp(24px,2vw,36px)] text-center text-kinome-black transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]"
               >
-                <div className="flex aspect-square w-full max-w-[clamp(56px,5.6vw,96px)] flex-shrink-0 items-center justify-center">
+                <div className="flex aspect-square w-full max-w-[clamp(56px,5.6vw,96px)] flex-shrink-0 items-center justify-center p-[12%]">
                   <ServiceIcon name={s.icon} />
                 </div>
                 <h3 className="font-heading text-[clamp(18px,1.6vw,24px)] font-semibold leading-[1.3]">

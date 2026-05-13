@@ -95,7 +95,9 @@ export default function ContactEN() {
             <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
               Trusted by
             </p>
-            <h2 className="mb-6 font-heading text-[clamp(26px,4.5vw,56px)] font-normal leading-[1.1] text-kinome-black">
+            {/* Retour #110 : titre doublé en taille (clamp 26-56 → 40-100)
+                pour donner le poids visuel sur le compteur clé. */}
+            <h2 className="mb-6 font-heading text-[clamp(40px,7.5vw,100px)] font-normal leading-[1.05] text-kinome-black">
               Around thirty brands supported from Geneva
             </h2>
             <p className="mx-auto max-w-[480px] font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey lg:mx-0">

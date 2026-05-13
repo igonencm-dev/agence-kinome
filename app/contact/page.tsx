@@ -110,7 +110,10 @@ export default function ContactPage() {
             <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
               Ils nous font confiance
             </p>
-            <h2 className="mb-6 font-heading text-[clamp(28px,4.5vw,56px)] font-normal leading-[1.1] text-kinome-black">
+            {/* Retour #110 : titre doublé en taille (clamp 28-56 → 40-100)
+                pour donner le poids visuel que Tanguy souhaitait sur ce
+                compteur clé. */}
+            <h2 className="mb-6 font-heading text-[clamp(40px,7.5vw,100px)] font-normal leading-[1.05] text-kinome-black">
               Une trentaine de marques accompagnées depuis Genève
             </h2>
             <p className="max-w-[480px] font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey lg:mx-0 mx-auto">
