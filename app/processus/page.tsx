@@ -16,14 +16,16 @@ export const metadata = buildMetadata({
   ],
 });
 
+// Nouvelles icônes livrées par Tanguy (swisstransfer mai 2026) — slugs
+// correspondent aux fichiers /assets/picto/<slug>.{webp,png}.
 const cadrageCards = [
   {
-    icon: "/assets/processus/icone-projet.svg",
+    icon: "projet",
     title: "Le projet en lui-même",
     body: "Un appel de cadrage permet de comprendre les objectifs, attentes et contraintes du projet afin d'établir une vision claire et partagée avant la phase de conception.",
   },
   {
-    icon: "/assets/processus/icone-contrat.svg",
+    icon: "signature-contrat",
     title: "La signature du contrat",
     body: "La signature du contrat formalise l'accord entre les parties après validation des objectifs et des attentes. Il précise les livrables, délais, budget et conditions, garantissant un cadre juridique clair et le bon déroulement du projet.",
   },
@@ -126,13 +128,21 @@ export default function ProcessusPage() {
                 key={c.title}
                 className="flex flex-col items-center gap-10 rounded-[24px] bg-white p-[clamp(40px,4vw,80px)] text-center"
               >
-                {/* Retour #97 : icônes divisées par ~2 (260→130). */}
+                {/* Retour #97 : icônes divisées par ~2 (260→130).
+                    Nouvelles icônes Tanguy (mai 2026) servies en WebP HQ
+                    + PNG fallback via <picture>. */}
                 <div className="flex h-[clamp(90px,11vw,130px)] w-[clamp(90px,11vw,130px)] items-center justify-center text-kinome-dark">
-                  <img
-                    src={c.icon}
-                    alt=""
-                    className="block h-full w-full object-contain"
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={`/assets/picto/${c.icon}.webp`}
+                    />
+                    <img
+                      src={`/assets/picto/${c.icon}.png`}
+                      alt=""
+                      className="block h-full w-full object-contain"
+                    />
+                  </picture>
                 </div>
                 <h3 className="font-heading text-[clamp(22px,1.9vw,30px)] font-semibold leading-[1.3]">
                   {c.title}
