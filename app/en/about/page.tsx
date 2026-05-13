@@ -59,41 +59,56 @@ export default function AboutEN() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
             <article>
               <div className="mb-8 aspect-[3/4] overflow-hidden rounded-[20px] bg-[#e9e4d8]">
-                <img
-                  src="/assets/wp/apropos-team-mathias.png"
-                  alt="Mathias Igonenc — Kinome co-founder"
-                  className="block h-full w-full object-cover object-[center_top]"
-                  loading="lazy"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/assets/wp/apropos-team-mathias.webp"
+                  />
+                  <img
+                    src="/assets/wp/apropos-team-mathias.png"
+                    alt="Mathias Igonenc — Kinome co-founder"
+                    className="block h-full w-full object-cover object-[center_top]"
+                    loading="lazy"
+                  />
+                </picture>
               </div>
               <h3 className="mb-3 font-heading text-[clamp(20px,1.9vw,28px)] font-bold leading-[1.3]">
                 Mathias Igonenc{" "}
-                <span className="font-light">— co-founder &amp; art director</span>
+                <span className="font-light">— co-founder &amp; marketing director</span>
               </h3>
               <p className="mb-4 font-body text-[1rem] font-light leading-[1.55] text-kinome-dark">
-                After more than ten years in agencies and design studios,
-                Mathias founded Kinome to help brands with a more human
-                approach: listen before proposing, build rather than deliver.
+                Mathias supports brands with their marketing strategy and
+                digital deployment. Founder of Codecircle (web development)
+                and AI trainer at NOCODE IA, he bridges creativity and
+                performance — so every project reaches the right audiences
+                and serves your business goals.
               </p>
             </article>
 
             <article>
               <div className="mb-8 aspect-[3/4] overflow-hidden rounded-[20px] bg-[#e9e4d8]">
-                <img
-                  src="/assets/wp/apropos-team-tanguy.png"
-                  alt="Tanguy Deniel — Kinome co-founder"
-                  className="block h-full w-full object-cover object-[center_top]"
-                  loading="lazy"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/assets/wp/apropos-team-tanguy.webp"
+                  />
+                  <img
+                    src="/assets/wp/apropos-team-tanguy.png"
+                    alt="Tanguy Deniel — Kinome co-founder"
+                    className="block h-full w-full object-cover object-[center_top]"
+                    loading="lazy"
+                  />
+                </picture>
               </div>
               <h3 className="mb-3 font-heading text-[clamp(20px,1.9vw,28px)] font-bold leading-[1.3]">
                 Tanguy Deniel{" "}
-                <span className="font-light">— co-founder</span>
+                <span className="font-light">— co-founder &amp; creative director</span>
               </h3>
               <p className="mb-4 font-body text-[1rem] font-light leading-[1.55] text-kinome-dark">
-                Tanguy brings the strategic perspective and project management
-                rigour to Kinome's projects. He's the team's reliable
-                interlocutor for every long-running collaboration.
+                Tanguy has worked in various communication agencies around
+                the world (TBWA, Dix-Sept and Enderby in Paris, RTS in Geneva,
+                LMG in Montreal). Today at Kinome, he keeps this direct,
+                emotional and privileged bond with his clients.
               </p>
             </article>
           </div>

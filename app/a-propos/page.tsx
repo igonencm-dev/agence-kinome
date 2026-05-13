@@ -240,10 +240,11 @@ export default function AProposPage() {
                 </span>
               </h3>
               <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
-                Après plus de dix ans passés en agences et studios de
-                création, Mathias a fondé Kinome pour accompagner les marques
-                avec une approche plus humaine : écouter avant de proposer,
-                construire plutôt que livrer.
+                Mathias accompagne les marques sur leur stratégie marketing
+                et leur déploiement digital. Fondateur de Codecircle
+                (développement web) et formateur en IA chez NOCODE IA, il
+                fait le lien entre création et performance — pour que chaque
+                projet rencontre les bonnes audiences et serve vos objectifs.
               </p>
               <a
                 href={contact.social.linkedinMathias}
