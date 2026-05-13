@@ -395,13 +395,21 @@ export default function Home() {
               tout de l&rsquo;émotion&nbsp;!
             </h2>
             <div className="relative mt-20 w-full max-w-[420px]">
-              {/* Cercle décoratif retiré (retour #89 : trait parasite gênant).
-                  En attente du PNG transparent HD côté Tanguy pour finaliser. */}
-              <img
-                src="/assets/wp/Poster-Design.png"
-                alt="Poster Design Kinome"
-                className="relative z-[1] block w-full object-contain mix-blend-multiply"
-              />
+              {/* Retour #89 — RÉSOLU : nouvelle illustration HD livrée par
+                  Tanguy (mai 2026, transfer swisstransfer). Le trait
+                  parasite n'existe plus sur cette version. WebP HQ + PNG
+                  fallback. */}
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet="/assets/home-illustration.webp"
+                />
+                <img
+                  src="/assets/home-illustration.png"
+                  alt="Illustration Kinome — atelier créatif"
+                  className="relative z-[1] block w-full object-contain"
+                />
+              </picture>
             </div>
           </div>
           <div>

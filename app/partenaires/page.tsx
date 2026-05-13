@@ -81,11 +81,20 @@ export default function PartenairesPage() {
             plaisir&nbsp;!
           </h1>
           <div className="flex justify-center lg:justify-end">
-            <img
-              src="/assets/visual-artist.png"
-              alt=""
-              className="block w-full max-w-[500px] object-contain mix-blend-multiply"
-            />
+            {/* Retour #101 : nouvelle illustration HD livrée par Tanguy (mai 2026)
+                — personnage choisissant entre smileys. Remplace l'ancienne
+                qui pixelisait. WebP HQ + PNG fallback. */}
+            <picture>
+              <source
+                type="image/webp"
+                srcSet="/assets/partenaires-hero.webp"
+              />
+              <img
+                src="/assets/partenaires-hero.png"
+                alt=""
+                className="block w-full max-w-[500px] object-contain mix-blend-multiply"
+              />
+            </picture>
           </div>
         </div>
       </section>
