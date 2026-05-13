@@ -113,6 +113,16 @@ ErrorDocument 404 /404.html
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
+  # EXCEPTION : favicons (favicon.ico, icon.png, apple-icon.png) — NE PAS
+  # mettre en cache immutable. Ces fichiers gardent un nom fixe (Next.js
+  # n'ajoute pas de hash dans le filename, juste un query-string), donc
+  # si on les met en cache long, les navigateurs (et Google !) gardent
+  # l'ancien favicon WP indéfiniment. On force max-age 1h + revalidation
+  # pour qu'un nouveau favicon se propage rapidement.
+  <FilesMatch "^(favicon\.ico|icon\.png|apple-icon\.png|apple-touch-icon.*\.png|favicon-[0-9]+x[0-9]+\.png|android-chrome-[0-9]+x[0-9]+\.png)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+
   # Cache HTML : court (5 min) + revalidation stale-while-revalidate (1 sem)
   # → CWV-friendly + revalidation rapide après push
   <FilesMatch "\.(html|htm)$">
