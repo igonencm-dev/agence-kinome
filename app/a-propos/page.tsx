@@ -240,11 +240,22 @@ export default function AProposPage() {
                 </span>
               </h3>
               <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
-                Mathias accompagne les marques sur leur stratégie marketing
-                et leur déploiement digital. Fondateur de Codecircle
-                (développement web) et formateur en IA chez NOCODE IA, il
-                fait le lien entre création et performance — pour que chaque
-                projet rencontre les bonnes audiences et serve vos objectifs.
+                Co-fondateur et directeur marketing de Kinome, Mathias a
+                débuté en freelance en bâtissant Codecircle, une agence
+                spécialisée dans le développement web, le SEO et
+                l&rsquo;automatisation digitale. Fort de 5 années
+                d&rsquo;expérience à accompagner des entrepreneurs dans leur
+                transformation digitale, il a développé une expertise
+                concrète en stratégie de présence en ligne.
+              </p>
+              <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+                Sa rencontre avec Tanguy a donné naissance à Kinome, une
+                agence de communication 360° basée à Genève. Convaincu que
+                chaque projet mérite une attention personnalisée, Mathias
+                s&rsquo;investit auprès des PME, TPE et créateurs
+                d&rsquo;entreprise pour construire des stratégies de
+                communication qui génèrent des résultats mesurables, du
+                branding au social media.
               </p>
               <a
                 href={contact.social.linkedinMathias}
@@ -279,11 +290,17 @@ export default function AProposPage() {
                 </span>
               </h3>
               <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
-                Tanguy a travaillé au sein de diverses agences de communication
-                à travers le monde (TBWA, Dix-Sept et Enderby à Paris, la RTS
-                à Genève, LMG à Montréal). Aujourd&rsquo;hui chez Kinome, il
-                garde ce lien direct, émotionnel et privilégié avec ses
-                clients.
+                Fondateur et directeur de Kinome, Tanguy a travaillé au sein
+                de diverses agences de communication à travers le monde
+                (TBWA, Dix-Sept et Enderby à Paris, la RTS à Genève, LMG à
+                Montréal) afin de garantir une expérience riche et complète
+                en création et direction artistique.
+              </p>
+              <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+                Après dix ans en agence, un passage par trois pays (sur deux
+                continents), il a décidé de fonder son propre bureau de
+                communication à Genève, afin de conserver ce lien direct,
+                émotionnel et privilégié avec ses clients.
               </p>
               <a
                 href={contact.social.linkedinTanguy}

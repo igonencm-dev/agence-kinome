@@ -77,11 +77,20 @@ export default function AboutEN() {
                 <span className="font-light">— co-founder &amp; marketing director</span>
               </h3>
               <p className="mb-4 font-body text-[1rem] font-light leading-[1.55] text-kinome-dark">
-                Mathias supports brands with their marketing strategy and
-                digital deployment. Founder of Codecircle (web development)
-                and AI trainer at NOCODE IA, he bridges creativity and
-                performance — so every project reaches the right audiences
-                and serves your business goals.
+                Co-founder and marketing director of Kinome, Mathias started
+                out as a freelancer by building Codecircle, an agency
+                specialised in web development, SEO and digital automation.
+                With 5 years of experience supporting entrepreneurs in their
+                digital transformation, he has developed concrete expertise
+                in online presence strategy.
+              </p>
+              <p className="mb-4 font-body text-[1rem] font-light leading-[1.55] text-kinome-dark">
+                His encounter with Tanguy gave rise to Kinome, a 360°
+                communication agency based in Geneva. Convinced that every
+                project deserves dedicated attention, Mathias invests himself
+                alongside SMEs, micro-businesses and entrepreneurs to build
+                communication strategies that generate measurable results,
+                from branding to social media.
               </p>
             </article>
 
@@ -105,9 +114,16 @@ export default function AboutEN() {
                 <span className="font-light">— co-founder &amp; creative director</span>
               </h3>
               <p className="mb-4 font-body text-[1rem] font-light leading-[1.55] text-kinome-dark">
-                Tanguy has worked in various communication agencies around
-                the world (TBWA, Dix-Sept and Enderby in Paris, RTS in Geneva,
-                LMG in Montreal). Today at Kinome, he keeps this direct,
+                Founder and director of Kinome, Tanguy has worked in various
+                communication agencies around the world (TBWA, Dix-Sept and
+                Enderby in Paris, RTS in Geneva, LMG in Montreal) to ensure
+                a rich and complete experience in creative work and art
+                direction.
+              </p>
+              <p className="mb-4 font-body text-[1rem] font-light leading-[1.55] text-kinome-dark">
+                After ten years in agencies and a stint across three
+                countries on two continents, he decided to found his own
+                communication studio in Geneva, to keep this direct,
                 emotional and privileged bond with his clients.
               </p>
             </article>
