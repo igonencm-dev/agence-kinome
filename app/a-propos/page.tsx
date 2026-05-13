@@ -214,17 +214,24 @@ export default function AProposPage() {
 
           <div className="mx-auto mt-[clamp(50px,6vw,90px)] grid max-w-[1200px] grid-cols-1 gap-[clamp(30px,3vw,50px)] md:grid-cols-2">
             <article>
-              {/* Retour #105 : meilleur rendu image (decoding async + image
-                  smoothing, eager pour la photo Mathias qui est souvent
-                  above-the-fold à scroll initial). */}
+              {/* Retour #105 : netteté améliorée via <picture> + WebP HQ.
+                  WebP qualité 92 sur source 1717×2480 → meilleur downscale
+                  navigateur que le PNG. Fallback PNG conservé pour anciens
+                  navigateurs. */}
               <div className="mb-8 aspect-[3/4] overflow-hidden rounded-[20px] bg-[#e9e4d8]">
-                <img
-                  src="/assets/wp/apropos-team-mathias.png"
-                  alt="Mathias Igonenc — fondateur de Kinome"
-                  className="block h-full w-full object-cover object-[center_top] [image-rendering:auto]"
-                  loading="eager"
-                  decoding="async"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/assets/wp/apropos-team-mathias.webp"
+                  />
+                  <img
+                    src="/assets/wp/apropos-team-mathias.png"
+                    alt="Mathias Igonenc — fondateur de Kinome"
+                    className="block h-full w-full object-cover object-[center_top]"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </picture>
               </div>
               <h3 className="mb-3 font-heading text-[clamp(22px,1.9vw,30px)] font-bold leading-[1.3]">
                 Mathias Igonenc{" "}
@@ -250,13 +257,19 @@ export default function AProposPage() {
 
             <article>
               <div className="mb-8 aspect-[3/4] overflow-hidden rounded-[20px] bg-[#e9e4d8]">
-                <img
-                  src="/assets/wp/apropos-team-tanguy.png"
-                  alt="Tanguy Deniel — Kinome"
-                  className="block h-full w-full object-cover object-[center_top] [image-rendering:auto]"
-                  loading="eager"
-                  decoding="async"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/assets/wp/apropos-team-tanguy.webp"
+                  />
+                  <img
+                    src="/assets/wp/apropos-team-tanguy.png"
+                    alt="Tanguy Deniel — Kinome"
+                    className="block h-full w-full object-cover object-[center_top]"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </picture>
               </div>
               <h3 className="mb-3 font-heading text-[clamp(22px,1.9vw,30px)] font-bold leading-[1.3]">
                 Tanguy Deniel{" "}
@@ -389,20 +402,17 @@ export default function AProposPage() {
             Un panel complet pour vous accompagner de A à Z.
           </p>
 
-          {/* Retours #107 + #108 :
-              - #107 : icônes divisées par ~2.5 (240→96 max)
-              - #108 : standardisation visuelle des SVG via un padding interne
-                de 12 % sur le wrapper. Les 12 SVG ont des viewBox différents
-                (114×98, 104×95, etc.) qui les faisaient paraître plus ou moins
-                "remplis" dans leur carré → certaines avaient l'air cassées.
-                Le padding force une marge visuelle constante qui les harmonise. */}
+          {/* Retour #107 : icônes divisées par ~2.5 → wrapper max 96px.
+              On retire le padding interne (qui les rendait trop petites au
+              point de devenir illisibles d'après le retour Mathias). Les SVG
+              remplissent maintenant la totalité du wrapper. */}
           <div className="mt-[clamp(50px,6vw,90px)] grid grid-cols-1 gap-[clamp(12px,1vw,18px)] md:grid-cols-2 lg:grid-cols-4">
             {services.map((s) => (
               <article
                 key={s.title}
                 className="group flex min-h-[clamp(220px,20vw,320px)] cursor-pointer flex-col items-center gap-[clamp(14px,1.2vw,20px)] rounded-[20px] bg-white p-[clamp(24px,2vw,36px)] text-center text-kinome-black transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]"
               >
-                <div className="flex aspect-square w-full max-w-[clamp(56px,5.6vw,96px)] flex-shrink-0 items-center justify-center p-[12%]">
+                <div className="flex aspect-square w-full max-w-[clamp(72px,7vw,120px)] flex-shrink-0 items-center justify-center">
                   <ServiceIcon name={s.icon} />
                 </div>
                 <h3 className="font-heading text-[clamp(18px,1.6vw,24px)] font-semibold leading-[1.3]">
