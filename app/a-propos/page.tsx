@@ -28,7 +28,7 @@ const personsLd = {
       "@type": "Person",
       "@id": `${SITE.url}/a-propos/#mathias`,
       name: "Mathias Igonenc",
-      jobTitle: "Cofondateur & directeur artistique",
+      jobTitle: "Cofondateur & directeur marketing",
       worksFor: { "@id": `${SITE.url}/#organization` },
       image: `${SITE.url}/assets/wp/apropos-team-mathias.png`,
       email: contact.emails.mathias,
@@ -227,7 +227,7 @@ export default function AProposPage() {
               <h3 className="mb-3 font-heading text-[clamp(22px,1.9vw,30px)] font-bold leading-[1.3]">
                 Mathias Igonenc{" "}
                 <span className="font-light">
-                  — cofondateur &amp; directeur artistique
+                  — cofondateur &amp; directeur marketing
                 </span>
               </h3>
               <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
