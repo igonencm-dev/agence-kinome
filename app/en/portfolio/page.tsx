@@ -1,19 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { projets, categoriesLabels } from "../../lib/projets";
 import Testimonials from "../../components/Testimonials";
 
-const filters = ["all", "identite", "campagne", "website"] as const;
+// Filtres : "all" est l'UI English mais le mégamenu envoie les noms
+// internes des catégories (identite, branding, website, campagne) ; on
+// mappe au montage. Ajout de "branding" (manquant auparavant).
+const filters = ["all", "identite", "branding", "website", "campagne"] as const;
 type Filter = (typeof filters)[number];
 
 const filterLabels: Record<Filter, string> = {
   all: "All",
   identite: "Identity",
-  campagne: "Campaigns",
+  branding: "Branding",
   website: "Websites",
+  campagne: "Campaigns",
 };
 
 // English labels for the category badges
@@ -24,8 +28,30 @@ const categoriesLabelsEn: Record<string, string> = {
   branding: "Branding",
 };
 
+const isValidFilter = (v: string | null): v is Filter =>
+  v !== null && (filters as readonly string[]).includes(v);
+
 export default function PortfolioEN() {
   const [active, setActive] = useState<Filter>("all");
+
+  // Pré-applique le filtre depuis ?filter=<cat> (le mégamenu envoie ces URLs).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const param = new URLSearchParams(window.location.search).get("filter");
+    if (isValidFilter(param)) setActive(param);
+  }, []);
+
+  // Synchronise le filtre actif avec l'URL (sans navigation).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    if (active === "all") {
+      url.searchParams.delete("filter");
+    } else {
+      url.searchParams.set("filter", active);
+    }
+    window.history.replaceState({}, "", url.toString());
+  }, [active]);
 
   const list =
     active === "all"

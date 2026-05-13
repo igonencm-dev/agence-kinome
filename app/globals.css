@@ -122,6 +122,19 @@ body.no-scroll {
   height: 100vh;
 }
 
+/* Fade-in court utilisé par le mégamenu Portfolio quand on change de projet
+   vedette — texte qui apparait en douceur sous l'image crossfadée. */
+@keyframes kinome-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes fade-out-layer {
   to {
     opacity: 0;

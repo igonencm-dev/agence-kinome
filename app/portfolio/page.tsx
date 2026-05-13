@@ -1,23 +1,52 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { projets, categoriesLabels } from "../lib/projets";
 import Testimonials from "../components/Testimonials";
 
-const filtres = ["tous", "identite", "campagne", "website"] as const;
+// Filtres exposés à l'UI. Ordre = ordre d'affichage des boutons. "branding"
+// est désormais inclus (auparavant manquant alors qu'il existait dans le
+// data), pour rester cohérent avec le mégamenu Portfolio.
+const filtres = ["tous", "identite", "branding", "website", "campagne"] as const;
 type Filtre = (typeof filtres)[number];
 
 const filtreLabels: Record<Filtre, string> = {
   tous: "Tous",
   identite: "Identités",
-  campagne: "Campagnes",
+  branding: "Branding",
   website: "Websites",
+  campagne: "Campagnes",
 };
+
+const isValidFilter = (v: string | null): v is Filtre =>
+  v !== null && (filtres as readonly string[]).includes(v);
 
 export default function PortfolioPage() {
   const [actif, setActif] = useState<Filtre>("tous");
+
+  // Pré-applique le filtre depuis ?filter=<cat> (le mégamenu envoie ces URLs).
+  // Lu côté client après mount — pas de Suspense boundary nécessaire car
+  // on évite useSearchParams (qui pose problème en export static).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const param = new URLSearchParams(window.location.search).get("filter");
+    if (isValidFilter(param)) setActif(param);
+  }, []);
+
+  // Synchronise le filtre actif avec l'URL (sans navigation) pour qu'un
+  // partage de lien reflète l'état courant.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    if (actif === "tous") {
+      url.searchParams.delete("filter");
+    } else {
+      url.searchParams.set("filter", actif);
+    }
+    window.history.replaceState({}, "", url.toString());
+  }, [actif]);
 
   const liste =
     actif === "tous"

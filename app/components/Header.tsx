@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   getLocaleFromPath,
@@ -10,19 +10,26 @@ import {
   ROUTES,
   t,
 } from "../lib/i18n";
+import PortfolioMegaMenu from "./PortfolioMegaMenu";
 
 export default function Header() {
   const pathname = usePathname() ?? "/";
   const locale = getLocaleFromPath(pathname);
   const r = ROUTES[locale];
 
+  // Identifiant unique pour les liens du nav. `kind === "mega-portfolio"`
+  // est traité spécialement plus bas (hover ouvre le mégamenu).
   const navLinks = [
-    { href: r.services, label: t("nav_services", locale) },
-    { href: r.portfolio, label: t("nav_portfolio", locale) },
-    { href: r.process, label: t("nav_process", locale) },
-    { href: r.blog, label: t("nav_blog", locale) },
-    { href: r.partners, label: t("nav_partners", locale) },
-    { href: r.about, label: t("nav_about", locale) },
+    { href: r.services, label: t("nav_services", locale), kind: "link" as const },
+    {
+      href: r.portfolio,
+      label: t("nav_portfolio", locale),
+      kind: "mega-portfolio" as const,
+    },
+    { href: r.process, label: t("nav_process", locale), kind: "link" as const },
+    { href: r.blog, label: t("nav_blog", locale), kind: "link" as const },
+    { href: r.partners, label: t("nav_partners", locale), kind: "link" as const },
+    { href: r.about, label: t("nav_about", locale), kind: "link" as const },
   ];
 
   const isHome = pathname === r.home;
@@ -34,6 +41,42 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mouseActive, setMouseActive] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // ──────────── Mégamenu Portfolio (desktop uniquement) ────────────
+  // Intent delay : on n'ouvre qu'après 120 ms de hover (évite l'ouverture
+  // si le curseur ne fait que traverser le lien).
+  // Close delay : 250 ms après leave, pour donner le temps de glisser dans
+  // le panel sans qu'il se ferme bêtement.
+  const [megaOpen, setMegaOpen] = useState(false);
+  const openTimerRef = useRef<number | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
+
+  const clearOpenTimer = () => {
+    if (openTimerRef.current !== null) {
+      window.clearTimeout(openTimerRef.current);
+      openTimerRef.current = null;
+    }
+  };
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  const openMegaSoon = () => {
+    clearCloseTimer();
+    openTimerRef.current = window.setTimeout(() => setMegaOpen(true), 120);
+  };
+  const scheduleCloseMega = () => {
+    clearOpenTimer();
+    closeTimerRef.current = window.setTimeout(() => setMegaOpen(false), 250);
+  };
+  const closeMegaNow = () => {
+    clearOpenTimer();
+    clearCloseTimer();
+    setMegaOpen(false);
+  };
 
   useEffect(() => {
     if (!isHero) return;
@@ -69,7 +112,20 @@ export default function Header() {
 
   useEffect(() => {
     setMenuOpen(false);
+    // Fermer aussi le mégamenu au changement de page (sinon il reste ouvert
+    // si on clique un lien depuis l'intérieur du panel).
+    closeMegaNow();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  // Cleanup des timers au démontage (évite des setState après unmount).
+  useEffect(() => {
+    return () => {
+      clearOpenTimer();
+      clearCloseTimer();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const visible = !isProjet || scrolled || mouseActive;
   const solid = !isHero || scrolled;
@@ -110,17 +166,29 @@ export default function Header() {
 
           {/* Nav desktop (lg+) */}
           <nav className="hidden items-center gap-9 font-body lg:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-[0.95rem] font-medium transition-opacity hover:opacity-70 ${
-                  solid ? "text-kinome-black" : "text-white"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isMega = link.kind === "mega-portfolio";
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  // Sur le lien Portfolio uniquement : hover déclenche le
+                  // mégamenu (avec intent delay), leave planifie la fermeture.
+                  // Le clic reste un lien classique vers /portfolio/.
+                  onMouseEnter={isMega ? openMegaSoon : undefined}
+                  onMouseLeave={isMega ? scheduleCloseMega : undefined}
+                  onFocus={isMega ? openMegaSoon : undefined}
+                  onBlur={isMega ? scheduleCloseMega : undefined}
+                  aria-haspopup={isMega ? "true" : undefined}
+                  aria-expanded={isMega ? megaOpen : undefined}
+                  className={`text-[0.95rem] font-medium transition-opacity hover:opacity-70 ${
+                    solid ? "text-kinome-black" : "text-white"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
 
             {/* Toggle FR/EN — pointe vers la même page dans l'autre langue */}
             <Link
@@ -197,6 +265,15 @@ export default function Header() {
           </button>
         </div>
       </header>
+
+      {/* Mégamenu Portfolio (desktop uniquement, géré côté CSS via lg:block) */}
+      <PortfolioMegaMenu
+        open={megaOpen}
+        locale={locale}
+        onMouseEnter={clearCloseTimer}
+        onMouseLeave={scheduleCloseMega}
+        onClose={closeMegaNow}
+      />
 
       {/* Drawer menu mobile */}
       <div
