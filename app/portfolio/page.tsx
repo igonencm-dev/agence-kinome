@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { projets, categoriesLabels } from "../lib/projets";
 import Testimonials from "../components/Testimonials";
+import ResponsiveBr from "../components/ResponsiveBr";
 
 // Filtres exposés à l'UI. Ordre = ordre d'affichage des boutons. "branding"
 // est désormais inclus (auparavant manquant alors qu'il existait dans le
@@ -63,7 +64,7 @@ export default function PortfolioPage() {
       <section className="mx-auto max-w-[1400px]">
         <h1 className="mb-8 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           Portfolio de l&rsquo;agence
-          <br className="hidden md:inline" />
+          <ResponsiveBr />
           Kinome à Genève
         </h1>
         <p className="mx-auto mb-10 max-w-[820px] text-center font-body text-[clamp(16px,1.3vw,22px)] font-light leading-[1.55] text-kinome-black md:mx-0 md:text-left">

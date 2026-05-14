@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { blogPosts } from "../../lib/blog";
 import { buildMetadata, jsonLdScript, SITE } from "../../lib/seo";
+import ResponsiveBr from "../../components/ResponsiveBr";
 
 export const metadata = buildMetadata({
   title: "Blog — communication, branding & web in Geneva",
@@ -52,7 +53,7 @@ export default function BlogIndexEN() {
       <section className="mx-auto max-w-[1300px] px-[5%] pt-[clamp(120px,18vw,180px)] pb-[70px]">
         <h1 className="mb-6 font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.02] text-kinome-black">
           Communication
-          <br className="hidden md:inline" />
+          <ResponsiveBr />
           <span className="italic text-kinome-grey">&amp; branding</span> in
           Geneva
         </h1>

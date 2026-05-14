@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { projets, categoriesLabels } from "../../lib/projets";
 import Testimonials from "../../components/Testimonials";
+import ResponsiveBr from "../../components/ResponsiveBr";
 
 // Filtres : "all" est l'UI English mais le mégamenu envoie les noms
 // internes des catégories (identite, branding, website, campagne) ; on
@@ -65,7 +66,7 @@ export default function PortfolioEN() {
       <section className="mx-auto max-w-[1400px]">
         <h1 className="mb-8 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           Portfolio of Kinome
-          <br className="hidden md:inline" />
+          <ResponsiveBr />
           agency in Geneva
         </h1>
         <p className="mb-10 max-w-[820px] font-body text-[1.4rem] font-light leading-[1.5] text-kinome-black">

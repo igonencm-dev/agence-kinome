@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Testimonials from "../components/Testimonials";
 import { buildMetadata } from "../lib/seo";
+import ResponsiveBr from "../components/ResponsiveBr";
 
 export const metadata = buildMetadata({
   title: "Notre processus de travail",
@@ -89,7 +90,7 @@ export default function ProcessusPage() {
           <div>
             <h2 className="mb-10 font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
               Tout commence
-              <br className="hidden md:inline" />
+              <ResponsiveBr />
               par un appel
             </h2>
             <div className="space-y-6 font-body text-[clamp(16px,1.35vw,22px)] font-light leading-[1.55] text-kinome-dark">
@@ -119,7 +120,7 @@ export default function ProcessusPage() {
         <div className="mx-auto max-w-[1400px]">
           <h2 className="mx-auto mb-16 max-w-[1100px] text-center font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Définissons ensemble
-            <br className="hidden md:inline" />
+            <ResponsiveBr />
             vos besoins
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -163,7 +164,7 @@ export default function ProcessusPage() {
         <div className="mx-auto max-w-[1400px]">
           <h2 className="mb-20 font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Le processus
-            <br className="hidden md:inline" />
+            <ResponsiveBr />
             de conception
           </h2>
 
@@ -211,7 +212,7 @@ export default function ProcessusPage() {
         <div className="mx-auto max-w-[1100px] text-center">
           <h2 className="mx-auto mb-8 max-w-[1000px] font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Vous avez un projet sur lequel
-            <br className="hidden md:inline" />
+            <ResponsiveBr />
             vous souhaitez échanger&nbsp;?
           </h2>
           <p className="mx-auto mb-10 max-w-[700px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.6] text-kinome-dark">

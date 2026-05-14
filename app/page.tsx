@@ -109,6 +109,7 @@ const expertises = [
 // "Les nouvelles" : reprend dynamiquement les 3 derniers articles publiés
 // dans le blog (cohérence + zéro duplication).
 import { blogPosts as _blogPosts } from "./lib/blog";
+import ResponsiveBr from "./components/ResponsiveBr";
 const nouvelles = _blogPosts.slice(0, 3).map((p) => ({
   title: p.title,
   excerpt: p.excerpt,
@@ -178,16 +179,16 @@ export default function Home() {
         <div className="relative z-[3] mx-auto flex w-full max-w-[1400px] flex-col items-start px-[5%]">
           <div className="max-w-[800px] text-left text-white">
             <h1 className="mb-[30px] text-center font-heading text-[clamp(38px,8vw,76px)] font-semibold leading-[1.05] [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] md:text-left">
-              {/* Retour #113/#115 Tanguy : les <br className="hidden md:inline" /> forcés cassaient le
+              {/* Retour #113/#115 Tanguy : les <ResponsiveBr /> forcés cassaient le
                   flow naturel en mobile (laisse le texte se renvoyer à la
-                  ligne tout seul). Sur desktop on garde un <br className="hidden md:inline" /> caché en
+                  ligne tout seul). Sur desktop on garde un <ResponsiveBr /> caché en
                   mobile (hidden md:inline) pour la composition voulue. */}
               Agence de communication{" "}
-              <br className="hidden md:inline" />à Genève — <HeroAnimatedWord />
+              <ResponsiveBr />à Genève — <HeroAnimatedWord />
             </h1>
             <p className="mb-[35px] max-w-[520px] text-center text-[clamp(16px,1.3vw,19px)] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] md:text-left">
               Branding, identité visuelle et sites internet{" "}
-              <br className="hidden md:inline" />
+              <ResponsiveBr />
               en alliant stratégie et émotion, depuis la Suisse romande.
             </p>
             <div className="flex flex-wrap justify-center gap-5 md:justify-start">
@@ -290,7 +291,7 @@ export default function Home() {
       <section className="mx-auto max-w-[1400px] bg-kinome-cream px-[5%] py-[clamp(50px,10vw,100px)]">
         <h2 className="mx-auto mb-20 max-w-[600px] text-center font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1] md:mx-0 md:text-left">
           Préparons ensemble
-          <br className="hidden md:inline" />
+          <ResponsiveBr />
           les enjeux de demain
         </h2>
 
@@ -343,7 +344,7 @@ export default function Home() {
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
         <h2 className="mb-20 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Notre expertise
-          <br className="hidden md:inline" />
+          <ResponsiveBr />
           &amp; notre accompagnement
         </h2>
         <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-2 lg:grid-cols-4">
@@ -423,7 +424,7 @@ export default function Home() {
           <div>
             <h2 className="mb-2 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1] md:text-left">
               Kinome, c&rsquo;est avant
-              <br className="hidden md:inline" />
+              <ResponsiveBr />
               tout de l&rsquo;émotion&nbsp;!
             </h2>
             <div className="relative mt-20 w-full max-w-[420px]">
@@ -540,7 +541,9 @@ export default function Home() {
                 >
                   {contact.emails.mathias}
                 </a>
-                <br className="hidden md:inline" />
+                {/* <br /> "fonctionnel" : doit rester visible en mobile pour
+                    séparer email et téléphone (sinon ils se collent visuellement). */}
+                <br />
                 <a
                   href={`tel:${contact.phones.mathias.e164}`}
                   className="hover:underline"
@@ -560,7 +563,7 @@ export default function Home() {
                 >
                   {contact.emails.tanguy}
                 </a>
-                <br className="hidden md:inline" />
+                <br />
                 <a
                   href={`tel:${contact.phones.tanguy.e164}`}
                   className="hover:underline"

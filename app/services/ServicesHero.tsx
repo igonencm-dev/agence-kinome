@@ -14,6 +14,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import ResponsiveBr from "../components/ResponsiveBr";
 
 const IDLE_DELAY_MS = 2500;
 
@@ -142,7 +143,7 @@ export default function ServicesHero() {
           }}
         >
           Expertise &amp; services
-          <br className="hidden md:inline" />à Genève
+          <ResponsiveBr />à Genève
         </h1>
         <p
           className="max-w-[680px] font-body text-[clamp(16px,1.4vw,22px)] font-light leading-[1.5] text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.7)] transition-[opacity,transform] duration-500 ease-out"

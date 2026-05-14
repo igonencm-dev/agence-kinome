@@ -4,6 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import ServicesHero from "./ServicesHero";
+import ResponsiveBr from "../components/ResponsiveBr";
 
 const servicesCrea = [
   {
@@ -172,7 +173,7 @@ export default function ServicesPage() {
       <section className="mx-auto max-w-[1400px] px-[5%] py-[60px]">
         <h2 className="mb-16 font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Comment les prestations
-          <br className="hidden md:inline" />
+          <ResponsiveBr />
           se déroulent&nbsp;?
         </h2>
 

@@ -4,6 +4,7 @@ import LogosMarquee from "../components/LogosMarquee";
 import ContactForm from "../contact/ContactForm";
 import Testimonials from "../components/Testimonials";
 import { buildMetadata, faqJsonLd, serviceJsonLd, jsonLdScript, SITE } from "../lib/seo";
+import ResponsiveBr from "../components/ResponsiveBr";
 
 export const metadata = buildMetadata({
   title: "Independent communication agency in Geneva",
@@ -133,12 +134,12 @@ export default function HomeEN() {
           <div className="max-w-[800px] text-left text-white">
             <h1 className="mb-[30px] font-heading text-[clamp(38px,8vw,76px)] font-semibold leading-[1.05]">
               Communication agency
-              <br className="hidden md:inline" />
+              <ResponsiveBr />
               in Geneva
             </h1>
             <p className="mb-[35px] max-w-[520px] text-[clamp(16px,1.3vw,19px)] leading-[1.7]">
               Branding, visual identity and websites
-              <br className="hidden md:inline" />
+              <ResponsiveBr />
               blending strategy and emotion, from French-speaking Switzerland.
             </p>
             <div className="flex flex-wrap gap-5">
@@ -214,7 +215,7 @@ export default function HomeEN() {
       <section className="mx-auto max-w-[1400px] bg-kinome-cream px-[5%] py-[clamp(50px,10vw,100px)]">
         <h2 className="mb-20 max-w-[600px] font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1]">
           Let's prepare
-          <br className="hidden md:inline" />
+          <ResponsiveBr />
           tomorrow's challenges
         </h2>
 
@@ -262,7 +263,7 @@ export default function HomeEN() {
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
         <h2 className="mb-20 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Our expertise
-          <br className="hidden md:inline" />
+          <ResponsiveBr />
           &amp; our support
         </h2>
         <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-2 lg:grid-cols-4">
@@ -385,7 +386,7 @@ export default function HomeEN() {
                 <a href="mailto:mathias@agence-kinome.ch" className="hover:underline">
                   mathias@agence-kinome.ch
                 </a>
-                <br className="hidden md:inline" />
+                <ResponsiveBr />
                 <a href="tel:+41782652014" className="hover:underline">
                   +41 78 265 20 14
                 </a>

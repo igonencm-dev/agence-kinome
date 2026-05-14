@@ -4,6 +4,7 @@ import { buildMetadata, jsonLdScript, SITE, BUSINESS } from "../lib/seo";
 import { contact } from "../lib/contact";
 import { projets } from "../lib/projets";
 import { blogPosts } from "../lib/blog";
+import ResponsiveBr from "../components/ResponsiveBr";
 
 export const metadata = buildMetadata({
   title: "Dossier de presse — Agence Kinome",
@@ -134,7 +135,7 @@ export default function DossierPressePage() {
           </p>
           <h1 className="mb-6 font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black">
             Dossier de presse
-            <br className="hidden md:inline" />
+            <ResponsiveBr />
             <span className="text-kinome-grey">de l&rsquo;Agence Kinome</span>
           </h1>
           <p className="max-w-[820px] font-body text-[clamp(17px,1.4vw,22px)] font-light leading-[1.55] text-kinome-dark">
@@ -163,7 +164,7 @@ export default function DossierPressePage() {
             </p>
             <p className="mt-2 font-body text-[0.95rem] text-kinome-cream/70">
               années d&rsquo;expérience
-              <br className="hidden md:inline" />
+              <ResponsiveBr />
               cumulée des cofondateurs
             </p>
           </div>
@@ -351,7 +352,7 @@ export default function DossierPressePage() {
           </p>
           <h2 className="mb-8 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1]">
             Une question, une interview,
-            <br className="hidden md:inline" />
+            <ResponsiveBr />
             une demande de visuel&nbsp;?
           </h2>
           <p className="mx-auto mb-10 max-w-[640px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.65] text-kinome-cream/80">
