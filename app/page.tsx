@@ -225,12 +225,36 @@ export default function Home() {
               <strong className="font-semibold">cohérents</strong>, porteurs de
               sens, et pensés pour s&rsquo;inscrire durablement dans le temps.
             </p>
-            <div className="mt-12 flex flex-wrap gap-x-8 gap-y-2 text-[0.95rem] font-medium text-kinome-grey">
-              <span>1 bureau local</span>
-              <span aria-hidden="true">·</span>
-              <span>12 expertises</span>
-              <span aria-hidden="true">·</span>
-              <span>6 partenaires</span>
+            {/* Retour #114 Tanguy : ancien bloc en ligne avec séparateurs
+                "·" qui s'empilait mal en mobile (texte coupé, séparateurs
+                orphelins). Refonte en mini-stats à 3 colonnes avec chiffres
+                proéminents et label dessous — toujours en 3 colonnes même
+                en mobile car les contenus sont courts. */}
+            <div className="mt-12 grid grid-cols-3 gap-3 sm:gap-6 md:gap-10">
+              <div className="text-center md:text-left">
+                <p className="font-heading text-[clamp(32px,5vw,48px)] font-normal leading-none text-kinome-black">
+                  1
+                </p>
+                <p className="mt-2 font-body text-[clamp(11px,1vw,14px)] font-medium uppercase tracking-[0.05em] text-kinome-grey">
+                  Bureau local
+                </p>
+              </div>
+              <div className="text-center md:text-left">
+                <p className="font-heading text-[clamp(32px,5vw,48px)] font-normal leading-none text-kinome-black">
+                  12
+                </p>
+                <p className="mt-2 font-body text-[clamp(11px,1vw,14px)] font-medium uppercase tracking-[0.05em] text-kinome-grey">
+                  Expertises
+                </p>
+              </div>
+              <div className="text-center md:text-left">
+                <p className="font-heading text-[clamp(32px,5vw,48px)] font-normal leading-none text-kinome-black">
+                  6
+                </p>
+                <p className="mt-2 font-body text-[clamp(11px,1vw,14px)] font-medium uppercase tracking-[0.05em] text-kinome-grey">
+                  Partenaires
+                </p>
+              </div>
             </div>
           </div>
           <div>
@@ -287,7 +311,11 @@ export default function Home() {
               />
             </div>
             <div className={bloc.reverse ? "lg:order-1" : ""}>
-              <h3 className="mb-4 font-heading text-[1.6rem] font-bold leading-[1.2]">
+              {/* Retour #115 Tanguy : "Redonnez de la force à vos formations
+                  professionnelles" débordait avec un retour à la ligne moche
+                  en mobile (titre à 1.6rem fixe = 25.6px sur smartphone, trop
+                  gros pour le contexte). Passage en clamp responsif. */}
+              <h3 className="mb-4 font-heading text-[clamp(20px,2.2vw,26px)] font-bold leading-[1.2]">
                 {bloc.title}
               </h3>
               <p className="mb-5 font-body text-[1rem] font-bold text-kinome-black">
@@ -439,41 +467,50 @@ export default function Home() {
       {/* Témoignages (composant partagé) */}
       <Testimonials />
 
-      {/* Les nouvelles (blog) */}
+      {/* Les nouvelles (blog).
+          Retour #119 Tanguy : "tout en vertical, mauvaise structure du
+          design". Ancien layout en grid 3 cols (numéro · titre+excerpt
+          · bouton) s'effondrait moche en mobile (chaque article prenait
+          3 lignes empilées sans hiérarchie).
+          Nouvelle structure responsive :
+          - Mobile : article entier cliquable, numéro à gauche compact,
+            titre + excerpt à droite, plus de bouton (card entière =
+            cliquable, gain de place).
+          - Desktop : layout horizontal 3 cols préservé. */}
       <section className="mx-auto my-[60px] max-w-[1300px] rounded-[20px] bg-kinome-cream px-[clamp(20px,5vw,60px)] py-[clamp(50px,8vw,80px)]">
-        <h2 className="mb-12 text-center font-heading text-[clamp(24px,4.5vw,48px)] font-normal md:text-left">
+        <h2 className="mb-10 text-center font-heading text-[clamp(28px,4.5vw,48px)] font-normal md:mb-12 md:text-left">
           Les nouvelles
         </h2>
         <div className="flex flex-col">
           {nouvelles.map((n, i) => (
-            <article
+            <Link
               key={n.title}
-              className="grid grid-cols-[60px_1fr_auto] items-center gap-[30px] border-b border-[#e0ddd6] py-7 last:border-b-0"
+              href={n.href}
+              className="group grid grid-cols-[auto_1fr] items-center gap-x-5 gap-y-1 border-b border-[#e0ddd6] py-6 last:border-b-0 md:grid-cols-[60px_1fr_auto] md:gap-[30px] md:py-7"
             >
-              <div className="text-right font-heading text-[2.2rem] font-bold leading-none text-[#d8d4cc]">
+              <div className="font-heading text-[clamp(28px,3vw,42px)] font-bold leading-none text-[#d8d4cc] md:text-right">
                 {String(i + 1).padStart(2, "0")}
               </div>
-              <div>
-                <h3 className="mb-2 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black">
+              <div className="min-w-0">
+                <h3 className="mb-1 font-heading text-[clamp(17px,1.5vw,22px)] font-semibold text-kinome-black transition-colors group-hover:text-kinome-accent md:mb-2">
                   {n.title}
                 </h3>
-                <p className="m-0 font-body text-[0.92rem] leading-[1.6] text-kinome-grey">
+                <p className="m-0 font-body text-[clamp(13px,1vw,15px)] leading-[1.55] text-kinome-grey">
                   {n.excerpt}
                 </p>
               </div>
-              <Link
-                href={n.href}
-                className="rounded-full border-[1.5px] border-kinome-black bg-transparent px-[22px] py-[10px] font-body text-[0.9rem] font-medium text-kinome-black transition-colors hover:bg-kinome-black hover:text-white"
-              >
+              {/* Bouton "Consulter" visible uniquement en desktop (la card
+                  entière est cliquable en mobile, ça libère de la place). */}
+              <span className="hidden whitespace-nowrap rounded-full border-[1.5px] border-kinome-black bg-transparent px-[22px] py-[10px] font-body text-[0.9rem] font-medium text-kinome-black transition-colors group-hover:bg-kinome-black group-hover:text-white md:inline-flex">
                 Consulter l&rsquo;article
-              </Link>
-            </article>
+              </span>
+            </Link>
           ))}
         </div>
         <div className="mt-10 flex justify-center">
           <Link
             href="/blog/"
-            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrir nos articles
           </Link>

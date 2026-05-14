@@ -485,7 +485,7 @@ export default function AProposPage() {
                 key={s.title}
                 className="group flex min-h-[clamp(220px,20vw,320px)] cursor-pointer flex-col items-center gap-[clamp(14px,1.2vw,20px)] rounded-[20px] bg-white p-[clamp(24px,2vw,36px)] text-center text-kinome-black transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]"
               >
-                <div className="flex aspect-square w-full max-w-[clamp(110px,10.5vw,184px)] flex-shrink-0 items-center justify-center">
+                <div className="flex aspect-square w-full max-w-[clamp(126px,12vw,212px)] flex-shrink-0 items-center justify-center">
                   <ServiceIcon name={s.icon} />
                 </div>
                 <h3 className="font-heading text-[clamp(18px,1.6vw,24px)] font-semibold leading-[1.3]">

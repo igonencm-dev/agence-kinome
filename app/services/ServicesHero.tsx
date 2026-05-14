@@ -133,7 +133,9 @@ export default function ServicesHero() {
       {/* Titre : invisible au repos (desktop), s'affiche au mouvement souris */}
       <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col items-start justify-end px-[5%] pb-[clamp(40px,7vh,90px)]">
         <h1
-          className="mb-6 font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)] transition-[opacity,transform] duration-500 ease-out"
+          // Retour #128 Tanguy : "taille du titre H1 comme celle de la
+          // page blog". Aligné sur le H1 /blog : clamp(40px,8vw,84px).
+          className="mb-6 font-heading text-[clamp(40px,8vw,84px)] font-normal leading-[1.05] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)] transition-[opacity,transform] duration-500 ease-out"
           style={{
             opacity: titleOpacity,
             transform: `translateY(${titleTranslate})`,
