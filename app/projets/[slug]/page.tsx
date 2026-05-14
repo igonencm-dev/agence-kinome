@@ -111,13 +111,19 @@ export default async function ProjetPage({ params }: { params: Params }) {
             à l'écran vertical, image bien cadrée sans étirement.
           - Desktop (md+) : plein écran classique en object-cover. */}
       <section className="relative w-full overflow-hidden bg-kinome-cream">
-        {/* MOBILE : carte CARRÉE dans un container avec marges + ombre douce */}
+        {/* MOBILE : carte CARRÉE dans un container avec marges + ombre douce.
+            Retour mobile #135 Tanguy : "toutes les images de headers ne
+            sont pas centrées". Les cover images sont en 16:9 (1920×1080),
+            avec le sujet (logo, packshot...) souvent pas exactement centré
+            verticalement. object-cover croppait et décalait. On passe en
+            object-contain avec un padding interne : on voit l'image ENTIÈRE
+            centrée dans le carré, peu importe son ratio source. */}
         <div className="px-[5%] pt-[100px] pb-6 md:hidden">
-          <div className="overflow-hidden rounded-[24px] aspect-square bg-kinome-cream shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+          <div className="overflow-hidden rounded-[24px] aspect-square bg-kinome-cream p-4 shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
             <img
               src={heroImg}
               alt={projet.nom}
-              className="block h-full w-full object-cover"
+              className="block h-full w-full object-contain"
               fetchPriority="high"
             />
           </div>

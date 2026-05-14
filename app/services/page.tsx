@@ -255,10 +255,17 @@ export default function ServicesPage() {
             {pourquoiNous.map((p) => (
               <li
                 key={p.num}
-                className="grid min-h-[220px] grid-cols-1 items-start gap-6 rounded-[24px] bg-white p-12 shadow-sm md:grid-cols-[auto_1fr_auto] md:items-center"
+                className="grid min-h-[220px] grid-cols-1 items-start gap-6 rounded-[24px] bg-white p-7 shadow-sm md:grid-cols-[auto_1fr_auto] md:items-center md:p-12"
               >
                 <div className="order-2 md:order-1">
-                  <h3 className="font-heading text-[clamp(28px,3.5vw,40px)] font-medium leading-[1.1] md:max-w-[400px]">
+                  {/* Retour #121 Tanguy : sur mobile, "Une flexibilité et
+                      une personnalisation" débordait du cadre (16+ char
+                      sur smartphone 360px - padding 48px). Réduction du
+                      font min mobile (28→22px) + break-words pour
+                      laisser les mots se couper proprement si besoin.
+                      Padding mobile réduit aussi (p-12 → p-7) pour
+                      donner plus de place au texte. */}
+                  <h3 className="break-words font-heading text-[clamp(22px,3.5vw,40px)] font-medium leading-[1.15] md:max-w-[400px]">
                     {p.title}
                   </h3>
                 </div>

@@ -110,11 +110,14 @@ export default async function ProjetPageEN({ params }: { params: Params }) {
       {/* Hero responsive identique à la version FR */}
       <section className="relative w-full overflow-hidden bg-kinome-cream">
         <div className="px-[5%] pt-[100px] pb-6 md:hidden">
-          <div className="overflow-hidden rounded-[24px] aspect-square bg-kinome-cream shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+          {/* Retour mobile #135 Tanguy : object-contain + padding pour
+              que toutes les hero images (1920×1080) restent centrées dans
+              le carré mobile, sans crop décalé. */}
+          <div className="overflow-hidden rounded-[24px] aspect-square bg-kinome-cream p-4 shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
             <img
               src={heroImg}
               alt={projet.nom}
-              className="block h-full w-full object-cover"
+              className="block h-full w-full object-contain"
               fetchPriority="high"
             />
           </div>
