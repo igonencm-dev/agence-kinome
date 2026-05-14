@@ -133,12 +133,12 @@ export default function HomeEN() {
           <div className="max-w-[800px] text-left text-white">
             <h1 className="mb-[30px] font-heading text-[clamp(30px,5.5vw,76px)] font-semibold leading-[1.05]">
               Communication agency
-              <br />
+              <br className="hidden md:inline" />
               in Geneva
             </h1>
             <p className="mb-[35px] max-w-[520px] text-[1.15rem] leading-[1.7]">
               Branding, visual identity and websites
-              <br />
+              <br className="hidden md:inline" />
               blending strategy and emotion, from French-speaking Switzerland.
             </p>
             <div className="flex flex-wrap gap-5">
@@ -214,7 +214,7 @@ export default function HomeEN() {
       <section className="mx-auto max-w-[1400px] bg-kinome-cream px-[5%] py-[100px]">
         <h2 className="mb-20 max-w-[600px] font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1]">
           Let's prepare
-          <br />
+          <br className="hidden md:inline" />
           tomorrow's challenges
         </h2>
 
@@ -262,7 +262,7 @@ export default function HomeEN() {
       <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
         <h2 className="mb-20 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Our expertise
-          <br />
+          <br className="hidden md:inline" />
           &amp; our support
         </h2>
         <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-2 lg:grid-cols-4">
@@ -385,7 +385,7 @@ export default function HomeEN() {
                 <a href="mailto:mathias@agence-kinome.ch" className="hover:underline">
                   mathias@agence-kinome.ch
                 </a>
-                <br />
+                <br className="hidden md:inline" />
                 <a href="tel:+41782652014" className="hover:underline">
                   +41 78 265 20 14
                 </a>

@@ -89,7 +89,7 @@ export default function ProcessusPage() {
           <div>
             <h2 className="mb-10 font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
               Tout commence
-              <br />
+              <br className="hidden md:inline" />
               par un appel
             </h2>
             <div className="space-y-6 font-body text-[clamp(16px,1.35vw,22px)] font-light leading-[1.55] text-kinome-dark">
@@ -119,7 +119,7 @@ export default function ProcessusPage() {
         <div className="mx-auto max-w-[1400px]">
           <h2 className="mx-auto mb-16 max-w-[1100px] text-center font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Définissons ensemble
-            <br />
+            <br className="hidden md:inline" />
             vos besoins
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -163,7 +163,7 @@ export default function ProcessusPage() {
         <div className="mx-auto max-w-[1400px]">
           <h2 className="mb-20 font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Le processus
-            <br />
+            <br className="hidden md:inline" />
             de conception
           </h2>
 
@@ -211,7 +211,7 @@ export default function ProcessusPage() {
         <div className="mx-auto max-w-[1100px] text-center">
           <h2 className="mx-auto mb-8 max-w-[1000px] font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Vous avez un projet sur lequel
-            <br />
+            <br className="hidden md:inline" />
             vous souhaitez échanger&nbsp;?
           </h2>
           <p className="mx-auto mb-10 max-w-[700px] font-body text-[1.1rem] font-light leading-[1.6] text-kinome-dark">

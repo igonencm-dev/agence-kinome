@@ -178,9 +178,9 @@ export default function Home() {
         <div className="relative z-[3] mx-auto flex w-full max-w-[1400px] flex-col items-start px-[5%]">
           <div className="max-w-[800px] text-left text-white">
             <h1 className="mb-[30px] text-center font-heading text-[clamp(30px,5.5vw,76px)] font-semibold leading-[1.05] [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] md:text-left">
-              {/* Retour #113/#115 Tanguy : les <br /> forcés cassaient le
+              {/* Retour #113/#115 Tanguy : les <br className="hidden md:inline" /> forcés cassaient le
                   flow naturel en mobile (laisse le texte se renvoyer à la
-                  ligne tout seul). Sur desktop on garde un <br /> caché en
+                  ligne tout seul). Sur desktop on garde un <br className="hidden md:inline" /> caché en
                   mobile (hidden md:inline) pour la composition voulue. */}
               Agence de communication{" "}
               <br className="hidden md:inline" />à Genève — <HeroAnimatedWord />
@@ -266,7 +266,7 @@ export default function Home() {
       <section className="mx-auto max-w-[1400px] bg-kinome-cream px-[5%] py-[100px]">
         <h2 className="mx-auto mb-20 max-w-[600px] text-center font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1] md:mx-0 md:text-left">
           Préparons ensemble
-          <br />
+          <br className="hidden md:inline" />
           les enjeux de demain
         </h2>
 
@@ -315,7 +315,7 @@ export default function Home() {
       <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
         <h2 className="mb-20 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Notre expertise
-          <br />
+          <br className="hidden md:inline" />
           &amp; notre accompagnement
         </h2>
         <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-2 lg:grid-cols-4">
@@ -395,7 +395,7 @@ export default function Home() {
           <div>
             <h2 className="mb-2 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1] md:text-left">
               Kinome, c&rsquo;est avant
-              <br />
+              <br className="hidden md:inline" />
               tout de l&rsquo;émotion&nbsp;!
             </h2>
             <div className="relative mt-20 w-full max-w-[420px]">
@@ -503,7 +503,7 @@ export default function Home() {
                 >
                   {contact.emails.mathias}
                 </a>
-                <br />
+                <br className="hidden md:inline" />
                 <a
                   href={`tel:${contact.phones.mathias.e164}`}
                   className="hover:underline"
@@ -523,7 +523,7 @@ export default function Home() {
                 >
                   {contact.emails.tanguy}
                 </a>
-                <br />
+                <br className="hidden md:inline" />
                 <a
                   href={`tel:${contact.phones.tanguy.e164}`}
                   className="hover:underline"

@@ -134,7 +134,7 @@ export default function DossierPressePage() {
           </p>
           <h1 className="mb-6 font-heading text-[clamp(34px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
             Dossier de presse
-            <br />
+            <br className="hidden md:inline" />
             <span className="text-kinome-grey">de l&rsquo;Agence Kinome</span>
           </h1>
           <p className="max-w-[820px] font-body text-[clamp(17px,1.4vw,22px)] font-light leading-[1.55] text-kinome-dark">
@@ -163,7 +163,7 @@ export default function DossierPressePage() {
             </p>
             <p className="mt-2 font-body text-[0.95rem] text-kinome-cream/70">
               années d&rsquo;expérience
-              <br />
+              <br className="hidden md:inline" />
               cumulée des cofondateurs
             </p>
           </div>
@@ -351,7 +351,7 @@ export default function DossierPressePage() {
           </p>
           <h2 className="mb-8 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1]">
             Une question, une interview,
-            <br />
+            <br className="hidden md:inline" />
             une demande de visuel&nbsp;?
           </h2>
           <p className="mx-auto mb-10 max-w-[640px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.65] text-kinome-cream/80">

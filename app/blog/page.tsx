@@ -70,13 +70,13 @@ export default function BlogIndexPage() {
 
       {/* Hero éditorial — sobre, sans pré-header chiffré */}
       <section className="mx-auto max-w-[1300px] px-[5%] pt-[180px] pb-[70px]">
-        <h1 className="mb-6 font-heading text-[clamp(40px,6vw,84px)] font-normal leading-[1.02] text-kinome-black">
+        <h1 className="mb-6 text-center font-heading text-[clamp(36px,6vw,84px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           Communication
-          <br />
+          <br className="hidden md:inline" />
           <span className="italic text-kinome-grey">&amp; branding</span> à
           Genève
         </h1>
-        <p className="max-w-[680px] font-body text-[clamp(17px,1.4vw,21px)] font-light leading-[1.55] text-kinome-grey">
+        <p className="mx-auto max-w-[680px] text-center font-body text-[clamp(16px,1.4vw,21px)] font-light leading-[1.55] text-kinome-grey md:mx-0 md:text-left">
           Nos retours d&rsquo;expérience, guides détaillés et conseils
           pratiques pour réussir vos projets d&rsquo;identité, de marque et
           de site internet.

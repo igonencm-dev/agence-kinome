@@ -142,7 +142,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
 
       {/* Bloc intro : titre + métadonnées + description */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,10vw,140px)]">
-        <h1 className="mb-[clamp(40px,6vw,80px)] font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
+        <h1 className="mb-[clamp(40px,6vw,80px)] text-center font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           {projet.nom}
         </h1>
 

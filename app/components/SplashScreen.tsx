@@ -4,12 +4,20 @@ import { useEffect, useRef, useState } from "react";
 
 type Phase = "intro" | "transition" | "done";
 
-const INTRO_VIDEO =
-  "/assets/wp/logo-anime-croped.mp4";
+const INTRO_VIDEO = "/assets/wp/logo-anime-croped.mp4";
 
 export default function SplashScreen() {
   const [phase, setPhase] = useState<Phase>("intro");
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Guard idempotent : une fois la transition lancée, plus rien ne peut la
+  // re-déclencher (fix retour Mathias : "l'animation apparait une 2e fois
+  // quelques secondes après l'avoir fermée").
+  // Cause : la vidéo continue à émettre des events "timeupdate" + "ended"
+  // après skip / fin naturelle, et chaque event re-appelait goToTransition →
+  // setPhase("transition") même si on était déjà sur "done", ce qui ré-affichait
+  // l'overlay 2s. La ref bloque tout appel après la 1ère transition.
+  const hasTransitionedRef = useRef(false);
+  const doneTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Bypass : on saute le splash pour les bots/crawlers et les outils
@@ -26,24 +34,32 @@ export default function SplashScreen() {
     ).matches;
 
     if (isBot || reducedMotion) {
+      hasTransitionedRef.current = true;
       setPhase("done");
       return;
     }
 
     const seen = sessionStorage.getItem("kinomeIntroSeen");
     if (seen === "true") {
+      hasTransitionedRef.current = true;
       setPhase("done");
       return;
     }
 
     const goToTransition = () => {
+      // Idempotent : si on a déjà transitionné, ne rien refaire.
+      if (hasTransitionedRef.current) return;
+      hasTransitionedRef.current = true;
       sessionStorage.setItem("kinomeIntroSeen", "true");
       setPhase("transition");
-      setTimeout(() => setPhase("done"), 2000);
+      doneTimerRef.current = window.setTimeout(() => {
+        setPhase("done");
+        doneTimerRef.current = null;
+      }, 2000);
     };
 
     const v = videoRef.current;
-    const fallback = setTimeout(goToTransition, 10000);
+    const fallback = window.setTimeout(goToTransition, 10000);
 
     if (v) {
       // Force muted (ceinture+bretelles — fix bug React 1er render)
@@ -61,20 +77,40 @@ export default function SplashScreen() {
       return () => {
         v.removeEventListener("timeupdate", onTimeUpdate);
         v.removeEventListener("ended", goToTransition);
-        clearTimeout(fallback);
+        window.clearTimeout(fallback);
+        if (doneTimerRef.current !== null) {
+          window.clearTimeout(doneTimerRef.current);
+          doneTimerRef.current = null;
+        }
       };
     }
 
-    return () => clearTimeout(fallback);
+    return () => {
+      window.clearTimeout(fallback);
+      if (doneTimerRef.current !== null) {
+        window.clearTimeout(doneTimerRef.current);
+        doneTimerRef.current = null;
+      }
+    };
   }, []);
 
   if (phase === "done") return null;
 
   const skip = () => {
+    // Idempotent aussi : si on a déjà transitionné, le skip ne ré-affiche pas
+    // l'overlay. Sécurise les clics répétés / accidentels.
+    if (hasTransitionedRef.current && phase !== "intro") {
+      setPhase("done");
+      return;
+    }
     sessionStorage.setItem("kinomeIntroSeen", "true");
     if (phase === "intro") {
+      hasTransitionedRef.current = true;
       setPhase("transition");
-      setTimeout(() => setPhase("done"), 2000);
+      doneTimerRef.current = window.setTimeout(() => {
+        setPhase("done");
+        doneTimerRef.current = null;
+      }, 2000);
     } else {
       setPhase("done");
     }
@@ -106,7 +142,7 @@ export default function SplashScreen() {
           onClick={skip}
           role="presentation"
         >
-          <h2 className="anim-text-focus-in max-w-[1100px] text-center font-heading text-[2.8rem] font-normal leading-[1.3] text-white md:text-[2.4rem] sm:text-[1.8rem]">
+          <h2 className="anim-text-focus-in max-w-[1100px] text-center font-heading text-[clamp(22px,4.5vw,44px)] font-normal leading-[1.3] text-white">
             Kinome est une agence de communication indépendante, pour remettre
             l&rsquo;humain au cœur des échanges.
           </h2>

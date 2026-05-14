@@ -63,9 +63,9 @@ export default function PortfolioEN() {
   return (
     <main className="px-[5%] pt-[180px] pb-[120px]">
       <section className="mx-auto max-w-[1400px]">
-        <h1 className="mb-8 font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
+        <h1 className="mb-8 text-center font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           Portfolio of Kinome
-          <br />
+          <br className="hidden md:inline" />
           agency in Geneva
         </h1>
         <p className="mb-10 max-w-[820px] font-body text-[1.4rem] font-light leading-[1.5] text-kinome-black">

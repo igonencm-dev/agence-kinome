@@ -52,7 +52,7 @@ export default function BlogIndexEN() {
       <section className="mx-auto max-w-[1300px] px-[5%] pt-[180px] pb-[70px]">
         <h1 className="mb-6 font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.02] text-kinome-black">
           Communication
-          <br />
+          <br className="hidden md:inline" />
           <span className="italic text-kinome-grey">&amp; branding</span> in
           Geneva
         </h1>

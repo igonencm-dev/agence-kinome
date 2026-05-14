@@ -99,7 +99,7 @@ export default function PartnersEN() {
         <div className="relative z-10 mx-auto max-w-[1400px]">
           <h2 className="mb-14 text-center font-heading text-[clamp(26px,4vw,56px)] font-normal leading-[1.1] text-kinome-black">
             International experience
-            <br />
+            <br className="hidden md:inline" />
             &amp; partners across territories
           </h2>
           <div className="mx-auto max-w-[900px] space-y-5 text-center font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-grey">

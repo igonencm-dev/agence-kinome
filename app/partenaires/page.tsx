@@ -76,7 +76,7 @@ export default function PartenairesPage() {
       {/* Hero — H1 standardisé sur le standard du site */}
       <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
-          <h1 className="font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
+          <h1 className="text-center font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black lg:text-left">
             Kinome travaille avec de nombreux consultants, et ça fait
             plaisir&nbsp;!
           </h1>
@@ -118,7 +118,7 @@ export default function PartenairesPage() {
         <div className="relative z-10 mx-auto max-w-[1400px]">
           <h2 className="mb-14 text-center font-heading text-[clamp(28px,4vw,56px)] font-normal leading-[1.1] text-kinome-black">
             Une expérience à l&rsquo;internationale
-            <br />
+            <br className="hidden md:inline" />
             &amp; des partenaires sur différents territoires
           </h2>
           <div className="mx-auto max-w-[900px] space-y-5 text-center font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-grey">

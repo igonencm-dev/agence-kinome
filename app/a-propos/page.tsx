@@ -262,7 +262,7 @@ export default function AProposPage() {
           <p className="mt-6 max-w-[1100px] font-body text-[clamp(20px,1.75vw,28px)] font-light leading-[1.5]">
             Une équipe à taille humaine, animée par l&rsquo;envie de bien
             faire, l&rsquo;écoute et la curiosité.
-            <br />
+            <br className="hidden md:inline" />
             On croit qu&rsquo;une agence ne se résume pas à ses créations mais
             avant tout aux personnes qui les portent.
           </p>
@@ -420,7 +420,7 @@ export default function AProposPage() {
         <div className="mx-auto max-w-[1588px]">
           <h2 className="mx-auto max-w-[1200px] text-center font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14] text-kinome-black">
             Préparons ensemble
-            <br />
+            <br className="hidden md:inline" />
             votre prochain projet&nbsp;!
           </h2>
 
@@ -520,7 +520,7 @@ export default function AProposPage() {
         <div className="mx-auto max-w-[1588px]">
           <h2 className="mx-auto mb-[clamp(50px,6vw,90px)] max-w-[1100px] text-center font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14] text-kinome-black">
             Vous avez un projet sur lequel
-            <br />
+            <br className="hidden md:inline" />
             vous souhaitez échanger&nbsp;?
           </h2>
 
