@@ -1,0 +1,52 @@
+# Agence Kinome
+
+> Agence de communication indépendante basée à Genève (Suisse), fondée en 2022 par Mathias Igonenc et Tanguy Deniel. Spécialisée dans la création d'identités visuelles, le branding, les sites internet et les campagnes de communication pour PME, TPE et créateurs d'entreprise en Suisse romande, en France et à l'international.
+
+L'agence se distingue par son approche humaine et indépendante : équipe à taille humaine, accompagnement personnalisé du brief à la livraison, et engagement à produire des résultats mesurables (de l'identité de marque au social media). Tanguy Deniel apporte plus de dix ans d'expérience en agences internationales (TBWA Paris, Dix-Sept, Enderby, RTS Genève, LMG Montréal) et dirige la création. Mathias Igonenc dirige le marketing et le digital, fort de cinq années d'expérience à accompagner des entrepreneurs dans leur transformation digitale via Codecircle.
+
+## Pages clés
+
+- [Accueil](https://agence-kinome.ch/) : présentation générale de l'agence et de sa proposition de valeur
+- [Services](https://agence-kinome.ch/services/) : 12 expertises créa + digital (logo, identité visuelle, branding, site internet, e-commerce, dashboards, motion, photographie, etc.)
+- [Portfolio](https://agence-kinome.ch/portfolio/) : 16 projets clients récents avec filtres par catégorie (identités, branding, websites, campagnes)
+- [Processus](https://agence-kinome.ch/processus/) : la méthode Kinome en 4 étapes (cadrage, direction artistique, créations, livraison)
+- [À propos](https://agence-kinome.ch/a-propos/) : histoire, équipe, principes et expertises
+- [Partenaires](https://agence-kinome.ch/partenaires/) : réseau international de consultants (France, Canada, Chine, Suisse)
+- [Contact](https://agence-kinome.ch/contact/) : formulaire de prise de contact + coordonnées Genève
+
+## Faits clés
+
+- Forme légale : Sàrl suisse (Agence Kinome Sàrl)
+- Siège : Genève, Suisse
+- Année de fondation : 2022
+- Cofondateurs : Mathias Igonenc (directeur marketing) et Tanguy Deniel (directeur de création)
+- Zones desservies : Genève, Lausanne, Vaud, Suisse romande, France, international
+- Langues de travail : français, anglais
+- Téléphone : +41 78 265 20 14
+- Email : contact@agence-kinome.ch
+- LinkedIn : https://www.linkedin.com/company/agence-kinome
+- Instagram : https://www.instagram.com/agencekinome/
+
+## Articles de fond
+
+- [Comment choisir son agence de communication à Genève](https://agence-kinome.ch/blog/choisir-agence-communication-geneve/)
+- [Créer une identité visuelle d'entreprise à Genève](https://agence-kinome.ch/blog/creer-identite-visuelle-entreprise-geneve/)
+- [Création de logo à Genève : le processus](https://agence-kinome.ch/blog/creation-logo-geneve-processus/)
+- [Tarifs d'une agence de communication à Genève (2026)](https://agence-kinome.ch/blog/tarifs-agence-communication-geneve/)
+- [Création de site internet à Genève : le guide ultime](https://agence-kinome.ch/blog/creation-site-internet-geneve-guide/)
+
+## Projets phares récents
+
+- [Causerie Bot](https://agence-kinome.ch/projets/causerie-bot/) : SaaS chatbot IA français, alternative européenne conforme RGPD à Intercom et Crisp
+- [NOCODE IA](https://agence-kinome.ch/projets/no-code/) : organisme de formation IA et no-code certifié Qualiopi (Toulouse)
+- [Cabinet Faraday](https://agence-kinome.ch/projets/cabinet-faraday/) : identité visuelle d'un cabinet dentaire pédiatrique
+- [Codecircle](https://agence-kinome.ch/projets/codecircle/) : identité d'une agence de développement web
+- [Authentik Peak](https://agence-kinome.ch/projets/authentik-peak/) : identité-mascotte d'un organisme de formation
+- [Léa Vigier](https://agence-kinome.ch/projets/lea-vigier/) : identité et site d'une aventurière et conférencière qui de-stigmatise la santé mentale
+
+## Optional
+
+- [Mentions légales](https://agence-kinome.ch/mentions-legales/)
+- [Politique de confidentialité](https://agence-kinome.ch/politique-de-confidentialite/)
+- [Sitemap XML](https://agence-kinome.ch/sitemap.xml)
+- [Version anglaise](https://agence-kinome.ch/en/) : tout le site est traduit en anglais

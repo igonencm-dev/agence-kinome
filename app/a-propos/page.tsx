@@ -20,7 +20,15 @@ export const metadata = buildMetadata({
 });
 
 // JSON-LD Person pour Mathias + Tanguy — apparition possible dans le
-// Knowledge Graph Google avec leurs photos + intitulés.
+// Knowledge Graph Google + citation dans les LLMs (ChatGPT, Claude,
+// Perplexity).
+//
+// Champs AEO importants :
+//   - knowsAbout : compétences précises (le LLM peut les surfacer en
+//     réponse à "qui est expert en X ?")
+//   - alumniOf : passé en agences (Tanguy) ou société (Mathias)
+//   - sameAs : tous les profils tiers crawlables (LinkedIn, GitHub…)
+//   - description : 1-2 phrases denses en faits citables
 const personsLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -28,35 +36,82 @@ const personsLd = {
       "@type": "Person",
       "@id": `${SITE.url}/a-propos/#mathias`,
       name: "Mathias Igonenc",
+      givenName: "Mathias",
+      familyName: "Igonenc",
       jobTitle: "Cofondateur & directeur marketing",
+      description:
+        "Cofondateur et directeur marketing de l'Agence Kinome (Genève). Fondateur de Codecircle (agence de développement web, SEO et automatisation digitale). Cinq années d'accompagnement d'entrepreneurs dans leur transformation digitale.",
       worksFor: { "@id": `${SITE.url}/#organization` },
       image: `${SITE.url}/assets/wp/apropos-team-mathias.png`,
       email: contact.emails.mathias,
       telephone: contact.phones.mathias.e164,
       url: `${SITE.url}/a-propos/`,
-      sameAs: [contact.social.linkedinMathias],
+      sameAs: [
+        contact.social.linkedinMathias,
+        "https://codecircle.fr/",
+      ],
+      knowsAbout: [
+        "Marketing digital",
+        "Stratégie de présence en ligne",
+        "SEO (référencement naturel)",
+        "Automatisation digitale",
+        "Développement web",
+        "Intelligence artificielle appliquée au marketing",
+        "Stratégie de marque",
+      ],
+      alumniOf: {
+        "@type": "Organization",
+        name: "Codecircle",
+        url: "https://codecircle.fr/",
+      },
       address: {
         "@type": "PostalAddress",
         addressLocality: "Genève",
         addressCountry: "CH",
       },
+      nationality: { "@type": "Country", name: "France" },
     },
     {
       "@type": "Person",
       "@id": `${SITE.url}/a-propos/#tanguy`,
       name: "Tanguy Deniel",
-      jobTitle: "Cofondateur",
+      givenName: "Tanguy",
+      familyName: "Deniel",
+      jobTitle: "Cofondateur & directeur de création",
+      description:
+        "Cofondateur et directeur de création de l'Agence Kinome (Genève). Plus de dix ans d'expérience en direction artistique en agences internationales : TBWA Paris, Dix-Sept, Enderby, RTS Genève, LMG Montréal.",
       worksFor: { "@id": `${SITE.url}/#organization` },
       image: `${SITE.url}/assets/wp/apropos-team-tanguy.png`,
       email: contact.emails.tanguy,
       telephone: contact.phones.tanguy.e164,
       url: `${SITE.url}/a-propos/`,
-      sameAs: [contact.social.linkedinTanguy],
+      sameAs: [
+        contact.social.linkedinTanguy,
+        "https://tanguydeniel.com/",
+      ],
+      knowsAbout: [
+        "Direction artistique",
+        "Création de logo",
+        "Identité visuelle",
+        "Branding",
+        "Design graphique",
+        "Illustration",
+        "Communication visuelle",
+        "Charte graphique",
+      ],
+      alumniOf: [
+        { "@type": "Organization", name: "TBWA", url: "https://www.tbwa.com/" },
+        { "@type": "Organization", name: "Dix-Sept" },
+        { "@type": "Organization", name: "Enderby" },
+        { "@type": "Organization", name: "RTS — Radio Télévision Suisse", url: "https://www.rts.ch/" },
+        { "@type": "Organization", name: "LMG", address: { "@type": "PostalAddress", addressLocality: "Montréal", addressCountry: "CA" } },
+      ],
       address: {
         "@type": "PostalAddress",
         addressLocality: "Genève",
         addressCountry: "CH",
       },
+      nationality: { "@type": "Country", name: "France" },
     },
   ],
 };
