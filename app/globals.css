@@ -17,6 +17,12 @@
 
 html {
   scroll-behavior: smooth;
+  /* Retour mobile #116/#117/#118/#119 Tanguy : empêche le scroll
+     horizontal sur mobile (qui apparaissait quand un élément débordait
+     du viewport — image, marge négative, etc.). `clip` est mieux que
+     `hidden` car il n'établit pas de contexte de défilement ni de
+     position relative parasite. */
+  overflow-x: clip;
 }
 
 html,
@@ -26,6 +32,9 @@ body {
   color: var(--color-kinome-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Filet de sécurité supplémentaire pour navigateurs qui ne supportent
+     pas overflow-x: clip (anciens iOS Safari < 16). */
+  overflow-x: hidden;
 }
 
 /* Sélection de texte aux couleurs Kinome (au lieu du bleu navigateur) */

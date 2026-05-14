@@ -177,13 +177,17 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[55%] bg-gradient-to-t from-black/70 via-black/45 to-transparent" />
         <div className="relative z-[3] mx-auto flex w-full max-w-[1400px] flex-col items-start px-[5%]">
           <div className="max-w-[800px] text-left text-white">
-            <h1 className="mb-[30px] font-heading text-[clamp(30px,5.5vw,76px)] font-semibold leading-[1.05] [text-shadow:0_2px_18px_rgba(0,0,0,0.35)]">
-              Agence de communication
-              <br />à Genève — <HeroAnimatedWord />
+            <h1 className="mb-[30px] text-center font-heading text-[clamp(30px,5.5vw,76px)] font-semibold leading-[1.05] [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] md:text-left">
+              {/* Retour #113/#115 Tanguy : les <br /> forcés cassaient le
+                  flow naturel en mobile (laisse le texte se renvoyer à la
+                  ligne tout seul). Sur desktop on garde un <br /> caché en
+                  mobile (hidden md:inline) pour la composition voulue. */}
+              Agence de communication{" "}
+              <br className="hidden md:inline" />à Genève — <HeroAnimatedWord />
             </h1>
-            <p className="mb-[35px] max-w-[520px] text-[1.15rem] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)]">
-              Branding, identité visuelle et sites internet
-              <br />
+            <p className="mb-[35px] max-w-[520px] text-center text-[1.15rem] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] md:text-left">
+              Branding, identité visuelle et sites internet{" "}
+              <br className="hidden md:inline" />
               en alliant stratégie et émotion, depuis la Suisse romande.
             </p>
             <div className="flex flex-wrap gap-5">
