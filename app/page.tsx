@@ -279,7 +279,7 @@ export default function Home() {
             </p>
             <Link
               href="/a-propos"
-              className="inline-block btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              className="mx-auto md:mx-0 block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
             >
               Notre agence
             </Link>
@@ -331,7 +331,7 @@ export default function Home() {
               </p>
               <Link
                 href={bloc.cta.href}
-                className="inline-block btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+                className="mx-auto md:mx-0 block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
               >
                 {bloc.cta.label}
               </Link>
@@ -412,7 +412,7 @@ export default function Home() {
         </h2>
         <Link
           href="/processus"
-          className="inline-block btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+          className="mx-auto md:mx-0 block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
         >
           Découvrir notre processus de travail
         </Link>
