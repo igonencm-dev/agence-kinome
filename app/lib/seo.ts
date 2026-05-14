@@ -25,7 +25,7 @@ export const SITE = {
   url: "https://agence-kinome.ch",
   locale: "fr_CH",
   language: "fr",
-  founded: "2022",
+  founded: "2026",
   ogImage: "/og/og-default.png",
   ogImageWidth: 1200,
   ogImageHeight: 630,

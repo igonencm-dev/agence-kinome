@@ -43,7 +43,11 @@ const dossierLd = {
 const stats = {
   projects: projets.length,
   articles: blogPosts.length,
-  yearsActive: new Date().getFullYear() - 2022,
+  // Kinome a été fondée en 2026 — au lieu d'une stat "années d'activité"
+  // (= 0 cette première année, pas glorieux), on met l'expérience cumulée
+  // des cofondateurs : Tanguy 10+ ans en agences + Mathias 5 ans en
+  // freelance/Codecircle = 15+ ans d'expérience cumulée.
+  cumulativeExpYears: 15,
   partnersAbroad: 4, // Codecircle, Koté, Lucille Bory, Fei Gao, Gianluca (international)
   categories: 4, // Identités · Branding · Websites · Campagnes
 };
@@ -52,10 +56,10 @@ const stats = {
 // ou un LLM. Format "boilerplate" classique des dossiers de presse.
 const boilerplates = {
   short:
-    "Agence Kinome est une agence de communication indépendante basée à Genève, fondée en 2022 par Mathias Igonenc et Tanguy Deniel.",
+    "Agence Kinome est une agence de communication indépendante basée à Genève, fondée en 2026 par Mathias Igonenc et Tanguy Deniel.",
   medium:
-    "Fondée à Genève en 2022, Agence Kinome est une agence de communication indépendante dirigée par Mathias Igonenc (marketing & digital) et Tanguy Deniel (création). Elle accompagne PME, TPE et créateurs d'entreprise sur leurs identités visuelles, sites internet et campagnes, depuis la Suisse romande jusqu'à l'international.",
-  long: "Agence Kinome est une agence de communication indépendante établie à Genève depuis 2022. Cofondée par Mathias Igonenc (directeur marketing) et Tanguy Deniel (directeur de création — ancien TBWA Paris, RTS Genève, LMG Montréal), l'agence intervient sur l'ensemble du spectre communication : branding et identité visuelle, sites internet, campagnes, motion et photographie. Kinome cible les marques de Suisse romande, de France et à l'international, avec une approche revendiquée d'accompagnement personnalisé et de résultats mesurables. L'agence a livré plus de 16 projets entre 2022 et 2026 — dont l'identité du SaaS français CauserieBot, l'identité du centre de formation IA NOCODE IA et la marque du cabinet dentaire pédiatrique Cabinet Faraday — et publie un blog spécialisé sur les enjeux de communication des entreprises romandes.",
+    "Fondée à Genève en 2026, Agence Kinome est une agence de communication indépendante dirigée par Mathias Igonenc (marketing & digital) et Tanguy Deniel (création). Elle accompagne PME, TPE et créateurs d'entreprise sur leurs identités visuelles, sites internet et campagnes, depuis la Suisse romande jusqu'à l'international.",
+  long: "Agence Kinome est une agence de communication indépendante établie à Genève en 2026. Cofondée par Mathias Igonenc (directeur marketing) et Tanguy Deniel (directeur de création — ancien TBWA Paris, RTS Genève, LMG Montréal), l'agence intervient sur l'ensemble du spectre communication : branding et identité visuelle, sites internet, campagnes, motion et photographie. Kinome cible les marques de Suisse romande, de France et à l'international, avec une approche revendiquée d'accompagnement personnalisé et de résultats mesurables. Le portfolio cumulé des cofondateurs compte plus de 16 projets de référence — dont l'identité du SaaS français CauserieBot, l'identité du centre de formation IA NOCODE IA et la marque du cabinet dentaire pédiatrique Cabinet Faraday — et l'agence publie un blog spécialisé sur les enjeux de communication des entreprises romandes.",
 };
 
 const facts = [
@@ -155,10 +159,12 @@ export default function DossierPressePage() {
           </div>
           <div>
             <p className="font-heading text-[clamp(40px,6vw,80px)] font-normal leading-none">
-              {stats.yearsActive}
+              {stats.cumulativeExpYears}+
             </p>
             <p className="mt-2 font-body text-[0.95rem] text-kinome-cream/70">
-              années d&rsquo;activité
+              années d&rsquo;expérience
+              <br />
+              cumulée des cofondateurs
             </p>
           </div>
           <div>
