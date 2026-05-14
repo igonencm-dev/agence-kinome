@@ -61,7 +61,7 @@ export default function PortfolioPage() {
     <main className="px-[5%] pt-[180px] pb-[120px]">
       {/* Hero */}
       <section className="mx-auto max-w-[1400px]">
-        <h1 className="mb-8 text-center font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
+        <h1 className="mb-8 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           Portfolio de l&rsquo;agence
           <br className="hidden md:inline" />
           Kinome à Genève

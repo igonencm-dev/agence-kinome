@@ -132,7 +132,7 @@ export default function DossierPressePage() {
           <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.18em] text-kinome-accent">
             Kit média
           </p>
-          <h1 className="mb-6 font-heading text-[clamp(34px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
+          <h1 className="mb-6 font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black">
             Dossier de presse
             <br className="hidden md:inline" />
             <span className="text-kinome-grey">de l&rsquo;Agence Kinome</span>

@@ -243,7 +243,7 @@ export default function AProposPage() {
       {/* Hero — 2 colonnes : titre + Visual Diary */}
       <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
         <div className="mx-auto grid max-w-[1588px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
-          <h1 className="max-w-[900px] font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.12] text-kinome-black">
+          <h1 className="max-w-[900px] font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.12] text-kinome-black">
             Kinome, l&rsquo;agence de communication qui vous accompagne avec
             sincérité.
           </h1>
@@ -546,7 +546,7 @@ export default function AProposPage() {
           <div className="mx-auto flex justify-center">
             <Link
               href="/contact/"
-              className="inline-flex min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
+              className="mx-auto md:mx-0 flex w-fit min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
             >
               Discutons de votre projet
             </Link>

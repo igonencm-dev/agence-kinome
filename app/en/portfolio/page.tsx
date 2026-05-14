@@ -63,7 +63,7 @@ export default function PortfolioEN() {
   return (
     <main className="px-[5%] pt-[180px] pb-[120px]">
       <section className="mx-auto max-w-[1400px]">
-        <h1 className="mb-8 text-center font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
+        <h1 className="mb-8 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           Portfolio of Kinome
           <br className="hidden md:inline" />
           agency in Geneva
@@ -75,7 +75,7 @@ export default function PortfolioEN() {
         </p>
         <Link
           href="/en/about/"
-          className="btn-fill-accent inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105"
+          className="btn-fill-accent mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105"
         >
           <span className="relative z-10">Meet the team</span>
         </Link>
@@ -145,7 +145,7 @@ export default function PortfolioEN() {
         <div className="mt-20 flex justify-center">
           <Link
             href="/en/contact/"
-            className="btn-fill-accent inline-flex min-w-[300px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105"
+            className="btn-fill-accent mx-auto md:mx-0 flex w-fit min-w-[300px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105"
           >
             <span className="relative z-10">Start your own project</span>
           </Link>

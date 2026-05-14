@@ -70,7 +70,7 @@ export default function BlogIndexPage() {
 
       {/* Hero éditorial — sobre, sans pré-header chiffré */}
       <section className="mx-auto max-w-[1300px] px-[5%] pt-[180px] pb-[70px]">
-        <h1 className="mb-6 text-center font-heading text-[clamp(36px,6vw,84px)] font-normal leading-[1.05] text-kinome-black md:text-left">
+        <h1 className="mb-6 text-center font-heading text-[clamp(40px,8vw,84px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           Communication
           <br className="hidden md:inline" />
           <span className="italic text-kinome-grey">&amp; branding</span> à
@@ -213,7 +213,7 @@ export default function BlogIndexPage() {
           </p>
           <Link
             href="/contact/"
-            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
+            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
           >
             Échanger avec l&rsquo;équipe
           </Link>

@@ -43,7 +43,7 @@ export default function ProcessEN() {
     <main>
       <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
         <div className="mx-auto max-w-[1400px]">
-          <h1 className="max-w-[900px] font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.12] text-kinome-dark">
+          <h1 className="max-w-[900px] font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.12] text-kinome-dark">
             A process designed to fully understand your project.
           </h1>
           <p className="mt-6 max-w-[800px] font-body text-[clamp(17px,1.4vw,21px)] font-light leading-[1.5] text-kinome-dark">
@@ -88,7 +88,7 @@ export default function ProcessEN() {
         </p>
         <Link
           href="/en/contact/"
-          className="btn-fill-dark inline-flex min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
+          className="btn-fill-dark mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
         >
           <span className="relative z-10">Let's talk</span>
         </Link>

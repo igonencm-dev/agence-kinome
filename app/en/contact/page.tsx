@@ -23,7 +23,7 @@ export default function ContactEN() {
     <main className="pt-[140px]">
       <section className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-[5%] py-[40px] lg:grid-cols-[1fr_1.3fr]">
         <div className="font-body text-[1.15rem] leading-[1.6] text-kinome-black">
-          <h1 className="mb-12 font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
+          <h1 className="mb-12 font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black">
             Let's talk.
           </h1>
 
@@ -123,7 +123,7 @@ export default function ContactEN() {
         </p>
         <Link
           href="#top"
-          className="btn-fill-accent inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105"
+          className="btn-fill-accent mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105"
         >
           <span className="relative z-10">Fill in the form</span>
         </Link>

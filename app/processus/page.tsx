@@ -61,7 +61,7 @@ export default function ProcessusPage() {
       {/* Hero — fond cream, titre + Abstract Art */}
       <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
         <div className="mx-auto grid max-w-[1588px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
-          <h1 className="max-w-[900px] font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.12] text-kinome-dark">
+          <h1 className="max-w-[900px] font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.12] text-kinome-dark">
             Un processus conçu pour comprendre pleinement votre projet
           </h1>
           <div className="flex justify-center lg:justify-end">
@@ -221,7 +221,7 @@ export default function ProcessusPage() {
           </p>
           <Link
             href="/contact/"
-            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[1.05rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[1.05rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Contactez-nous
           </Link>

@@ -50,7 +50,7 @@ export default function BlogIndexEN() {
       />
 
       <section className="mx-auto max-w-[1300px] px-[5%] pt-[180px] pb-[70px]">
-        <h1 className="mb-6 font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.02] text-kinome-black">
+        <h1 className="mb-6 font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.02] text-kinome-black">
           Communication
           <br className="hidden md:inline" />
           <span className="italic text-kinome-grey">&amp; branding</span> in
@@ -175,7 +175,7 @@ export default function BlogIndexEN() {
           </h2>
           <Link
             href="/en/contact/"
-            className="btn-fill-accent inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
+            className="btn-fill-accent mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
           >
             <span className="relative z-10">Talk to the team</span>
           </Link>

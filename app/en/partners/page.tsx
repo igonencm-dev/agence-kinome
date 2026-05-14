@@ -70,7 +70,7 @@ export default function PartnersEN() {
     <main>
       <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
-          <h1 className="font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
+          <h1 className="font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black">
             Kinome works with many consultants, and that's a pleasure!
           </h1>
           <div className="flex justify-center lg:justify-end">
@@ -179,7 +179,7 @@ export default function PartnersEN() {
         </p>
         <Link
           href="/en/contact/"
-          className="btn-fill-dark inline-flex min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
+          className="btn-fill-dark mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
         >
           <span className="relative z-10">Let's talk</span>
         </Link>

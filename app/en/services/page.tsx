@@ -96,13 +96,13 @@ export default function ServicesEN() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/en/contact/"
-            className="btn-fill-dark inline-flex min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
+            className="btn-fill-dark mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
           >
             <span className="relative z-10">Discuss your project</span>
           </Link>
           <Link
             href="/en/portfolio/"
-            className="btn-fill-white inline-flex min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105 hover:text-kinome-black"
+            className="btn-fill-white mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105 hover:text-kinome-black"
           >
             <span className="relative z-10">View our projects</span>
           </Link>

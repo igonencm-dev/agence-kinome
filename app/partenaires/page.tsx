@@ -76,7 +76,7 @@ export default function PartenairesPage() {
       {/* Hero — H1 standardisé sur le standard du site */}
       <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
-          <h1 className="text-center font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black lg:text-left">
+          <h1 className="text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black lg:text-left">
             Kinome travaille avec de nombreux consultants, et ça fait
             plaisir&nbsp;!
           </h1>
@@ -217,7 +217,7 @@ export default function PartenairesPage() {
           <div className="mt-20 flex justify-center">
             <Link
               href="/contact/"
-              className="inline-flex min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              className="mx-auto md:mx-0 flex w-fit min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
             >
               Vous souhaitez vous présenter&nbsp;?
             </Link>
@@ -242,7 +242,7 @@ export default function PartenairesPage() {
         </p>
         <Link
           href="/contact/"
-          className="btn-fill-accent group inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105"
+          className="btn-fill-accent group mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105"
         >
           <span className="relative z-10">Discutons-en</span>
         </Link>

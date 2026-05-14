@@ -142,7 +142,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
 
       {/* Bloc intro : titre + métadonnées + description */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,10vw,140px)]">
-        <h1 className="mb-[clamp(40px,6vw,80px)] text-center font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
+        <h1 className="mb-[clamp(40px,6vw,80px)] text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           {projet.nom}
         </h1>
 
@@ -224,7 +224,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
             </h3>
             <Link
               href="/contact/"
-              className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[1.05rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[1.05rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
             >
               Racontez-nous votre projet
             </Link>
@@ -304,7 +304,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
         <div className="mt-12 flex justify-center">
           <Link
             href="/portfolio/"
-            className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrir nos projets
           </Link>

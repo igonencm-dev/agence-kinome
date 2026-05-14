@@ -25,7 +25,7 @@ export default function ContactPage() {
       {/* Bloc principal : adresse + formulaire */}
       <section className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-[5%] py-[40px] lg:grid-cols-[1fr_1.3fr]">
         <div className="font-body text-[1.15rem] leading-[1.6] text-kinome-black">
-          <h1 className="mb-12 text-center font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
+          <h1 className="mb-12 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
             Échangeons.
           </h1>
 
@@ -141,7 +141,7 @@ export default function ContactPage() {
         </p>
         <Link
           href="#top"
-          className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+          className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
         >
           Remplir le formulaire
         </Link>

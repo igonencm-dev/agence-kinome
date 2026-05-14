@@ -177,7 +177,7 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[55%] bg-gradient-to-t from-black/70 via-black/45 to-transparent" />
         <div className="relative z-[3] mx-auto flex w-full max-w-[1400px] flex-col items-start px-[5%]">
           <div className="max-w-[800px] text-left text-white">
-            <h1 className="mb-[30px] text-center font-heading text-[clamp(30px,5.5vw,76px)] font-semibold leading-[1.05] [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] md:text-left">
+            <h1 className="mb-[30px] text-center font-heading text-[clamp(38px,8vw,76px)] font-semibold leading-[1.05] [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] md:text-left">
               {/* Retour #113/#115 Tanguy : les <br className="hidden md:inline" /> forcés cassaient le
                   flow naturel en mobile (laisse le texte se renvoyer à la
                   ligne tout seul). Sur desktop on garde un <br className="hidden md:inline" /> caché en
@@ -190,7 +190,7 @@ export default function Home() {
               <br className="hidden md:inline" />
               en alliant stratégie et émotion, depuis la Suisse romande.
             </p>
-            <div className="flex flex-wrap gap-5">
+            <div className="flex flex-wrap justify-center gap-5 md:justify-start">
               {/* Bouton 1 (primaire) : fond blanc/texte noir + ombre pour
                   rester lisible même devant les frames vidéo blancs. */}
               <Link
