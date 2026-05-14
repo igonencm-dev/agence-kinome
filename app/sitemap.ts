@@ -26,6 +26,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/processus/`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/partenaires/`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/contact/`, lastModified: now, changeFrequency: "yearly", priority: 0.8 },
+    // Page AEO/kit média — densité maximale de faits structurés, à crawler souvent.
+    { url: `${base}/dossier-presse/`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/mentions-legales/`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
     { url: `${base}/politique-de-confidentialite/`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
