@@ -247,22 +247,25 @@ export default function ServicesPage() {
             Pourquoi choisir Kinome&nbsp;?
           </h2>
           {/* Retour #92 : hauteur uniforme sur les blocs "raisons" pour
-              éviter l'effet escalier (textes de longueur variable). */}
+              éviter l'effet escalier (textes de longueur variable).
+              Retour mobile #122 Tanguy : sur mobile, ordre =
+              numéro (en haut) → titre → texte. En desktop, on garde
+              l'ordre naturel du grid 3 colonnes (titre → texte → numéro). */}
           <ol className="flex flex-col gap-6">
             {pourquoiNous.map((p) => (
               <li
                 key={p.num}
                 className="grid min-h-[220px] grid-cols-1 items-start gap-6 rounded-[24px] bg-white p-12 shadow-sm md:grid-cols-[auto_1fr_auto] md:items-center"
               >
-                <div>
-                  <h3 className="font-heading text-[2.4rem] font-medium leading-[1.1] md:max-w-[400px]">
+                <div className="order-2 md:order-1">
+                  <h3 className="font-heading text-[clamp(28px,3.5vw,40px)] font-medium leading-[1.1] md:max-w-[400px]">
                     {p.title}
                   </h3>
                 </div>
-                <p className="font-body text-[1.05rem] leading-[1.7] text-kinome-grey md:px-12">
+                <p className="order-3 font-body text-[clamp(16px,1.1vw,18px)] leading-[1.7] text-kinome-grey md:order-2 md:px-12">
                   {p.body}
                 </p>
-                <div className="font-heading text-[6rem] font-thin leading-none text-kinome-black md:text-[8rem]">
+                <div className="order-1 font-heading text-[clamp(60px,9vw,90px)] font-thin leading-none text-kinome-black md:order-3 md:text-[8rem]">
                   {p.num}
                 </div>
               </li>

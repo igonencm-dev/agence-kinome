@@ -294,7 +294,7 @@ export default function AProposPage() {
                   — cofondateur &amp; directeur marketing
                 </span>
               </h3>
-              <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+              <p className="mb-4 font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
                 Co-fondateur et directeur marketing de Kinome, Mathias a
                 débuté en freelance en bâtissant Codecircle, une agence
                 spécialisée dans le développement web, le SEO et
@@ -303,7 +303,7 @@ export default function AProposPage() {
                 transformation digitale, il a développé une expertise
                 concrète en stratégie de présence en ligne.
               </p>
-              <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+              <p className="mb-4 font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
                 Sa rencontre avec Tanguy a donné naissance à Kinome, une
                 agence de communication 360° basée à Genève. Convaincu que
                 chaque projet mérite une attention personnalisée, Mathias
@@ -316,7 +316,7 @@ export default function AProposPage() {
                 href={contact.social.linkedinMathias}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-heading text-[clamp(15px,1.2vw,18px)] font-bold underline hover:opacity-70"
+                className="font-heading text-[clamp(16px,1.2vw,18px)] font-bold underline hover:opacity-70"
               >
                 LinkedIn
               </a>
@@ -344,14 +344,14 @@ export default function AProposPage() {
                   — cofondateur &amp; directeur de création
                 </span>
               </h3>
-              <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+              <p className="mb-4 font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
                 Fondateur et directeur de Kinome, Tanguy a travaillé au sein
                 de diverses agences de communication à travers le monde
                 (TBWA, Dix-Sept et Enderby à Paris, la RTS à Genève, LMG à
                 Montréal) afin de garantir une expérience riche et complète
                 en création et direction artistique.
               </p>
-              <p className="mb-4 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+              <p className="mb-4 font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
                 Après dix ans en agence, un passage par trois pays (sur deux
                 continents), il a décidé de fonder son propre bureau de
                 communication à Genève, afin de conserver ce lien direct,
@@ -361,7 +361,7 @@ export default function AProposPage() {
                 href={contact.social.linkedinTanguy}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-heading text-[clamp(15px,1.2vw,18px)] font-bold underline hover:opacity-70"
+                className="font-heading text-[clamp(16px,1.2vw,18px)] font-bold underline hover:opacity-70"
               >
                 LinkedIn
               </a>
@@ -393,7 +393,7 @@ export default function AProposPage() {
                   <h3 className="mb-5 font-heading text-[clamp(22px,1.9vw,30px)] font-semibold leading-[1.3] text-kinome-black">
                     {p.title}
                   </h3>
-                  <p className="font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+                  <p className="font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
                     {p.body}
                   </p>
                 </article>
@@ -449,7 +449,7 @@ export default function AProposPage() {
                   <p className="mb-5 font-body text-[clamp(16px,1.35vw,22px)] font-bold leading-[1.55]">
                     {s.lead}
                   </p>
-                  <p className="mb-6 font-body text-[clamp(15px,1.35vw,22px)] font-light leading-[1.55] text-kinome-dark">
+                  <p className="mb-6 font-body text-[clamp(16px,1.35vw,22px)] font-light leading-[1.55] text-kinome-dark">
                     {s.body}
                   </p>
                   <Link
@@ -485,7 +485,7 @@ export default function AProposPage() {
                 key={s.title}
                 className="group flex min-h-[clamp(220px,20vw,320px)] cursor-pointer flex-col items-center gap-[clamp(14px,1.2vw,20px)] rounded-[20px] bg-white p-[clamp(24px,2vw,36px)] text-center text-kinome-black transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]"
               >
-                <div className="flex aspect-square w-full max-w-[clamp(96px,9vw,160px)] flex-shrink-0 items-center justify-center">
+                <div className="flex aspect-square w-full max-w-[clamp(110px,10.5vw,184px)] flex-shrink-0 items-center justify-center">
                   <ServiceIcon name={s.icon} />
                 </div>
                 <h3 className="font-heading text-[clamp(18px,1.6vw,24px)] font-semibold leading-[1.3]">

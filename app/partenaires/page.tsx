@@ -121,7 +121,7 @@ export default function PartenairesPage() {
             <br />
             &amp; des partenaires sur différents territoires
           </h2>
-          <div className="mx-auto max-w-[900px] space-y-5 text-center font-body text-[clamp(15px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
+          <div className="mx-auto max-w-[900px] space-y-5 text-center font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
             <p>
               Fort de notre expérience à l&rsquo;international, nous avons eu
               le privilège de collaborer avec des clients et des partenaires
@@ -229,18 +229,20 @@ export default function PartenairesPage() {
       <Testimonials />
 
       {/* CTA — retour #104 : bug d'affichage du bouton (texte avalé par le
-          fill noir au hover, manque le span z-10 + bascule de couleur). */}
-      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[80px] text-center text-white">
+          fill noir au hover, manque le span z-10 + bascule de couleur).
+          Retour mobile #131 Tanguy : passage en clair (cream + noir) au
+          lieu du fond sombre, plus en ligne avec le reste de la page. */}
+      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-cream px-[5%] py-[80px] text-center text-kinome-black">
         <h2 className="mb-6 font-heading text-[clamp(28px,3vw,44px)] font-normal leading-[1.1]">
           Un projet international&nbsp;?
         </h2>
-        <p className="mx-auto mb-10 max-w-[640px] font-body text-[1.05rem] leading-[1.6] text-white/80">
+        <p className="mx-auto mb-10 max-w-[640px] font-body text-[clamp(16px,1.1vw,19px)] leading-[1.6] text-kinome-grey">
           Mobilisons les bons partenaires pour réussir votre projet, où que
           vous soyez.
         </p>
         <Link
           href="/contact/"
-          className="btn-fill-dark group inline-flex min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
+          className="btn-fill-accent group inline-flex min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105"
         >
           <span className="relative z-10">Discutons-en</span>
         </Link>

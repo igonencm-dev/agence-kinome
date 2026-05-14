@@ -213,7 +213,7 @@ export default function DossierPressePage() {
               <p className="mb-3 font-heading text-[0.85rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
                 Long — 1 description complète
               </p>
-              <p className="font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.65] text-kinome-dark">
+              <p className="font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.65] text-kinome-dark">
                 {boilerplates.long}
               </p>
             </article>
@@ -263,7 +263,7 @@ export default function DossierPressePage() {
                 <p className="mb-5 font-heading text-[0.95rem] font-light italic text-kinome-grey">
                   {f.role}
                 </p>
-                <p className="mb-6 font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.65] text-kinome-dark">
+                <p className="mb-6 font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.65] text-kinome-dark">
                   {f.bio}
                 </p>
                 <a
@@ -354,7 +354,7 @@ export default function DossierPressePage() {
             <br />
             une demande de visuel&nbsp;?
           </h2>
-          <p className="mx-auto mb-10 max-w-[640px] font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.65] text-kinome-cream/80">
+          <p className="mx-auto mb-10 max-w-[640px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.65] text-kinome-cream/80">
             Mathias Igonenc gère les sollicitations presse et médias.
             Réponse sous 24 h ouvrées.
           </p>

@@ -116,7 +116,7 @@ export default function ContactPage() {
             <h2 className="mb-6 font-heading text-[clamp(40px,7.5vw,100px)] font-normal leading-[1.05] text-kinome-black">
               Une trentaine de marques accompagnées depuis Genève
             </h2>
-            <p className="max-w-[480px] font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey lg:mx-0 mx-auto">
+            <p className="max-w-[480px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey lg:mx-0 mx-auto">
               Identités, sites internet, campagnes — de la PME au cabinet de
               conseil, du restaurant à l&rsquo;agence de voyage, des marques
               variées choisissent Kinome pour porter leur image.

@@ -129,9 +129,11 @@ export default function ProcessusPage() {
                 className="flex flex-col items-center gap-10 rounded-[24px] bg-white p-[clamp(40px,4vw,80px)] text-center"
               >
                 {/* Retour #97 : icônes divisées par ~2 (260→130).
+                    Retour Tanguy #126 (mobile) : +15 % de taille — clamp
+                    passe de (90,11vw,130) à (104,12.5vw,150).
                     Nouvelles icônes Tanguy (mai 2026) servies en WebP HQ
                     + PNG fallback via <picture>. */}
-                <div className="flex h-[clamp(90px,11vw,130px)] w-[clamp(90px,11vw,130px)] items-center justify-center text-kinome-dark">
+                <div className="flex h-[clamp(104px,12.5vw,150px)] w-[clamp(104px,12.5vw,150px)] items-center justify-center text-kinome-dark">
                   <picture>
                     <source
                       type="image/webp"
@@ -147,7 +149,7 @@ export default function ProcessusPage() {
                 <h3 className="font-heading text-[clamp(22px,1.9vw,30px)] font-semibold leading-[1.3]">
                   {c.title}
                 </h3>
-                <p className="max-w-[420px] font-body text-[clamp(15px,1.35vw,22px)] font-light leading-[1.55] text-kinome-dark">
+                <p className="max-w-[420px] font-body text-[clamp(16px,1.35vw,22px)] font-light leading-[1.55] text-kinome-dark">
                   {c.body}
                 </p>
               </article>
@@ -192,7 +194,7 @@ export default function ProcessusPage() {
                 <h3 className="mb-8 font-heading text-[clamp(22px,2vw,30px)] font-semibold leading-[1.3]">
                   {e.title}
                 </h3>
-                <p className="font-body text-[clamp(15px,1.1vw,17px)] font-light leading-[1.65] text-kinome-dark">
+                <p className="font-body text-[clamp(16px,1.1vw,17px)] font-light leading-[1.65] text-kinome-dark">
                   {e.body}
                 </p>
               </div>

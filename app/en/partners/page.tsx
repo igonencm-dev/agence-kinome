@@ -102,7 +102,7 @@ export default function PartnersEN() {
             <br />
             &amp; partners across territories
           </h2>
-          <div className="mx-auto max-w-[900px] space-y-5 text-center font-body text-[clamp(15px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
+          <div className="mx-auto max-w-[900px] space-y-5 text-center font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
             <p>
               Building on our international experience, we have had the privilege
               of working with clients and partners across several territories,

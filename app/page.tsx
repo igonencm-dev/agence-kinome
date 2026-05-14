@@ -213,7 +213,7 @@ export default function Home() {
       <section className="mx-auto my-[60px] max-w-[1300px] rounded-[20px] px-[clamp(20px,5vw,60px)] py-[clamp(50px,8vw,80px)]">
         <div className="grid grid-cols-1 items-start gap-20 lg:grid-cols-2">
           <div>
-            <h2 className="mb-10 font-heading text-[clamp(28px,5.2vw,64px)] font-normal leading-[1.1]">
+            <h2 className="mb-10 text-center font-heading text-[clamp(28px,5.2vw,64px)] font-normal leading-[1.1] md:text-left">
               &ldquo;Ki&rdquo; sommes-nous&nbsp;?
             </h2>
             <p className="my-10 font-body text-[1.15rem] leading-[1.6] text-kinome-black">
@@ -260,7 +260,7 @@ export default function Home() {
 
       {/* Préparons ensemble les enjeux de demain */}
       <section className="mx-auto max-w-[1400px] bg-kinome-cream px-[5%] py-[100px]">
-        <h2 className="mb-20 max-w-[600px] font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1]">
+        <h2 className="mx-auto mb-20 max-w-[600px] text-center font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1] md:mx-0 md:text-left">
           Préparons ensemble
           <br />
           les enjeux de demain
@@ -389,7 +389,7 @@ export default function Home() {
       <section className="mx-auto max-w-[1400px] px-[5%] py-[60px]">
         <div className="grid grid-cols-1 items-center gap-[100px] py-[60px] lg:grid-cols-2">
           <div>
-            <h2 className="mb-2 font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
+            <h2 className="mb-2 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1] md:text-left">
               Kinome, c&rsquo;est avant
               <br />
               tout de l&rsquo;émotion&nbsp;!
@@ -437,7 +437,7 @@ export default function Home() {
 
       {/* Les nouvelles (blog) */}
       <section className="mx-auto my-[60px] max-w-[1300px] rounded-[20px] bg-kinome-cream px-[clamp(20px,5vw,60px)] py-[clamp(50px,8vw,80px)]">
-        <h2 className="mb-12 font-heading text-[clamp(24px,4.5vw,48px)] font-normal">
+        <h2 className="mb-12 text-center font-heading text-[clamp(24px,4.5vw,48px)] font-normal md:text-left">
           Les nouvelles
         </h2>
         <div className="flex flex-col">

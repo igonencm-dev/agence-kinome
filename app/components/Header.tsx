@@ -130,6 +130,15 @@ export default function Header() {
   const visible = !isProjet || scrolled || mouseActive;
   const solid = !isHero || scrolled;
 
+  // Retour mobile #134 Tanguy : sur les pages projet (et services), le hero
+  // mobile a été refait en card carrée — pas de plein écran qui justifie un
+  // header transparent. On force donc le header en mode "solid" sur mobile,
+  // tout en gardant le comportement transparent classique en desktop.
+  // forceMobileSolid = true → on applique bg-cream + texte noir sur mobile
+  // via les classes Tailwind, et on remet lg:bg-transparent + lg:text-white
+  // pour les vues desktop si on n'a pas encore scrollé.
+  const forceMobileSolid = (isProjet || isServices) && !solid && !menuOpen;
+
   const altLocale: "fr" | "en" = locale === "fr" ? "en" : "fr";
   const altUrl = getAlternateUrl(pathname);
   const altLabel = altLocale.toUpperCase();
@@ -138,9 +147,12 @@ export default function Header() {
     <>
       <header
         className={`fixed left-0 right-0 top-0 z-[1000] transition-[opacity,transform,background-color,box-shadow] duration-500 ${
-          solid || menuOpen
-            ? "bg-kinome-cream/95 shadow-[0_4px_20px_rgba(0,0,0,0.05)] backdrop-blur"
-            : "bg-transparent"
+          forceMobileSolid
+            ? // mobile = solid, desktop = transparent (sauf scroll)
+              "bg-kinome-cream/95 shadow-[0_4px_20px_rgba(0,0,0,0.05)] backdrop-blur lg:bg-transparent lg:shadow-none lg:backdrop-blur-0"
+            : solid || menuOpen
+              ? "bg-kinome-cream/95 shadow-[0_4px_20px_rgba(0,0,0,0.05)] backdrop-blur"
+              : "bg-transparent"
         } ${
           visible
             ? "opacity-100 translate-y-0 pointer-events-auto"
@@ -160,7 +172,13 @@ export default function Header() {
               width={186}
               height={41}
               priority
-              className={solid || menuOpen ? "[filter:invert(1)]" : ""}
+              className={
+                forceMobileSolid
+                  ? "[filter:invert(1)] lg:[filter:none]"
+                  : solid || menuOpen
+                    ? "[filter:invert(1)]"
+                    : ""
+              }
             />
           </Link>
 
@@ -248,17 +266,29 @@ export default function Header() {
             >
               <span
                 className={`absolute left-0 h-[2.5px] w-full rounded transition-all duration-300 ${
-                  solid || menuOpen ? "bg-kinome-black" : "bg-white"
+                  forceMobileSolid
+                  ? "bg-kinome-black lg:bg-white"
+                  : solid || menuOpen
+                    ? "bg-kinome-black"
+                    : "bg-white"
                 } ${menuOpen ? "top-[8px] rotate-45" : "top-0"}`}
               />
               <span
                 className={`absolute left-0 top-[8px] h-[2.5px] w-full rounded transition-opacity duration-300 ${
-                  solid || menuOpen ? "bg-kinome-black" : "bg-white"
+                  forceMobileSolid
+                  ? "bg-kinome-black lg:bg-white"
+                  : solid || menuOpen
+                    ? "bg-kinome-black"
+                    : "bg-white"
                 } ${menuOpen ? "opacity-0" : "opacity-100"}`}
               />
               <span
                 className={`absolute left-0 h-[2.5px] w-full rounded transition-all duration-300 ${
-                  solid || menuOpen ? "bg-kinome-black" : "bg-white"
+                  forceMobileSolid
+                  ? "bg-kinome-black lg:bg-white"
+                  : solid || menuOpen
+                    ? "bg-kinome-black"
+                    : "bg-white"
                 } ${menuOpen ? "top-[8px] -rotate-45" : "top-[16px]"}`}
               />
             </span>

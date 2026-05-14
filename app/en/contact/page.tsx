@@ -100,7 +100,7 @@ export default function ContactEN() {
             <h2 className="mb-6 font-heading text-[clamp(40px,7.5vw,100px)] font-normal leading-[1.05] text-kinome-black">
               Around thirty brands supported from Geneva
             </h2>
-            <p className="mx-auto max-w-[480px] font-body text-[clamp(15px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey lg:mx-0">
+            <p className="mx-auto max-w-[480px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey lg:mx-0">
               Identities, websites, campaigns — from SMEs to consulting firms,
               restaurants to travel agencies, varied brands choose Kinome to
               carry their image.

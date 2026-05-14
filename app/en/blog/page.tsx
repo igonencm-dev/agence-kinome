@@ -97,7 +97,7 @@ export default function BlogIndexEN() {
                 <h2 className="font-heading text-[clamp(24px,2.8vw,40px)] font-semibold leading-[1.15] text-kinome-black group-hover:text-kinome-accent">
                   {featured.title}
                 </h2>
-                <p className="font-body text-[clamp(15px,1.2vw,17px)] font-light leading-[1.6] text-kinome-grey">
+                <p className="font-body text-[clamp(16px,1.2vw,17px)] font-light leading-[1.6] text-kinome-grey">
                   {featured.excerpt}
                 </p>
                 <span className="mt-2 inline-flex items-center gap-2 font-heading text-[0.95rem] font-semibold text-kinome-black">

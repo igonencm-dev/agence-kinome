@@ -176,7 +176,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
             <h2 className="mb-6 font-heading text-[clamp(20px,2vw,32px)] font-semibold">
               Description
             </h2>
-            <p className="font-body text-[clamp(15px,1.2vw,20px)] font-light leading-[1.6] text-kinome-black">
+            <p className="font-body text-[clamp(16px,1.2vw,20px)] font-light leading-[1.6] text-kinome-black">
               {projet.description ?? projet.resume}
             </p>
           </div>
@@ -210,7 +210,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
             <h2 className="mb-10 font-heading text-[clamp(28px,5vw,76px)] font-normal leading-[1.05]">
               {projet.pointFortTitle}
             </h2>
-            <p className="mx-auto max-w-[1100px] font-body text-[clamp(15px,1.3vw,21px)] font-light leading-[1.55] text-kinome-black">
+            <p className="mx-auto max-w-[1100px] font-body text-[clamp(16px,1.3vw,21px)] font-light leading-[1.55] text-kinome-black">
               {projet.pointFortBody}
             </p>
             <h3 className="mt-[clamp(40px,6vw,80px)] mb-8 font-heading text-[clamp(24px,3.5vw,56px)] font-normal leading-[1.1]">

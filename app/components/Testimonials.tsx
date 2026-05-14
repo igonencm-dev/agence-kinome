@@ -54,7 +54,7 @@ export default function Testimonials({
           className="mb-[clamp(24px,3vw,40px)] block w-full max-w-[480px] rounded-[20px]"
           loading="lazy"
         />
-        <blockquote className="mb-8 max-w-[820px] font-body text-[clamp(15px,1.3vw,20px)] font-light italic leading-[1.6]">
+        <blockquote className="mb-8 max-w-[820px] font-body text-[clamp(16px,1.3vw,20px)] font-light italic leading-[1.6]">
           &ldquo;{review.quote}&rdquo;
         </blockquote>
         <div className="mb-1 font-heading text-[clamp(18px,1.5vw,24px)] font-semibold">
