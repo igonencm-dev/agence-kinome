@@ -61,12 +61,10 @@ export default function PortfolioPage() {
     <main className="px-[5%] pt-[180px] pb-[120px]">
       {/* Hero */}
       <section className="mx-auto max-w-[1400px]">
-        {/* Retour #123 Tanguy : "Enlever le sur-titre". La 1ère ligne
-            "Portfolio de l'agence" faisait doublon avec l'URL /portfolio/.
-            H1 simplifié en une seule ligne, le mot-clé "portfolio" reste
-            présent pour le SEO. */}
         <h1 className="mb-8 font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
-          Notre portfolio à Genève
+          Portfolio de l&rsquo;agence
+          <br />
+          Kinome à Genève
         </h1>
         <p className="mb-10 max-w-[820px] font-body text-[1.4rem] font-light leading-[1.5] text-kinome-black">
           Identités visuelles, créations de logo, sites internet et campagnes :
@@ -171,9 +169,9 @@ export default function PortfolioPage() {
           de fond sombre, plus cohérent avec le reste de la page. */}
       <section className="-mx-[5%] mt-0 bg-kinome-cream px-[5%] py-[clamp(70px,10vw,120px)] text-center text-kinome-black">
         <div className="mx-auto max-w-[900px]">
-          <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
-            Parlons de votre projet
-          </p>
+          {/* Retour #123 Tanguy : le sur-titre "PARLONS DE VOTRE PROJET"
+              (eyebrow uppercase accent) a été supprimé — redondant avec
+              le H2 juste en-dessous. */}
           <h2 className="mb-6 font-heading text-[clamp(28px,4.5vw,52px)] font-normal leading-[1.1]">
             Un nouveau projet à faire éclore&nbsp;?
           </h2>
