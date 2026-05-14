@@ -127,7 +127,7 @@ export default function DossierPressePage() {
       />
 
       {/* Hero */}
-      <section className="px-[5%] pt-[160px] pb-[80px]">
+      <section className="px-[5%] pt-[clamp(110px,16vw,160px)] pb-[80px]">
         <div className="mx-auto max-w-[1200px]">
           <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.18em] text-kinome-accent">
             Kit média
@@ -147,7 +147,7 @@ export default function DossierPressePage() {
       </section>
 
       {/* Stats — bandeau visible + citations LLM */}
-      <section className="bg-kinome-dark px-[5%] py-[80px] text-kinome-cream">
+      <section className="bg-kinome-dark px-[5%] py-[clamp(50px,8vw,80px)] text-kinome-cream">
         <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-10 md:grid-cols-4">
           <div>
             <p className="font-heading text-[clamp(40px,6vw,80px)] font-normal leading-none">
@@ -187,7 +187,7 @@ export default function DossierPressePage() {
       </section>
 
       {/* Boilerplate — 3 longueurs */}
-      <section className="px-[5%] py-[100px]">
+      <section className="px-[5%] py-[clamp(50px,10vw,100px)]">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-12 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1] text-kinome-black">
             Boilerplate prêt à citer
@@ -222,7 +222,7 @@ export default function DossierPressePage() {
       </section>
 
       {/* Faits clés en tableau */}
-      <section className="bg-white px-[5%] py-[100px]">
+      <section className="bg-white px-[5%] py-[clamp(50px,10vw,100px)]">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-12 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1] text-kinome-black">
             Faits-clés
@@ -246,7 +246,7 @@ export default function DossierPressePage() {
       </section>
 
       {/* Cofondateurs */}
-      <section className="px-[5%] py-[100px]">
+      <section className="px-[5%] py-[clamp(50px,10vw,100px)]">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-12 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1] text-kinome-black">
             Cofondateurs
@@ -281,7 +281,7 @@ export default function DossierPressePage() {
       </section>
 
       {/* Secteurs servis */}
-      <section className="bg-white px-[5%] py-[100px]">
+      <section className="bg-white px-[5%] py-[clamp(50px,10vw,100px)]">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-12 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1] text-kinome-black">
             Secteurs servis (avec exemples)
@@ -305,7 +305,7 @@ export default function DossierPressePage() {
       </section>
 
       {/* Logos téléchargeables */}
-      <section className="px-[5%] py-[100px]">
+      <section className="px-[5%] py-[clamp(50px,10vw,100px)]">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-12 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1] text-kinome-black">
             Logos téléchargeables
@@ -344,7 +344,7 @@ export default function DossierPressePage() {
       </section>
 
       {/* Contact presse */}
-      <section className="bg-kinome-dark px-[5%] py-[100px] text-kinome-cream">
+      <section className="bg-kinome-dark px-[5%] py-[clamp(50px,10vw,100px)] text-kinome-cream">
         <div className="mx-auto max-w-[900px] text-center">
           <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.18em] text-kinome-accent">
             Contact presse
@@ -361,14 +361,14 @@ export default function DossierPressePage() {
           <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:gap-10">
             <a
               href={`mailto:${BUSINESS.email}?subject=Demande presse — Agence Kinome`}
-              className="font-heading text-[1.1rem] font-bold underline-offset-4 hover:underline"
+              className="font-heading text-[clamp(16px,1.2vw,18px)] font-bold underline-offset-4 hover:underline"
             >
               {BUSINESS.email}
             </a>
             <span aria-hidden="true" className="text-kinome-cream/30">·</span>
             <a
               href={`tel:${BUSINESS.phone}`}
-              className="font-heading text-[1.1rem] font-bold underline-offset-4 hover:underline"
+              className="font-heading text-[clamp(16px,1.2vw,18px)] font-bold underline-offset-4 hover:underline"
             >
               {BUSINESS.phone}
             </a>

@@ -111,7 +111,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       )}
 
       {/* HERO ÉDITORIAL — fond cream, titre lisible, pas d'image en background */}
-      <section className="pt-[160px] pb-[40px]">
+      <section className="pt-[clamp(110px,16vw,160px)] pb-[40px]">
         <div className="mx-auto max-w-[960px] px-[5%]">
           {/* Breadcrumb */}
           <nav
@@ -239,7 +239,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
                   Écrit par
                 </p>
-                <p className="font-heading text-[1.15rem] font-semibold text-kinome-black">
+                <p className="font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black">
                   L&rsquo;équipe Kinome
                 </p>
                 <p className="mt-1 font-body text-[0.85rem] leading-[1.6] text-kinome-grey">
@@ -254,7 +254,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               </div>
 
               <div className="rounded-[20px] bg-kinome-dark p-6 text-white">
-                <p className="mb-3 font-heading text-[1.05rem] font-semibold leading-[1.3]">
+                <p className="mb-3 font-heading text-[clamp(15px,1.1vw,17px)] font-semibold leading-[1.3]">
                   Un projet en tête&nbsp;?
                 </p>
                 <p className="mb-4 font-body text-[0.85rem] font-light leading-[1.55] text-white/85">
@@ -273,7 +273,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       </section>
 
       {/* Articles liés */}
-      <section className="bg-white py-[100px]">
+      <section className="bg-white py-[clamp(50px,10vw,100px)]">
         <div className="mx-auto max-w-[1300px] px-[5%]">
           <h2 className="mb-12 text-center font-heading text-[clamp(28px,3vw,44px)] font-normal leading-[1.1] text-kinome-black">
             À lire aussi
@@ -297,7 +297,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                   <p className="mb-2 font-body text-[0.8rem] text-kinome-accent">
                     {formatDate(p.date)} · {readingTime(p.articleHtml)} min
                   </p>
-                  <h3 className="font-heading text-[1.05rem] font-semibold leading-[1.3] text-kinome-black group-hover:underline">
+                  <h3 className="font-heading text-[clamp(15px,1.1vw,17px)] font-semibold leading-[1.3] text-kinome-black group-hover:underline">
                     {p.title}
                   </h3>
                 </div>

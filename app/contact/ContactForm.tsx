@@ -84,7 +84,7 @@ export default function ContactForm() {
         <h2 className="mb-4 font-heading text-[2rem] font-semibold">
           Message bien reçu&nbsp;!
         </h2>
-        <p className="mx-auto mb-2 max-w-[400px] font-body text-[1.05rem] font-light leading-[1.6]">
+        <p className="mx-auto mb-2 max-w-[400px] font-body text-[clamp(15px,1.1vw,17px)] font-light leading-[1.6]">
           Merci pour votre message. Mathias ou Tanguy reviendra vers vous sous
           24 à 48 heures ouvrées.
         </p>

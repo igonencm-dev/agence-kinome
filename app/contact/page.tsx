@@ -21,10 +21,10 @@ export const metadata = buildMetadata({
 
 export default function ContactPage() {
   return (
-    <main className="pt-[140px]">
+    <main className="pt-[clamp(100px,14vw,140px)]">
       {/* Bloc principal : adresse + formulaire */}
       <section className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-[5%] py-[40px] lg:grid-cols-[1fr_1.3fr]">
-        <div className="font-body text-[1.15rem] leading-[1.6] text-kinome-black">
+        <div className="font-body text-[clamp(16px,1.3vw,19px)] leading-[1.6] text-kinome-black">
           <h1 className="mb-12 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
             Échangeons.
           </h1>
@@ -130,11 +130,11 @@ export default function ContactPage() {
       <Testimonials />
 
       {/* CTA bas (section "Vous avez un projet ?") */}
-      <section className="mx-auto my-[100px] max-w-[1300px] rounded-[24px] bg-kinome-cream px-[5%] py-[80px] text-center">
+      <section className="mx-auto my-[100px] max-w-[1300px] rounded-[24px] bg-kinome-cream px-[5%] py-[clamp(50px,8vw,80px)] text-center">
         <h2 className="mx-auto mb-6 max-w-[900px] font-heading text-[clamp(24px,4.5vw,48px)] font-normal leading-[1.1]">
           Vous avez un projet sur lequel vous souhaitez échanger&nbsp;?
         </h2>
-        <p className="mx-auto mb-10 max-w-[700px] font-body text-[1.1rem] font-light leading-[1.6] text-kinome-grey">
+        <p className="mx-auto mb-10 max-w-[700px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey">
           Chaque échange est pensé comme le point de départ d&rsquo;une
           collaboration sincère, où la confiance et l&rsquo;engagement commun
           façonnent des résultats à la hauteur de vos ambitions.

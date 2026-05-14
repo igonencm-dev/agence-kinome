@@ -61,7 +61,7 @@ export default function PortfolioEN() {
         );
 
   return (
-    <main className="px-[5%] pt-[180px] pb-[120px]">
+    <main className="px-[5%] pt-[clamp(120px,18vw,180px)] pb-[clamp(60px,12vw,120px)]">
       <section className="mx-auto max-w-[1400px]">
         <h1 className="mb-8 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           Portfolio of Kinome
@@ -88,7 +88,7 @@ export default function PortfolioEN() {
               key={f}
               type="button"
               onClick={() => setActive(f)}
-              className={`min-w-[180px] rounded-full px-8 py-3 font-body text-[1.05rem] font-semibold transition-colors ${
+              className={`min-w-[180px] rounded-full px-8 py-3 font-body text-[clamp(15px,1.1vw,17px)] font-semibold transition-colors ${
                 active === f
                   ? "bg-kinome-black text-white"
                   : "bg-[#f2f2f2] text-kinome-black hover:bg-[#e5e5e5]"

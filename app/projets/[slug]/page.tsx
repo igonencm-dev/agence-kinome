@@ -118,7 +118,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
             verticalement. object-cover croppait et décalait. On passe en
             object-contain avec un padding interne : on voit l'image ENTIÈRE
             centrée dans le carré, peu importe son ratio source. */}
-        <div className="px-[5%] pt-[100px] pb-6 md:hidden">
+        <div className="px-[5%] pt-[clamp(80px,10vw,100px)] pb-6 md:hidden">
           <div className="overflow-hidden rounded-[24px] aspect-square bg-kinome-cream p-4 shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
             <img
               src={heroImg}
@@ -224,7 +224,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
             </h3>
             <Link
               href="/contact/"
-              className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[1.05rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(15px,1.1vw,17px)] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
             >
               Racontez-nous votre projet
             </Link>
@@ -277,7 +277,7 @@ export default async function ProjetPage({ params }: { params: Params }) {
       <Testimonials />
 
       {/* Projets similaires (recommandation basée sur catégories communes) */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mb-12 flex items-end justify-between gap-8">
           <h2 className="font-heading text-[clamp(28px,3vw,48px)] font-normal leading-[1.1]">
             Vous aimerez aussi

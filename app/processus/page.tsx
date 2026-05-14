@@ -59,7 +59,7 @@ export default function ProcessusPage() {
   return (
     <main>
       {/* Hero — fond cream, titre + Abstract Art */}
-      <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
+      <section className="bg-kinome-cream px-[5%] pt-[clamp(120px,18vw,180px)] pb-[clamp(50px,10vw,100px)]">
         <div className="mx-auto grid max-w-[1588px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
           <h1 className="max-w-[900px] font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.12] text-kinome-dark">
             Un processus conçu pour comprendre pleinement votre projet
@@ -77,7 +77,7 @@ export default function ProcessusPage() {
       {/* Tout commence par un appel — fond blanc.
           Retour #96 : illustration agrandie ×2.5 pour s'aligner visuellement
           avec les autres illustrations du processus. */}
-      <section className="bg-white px-[5%] py-[120px]">
+      <section className="bg-white px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div className="flex justify-center lg:justify-start">
             <img
@@ -115,7 +115,7 @@ export default function ProcessusPage() {
       </section>
 
       {/* Définissons ensemble vos besoins — fond cream, 2 cards */}
-      <section className="bg-kinome-cream px-[5%] py-[120px]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="mx-auto mb-16 max-w-[1100px] text-center font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Définissons ensemble
@@ -159,7 +159,7 @@ export default function ProcessusPage() {
       </section>
 
       {/* Le processus de conception — 3 étapes numérotées avec photos */}
-      <section className="bg-white px-[5%] py-[120px]">
+      <section className="bg-white px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="mb-20 font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Le processus
@@ -207,21 +207,21 @@ export default function ProcessusPage() {
       <Testimonials />
 
       {/* CTA contact */}
-      <section className="bg-kinome-cream px-[5%] py-[120px]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1100px] text-center">
           <h2 className="mx-auto mb-8 max-w-[1000px] font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Vous avez un projet sur lequel
             <br className="hidden md:inline" />
             vous souhaitez échanger&nbsp;?
           </h2>
-          <p className="mx-auto mb-10 max-w-[700px] font-body text-[1.1rem] font-light leading-[1.6] text-kinome-dark">
+          <p className="mx-auto mb-10 max-w-[700px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.6] text-kinome-dark">
             Chaque échange est pensé comme le point de départ d&rsquo;une
             collaboration sincère, où la confiance et l&rsquo;engagement
             commun façonnent des résultats à la hauteur de vos ambitions.
           </p>
           <Link
             href="/contact/"
-            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[1.05rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(15px,1.1vw,17px)] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Contactez-nous
           </Link>

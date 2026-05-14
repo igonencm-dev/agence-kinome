@@ -74,7 +74,7 @@ export default function PartenairesPage() {
   return (
     <main>
       {/* Hero — H1 standardisé sur le standard du site */}
-      <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
+      <section className="bg-kinome-cream px-[5%] pt-[clamp(120px,18vw,180px)] pb-[clamp(50px,10vw,100px)]">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
           <h1 className="text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black lg:text-left">
             Kinome travaille avec de nombreux consultants, et ça fait
@@ -102,7 +102,7 @@ export default function PartenairesPage() {
       {/* Une expérience internationale — section avec la carte du monde en fond.
           Retour #102 : carte plus visible (opacité 0.3 → 0.55) pour
           retrouver l'effet apprécié par Tanguy. */}
-      <section className="relative overflow-hidden bg-kinome-cream px-[5%] py-[120px]">
+      <section className="relative overflow-hidden bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-55"
@@ -146,7 +146,7 @@ export default function PartenairesPage() {
       </section>
 
       {/* Liste des partenaires */}
-      <section className="bg-kinome-cream px-[5%] py-[120px]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="mb-16 text-center font-heading text-[clamp(28px,4vw,56px)] font-normal leading-[1.1] text-kinome-black">
             Nos partenaires
@@ -232,7 +232,7 @@ export default function PartenairesPage() {
           fill noir au hover, manque le span z-10 + bascule de couleur).
           Retour mobile #131 Tanguy : passage en clair (cream + noir) au
           lieu du fond sombre, plus en ligne avec le reste de la page. */}
-      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-cream px-[5%] py-[80px] text-center text-kinome-black">
+      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-cream px-[5%] py-[clamp(50px,8vw,80px)] text-center text-kinome-black">
         <h2 className="mb-6 font-heading text-[clamp(28px,3vw,44px)] font-normal leading-[1.1]">
           Un projet international&nbsp;?
         </h2>

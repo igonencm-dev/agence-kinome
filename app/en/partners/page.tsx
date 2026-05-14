@@ -68,7 +68,7 @@ const partners: Partner[] = [
 export default function PartnersEN() {
   return (
     <main>
-      <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
+      <section className="bg-kinome-cream px-[5%] pt-[clamp(120px,18vw,180px)] pb-[clamp(50px,10vw,100px)]">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
           <h1 className="font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black">
             Kinome works with many consultants, and that's a pleasure!
@@ -83,7 +83,7 @@ export default function PartnersEN() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-kinome-cream px-[5%] py-[120px]">
+      <section className="relative overflow-hidden bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-30"
@@ -119,7 +119,7 @@ export default function PartnersEN() {
         </div>
       </section>
 
-      <section className="bg-kinome-cream px-[5%] py-[120px]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="mb-16 text-center font-heading text-[clamp(26px,4vw,56px)] font-normal leading-[1.1] text-kinome-black">
             Our partners
@@ -170,11 +170,11 @@ export default function PartnersEN() {
 
       <Testimonials />
 
-      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[80px] text-center text-white">
+      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[clamp(50px,8vw,80px)] text-center text-white">
         <h2 className="mb-6 font-heading text-[clamp(28px,3vw,44px)] font-normal leading-[1.1]">
           An international project?
         </h2>
-        <p className="mx-auto mb-10 max-w-[640px] font-body text-[1.05rem] leading-[1.6] text-white/80">
+        <p className="mx-auto mb-10 max-w-[640px] font-body text-[clamp(15px,1.1vw,17px)] leading-[1.6] text-white/80">
           Let's mobilise the right partners to make your project succeed — wherever you are.
         </p>
         <Link

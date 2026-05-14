@@ -33,7 +33,7 @@ export default function Testimonials({
   const review = reviews[0];
   const paddingClass =
     variant === "compact"
-      ? "py-[80px]"
+      ? "py-[clamp(50px,8vw,80px)]"
       : "py-[clamp(80px,12vw,140px)]";
 
   return (

@@ -185,7 +185,7 @@ export default function Home() {
               Agence de communication{" "}
               <br className="hidden md:inline" />à Genève — <HeroAnimatedWord />
             </h1>
-            <p className="mb-[35px] max-w-[520px] text-center text-[1.15rem] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] md:text-left">
+            <p className="mb-[35px] max-w-[520px] text-center text-[clamp(16px,1.3vw,19px)] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] md:text-left">
               Branding, identité visuelle et sites internet{" "}
               <br className="hidden md:inline" />
               en alliant stratégie et émotion, depuis la Suisse romande.
@@ -220,7 +220,7 @@ export default function Home() {
             <h2 className="mb-10 text-center font-heading text-[clamp(28px,5.2vw,64px)] font-normal leading-[1.1] md:text-left">
               &ldquo;Ki&rdquo; sommes-nous&nbsp;?
             </h2>
-            <p className="my-10 font-body text-[1.15rem] leading-[1.6] text-kinome-black">
+            <p className="my-10 font-body text-[clamp(16px,1.3vw,19px)] leading-[1.6] text-kinome-black">
               Cette approche humaine et exigeante permet de créer des projets{" "}
               <strong className="font-semibold">cohérents</strong>, porteurs de
               sens, et pensés pour s&rsquo;inscrire durablement dans le temps.
@@ -234,18 +234,18 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <p className="mb-5 font-body text-[1.1rem] leading-[1.6] text-kinome-grey">
+            <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.6] text-kinome-grey">
               Kinome est une jeune agence créative et polyvalente, spécialisée
               en identité, campagne et website.
             </p>
-            <p className="mb-5 font-body text-[1.1rem] leading-[1.6] text-kinome-grey">
+            <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.6] text-kinome-grey">
               Notre volonté est de faire du beau, du moderne et de
               l&rsquo;original. De garder, d&rsquo;entretenir et de conserver
               ce lien direct avec nos clients, sans passer par un prestataire.
               Enfin, de collaborer avec d&rsquo;autres talents dont les
               spécialités assureraient la réussite de vos projets.
             </p>
-            <p className="mb-8 font-body text-[1.1rem] leading-[1.6] text-kinome-grey">
+            <p className="mb-8 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.6] text-kinome-grey">
               La transparence et l&rsquo;honnêteté sont placées au cœur de
               notre philosophie. Une communication claire est maintenue, et
               des attentes réalistes sont établies. Vous êtes informés en
@@ -263,7 +263,7 @@ export default function Home() {
       </section>
 
       {/* Préparons ensemble les enjeux de demain */}
-      <section className="mx-auto max-w-[1400px] bg-kinome-cream px-[5%] py-[100px]">
+      <section className="mx-auto max-w-[1400px] bg-kinome-cream px-[5%] py-[clamp(50px,10vw,100px)]">
         <h2 className="mx-auto mb-20 max-w-[600px] text-center font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1] md:mx-0 md:text-left">
           Préparons ensemble
           <br className="hidden md:inline" />
@@ -296,7 +296,7 @@ export default function Home() {
               <p className="mb-5 font-body text-[1rem] leading-[1.75] text-kinome-grey">
                 {bloc.body}
               </p>
-              <p className="mb-8 font-body text-[1.1rem] leading-[1.5] text-kinome-black">
+              <p className="mb-8 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.5] text-kinome-black">
                 <strong className="font-bold">Notre objectif&nbsp;:</strong>{" "}
                 {bloc.objectif}
               </p>
@@ -312,7 +312,7 @@ export default function Home() {
       </section>
 
       {/* Notre expertise & notre accompagnement */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
         <h2 className="mb-20 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Notre expertise
           <br className="hidden md:inline" />
@@ -377,7 +377,7 @@ export default function Home() {
       <LogosMarquee />
 
       {/* CTA processus */}
-      <section className="px-[5%] py-[140px] text-center">
+      <section className="px-[5%] py-[clamp(70px,14vw,140px)] text-center">
         <h2 className="mx-auto mb-16 max-w-[1000px] font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1]">
           Parlons de ce dont vous avez besoin, avant ce que nous offrons&nbsp;!
         </h2>
@@ -417,14 +417,14 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <p className="mb-6 font-body text-[1.05rem] leading-[1.8] text-kinome-grey">
+            <p className="mb-6 font-body text-[clamp(15px,1.1vw,17px)] leading-[1.8] text-kinome-grey">
               En optant pour nos services, c&rsquo;est la garantie d&rsquo;avoir
               un projet de communication fort et abouti, aussi bien en print
               qu&rsquo;en digital. C&rsquo;est l&rsquo;assurance d&rsquo;avoir
               de l&rsquo;impact sur le public cible, et de remplir vos
               objectifs de communication.
             </p>
-            <p className="font-body text-[1.05rem] leading-[1.8] text-kinome-grey">
+            <p className="font-body text-[clamp(15px,1.1vw,17px)] leading-[1.8] text-kinome-grey">
               Nous choisir, c&rsquo;est avoir la qualité attendue en agence,
               mais à taille humaine. De par notre contact direct avec le
               client, nous sommes plus à même de prendre en compte les besoins
@@ -454,7 +454,7 @@ export default function Home() {
                 {String(i + 1).padStart(2, "0")}
               </div>
               <div>
-                <h3 className="mb-2 font-heading text-[1.15rem] font-semibold text-kinome-black">
+                <h3 className="mb-2 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black">
                   {n.title}
                 </h3>
                 <p className="m-0 font-body text-[0.92rem] leading-[1.6] text-kinome-grey">
@@ -482,12 +482,12 @@ export default function Home() {
 
       {/* Contact */}
       <div id="contact">
-        <section className="px-[5%] pt-[120px] pb-10 text-center">
+        <section className="px-[5%] pt-[clamp(90px,12vw,120px)] pb-10 text-center">
           <h2 className="mx-auto max-w-[900px] font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
             Vous avez un projet sur lequel vous souhaitez échanger&nbsp;?
           </h2>
         </section>
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-20 px-[5%] pb-[120px] lg:grid-cols-[1fr_1.5fr]">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-20 px-[5%] pb-[clamp(60px,12vw,120px)] lg:grid-cols-[1fr_1.5fr]">
           <div>
             <h3 className="mb-12 font-heading text-[2.8rem] font-bold">
               Kinome
@@ -496,7 +496,7 @@ export default function Home() {
               <strong className="mb-2 block text-[0.9rem] uppercase text-[#888]">
                 Mathias
               </strong>
-              <p className="m-0 font-body text-[1.1rem] text-kinome-grey">
+              <p className="m-0 font-body text-[clamp(16px,1.2vw,18px)] text-kinome-grey">
                 <a
                   href={`mailto:${contact.emails.mathias}`}
                   className="hover:underline"
@@ -516,7 +516,7 @@ export default function Home() {
               <strong className="mb-2 block text-[0.9rem] uppercase text-[#888]">
                 Tanguy
               </strong>
-              <p className="m-0 font-body text-[1.1rem] text-kinome-grey">
+              <p className="m-0 font-body text-[clamp(16px,1.2vw,18px)] text-kinome-grey">
                 <a
                   href={`mailto:${contact.emails.tanguy}`}
                   className="hover:underline"
@@ -536,7 +536,7 @@ export default function Home() {
               <strong className="mb-2 block text-[0.9rem] uppercase text-[#888]">
                 Suivez-nous
               </strong>
-              <p className="m-0 flex flex-col gap-1 font-body text-[1.1rem] text-kinome-grey">
+              <p className="m-0 flex flex-col gap-1 font-body text-[clamp(16px,1.2vw,18px)] text-kinome-grey">
                 <a
                   href={contact.social.linkedinAgence}
                   target="_blank"
@@ -562,7 +562,7 @@ export default function Home() {
       </div>
 
       {/* FAQ — questions posées sur Kinome (AEO + GEO Genève) */}
-      <section className="mx-auto max-w-[1100px] px-[5%] py-[120px]">
+      <section className="mx-auto max-w-[1100px] px-[5%] py-[clamp(60px,12vw,120px)]">
         <h2 className="mb-12 text-center font-heading text-[clamp(24px,4.5vw,48px)] font-normal leading-[1.1]">
           Questions fréquentes
         </h2>
@@ -572,7 +572,7 @@ export default function Home() {
               key={item.question}
               className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
             >
-              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[1.15rem] font-semibold text-kinome-black list-none">
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
                 <span>{item.question}</span>
                 <span
                   aria-hidden="true"

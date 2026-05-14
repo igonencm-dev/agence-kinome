@@ -43,12 +43,12 @@ export default function ServicesEN() {
     <main>
       <ServicesHero />
 
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mb-16 flex flex-wrap justify-center gap-4">
           <button
             type="button"
             onClick={() => setTab("design")}
-            className={`rounded-full px-12 py-3 font-body text-[1.1rem] font-medium transition-colors ${
+            className={`rounded-full px-12 py-3 font-body text-[clamp(16px,1.2vw,18px)] font-medium transition-colors ${
               tab === "design"
                 ? "bg-kinome-black text-white"
                 : "bg-[#f2f2f2] text-kinome-black hover:bg-[#e5e5e5]"
@@ -59,7 +59,7 @@ export default function ServicesEN() {
           <button
             type="button"
             onClick={() => setTab("web")}
-            className={`rounded-full px-12 py-3 font-body text-[1.1rem] font-medium transition-colors ${
+            className={`rounded-full px-12 py-3 font-body text-[clamp(16px,1.2vw,18px)] font-medium transition-colors ${
               tab === "web"
                 ? "bg-kinome-black text-white"
                 : "bg-[#f2f2f2] text-kinome-black hover:bg-[#e5e5e5]"
@@ -86,11 +86,11 @@ export default function ServicesEN() {
         </div>
       </section>
 
-      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[80px] text-center text-white">
+      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[clamp(50px,8vw,80px)] text-center text-white">
         <h2 className="mb-6 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1]">
           A project in mind?
         </h2>
-        <p className="mx-auto mb-10 max-w-[640px] font-body text-[1.05rem] leading-[1.6] text-white/80">
+        <p className="mx-auto mb-10 max-w-[640px] font-body text-[clamp(15px,1.1vw,17px)] leading-[1.6] text-white/80">
           Tell us about your challenges and constraints — we'll come back with a structured proposal.
         </p>
         <div className="flex flex-wrap justify-center gap-4">

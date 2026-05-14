@@ -10,8 +10,8 @@ export const metadata = buildMetadata({
 
 export default function LegalEN() {
   return (
-    <main className="bg-kinome-cream pt-[160px]">
-      <article className="mx-auto max-w-[820px] px-[5%] pb-[120px]">
+    <main className="bg-kinome-cream pt-[clamp(110px,16vw,160px)]">
+      <article className="mx-auto max-w-[820px] px-[5%] pb-[clamp(60px,12vw,120px)]">
         <h1 className="mb-10 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1] text-kinome-black">
           Legal notice
         </h1>

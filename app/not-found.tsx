@@ -18,7 +18,7 @@ const suggestions = [
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-kinome-cream px-[5%] py-[120px]">
+    <main className="flex min-h-screen items-center justify-center bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
       <div className="mx-auto max-w-[820px] text-center">
         {/* Glyphe 404 — gros, en accent cream */}
         <p

@@ -241,7 +241,7 @@ export default function AProposPage() {
       />
 
       {/* Hero — 2 colonnes : titre + Visual Diary */}
-      <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
+      <section className="bg-kinome-cream px-[5%] pt-[clamp(120px,18vw,180px)] pb-[clamp(50px,10vw,100px)]">
         <div className="mx-auto grid max-w-[1588px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
           <h1 className="max-w-[900px] font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.12] text-kinome-black">
             Kinome, l&rsquo;agence de communication qui vous accompagne avec

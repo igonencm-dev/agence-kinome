@@ -58,7 +58,7 @@ export default function PortfolioPage() {
         );
 
   return (
-    <main className="px-[5%] pt-[180px] pb-[120px]">
+    <main className="px-[5%] pt-[clamp(120px,18vw,180px)] pb-[clamp(60px,12vw,120px)]">
       {/* Hero */}
       <section className="mx-auto max-w-[1400px]">
         <h1 className="mb-8 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
@@ -90,7 +90,7 @@ export default function PortfolioPage() {
               key={f}
               type="button"
               onClick={() => setActif(f)}
-              className={`min-w-[180px] rounded-full px-8 py-3 font-body text-[1.05rem] font-semibold transition-colors ${
+              className={`min-w-[180px] rounded-full px-8 py-3 font-body text-[clamp(15px,1.1vw,17px)] font-semibold transition-colors ${
                 actif === f
                   ? "bg-kinome-black text-white"
                   : "bg-[#dfdbd0] text-kinome-black hover:bg-[#cbc6b8]"
@@ -118,7 +118,7 @@ export default function PortfolioPage() {
                 {/* Voile subtil + flèche au hover */}
                 <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
                 <div className="absolute right-4 bottom-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-kinome-black opacity-0 transition-[opacity,transform] duration-500 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
-                  <span aria-hidden="true" className="font-heading text-[1.1rem]">→</span>
+                  <span aria-hidden="true" className="font-heading text-[clamp(16px,1.2vw,18px)]">→</span>
                 </div>
               </div>
               <div className="px-6 py-5">

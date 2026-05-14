@@ -41,7 +41,7 @@ const steps = [
 export default function ProcessEN() {
   return (
     <main>
-      <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
+      <section className="bg-kinome-cream px-[5%] pt-[clamp(120px,18vw,180px)] pb-[clamp(50px,10vw,100px)]">
         <div className="mx-auto max-w-[1400px]">
           <h1 className="max-w-[900px] font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.12] text-kinome-dark">
             A process designed to fully understand your project.
@@ -53,7 +53,7 @@ export default function ProcessEN() {
         </div>
       </section>
 
-      <section className="bg-white px-[5%] py-[120px]">
+      <section className="bg-white px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1100px]">
           <ol className="flex flex-col gap-6">
             {steps.map((s) => (
@@ -64,7 +64,7 @@ export default function ProcessEN() {
                 <h2 className="font-heading text-[clamp(22px,2.4vw,36px)] font-medium leading-[1.1] md:max-w-[400px]">
                   {s.title}
                 </h2>
-                <p className="font-body text-[1.05rem] leading-[1.7] text-kinome-grey md:px-12">
+                <p className="font-body text-[clamp(15px,1.1vw,17px)] leading-[1.7] text-kinome-grey md:px-12">
                   {s.body}
                 </p>
                 <div className="font-heading text-[6rem] font-thin leading-none text-kinome-black md:text-[8rem]">
@@ -78,11 +78,11 @@ export default function ProcessEN() {
 
       <Testimonials />
 
-      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[80px] text-center text-white">
+      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[clamp(50px,8vw,80px)] text-center text-white">
         <h2 className="mb-6 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1]">
           Want to start your project?
         </h2>
-        <p className="mx-auto mb-10 max-w-[640px] font-body text-[1.1rem] font-light leading-[1.6] text-white/85">
+        <p className="mx-auto mb-10 max-w-[640px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.6] text-white/85">
           Free discovery call, response within 48 hours. We discuss your
           challenges and come back with a clear proposal.
         </p>

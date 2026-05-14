@@ -123,14 +123,14 @@ export default function ServicesPage() {
       <ServicesHero />
 
       {/* Onglets services */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[120px]">
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mb-16 flex flex-wrap justify-center gap-4">
           {/* Couleur retours #90 : passer du gris froid #f2f2f2 au beige
               chaud #dfdbd0 (cohérence avec la charte cream/sable Kinome). */}
           <button
             type="button"
             onClick={() => setOnglet("crea")}
-            className={`rounded-full px-12 py-3 font-body text-[1.1rem] font-medium transition-colors ${
+            className={`rounded-full px-12 py-3 font-body text-[clamp(16px,1.2vw,18px)] font-medium transition-colors ${
               onglet === "crea"
                 ? "bg-kinome-black text-white"
                 : "bg-[#dfdbd0] text-kinome-black hover:bg-[#cbc6b8]"
@@ -141,7 +141,7 @@ export default function ServicesPage() {
           <button
             type="button"
             onClick={() => setOnglet("web")}
-            className={`rounded-full px-12 py-3 font-body text-[1.1rem] font-medium transition-colors ${
+            className={`rounded-full px-12 py-3 font-body text-[clamp(16px,1.2vw,18px)] font-medium transition-colors ${
               onglet === "web"
                 ? "bg-kinome-black text-white"
                 : "bg-[#dfdbd0] text-kinome-black hover:bg-[#cbc6b8]"
@@ -214,7 +214,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Aperçu projets */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[100px]">
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(50px,10vw,100px)]">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {projetsApercu.map((p) => (
             <Link
@@ -241,7 +241,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Pourquoi nous choisir — 6 raisons */}
-      <section className="bg-kinome-cream px-[5%] py-[120px]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="mb-16 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
             Pourquoi choisir Kinome&nbsp;?
@@ -282,7 +282,7 @@ export default function ServicesPage() {
       </section>
 
       {/* FAQ — questions fréquentes services (AEO) */}
-      <section className="mx-auto max-w-[1100px] px-[5%] py-[100px]">
+      <section className="mx-auto max-w-[1100px] px-[5%] py-[clamp(50px,10vw,100px)]">
         <h2 className="mb-12 text-center font-heading text-[clamp(24px,4.5vw,48px)] font-normal leading-[1.1]">
           Questions fréquentes sur nos services
         </h2>
@@ -309,7 +309,7 @@ export default function ServicesPage() {
               key={q}
               className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
             >
-              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[1.15rem] font-semibold text-kinome-black list-none">
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
                 <span>{q}</span>
                 <span
                   aria-hidden="true"
@@ -331,7 +331,7 @@ export default function ServicesPage() {
         <h2 className="mb-6 font-heading text-[2.8rem] font-normal leading-[1.1]">
           Un projet en tête&nbsp;?
         </h2>
-        <p className="mx-auto mb-10 max-w-[640px] font-body text-[1.05rem] leading-[1.6] text-white/80">
+        <p className="mx-auto mb-10 max-w-[640px] font-body text-[clamp(15px,1.1vw,17px)] leading-[1.6] text-white/80">
           Parlez-nous de vos enjeux et de vos contraintes : nous reviendrons
           vers vous avec une proposition cadrée.
         </p>

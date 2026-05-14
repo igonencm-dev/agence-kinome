@@ -69,7 +69,7 @@ export default function BlogIndexPage() {
       />
 
       {/* Hero éditorial — sobre, sans pré-header chiffré */}
-      <section className="mx-auto max-w-[1300px] px-[5%] pt-[180px] pb-[70px]">
+      <section className="mx-auto max-w-[1300px] px-[5%] pt-[clamp(120px,18vw,180px)] pb-[70px]">
         <h1 className="mb-6 text-center font-heading text-[clamp(40px,8vw,84px)] font-normal leading-[1.05] text-kinome-black md:text-left">
           Communication
           <br className="hidden md:inline" />
@@ -137,7 +137,7 @@ export default function BlogIndexPage() {
 
       {/* Grille des autres articles — affichés à 3 par ligne en desktop */}
       {others.length > 0 && (
-        <section className="mx-auto max-w-[1300px] px-[5%] pb-[120px]">
+        <section className="mx-auto max-w-[1300px] px-[5%] pb-[clamp(60px,12vw,120px)]">
           <h2 className="mb-12 font-heading text-[clamp(22px,2.2vw,30px)] font-normal leading-[1.2] text-kinome-black">
             Tous nos articles
           </h2>
@@ -200,7 +200,7 @@ export default function BlogIndexPage() {
 
       {/* CTA contact en bas */}
       <section className="bg-white">
-        <div className="mx-auto max-w-[1100px] px-[5%] py-[120px] text-center">
+        <div className="mx-auto max-w-[1100px] px-[5%] py-[clamp(60px,12vw,120px)] text-center">
           <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
             Discutons
           </p>

@@ -22,7 +22,7 @@ const principles = [
 export default function AboutEN() {
   return (
     <main>
-      <section className="bg-kinome-cream px-[5%] pt-[180px] pb-[100px]">
+      <section className="bg-kinome-cream px-[5%] pt-[clamp(120px,18vw,180px)] pb-[clamp(50px,10vw,100px)]">
         <div className="mx-auto grid max-w-[1588px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
           <h1 className="max-w-[900px] font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.12] text-kinome-black">
             Kinome, the communication agency that walks with you with sincerity.
@@ -33,7 +33,7 @@ export default function AboutEN() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[100px]">
+      <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(50px,10vw,100px)]">
         <h2 className="mb-16 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Our principles
         </h2>
@@ -51,7 +51,7 @@ export default function AboutEN() {
         </div>
       </section>
 
-      <section className="bg-kinome-cream px-[5%] py-[100px]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(50px,10vw,100px)]">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-16 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
             Meet the team
@@ -133,7 +133,7 @@ export default function AboutEN() {
 
       <Testimonials />
 
-      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[80px] text-center text-white">
+      <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[clamp(50px,8vw,80px)] text-center text-white">
         <h2 className="mb-6 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1]">
           Want to start a project?
         </h2>
