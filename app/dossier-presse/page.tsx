@@ -68,7 +68,7 @@ const facts = [
   { label: "Année de fondation", value: SITE.founded },
   { label: "Siège", value: `${BUSINESS.city}, ${BUSINESS.countryName}` },
   { label: "Cofondateurs", value: "Mathias Igonenc & Tanguy Deniel" },
-  { label: "Effectif", value: "2 cofondateurs + réseau de 6 partenaires créatifs internationaux" },
+  { label: "Effectif", value: "2 cofondateurs + réseau de 4 partenaires créatifs internationaux" },
   { label: "Zones desservies", value: BUSINESS.areaServed.join(" · ") },
   { label: "Langues de travail", value: "Français, anglais" },
   { label: "Téléphone", value: BUSINESS.phone },
