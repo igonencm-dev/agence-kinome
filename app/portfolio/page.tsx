@@ -61,10 +61,12 @@ export default function PortfolioPage() {
     <main className="px-[5%] pt-[180px] pb-[120px]">
       {/* Hero */}
       <section className="mx-auto max-w-[1400px]">
+        {/* Retour #123 Tanguy : "Enlever le sur-titre". La 1ère ligne
+            "Portfolio de l'agence" faisait doublon avec l'URL /portfolio/.
+            H1 simplifié en une seule ligne, le mot-clé "portfolio" reste
+            présent pour le SEO. */}
         <h1 className="mb-8 font-heading text-[clamp(30px,5.5vw,76px)] font-normal leading-[1.05] text-kinome-black">
-          Portfolio de l&rsquo;agence
-          <br />
-          Kinome à Genève
+          Notre portfolio à Genève
         </h1>
         <p className="mb-10 max-w-[820px] font-body text-[1.4rem] font-light leading-[1.5] text-kinome-black">
           Identités visuelles, créations de logo, sites internet et campagnes :
