@@ -131,6 +131,7 @@ export function buildMetadata({
     "/partenaires/": "/en/partners/",
     "/mentions-legales/": "/en/legal/",
     "/politique-de-confidentialite/": "/en/privacy/",
+    "/dossier-presse/": "/en/press-kit/",
   };
   const EN_TO_FR = Object.fromEntries(
     Object.entries(FR_TO_EN).map(([fr, en]) => [en, fr])
