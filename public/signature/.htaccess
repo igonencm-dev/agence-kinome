@@ -1,0 +1,12 @@
+# Empêche l'indexation des assets de signature mail.
+# Ces images sont servies uniquement aux destinataires des emails de Mathias —
+# elles ne doivent jamais apparaître dans les SERP ni dans Google Images.
+#
+# Triple protection :
+#  1. /robots.txt déclare `Disallow: /signature/` (bots conformes)
+#  2. Aucune référence à /signature/ dans le sitemap ni dans le HTML public
+#  3. X-Robots-Tag (ci-dessous) : si quelqu'un trouve l'URL et la partage,
+#     Google la lit mais ne l'indexe pas — c'est la ceinture après les bretelles.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, noimageindex, nofollow, noarchive"
+</IfModule>

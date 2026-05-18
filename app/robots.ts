@@ -20,7 +20,10 @@ export const dynamic = "force-static";
 export default function robots(): MetadataRoute.Robots {
   const commonRule = {
     allow: "/",
-    disallow: ["/api/", "/_next/"],
+    // `/signature/` héberge les assets de la signature mail de Mathias.
+    // On ne veut pas que ces images soient indexées ni associées au site
+    // dans les SERP / images.
+    disallow: ["/api/", "/_next/", "/signature/"],
   };
 
   return {
