@@ -58,7 +58,14 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
   const minutes = readingTime(post.articleHtml);
 
-  // JSON-LD
+  // Author par défaut = Mathias (directeur marketing = éditeur en chef du blog).
+  // Chaque article peut surcharger via `authorSlug` dans lib/blog.ts.
+  const authorSlug = post.authorSlug ?? "mathias";
+
+  // JSON-LD BlogPosting enrichi (E-E-A-T) :
+  // - author pointe vers le Person Schema (Mathias ou Tanguy) au lieu de
+  //   l'Organization — signal d'expertise + autorité personnelle pour Google
+  // - dateModified utilise lastModified si fourni, sinon date de publication
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -72,8 +79,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       height: 750,
     },
     datePublished: post.date,
-    dateModified: post.date,
-    author: { "@id": `${SITE.url}/#organization` },
+    dateModified: post.lastModified ?? post.date,
+    author: { "@id": `${SITE.url}/a-propos/#${authorSlug}` },
     publisher: { "@id": `${SITE.url}/#organization` },
     mainEntityOfPage: `${SITE.url}/blog/${post.slug}/`,
     inLanguage: "fr",

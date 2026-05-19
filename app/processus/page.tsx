@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Testimonials from "../components/Testimonials";
-import { buildMetadata } from "../lib/seo";
+import { buildMetadata, jsonLdScript, SITE } from "../lib/seo";
 import ResponsiveBr from "../components/ResponsiveBr";
 
 export const metadata = buildMetadata({
@@ -32,6 +32,72 @@ const cadrageCards = [
   },
 ];
 
+// JSON-LD HowTo : représente le processus Kinome en 5 étapes structurées.
+// Format Schema.org HowTo → Google peut extraire les étapes en rich snippet
+// "Comment se déroule…" et les LLMs (ChatGPT, Claude, Perplexity) citent
+// directement les étapes en réponse aux questions process.
+const howToLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Comment se déroule un projet avec l'Agence Kinome",
+  description:
+    "Le processus de l'Agence Kinome pour vos projets de communication, branding et création de site internet à Genève : 5 étapes transparentes du cadrage à la livraison.",
+  inLanguage: "fr",
+  totalTime: "P56D", // ~8 semaines moyennes pour un projet branding complet
+  estimatedCost: {
+    "@type": "MonetaryAmount",
+    currency: "CHF",
+    value: "3000-25000",
+  },
+  supply: [
+    { "@type": "HowToSupply", name: "Brief client" },
+    { "@type": "HowToSupply", name: "Références et inspirations" },
+    { "@type": "HowToSupply", name: "Contenus existants (textes, photos, logo)" },
+  ],
+  tool: [
+    { "@type": "HowToTool", name: "Visioconférence (appel découverte)" },
+    { "@type": "HowToTool", name: "Direction artistique sur-mesure" },
+    { "@type": "HowToTool", name: "Outils de design professionnels" },
+  ],
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "L'appel découverte",
+      text: "Un appel ou visio de 30 minutes pour faire connaissance, comprendre votre projet, vos objectifs et vos contraintes. Gratuit et sans engagement.",
+      url: `${SITE.url}/processus/#appel`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "Le cadrage et la signature du contrat",
+      text: "Cadrage détaillé du projet (livrables, délais, budget) et signature du contrat qui formalise l'accord entre les parties.",
+      url: `${SITE.url}/processus/#cadrage`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Présentation de la direction artistique",
+      text: "Présentation de la vision créative : inspirations, références stylistiques, choix esthétiques, couleurs, typographies. Validation de la direction avant production.",
+      url: `${SITE.url}/processus/#direction-artistique`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 4,
+      name: "Premières créations et itérations",
+      text: "Conception des premières maquettes, croquis ou prototypes basés sur la direction validée. Plusieurs propositions, ajustements selon vos retours.",
+      url: `${SITE.url}/processus/#premieres-creations`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 5,
+      name: "Livraison finale et accompagnement",
+      text: "Livraison de tous les fichiers (PDF haute définition, fichiers sources AI/PSD/SVG, pack logo en plusieurs formats). Accompagnement post-livraison pour les utiliser.",
+      url: `${SITE.url}/processus/#livraison`,
+    },
+  ],
+};
+
 const etapes = [
   {
     num: "01",
@@ -59,6 +125,10 @@ const etapes = [
 export default function ProcessusPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(howToLd) }}
+      />
       {/* Hero — fond cream, titre + Abstract Art */}
       <section className="bg-kinome-cream px-[5%] pt-[clamp(120px,18vw,180px)] pb-[clamp(50px,10vw,100px)]">
         <div className="mx-auto grid max-w-[1588px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_0.9fr]">

@@ -19,8 +19,21 @@ export const dynamic = "force-static";
  *
  * Next.js produit `out/sitemap.xml` au build.
  */
+/**
+ * STATIC_LASTMOD : date stable du dernier update significatif des pages
+ * structurelles (home, services, portfolio, etc.).
+ *
+ * À bumper manuellement quand on update VRAIMENT le contenu d'une page.
+ * Sinon, garder cette date stable évite que Google considère qu'on flag
+ * tous les contenus comme modifiés à chaque rebuild (ce qui dévalue à terme
+ * la fiabilité du champ lastmod aux yeux du moteur).
+ *
+ * Dernier bump : 2026-05-19 — audit SEO + 8 quick wins + JSON-LD HowTo,
+ * BlogPosting author Person, lang="en" sur sous-arbre /en, etc.
+ */
+const STATIC_LASTMOD = new Date("2026-05-19T00:00:00Z");
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const base = SITE.url;
 
   // Helper : construit une entrée sitemap avec annotation hreflang.
@@ -30,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     en: string,
     priority: number,
     changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly",
-    lastModified: Date = now
+    lastModified: Date = STATIC_LASTMOD
   ): MetadataRoute.Sitemap => [
     {
       url: `${base}${fr}`,
@@ -77,16 +90,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...withAlt("/politique-de-confidentialite/", "/en/privacy/", 0.2, "yearly"),
   ];
 
-  // Pages projet (slug identique FR/EN, seul le préfixe change)
+  // Pages projet (slug identique FR/EN, seul le préfixe change).
+  // Chaque page projet embarque sa cover image en `images:` → Google
+  // les indexe dans Google Images (boost Image Search pour les projets
+  // visuels du portfolio).
   const projetPages: MetadataRoute.Sitemap = projets.flatMap((p) => {
     const fr = `/projets/${p.slug}/`;
     const en = `/en/projets/${p.slug}/`;
+    const coverUrl = p.cover.startsWith("http") ? p.cover : `${base}${p.cover}`;
     return [
       {
         url: `${base}${fr}`,
-        lastModified: now,
+        lastModified: STATIC_LASTMOD,
         changeFrequency: "monthly" as const,
         priority: 0.7,
+        images: [coverUrl],
         alternates: {
           languages: {
             fr: `${base}${fr}`,
@@ -97,9 +115,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
       {
         url: `${base}${en}`,
-        lastModified: now,
+        lastModified: STATIC_LASTMOD,
         changeFrequency: "monthly" as const,
         priority: 0.65,
+        images: [coverUrl],
         alternates: {
           languages: {
             fr: `${base}${fr}`,
@@ -112,11 +131,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   // Articles blog (FR uniquement — pas d'équivalent EN par article).
+  // lastModified utilise `lastModified` si fourni dans l'article, sinon `date`.
+  // featuredImage exposée en `images:` pour le Google Image Sitemap.
   const blogPages: MetadataRoute.Sitemap = blogPosts.map((p) => ({
     url: `${base}/blog/${p.slug}/`,
-    lastModified: new Date(p.date),
+    lastModified: new Date(p.lastModified ?? p.date),
     changeFrequency: "monthly",
     priority: 0.75,
+    images: [
+      p.featuredImage.startsWith("http")
+        ? p.featuredImage
+        : `${base}${p.featuredImage}`,
+    ],
   }));
 
   return [...pairedPages, ...projetPages, ...blogPages];

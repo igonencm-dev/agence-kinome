@@ -41,18 +41,21 @@ const processus = [
     title: "Conception et réalisation",
     body: "Le processus de conception graphique est caractérisé par une approche méthodique et créative. Chaque projet commence par une phase d'analyse approfondie, où vos besoins et vos objectifs sont identifiés. Cette étape est suivie par la création de maquettes et de prototypes au format mockups, permettant aux clients de visualiser les concepts avant leur finalisation. L'accent est mis sur une collaboration étroite pour s'assurer que le produit final correspond parfaitement à vos attentes.",
     img: "/assets/man-using-laptop.png",
+    alt: "Designer en train de travailler sur un ordinateur portable lors de la phase de conception d'un projet graphique",
     reverse: false,
   },
   {
     title: "Outils et logiciels",
     body: "Des logiciels de pointe dans le domaine du graphisme et du design sont utilisés, tels que Photoshop pour le traitement d'images, Illustrator pour la création de graphiques vectoriels, et Indesign pour la mise en page de documents. Pour garantir un travail complet et global, je peux autant travailler sur Figma que sur Sketch. Ces outils permettent une grande flexibilité et précision dans la réalisation de projets variés, et surtout une réponse adaptée selon le besoin.",
     img: "/assets/designer-young-lady.png",
+    alt: "Designer graphique utilisant Photoshop, Illustrator, Figma et Sketch pour la création d'identités visuelles à Genève",
     reverse: true,
   },
   {
     title: "Une relation de confiance",
     body: "J'ai à cœur d'établir une relation de confiance avec chaque client, un pilier fondamental du processus créatif. Cette confiance se construit à travers une communication transparente, une écoute attentive et une compréhension profonde de vos objectifs. Je m'engage pleinement pour vous satisfaire et répondre à vos exigences. Ainsi, chaque étape du projet est gérée avec un souci constant de répondre aux attentes tout en apportant une expertise et des conseils professionnels. Cette approche permet de créer non seulement des résultats sur-mesure, mais aussi des partenariats durables et fructueux.",
     img: "/assets/interior-designer-office.png",
+    alt: "Échange de confiance entre l'Agence Kinome et son client dans le bureau pour le suivi d'un projet de branding",
     reverse: false,
   },
 ];
@@ -197,7 +200,7 @@ export default function ServicesPage() {
             >
               <img
                 src={p.img}
-                alt=""
+                alt={p.alt}
                 className="block h-full w-full object-cover"
               />
             </div>

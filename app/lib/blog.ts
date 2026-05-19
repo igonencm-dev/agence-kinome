@@ -10,14 +10,23 @@ export type BlogPost = {
   description: string;
   excerpt: string;
   focusKeyword: string;
-  /** ISO date (YYYY-MM-DD). */
+  /** ISO date de publication (YYYY-MM-DD). */
   date: string;
+  /** ISO date de dernière modification du contenu. Optionnel — si absent,
+   *  on utilise `date` comme fallback dans le BlogPosting JSON-LD. Bumper
+   *  ce champ à chaque update significatif de l'article (signal Google +
+   *  AEO pour la fraîcheur du contenu). */
+  lastModified?: string;
   featuredImage: string;
   /** HTML du contenu, à rendre via dangerouslySetInnerHTML. */
   articleHtml: string;
   canonical: string;
   /** FAQ extraites du HTML — utilisées pour le JSON-LD FAQPage. */
   faqs: Array<{ question: string; answer: string }>;
+  /** Slug de l'auteur principal (mathias | tanguy). Utilisé pour pointer
+   *  vers le Person Schema correspondant dans le BlogPosting. Default:
+   *  "mathias" (directeur marketing — éditeur en chef du blog Kinome). */
+  authorSlug?: "mathias" | "tanguy";
 };
 
 export const blogPosts: BlogPost[] = [
