@@ -6,7 +6,12 @@
  *
  * Mêmes logos que la version horizontale (cohérence visuelle) mais
  * animation translateY pour un défilement bas → haut, infini.
+ *
+ * i18n : prop `locale` optionnelle pour l'aria-label uniquement (les logos
+ * eux-mêmes sont des noms propres, pas traduits).
  */
+
+import { t, type Locale } from "../lib/i18n";
 
 const LOGOS = [
   { src: "/assets/wp/Logo-Codecircle.svg", alt: "Codecircle" },
@@ -38,14 +43,16 @@ function LogosColumn() {
 type Props = {
   /** Hauteur visible du carrousel (px ou clamp), défaut 540 px. */
   height?: string;
+  locale?: Locale;
 };
 
 export default function LogosMarqueeVertical({
   height = "clamp(420px,55vh,640px)",
+  locale = "fr",
 }: Props) {
   return (
     <section
-      aria-label="Quelques logos de clients Kinome"
+      aria-label={t("logos_aria", locale)}
       className="relative overflow-hidden rounded-[24px] bg-kinome-cream"
       style={{ height }}
     >

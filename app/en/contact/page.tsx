@@ -106,11 +106,11 @@ export default function ContactEN() {
               carry their image.
             </p>
           </div>
-          <LogosMarqueeVertical />
+          <LogosMarqueeVertical locale="en" />
         </div>
       </section>
 
-      <Testimonials />
+      <Testimonials locale="en" />
 
       <section className="mx-auto my-[100px] max-w-[1300px] rounded-[24px] bg-kinome-cream px-[5%] py-[clamp(50px,8vw,80px)] text-center">
         <h2 className="mx-auto mb-6 max-w-[900px] font-heading text-[clamp(26px,4.5vw,52px)] font-normal leading-[1.1]">

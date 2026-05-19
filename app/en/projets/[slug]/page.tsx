@@ -266,7 +266,7 @@ export default async function ProjetPageEN({ params }: { params: Params }) {
         </section>
       )}
 
-      <Testimonials />
+      <Testimonials locale="en" />
 
       {/* Projets similaires */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">

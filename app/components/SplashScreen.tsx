@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { getLocaleFromPath, t } from "../lib/i18n";
 
 type Phase = "intro" | "transition" | "done";
 
@@ -9,6 +11,7 @@ const INTRO_VIDEO = "/assets/wp/logo-anime-croped.mp4";
 export default function SplashScreen() {
   const [phase, setPhase] = useState<Phase>("intro");
   const videoRef = useRef<HTMLVideoElement>(null);
+  const locale = getLocaleFromPath(usePathname() ?? "/");
   // Guard idempotent : une fois la transition lancée, plus rien ne peut la
   // re-déclencher (fix retour Mathias : "l'animation apparait une 2e fois
   // quelques secondes après l'avoir fermée").
@@ -143,8 +146,7 @@ export default function SplashScreen() {
           role="presentation"
         >
           <h2 className="anim-text-focus-in max-w-[1100px] text-center font-heading text-[clamp(22px,4.5vw,44px)] font-normal leading-[1.3] text-white">
-            Kinome est une agence de communication indépendante, pour remettre
-            l&rsquo;humain au cœur des échanges.
+            {t("splash_tagline", locale)}
           </h2>
         </div>
       )}

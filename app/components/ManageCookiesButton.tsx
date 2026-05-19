@@ -6,7 +6,11 @@
  * 99 % des éléments du footer).
  */
 
+import { usePathname } from "next/navigation";
+import { getLocaleFromPath, t } from "../lib/i18n";
+
 export default function ManageCookiesButton() {
+  const locale = getLocaleFromPath(usePathname() ?? "/");
   return (
     <button
       type="button"
@@ -15,7 +19,7 @@ export default function ManageCookiesButton() {
       }
       className="cursor-pointer underline-offset-4 hover:text-kinome-cream hover:underline"
     >
-      Gérer les cookies
+      {t("footer_manage_cookies", locale)}
     </button>
   );
 }

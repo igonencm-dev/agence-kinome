@@ -76,7 +76,7 @@ export default function ProcessEN() {
         </div>
       </section>
 
-      <Testimonials />
+      <Testimonials locale="en" />
 
       <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[clamp(50px,8vw,80px)] text-center text-white">
         <h2 className="mb-6 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1]">

@@ -8,29 +8,34 @@
  *
  * Design : fond dark, image client centrée (max 480 px), citation italique,
  * nom + entreprise + 5 étoiles. Cohérent avec le reste de la marque.
+ *
+ * i18n : accepte une prop `locale` (server component). Si non fournie,
+ * fallback FR. Les pages sous /en/ doivent passer `locale="en"`.
  */
+
+import { t, type Locale } from "../lib/i18n";
 
 type TestimonialsProps = {
   /** Marge verticale standard (par défaut), ou compact pour pages denses. */
   variant?: "default" | "compact";
+  locale?: Locale;
 };
-
-const reviews = [
-  {
-    image: "/assets/wp/La-Voyagist-780x390px-1.png",
-    alt: "La Voyagiste — projet identité visuelle",
-    quote:
-      "Très belle expérience pour la création du logo de mon agence, de sa charte graphique et des différents éléments de communication réalisés tout au long de l'année. Une équipe créative, à l'écoute et toujours avant-gardiste. Je les recommande fortement.",
-    name: "Manon Pichereau",
-    company: "La Voyagiste",
-    rating: 5,
-  },
-];
 
 export default function Testimonials({
   variant = "default",
+  locale = "fr",
 }: TestimonialsProps) {
-  const review = reviews[0];
+  // Une seule review pour l'instant — Manon Pichereau (La Voyagiste).
+  // Quand on en aura d'autres, transformer en tableau + sliders.
+  const review = {
+    image: "/assets/wp/La-Voyagist-780x390px-1.png",
+    alt: t("testimonials_voyagiste_alt", locale),
+    quote: t("testimonials_voyagiste_quote", locale),
+    name: "Manon Pichereau",
+    company: "La Voyagiste",
+    rating: 5,
+  };
+
   const paddingClass =
     variant === "compact"
       ? "py-[clamp(50px,8vw,80px)]"
@@ -45,7 +50,7 @@ export default function Testimonials({
         id="testimonials-heading"
         className="mb-[clamp(36px,5vw,72px)] font-heading text-[clamp(28px,4vw,56px)] font-normal leading-[1.1]"
       >
-        Ils nous font confiance
+        {t("testimonials_heading", locale)}
       </h2>
       <div className="mx-auto flex max-w-[900px] flex-col items-center">
         <img
@@ -62,7 +67,10 @@ export default function Testimonials({
         </div>
         <div className="mb-6 italic text-[#888]">{review.company}</div>
         <div
-          aria-label={`Note ${review.rating} sur 5`}
+          aria-label={t("testimonials_rating_aria", locale).replace(
+            "{n}",
+            String(review.rating)
+          )}
           className="text-[1.4rem] tracking-[5px]"
         >
           {"★".repeat(review.rating)}

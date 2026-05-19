@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { getLocaleFromPath, t } from "../lib/i18n";
 
 type Etat = "idle" | "envoi" | "succes" | "erreur";
 
 export default function ContactForm() {
   const [etat, setEtat] = useState<Etat>("idle");
   const [erreurMsg, setErreurMsg] = useState<string>("");
+
+  // Détection de la locale via le path. Marche pour /contact/ ET /en/contact/.
+  const locale = getLocaleFromPath(usePathname() ?? "/");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -49,16 +54,11 @@ export default function ContactForm() {
         form.reset();
       } else {
         setEtat("erreur");
-        setErreurMsg(
-          json?.error ??
-            "Une erreur est survenue. Merci de réessayer dans quelques instants."
-        );
+        setErreurMsg(json?.error ?? t("form_error_generic", locale));
       }
     } catch {
       setEtat("erreur");
-      setErreurMsg(
-        "Impossible de contacter le serveur. Vérifiez votre connexion et réessayez."
-      );
+      setErreurMsg(t("form_error_network", locale));
     }
   }
 
@@ -82,21 +82,20 @@ export default function ContactForm() {
           </svg>
         </div>
         <h2 className="mb-4 font-heading text-[2rem] font-semibold">
-          Message bien reçu&nbsp;!
+          {t("form_success_title", locale)}
         </h2>
         <p className="mx-auto mb-2 max-w-[400px] font-body text-[clamp(15px,1.1vw,17px)] font-light leading-[1.6]">
-          Merci pour votre message. Mathias ou Tanguy reviendra vers vous sous
-          24 à 48 heures ouvrées.
+          {t("form_success_text", locale)}
         </p>
         <p className="mx-auto max-w-[400px] font-body text-[0.95rem] font-light leading-[1.6] opacity-80">
-          Un email de confirmation vient de vous être envoyé.
+          {t("form_success_email", locale)}
         </p>
         <button
           type="button"
           onClick={() => setEtat("idle")}
           className="mt-8 cursor-pointer rounded-full border-2 border-kinome-cream bg-transparent px-10 py-3 font-heading text-[0.95rem] font-semibold text-white transition-colors hover:bg-kinome-cream hover:text-kinome-black"
         >
-          Envoyer un autre message
+          {t("form_send_another", locale)}
         </button>
       </div>
     );
@@ -105,7 +104,7 @@ export default function ContactForm() {
   return (
     <div className="rounded-[24px] bg-kinome-dark p-[clamp(24px,5vw,60px)] text-white">
       <h2 className="mb-10 text-center font-heading text-[2.2rem] font-semibold">
-        Formulaire de contact
+        {t("form_title", locale)}
       </h2>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
         {/* Honeypot caché — les bots le remplissent, pas les humains */}
@@ -120,7 +119,7 @@ export default function ContactForm() {
           }}
         >
           <label>
-            Ne pas remplir
+            {t("form_honeypot", locale)}
             <input
               type="text"
               name="website"
@@ -133,8 +132,8 @@ export default function ContactForm() {
         <input
           type="text"
           name="prenom"
-          placeholder="Prénom*"
-          aria-label="Prénom (requis)"
+          placeholder={t("form_first_name", locale)}
+          aria-label={t("form_aria_first_name", locale)}
           required
           maxLength={80}
           autoComplete="given-name"
@@ -143,8 +142,8 @@ export default function ContactForm() {
         <input
           type="text"
           name="nom"
-          placeholder="Nom*"
-          aria-label="Nom de famille (requis)"
+          placeholder={t("form_last_name", locale)}
+          aria-label={t("form_aria_last_name", locale)}
           required
           maxLength={80}
           autoComplete="family-name"
@@ -153,8 +152,8 @@ export default function ContactForm() {
         <input
           type="email"
           name="email"
-          placeholder="Email*"
-          aria-label="Adresse e-mail (requis)"
+          placeholder={t("form_email", locale)}
+          aria-label={t("form_aria_email", locale)}
           required
           autoComplete="email"
           className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
@@ -162,8 +161,8 @@ export default function ContactForm() {
         <input
           type="text"
           name="societe"
-          placeholder="Société*"
-          aria-label="Société (requis)"
+          placeholder={t("form_company", locale)}
+          aria-label={t("form_aria_company", locale)}
           required
           maxLength={120}
           autoComplete="organization"
@@ -172,15 +171,15 @@ export default function ContactForm() {
         <input
           type="text"
           name="besoin"
-          placeholder="Votre besoin ? (logo, charte, site internet…)"
-          aria-label="Votre besoin (optionnel)"
+          placeholder={t("form_need", locale)}
+          aria-label={t("form_aria_need", locale)}
           maxLength={200}
           className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
         />
         <textarea
           name="message"
-          placeholder="Message*"
-          aria-label="Votre message (requis, 10 caractères minimum)"
+          placeholder={t("form_message", locale)}
+          aria-label={t("form_aria_message", locale)}
           required
           rows={6}
           minLength={10}
@@ -198,8 +197,7 @@ export default function ContactForm() {
         )}
 
         <p className="mt-2 text-center font-body text-[0.85rem] font-light leading-[1.5] opacity-70">
-          En envoyant ce formulaire, vous acceptez que vos données soient
-          utilisées pour vous recontacter dans le cadre de votre demande.
+          {t("form_consent", locale)}
         </p>
 
         <div className="mt-2 flex justify-center">
@@ -208,7 +206,9 @@ export default function ContactForm() {
             disabled={etat === "envoi"}
             className="cursor-pointer rounded-full border-2 border-kinome-cream bg-transparent px-12 py-3 font-heading text-[1rem] font-semibold text-white transition-colors hover:bg-kinome-cream hover:text-kinome-black disabled:cursor-wait disabled:opacity-60 disabled:hover:bg-transparent disabled:hover:text-white"
           >
-            {etat === "envoi" ? "Envoi en cours…" : "Envoyer"}
+            {etat === "envoi"
+              ? t("form_submitting", locale)
+              : t("form_submit", locale)}
           </button>
         </div>
       </form>

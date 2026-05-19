@@ -154,7 +154,7 @@ export default function PortfolioEN() {
       </section>
 
       <div className="-mx-[5%] mt-24">
-        <Testimonials />
+        <Testimonials locale="en" />
       </div>
     </main>
   );

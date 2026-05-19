@@ -22,6 +22,8 @@
  */
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { getLocaleFromPath, ROUTES, t } from "../lib/i18n";
 
 const STORAGE_KEY = "kinome-cookie-consent";
 const STORAGE_VERSION = "1"; // bump pour forcer ré-affichage si on change la politique
@@ -63,6 +65,8 @@ export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [analyticsChecked, setAnalyticsChecked] = useState(false);
+  const locale = getLocaleFromPath(usePathname() ?? "/");
+  const r = ROUTES[locale];
 
   // Au mount : on regarde si le visiteur a déjà choisi
   useEffect(() => {
@@ -97,7 +101,7 @@ export default function CookieConsent() {
   return (
     <div
       role="dialog"
-      aria-label="Gestion des cookies"
+      aria-label={t("cookies_aria_dialog", locale)}
       aria-describedby="cookie-consent-desc"
       className="fixed bottom-0 left-0 right-0 z-[1100] animate-[slide-up_0.4s_ease-out] p-4 sm:bottom-6 sm:left-6 sm:right-6 sm:p-0"
     >
@@ -105,17 +109,13 @@ export default function CookieConsent() {
         {/* Header */}
         <div className="p-6 sm:p-8">
           <h2 className="mb-3 font-heading text-[1.25rem] font-semibold">
-            🍪 Cookies &amp; vie privée
+            🍪 {t("cookies_title", locale)}
           </h2>
           <p
             id="cookie-consent-desc"
             className="mb-5 font-body text-[0.95rem] font-light leading-[1.55] text-white/85"
           >
-            Nous utilisons uniquement des cookies essentiels et, avec votre
-            accord, un outil de mesure d&rsquo;audience anonymisée (Google
-            Analytics) pour améliorer notre site. Aucun cookie publicitaire,
-            aucun partage avec des tiers à des fins marketing. Vous pouvez
-            modifier votre choix à tout moment depuis le footer.
+            {t("cookies_desc", locale)}
           </p>
 
           {/* Détails (catégories) */}
@@ -127,18 +127,17 @@ export default function CookieConsent() {
                   checked
                   disabled
                   className="mt-1 h-4 w-4 cursor-not-allowed accent-kinome-accent"
-                  aria-label="Cookies essentiels (toujours actifs)"
+                  aria-label={t("cookies_aria_essentials", locale)}
                 />
                 <div className="flex-1">
                   <div className="font-semibold">
-                    Essentiels
+                    {t("cookies_essentials", locale)}
                     <span className="ml-2 rounded-full bg-white/15 px-2 py-0.5 text-[0.7rem] font-medium">
-                      Toujours actifs
+                      {t("cookies_always_on", locale)}
                     </span>
                   </div>
                   <p className="mt-1 text-white/70">
-                    Nécessaires au fonctionnement du site (mémorisation de
-                    votre choix de consentement).
+                    {t("cookies_essentials_desc", locale)}
                   </p>
                 </div>
               </div>
@@ -155,11 +154,11 @@ export default function CookieConsent() {
                   htmlFor="cookie-analytics"
                   className="flex-1 cursor-pointer"
                 >
-                  <div className="font-semibold">Mesure d&rsquo;audience</div>
+                  <div className="font-semibold">
+                    {t("cookies_analytics", locale)}
+                  </div>
                   <p className="mt-1 text-white/70">
-                    Google Analytics 4 avec IP anonymisée, durée 13 mois max.
-                    Nous aide à comprendre quelles pages sont les plus
-                    consultées.
+                    {t("cookies_analytics_desc", locale)}
                   </p>
                 </label>
               </div>
@@ -175,21 +174,21 @@ export default function CookieConsent() {
                   onClick={() => accept(true)}
                   className="cursor-pointer rounded-full bg-white px-6 py-3 font-heading text-[0.9rem] font-semibold text-kinome-black transition-transform hover:scale-[1.02]"
                 >
-                  Tout accepter
+                  {t("cookies_accept_all", locale)}
                 </button>
                 <button
                   type="button"
                   onClick={() => accept(false)}
                   className="cursor-pointer rounded-full border border-white/30 bg-transparent px-6 py-3 font-heading text-[0.9rem] font-semibold text-white transition-colors hover:bg-white/10"
                 >
-                  Refuser
+                  {t("cookies_refuse", locale)}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowDetails(true)}
                   className="cursor-pointer rounded-full bg-transparent px-4 py-3 font-body text-[0.85rem] text-white/70 transition-colors hover:text-white"
                 >
-                  Personnaliser
+                  {t("cookies_customize", locale)}
                 </button>
               </>
             ) : (
@@ -199,14 +198,14 @@ export default function CookieConsent() {
                   onClick={() => accept(analyticsChecked)}
                   className="cursor-pointer rounded-full bg-white px-6 py-3 font-heading text-[0.9rem] font-semibold text-kinome-black transition-transform hover:scale-[1.02]"
                 >
-                  Enregistrer mon choix
+                  {t("cookies_save", locale)}
                 </button>
                 <button
                   type="button"
                   onClick={() => accept(true)}
                   className="cursor-pointer rounded-full border border-white/30 bg-transparent px-6 py-3 font-heading text-[0.9rem] font-semibold text-white transition-colors hover:bg-white/10"
                 >
-                  Tout accepter
+                  {t("cookies_accept_all", locale)}
                 </button>
               </>
             )}
@@ -214,17 +213,17 @@ export default function CookieConsent() {
 
           <div className="mt-4 flex flex-wrap gap-3 font-body text-[0.8rem] text-white/55">
             <a
-              href="/politique-de-confidentialite/"
+              href={r.privacy}
               className="underline-offset-2 hover:text-white hover:underline"
             >
-              Politique de confidentialité
+              {t("footer_privacy", locale)}
             </a>
             <span aria-hidden="true">·</span>
             <a
-              href="/mentions-legales/"
+              href={r.legal}
               className="underline-offset-2 hover:text-white hover:underline"
             >
-              Mentions légales
+              {t("footer_legal", locale)}
             </a>
           </div>
         </div>
