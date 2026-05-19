@@ -5,9 +5,9 @@ import { buildMetadata, jsonLdScript, SITE } from "../lib/seo";
 import ResponsiveBr from "../components/ResponsiveBr";
 
 export const metadata = buildMetadata({
-  title: "Blog — communication, branding & web à Genève",
+  title: "Blog Kinome — branding & web à Genève",
   description:
-    "Articles d'expertise par l'Agence Kinome à Genève : choix d'une agence, création de logo et identité visuelle, tarifs, sites internet, SEO. Tous les conseils pour réussir votre projet de communication en Suisse romande.",
+    "Articles d'expertise Kinome à Genève : choisir une agence, création de logo et identité, tarifs, sites internet, SEO — conseils pour votre projet en Suisse.",
   path: "/blog/",
   keywords: [
     "blog agence communication Genève",

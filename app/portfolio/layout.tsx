@@ -5,7 +5,7 @@ import { SITE } from "../lib/seo";
 export const metadata = buildMetadata({
   title: "Portfolio — nos projets",
   description:
-    "Découvrez les projets réalisés par Kinome : créations de logos, identités visuelles, sites internet et campagnes pour des entreprises basées à Genève, en Suisse romande, en France et à l'international.",
+    "Projets Kinome : logos, identités visuelles, sites internet et campagnes pour entreprises à Genève, en Suisse romande, en France et à l'international.",
   path: "/portfolio/",
   keywords: [
     "portfolio agence Genève",

@@ -10,7 +10,7 @@ import ResponsiveBr from "../components/ResponsiveBr";
 export const metadata = buildMetadata({
   title: "À propos de l'agence",
   description:
-    "Kinome est une agence de communication indépendante basée à Genève. Découvrez notre équipe, nos principes — engagement, transparence, créativité — et les douze expertises que nous mobilisons pour donner vie aux projets de marques en Suisse romande et au-delà.",
+    "Agence de communication indépendante à Genève : découvrez l'équipe Kinome, nos principes — engagement, transparence, créativité — et nos douze expertises.",
   path: "/a-propos/",
   keywords: [
     "agence Kinome équipe",

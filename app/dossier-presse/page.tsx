@@ -9,7 +9,7 @@ import ResponsiveBr from "../components/ResponsiveBr";
 export const metadata = buildMetadata({
   title: "Dossier de presse — Agence Kinome",
   description:
-    "Kit média et faits-clés de l'Agence Kinome : présentation, cofondateurs, chiffres-clés, secteurs servis, contacts presse. Tout ce qu'il faut pour citer ou écrire sur l'agence de communication indépendante de Genève.",
+    "Kit média de l'Agence Kinome : présentation, cofondateurs, chiffres-clés, secteurs servis, contacts presse — pour citer l'agence de communication de Genève.",
   path: "/dossier-presse/",
   keywords: [
     "agence Kinome dossier de presse",

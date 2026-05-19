@@ -45,6 +45,7 @@ RewriteRule ^vpconseils/?$            /projets/vp-conseils/         [L,R=301]
 RewriteRule ^no-code/?$               /projets/no-code/             [L,R=301]
 RewriteRule ^nocode/?$                /projets/no-code/             [L,R=301]
 RewriteRule ^nocode-ia/?$             /projets/no-code/             [L,R=301]
+RewriteRule ^no-code-ia/?$            /projets/no-code/             [L,R=301]
 RewriteRule ^nocodeia/?$              /projets/no-code/             [L,R=301]
 
 # Pages principales renommées

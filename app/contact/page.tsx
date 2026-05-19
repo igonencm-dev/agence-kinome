@@ -4,12 +4,12 @@ import { contact } from "../lib/contact";
 import ContactForm from "./ContactForm";
 import Testimonials from "../components/Testimonials";
 import LogosMarqueeVertical from "../components/LogosMarqueeVertical";
-import { buildMetadata } from "../lib/seo";
+import { buildMetadata, jsonLdScript, SITE, BUSINESS } from "../lib/seo";
 
 export const metadata = buildMetadata({
   title: "Contact",
   description:
-    "Contactez l'Agence Kinome à Genève pour discuter de votre projet de communication, identité visuelle, création de logo ou site internet. Un appel découverte gratuit pour explorer ensemble les possibilités.",
+    "Contactez l'Agence Kinome à Genève pour votre projet de communication, identité visuelle, création de logo ou site internet. Appel découverte gratuit.",
   path: "/contact/",
   keywords: [
     "contact agence Genève",
@@ -19,15 +19,53 @@ export const metadata = buildMetadata({
   ],
 });
 
+// JSON-LD ContactPage : signal Google + AEO clair pour la page contact.
+// Référence l'Organization principale + son contactPoint (téléphone, email,
+// langues, zone desservie). Optimise les rich snippets "Coordonnées" et la
+// citation directe par les LLMs ("Comment contacter Kinome ?").
+const contactPageLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact — Agence Kinome",
+  url: `${SITE.url}/contact/`,
+  description:
+    "Coordonnées et formulaire de contact de l'Agence Kinome, agence de communication à Genève.",
+  inLanguage: "fr",
+  isPartOf: { "@id": `${SITE.url}/#website` },
+  mainEntity: {
+    "@id": `${SITE.url}/#organization`,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        telephone: BUSINESS.phone,
+        email: BUSINESS.email,
+        availableLanguage: ["fr", "en"],
+        areaServed: BUSINESS.areaServed,
+      },
+    ],
+  },
+};
+
 export default function ContactPage() {
   return (
     <main className="pt-[clamp(100px,14vw,140px)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(contactPageLd) }}
+      />
       {/* Bloc principal : adresse + formulaire */}
       <section className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-[5%] py-[40px] lg:grid-cols-[1fr_1.3fr]">
         <div className="font-body text-[clamp(16px,1.3vw,19px)] leading-[1.6] text-kinome-black">
-          <h1 className="mb-12 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
-            Échangeons.
+          {/* H1 enrichi avec mots-clés locaux SEO + AEO (au lieu d'un simple
+              "Échangeons." minimaliste qui perdait du signal Google). On garde
+              "Échangeons" comme baseline visuelle juste en dessous. */}
+          <h1 className="mb-2 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
+            Contact — Agence Kinome à Genève
           </h1>
+          <p className="mb-12 text-center font-heading text-[clamp(18px,2.2vw,28px)] font-light italic text-kinome-grey md:text-left">
+            Échangeons.
+          </p>
 
           <div className="mb-10">
             <p className="mb-3 font-semibold">Adresse</p>

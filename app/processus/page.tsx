@@ -7,7 +7,7 @@ import ResponsiveBr from "../components/ResponsiveBr";
 export const metadata = buildMetadata({
   title: "Notre processus de travail",
   description:
-    "Découvrez la méthode Kinome pour mener vos projets de communication à Genève : appel découverte gratuit, cadrage stratégique, conception itérative et livraison soignée. Un parcours transparent en quatre étapes pensé pour bâtir des résultats à la hauteur de vos ambitions.",
+    "Méthode Kinome pour vos projets de communication à Genève : appel découverte gratuit, cadrage, conception itérative et livraison soignée. 4 étapes transparentes.",
   path: "/processus/",
   keywords: [
     "méthode agence communication",

@@ -17,7 +17,7 @@ export const metadata = buildMetadata({
   title: "Agence de communication à Genève",
   bareTitle: true,
   description:
-    "Kinome est une agence de communication indépendante basée à Genève. Branding, identité visuelle, création de logo, sites internet et stratégie de marque pour entreprises et indépendants en Suisse romande.",
+    "Agence de communication indépendante à Genève : branding, identité visuelle, création de logo et sites internet pour PME et marques en Suisse romande.",
   path: "/",
   keywords: [
     "agence Kinome",
@@ -161,11 +161,19 @@ export default function Home() {
 
       {/* HERO — vidéo de fond */}
       <section className="relative flex h-screen w-full items-center overflow-hidden">
+        {/* Hero vidéo :
+            - `preload="auto"` : on charge la vidéo dès le départ (c'est le LCP de
+              la home, on ne veut pas attendre le user gesture).
+            - `poster` : image affichée pendant le chargement de la vidéo. Réduit
+              le LCP perçu et donne un fallback visuel aux bots qui ne lisent pas
+              la vidéo (Google, ChatGPT, Perplexity…). */}
         <video
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
+          poster="/assets/hero-poster.jpg"
           className="absolute inset-0 z-[1] h-full w-full object-cover"
         >
           <source src={HERO_VIDEO} type="video/mp4" />
