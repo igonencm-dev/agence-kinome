@@ -174,9 +174,13 @@ export default function BlogIndexEN() {
           <h2 className="mx-auto mb-6 max-w-[700px] font-heading text-[clamp(26px,4.5vw,52px)] font-normal leading-[1.1] text-kinome-black">
             A communication project in Geneva?
           </h2>
+          <p className="mx-auto mb-10 max-w-[600px] font-body text-[clamp(16px,1.3vw,19px)] font-light leading-[1.6] text-kinome-grey">
+            First call free, reply within 48 hours. We discuss your goals and
+            give you a clear scope to start with.
+          </p>
           <Link
             href="/en/contact/"
-            className="btn-fill-accent mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
+            className="btn-fill-accent mx-auto flex w-fit min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-transform hover:scale-105"
           >
             <span className="relative z-10">Talk to the team</span>
           </Link>
