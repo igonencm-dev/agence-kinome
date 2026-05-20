@@ -454,3 +454,130 @@ body.no-scroll {
 .blog-prose nav {
   display: none;
 }
+
+/* -------------------------------------------------------------------
+   Bloc CTA dans les articles de blog — design fort, conversion-focused
+   Usage dans articleHtml : <div class="blog-cta">...</div>
+   ------------------------------------------------------------------- */
+.blog-prose .blog-cta {
+  margin: 3em 0;
+  padding: clamp(28px, 4vw, 48px);
+  background: linear-gradient(135deg, #1d1d1b 0%, #2a2a28 100%);
+  border-radius: 24px;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Accent décoratif en haut à gauche (touche Kinome) */
+.blog-prose .blog-cta::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  background: var(--color-kinome-accent);
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(20px);
+}
+
+.blog-prose .blog-cta-eyebrow {
+  display: inline-block;
+  margin: 0 0 16px 0;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-prose .blog-cta h3 {
+  margin: 0 0 12px 0;
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: white;
+  border: none;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-prose .blog-cta p {
+  margin: 0 auto 28px;
+  max-width: 540px;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
+  z-index: 1;
+}
+
+/* Bouton principal du CTA */
+.blog-prose .blog-cta a.blog-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 16px 36px;
+  background: var(--color-kinome-accent);
+  color: white;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-prose .blog-cta a.blog-cta-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(243, 91, 60, 0.35);
+}
+
+.blog-prose .blog-cta a.blog-cta-btn::after {
+  content: "→";
+  font-size: 1.1em;
+  transition: transform 0.25s ease;
+}
+
+.blog-prose .blog-cta a.blog-cta-btn:hover::after {
+  transform: translateX(4px);
+}
+
+/* Lien secondaire (email direct sous le bouton) */
+.blog-prose .blog-cta-alt {
+  margin: 16px 0 0;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.55);
+  position: relative;
+  z-index: 1;
+}
+
+.blog-prose .blog-cta-alt a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.blog-prose .blog-cta-alt a:hover {
+  color: white;
+}
