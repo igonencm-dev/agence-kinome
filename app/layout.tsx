@@ -92,9 +92,16 @@ export const metadata: Metadata = {
   // Google Search Console : laissé vide tant que le code n'est pas fourni
   // (NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION dans .env). Évite une balise
   // <meta name="google-site-verification" content=""> qui peut bloquer la vérif.
-  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
-    : undefined,
+  // Bing Webmaster Tools (msvalidate.01) : hardcodé car simple à gérer pour
+  // 1 site, et c'est un code public sans risque.
+  verification: {
+    other: {
+      "msvalidate.01": "F22AEC2954A8DFCF80046362FC6422B8",
+    },
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    }),
+  },
   other: {
     // Géolocalisation explicite (héritage SEO local)
     "geo.region": "CH-GE",
