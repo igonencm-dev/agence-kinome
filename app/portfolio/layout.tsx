@@ -3,15 +3,15 @@ import { projets, categoriesLabels } from "../lib/projets";
 import { SITE } from "../lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Portfolio — nos projets",
+  title: "Portfolio Kinome : 16 projets de branding & web à Genève",
   description:
-    "Projets Kinome : logos, identités visuelles, sites internet et campagnes pour entreprises à Genève, en Suisse romande, en France et à l'international.",
+    "Découvrez 16 projets récents de l'Agence Kinome à Genève : identités visuelles, sites internet et campagnes pour PME suisses, françaises et internationales.",
   path: "/portfolio/",
   keywords: [
     "portfolio agence Genève",
-    "réalisations branding",
-    "exemples identité visuelle",
-    "exemples site internet",
+    "réalisations branding Suisse romande",
+    "exemples identité visuelle PME",
+    "exemples site internet Genève",
     "agence créative projets",
   ],
 });

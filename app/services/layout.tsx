@@ -1,14 +1,16 @@
 import { buildMetadata, jsonLdScript, faqJsonLd, SITE, BUSINESS } from "../lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Nos services",
+  title: "Agence de communication Genève : branding & sites internet",
   description:
-    "Création de logo, identité visuelle, charte graphique, branding et sites internet — Kinome accompagne entreprises et marques à Genève et en Suisse romande.",
+    "Agence de communication à Genève : création de logo, identité visuelle, branding et sites internet pour PME en Suisse romande. Premier appel offert avec Kinome.",
   path: "/services/",
   keywords: [
+    "agence communication Genève",
+    "agence de communication Suisse romande",
     "création logo Genève",
     "charte graphique Genève",
-    "stratégie de marque",
+    "stratégie de marque PME",
     "site internet vitrine Genève",
     "site internet e-commerce Genève",
     "communication digitale Suisse",

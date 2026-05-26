@@ -68,9 +68,9 @@ export const blogPosts: BlogPost[] = [
   {
     "id": 535,
     "slug": "tarifs-agence-communication-geneve",
-    "title": "Combien coûte une agence de communication à Genève ?",
-    "fullTitle": "Combien coûte une agence de communication à Genève ? Tarifs et budgets 2026 | Kinome",
-    "description": "Quels sont les tarifs d'une agence de communication à Genève en 2026 ? Fourchettes de prix, forfaits et conseils pour optimiser votre budget",
+    "title": "Tarifs agence communication Genève 2026 : fourchettes en CHF",
+    "fullTitle": "Tarifs agence communication Genève 2026 : fourchettes en CHF | Kinome",
+    "description": "Combien coûte une agence de communication à Genève en 2026 ? Fourchettes en CHF par prestation (logo, identité, site web), conseils PME Suisse romande.",
     "excerpt": "Fourchettes de prix, forfaits et conseils concrets pour budgétiser sereinement un projet de communication à Genève en 2026.",
     "focusKeyword": "Combien coûte une agence de communication à Genève ?",
     "date": "2026-04-14",

@@ -34,17 +34,20 @@ export const SITE = {
 
 // Adresse / contact pour LocalBusiness (Schema.org)
 // → Permet aux LLMs et à Google de citer Kinome comme agence basée à Genève.
+// Adresse confirmée via Local.ch (mai 2026) : Route de Jussy 35, 1226 Thônex
+// (Thônex est une commune du canton de Genève — banlieue immédiate).
 export const BUSINESS = {
-  street: "", // à compléter quand l'adresse précise sera communiquée
-  city: "Genève",
+  street: "Route de Jussy 35",
+  city: "Thônex", // commune réelle (le canton est "Genève")
   region: "Genève",
-  postalCode: "1200",
+  postalCode: "1226",
   country: "CH",
   countryName: "Suisse",
   geo: {
-    // Coordonnées centre Genève — affinables avec l'adresse exacte.
-    latitude: 46.2044,
-    longitude: 6.1432,
+    // Coordonnées GPS approximatives de Route de Jussy 35, 1226 Thônex
+    // (banlieue Est de Genève, ~5 km du centre).
+    latitude: 46.193,
+    longitude: 6.214,
   },
   phone: "+41782652014", // Mathias, ligne principale
   email: "contact@agence-kinome.ch",
@@ -53,13 +56,17 @@ export const BUSINESS = {
   ],
   areaServed: [
     "Genève",
+    "Thônex",
     "Lausanne",
     "Vaud",
     "Suisse romande",
     "Suisse",
     "France",
   ],
-  priceRange: "€€",
+  // CHF est la devise réelle — €€ était un héritage. Schema.org accepte les
+  // notations à fourchettes ($, $$, $$$, $$$$) qui sont langage-agnostique :
+  // $$ = "moderate". On garde donc juste les symboles standards.
+  priceRange: "$$",
 } as const;
 
 // Mots-clés pivots (utilisés ponctuellement, sans bourrage).
@@ -245,6 +252,7 @@ export function organizationJsonLd() {
         priceRange: BUSINESS.priceRange,
         address: {
           "@type": "PostalAddress",
+          streetAddress: BUSINESS.street,
           addressLocality: BUSINESS.city,
           addressRegion: BUSINESS.region,
           postalCode: BUSINESS.postalCode,
