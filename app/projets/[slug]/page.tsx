@@ -278,13 +278,10 @@ export default async function ProjetPage({ params }: { params: Params }) {
 
       {/* Projets similaires (recommandation basée sur catégories communes) */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
-        <div className="mb-12 flex items-end justify-between gap-8">
+        <div className="mb-12">
           <h2 className="font-heading text-[clamp(28px,3vw,48px)] font-normal leading-[1.1]">
             Vous aimerez aussi
           </h2>
-          <p className="hidden font-body text-[0.9rem] text-kinome-grey md:block">
-            Projets dans des registres proches
-          </p>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {autres.slice(0, 4).map((p) => (
