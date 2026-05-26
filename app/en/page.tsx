@@ -145,7 +145,7 @@ export default function HomeEN() {
             <div className="flex flex-wrap gap-5">
               <Link
                 href="#contact"
-                className="btn-fill-accent group mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center whitespace-nowrap rounded-full bg-white px-8 py-4 text-center font-heading text-[1rem] font-bold text-black transition-transform hover:scale-105"
+                className="btn-fill-accent group mx-auto flex w-fit min-w-[280px] items-center justify-center whitespace-nowrap rounded-full bg-white px-8 py-4 text-center font-heading text-[1rem] font-bold text-black transition-transform hover:scale-105"
               >
                 <span className="relative z-10 inline-flex items-center gap-2">
                   Have a project?
@@ -153,7 +153,7 @@ export default function HomeEN() {
               </Link>
               <Link
                 href="/en/portfolio/"
-                className="btn-fill-white group mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center whitespace-nowrap rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-bold text-white transition-transform hover:scale-105"
+                className="btn-fill-white group mx-auto flex w-fit min-w-[280px] items-center justify-center whitespace-nowrap rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-bold text-white transition-transform hover:scale-105"
               >
                 <span className="relative z-10 inline-flex items-center gap-2">
                   Discover our projects
@@ -281,13 +281,13 @@ export default function HomeEN() {
         <div className="mt-16 flex flex-wrap justify-center gap-5">
           <Link
             href="/en/services/"
-            className="btn-fill-accent mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105"
+            className="btn-fill-accent mx-auto flex w-fit min-w-[280px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105"
           >
             <span className="relative z-10">Our services</span>
           </Link>
           <Link
             href="/en/portfolio/"
-            className="btn-fill-dark mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full border-2 border-kinome-black bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
+            className="btn-fill-dark mx-auto flex w-fit min-w-[280px] items-center justify-center rounded-full border-2 border-kinome-black bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
           >
             <span className="relative z-10">Discover our projects</span>
           </Link>
@@ -314,7 +314,7 @@ export default function HomeEN() {
         <div className="mt-16 flex justify-center pb-5">
           <Link
             href="/en/portfolio/"
-            className="btn-fill-white mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:text-kinome-black"
+            className="btn-fill-white mx-auto flex w-fit min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:text-kinome-black"
           >
             <span className="relative z-10">Discover our projects</span>
           </Link>

@@ -180,7 +180,7 @@ export default function PartnersEN() {
         </p>
         <Link
           href="/en/contact/"
-          className="btn-fill-dark mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
+          className="btn-fill-dark mx-auto flex w-fit min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105 hover:text-white"
         >
           <span className="relative z-10">Let's talk</span>
         </Link>

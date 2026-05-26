@@ -217,7 +217,7 @@ export default async function ProjetPageEN({ params }: { params: Params }) {
             </h3>
             <Link
               href="/en/contact/"
-              className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(15px,1.1vw,17px)] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              className="mx-auto flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(15px,1.1vw,17px)] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
             >
               Tell us about your project
             </Link>
@@ -296,7 +296,7 @@ export default async function ProjetPageEN({ params }: { params: Params }) {
         <div className="mt-12 flex justify-center">
           <Link
             href="/en/portfolio/"
-            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="mx-auto flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Discover our projects
           </Link>

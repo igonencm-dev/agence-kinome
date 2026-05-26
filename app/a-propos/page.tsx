@@ -547,7 +547,7 @@ export default function AProposPage() {
           <div className="mx-auto flex justify-center">
             <Link
               href="/contact/"
-              className="mx-auto md:mx-0 flex w-fit min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
+              className="mx-auto flex w-fit min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
             >
               Discutons de votre projet
             </Link>

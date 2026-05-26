@@ -287,7 +287,7 @@ export default function Home() {
             </p>
             <Link
               href="/a-propos"
-              className="mx-auto md:mx-0 block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              className="mx-auto block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
             >
               Notre agence
             </Link>
@@ -339,7 +339,7 @@ export default function Home() {
               </p>
               <Link
                 href={bloc.cta.href}
-                className="mx-auto md:mx-0 block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+                className="mx-auto block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
               >
                 {bloc.cta.label}
               </Link>
@@ -420,7 +420,7 @@ export default function Home() {
         </h2>
         <Link
           href="/processus"
-          className="mx-auto md:mx-0 block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+          className="mx-auto block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
         >
           Découvrir notre processus de travail
         </Link>
@@ -519,7 +519,7 @@ export default function Home() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/blog/"
-            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="mx-auto flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrir nos articles
           </Link>

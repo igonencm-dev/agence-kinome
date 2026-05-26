@@ -292,7 +292,7 @@ export default function ProcessusPage() {
           </p>
           <Link
             href="/contact/"
-            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(15px,1.1vw,17px)] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="mx-auto flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(15px,1.1vw,17px)] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Contactez-nous
           </Link>

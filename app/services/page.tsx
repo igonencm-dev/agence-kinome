@@ -210,7 +210,7 @@ export default function ServicesPage() {
         <div className="mt-12 flex justify-center">
           <Link
             href="/processus/"
-            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="mx-auto flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Processus client
           </Link>
@@ -237,7 +237,7 @@ export default function ServicesPage() {
         <div className="mt-12 flex justify-center">
           <Link
             href="/portfolio/"
-            className="mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+            className="mx-auto flex w-fit min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrir nos projets
           </Link>
@@ -347,13 +347,13 @@ export default function ServicesPage() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/contact/"
-            className="btn-fill-dark group mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
+            className="btn-fill-dark group mx-auto flex w-fit min-w-[280px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
           >
             <span className="relative z-10">Discutons de votre projet</span>
           </Link>
           <Link
             href="/portfolio/"
-            className="btn-fill-white group mx-auto md:mx-0 flex w-fit min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105 hover:text-kinome-black"
+            className="btn-fill-white group mx-auto flex w-fit min-w-[280px] items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105 hover:text-kinome-black"
           >
             <span className="relative z-10">Voir nos projets</span>
           </Link>
