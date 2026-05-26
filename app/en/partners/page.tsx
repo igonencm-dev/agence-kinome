@@ -40,7 +40,7 @@ const partners: Partner[] = [
     nom: "Lucille Bory",
     pays: "France & Canada",
     description:
-      "Experienced designer working between France and Canada, Lucille brings her sensitive eye and creative rigour to many projects. Her multidisciplinary approach makes her a major asset for cross-cutting projects.",
+      "Experienced project manager working between France and Canada, Lucille leads our cross-cutting projects with rigour and a sharp eye for detail. Her multidisciplinary approach and coordination skills make her a major asset for multi-partner projects.",
     visuel: { type: "image", src: "/assets/partenaire-lucille.svg", bg: "#000" },
   },
   {

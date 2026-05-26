@@ -45,7 +45,7 @@ const partenaires: Partenaire[] = [
     nom: "Lucille Bory",
     pays: "France & Canada",
     description:
-      "Designer expérimentée travaillant entre la France et le Canada, Lucille apporte son regard sensible et son exigence créative sur de nombreux projets. Sa pluridisciplinarité fait d'elle un atout majeur pour les projets transversaux.",
+      "Cheffe de projet expérimentée travaillant entre la France et le Canada, Lucille pilote nos projets transversaux avec rigueur et sens du détail. Sa pluridisciplinarité et sa coordination font d'elle un atout majeur pour les projets multi-partenaires.",
     visuel: { type: "image", src: "/assets/partenaire-lucille.svg", bg: "#000" },
   },
   {

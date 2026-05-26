@@ -122,7 +122,7 @@ export const projets: Projet[] = [
       "/assets/projets/cabinet-faraday/5.png",
       "/assets/projets/cabinet-faraday/6.png",
     ],
-    siteUrl: "https://cabinetfaraday.com",
+    siteUrl: "https://cabinetfaraday.fr",
     resume_en:
       "Warm identity with Mexican-inspired tones for a paediatric dental practice.",
     domaine_en: "Identity",
@@ -193,7 +193,7 @@ export const projets: Projet[] = [
       "/assets/projets/authentik-peak/5.png",
       "/assets/projets/authentik-peak/6.png",
     ],
-    siteUrl: "https://authentikpeak.com",
+    siteUrl: "https://authentikpeak.fr",
     resume_en:
       "Mountain-inspired mascot identity for a professional training organisation.",
     domaine_en: "Identity",
