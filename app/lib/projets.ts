@@ -86,7 +86,10 @@ export const projets: Projet[] = [
       "/assets/projets/adapt-project/5.png",
       "/assets/projets/adapt-project/6.png",
     ],
-    siteUrl: "https://adaptproject.ch",
+    // siteUrl temporairement masqué — Adapt Project est en refonte (mai 2026).
+    // Le domaine adaptproject.ch retourne 503 sur /en-maintenance/. À
+    // ré-activer quand le nouveau site sera en ligne.
+    // siteUrl: "https://adaptproject.ch",
     resume_en:
       "Bold identity with warm hues for a consultancy specialised in project ownership assistance.",
     domaine_en: "Identity",
