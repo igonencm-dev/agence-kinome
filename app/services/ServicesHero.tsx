@@ -15,10 +15,29 @@
 
 import { useEffect, useRef, useState } from "react";
 import ResponsiveBr from "../components/ResponsiveBr";
+import type { Locale } from "../lib/i18n";
 
 const IDLE_DELAY_MS = 2500;
 
-export default function ServicesHero() {
+const T = {
+  fr: {
+    mouseHint: "Bougez la souris",
+    altVideo: "Studio créatif Kinome — services de communication à Genève",
+    titleA: "Expertise & services",
+    titleB: "à Genève",
+    desc: "De la création de logo à la conception de votre site internet, en passant par votre identité visuelle complète : Kinome regroupe l'ensemble des compétences créatives à Genève pour donner corps à votre marque.",
+  },
+  en: {
+    mouseHint: "Move your mouse",
+    altVideo: "Kinome creative studio — communication services in Geneva",
+    titleA: "Expertise & services",
+    titleB: "in Geneva",
+    desc: "From logo design to your full website, including your complete visual identity: Kinome brings together every creative skill in Geneva to give shape to your brand.",
+  },
+} as const;
+
+export default function ServicesHero({ locale = "fr" }: { locale?: Locale }) {
+  const t = T[locale];
   const videoRef = useRef<HTMLVideoElement>(null);
   // `revealed` : titre visible (true sur tactile par défaut, false sur desktop)
   const [revealed, setRevealed] = useState(false);
@@ -88,7 +107,7 @@ export default function ServicesHero() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/services-hero.png"
-          alt="Studio créatif Kinome — services de communication à Genève"
+          alt={t.altVideo}
           className="block h-full w-full object-cover"
         />
       </video>
@@ -125,7 +144,7 @@ export default function ServicesHero() {
               <line x1="12" y1="6" x2="12" y2="10" />
             </svg>
             <span className="font-body text-[0.78rem] uppercase tracking-[0.18em]">
-              Bougez la souris
+              {t.mouseHint}
             </span>
           </div>
         </div>
@@ -142,8 +161,9 @@ export default function ServicesHero() {
             transform: `translateY(${titleTranslate})`,
           }}
         >
-          Expertise &amp; services
-          <ResponsiveBr />à Genève
+          {t.titleA}
+          <ResponsiveBr />
+          {locale === "fr" ? "à Genève" : t.titleB}
         </h1>
         <p
           className="max-w-[680px] font-body text-[clamp(16px,1.4vw,22px)] font-light leading-[1.5] text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.7)] transition-[opacity,transform] duration-500 ease-out"
@@ -153,10 +173,7 @@ export default function ServicesHero() {
             transitionDelay: revealed ? "80ms" : "0ms",
           }}
         >
-          De la création de logo à la conception de votre site internet, en
-          passant par votre identité visuelle complète : Kinome regroupe
-          l&rsquo;ensemble des compétences créatives à Genève pour donner
-          corps à votre marque.
+          {t.desc}
         </p>
       </div>
     </section>
