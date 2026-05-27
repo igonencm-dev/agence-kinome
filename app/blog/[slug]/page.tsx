@@ -269,6 +269,41 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 </Link>
               </div>
 
+              {/* Card "Explorer Kinome" : maillage interne automatique vers
+                  pages clés (services + processus + portfolio). Présente sur
+                  TOUS les articles → boost SEO pages conversion + transparence. */}
+              <div className="rounded-[20px] bg-kinome-cream p-6">
+                <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
+                  Explorer Kinome
+                </p>
+                <ul className="space-y-2 font-body text-[0.9rem]">
+                  <li>
+                    <Link
+                      href="/services/"
+                      className="inline-flex items-center gap-1 text-kinome-black hover:text-kinome-accent hover:underline"
+                    >
+                      → Nos services
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/processus/"
+                      className="inline-flex items-center gap-1 text-kinome-black hover:text-kinome-accent hover:underline"
+                    >
+                      → Notre processus
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/portfolio/"
+                      className="inline-flex items-center gap-1 text-kinome-black hover:text-kinome-accent hover:underline"
+                    >
+                      → Nos réalisations
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
               <div className="rounded-[20px] bg-kinome-dark p-6 text-white">
                 <p className="mb-3 font-heading text-[clamp(15px,1.1vw,17px)] font-semibold leading-[1.3]">
                   Un projet en tête&nbsp;?
