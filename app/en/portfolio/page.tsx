@@ -156,6 +156,33 @@ export default function PortfolioEN() {
       <div className="-mx-[5%] mt-24">
         <Testimonials locale="en" />
       </div>
+
+      {/* Bottom CTA — mirrors the FR portfolio CTA section */}
+      <section className="-mx-[5%] mt-0 bg-kinome-cream px-[5%] py-[clamp(70px,10vw,120px)] text-center text-kinome-black">
+        <div className="mx-auto max-w-[900px]">
+          <h2 className="mb-6 font-heading text-[clamp(28px,4.5vw,52px)] font-normal leading-[1.1]">
+            A new project to bring to life?
+          </h2>
+          <p className="mx-auto mb-10 max-w-[680px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey">
+            Branding, visual identity, website: tell us about your project
+            and we'll come back within 48 hours with a first direction.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/en/contact/"
+              className="btn-fill-accent group inline-flex min-w-[260px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105"
+            >
+              <span className="relative z-10">Have a project?</span>
+            </Link>
+            <Link
+              href="/en/process/"
+              className="btn-fill-dark group inline-flex min-w-[260px] items-center justify-center rounded-full border-2 border-kinome-black bg-transparent px-8 py-4 font-heading text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
+            >
+              <span className="relative z-10">Our process</span>
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
