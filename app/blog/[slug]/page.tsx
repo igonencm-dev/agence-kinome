@@ -55,7 +55,16 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  // Tri par date DESC pour que les articles RÉCENTS apparaissent dans
+  // "À lire aussi". Avant : on prenait juste les 3 premiers du tableau,
+  // donc les nouveaux articles n'étaient jamais mis en avant et restaient
+  // orphelins niveau maillage interne. Maintenant chaque article cousin
+  // pointe vers les 3 plus récents → boost SEO automatique pour tout
+  // nouvel article publié.
+  const related = blogPosts
+    .filter((p) => p.slug !== post.slug)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 3);
   const minutes = readingTime(post.articleHtml);
 
   // Author par défaut = Mathias (directeur marketing = éditeur en chef du blog).

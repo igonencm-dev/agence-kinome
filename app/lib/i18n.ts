@@ -28,7 +28,8 @@ export const ROUTES: Record<
     | "partners"
     | "blog"
     | "legal"
-    | "privacy",
+    | "privacy"
+    | "pressKit",
     string
   >
 > = {
@@ -43,6 +44,7 @@ export const ROUTES: Record<
     blog: "/blog/",
     legal: "/mentions-legales/",
     privacy: "/politique-de-confidentialite/",
+    pressKit: "/dossier-presse/",
   },
   en: {
     home: "/en/",
@@ -55,6 +57,7 @@ export const ROUTES: Record<
     blog: "/en/blog/",
     legal: "/en/legal/",
     privacy: "/en/privacy/",
+    pressKit: "/en/press-kit/",
   },
 };
 
@@ -117,6 +120,7 @@ const fr: Dict = {
   footer_legal: "Mentions légales",
   footer_privacy: "Politique de confidentialité",
   footer_manage_cookies: "Gérer les cookies",
+  footer_press_kit: "Dossier de presse",
   footer_follow: "Suivez-nous",
   footer_rights: "Tous droits réservés.",
 
@@ -211,6 +215,7 @@ const en: Dict = {
   footer_legal: "Legal notice",
   footer_privacy: "Privacy policy",
   footer_manage_cookies: "Manage cookies",
+  footer_press_kit: "Press kit",
   footer_follow: "Follow us",
   footer_rights: "All rights reserved.",
 

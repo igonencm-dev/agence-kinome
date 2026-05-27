@@ -146,6 +146,13 @@ export default function Footer() {
             {t("footer_privacy", locale)}
           </Link>
           <span aria-hidden="true">·</span>
+          <Link
+            href={r.pressKit}
+            className="hover:text-kinome-cream hover:underline"
+          >
+            {t("footer_press_kit", locale)}
+          </Link>
+          <span aria-hidden="true">·</span>
           <ManageCookiesButton />
         </nav>
       </div>

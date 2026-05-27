@@ -212,7 +212,7 @@ export default function Home() {
                   Au hover, fond se remplit en blanc → texte doit passer
                   noir pour rester lisible (retour #86). */}
               <Link
-                href="/portfolio"
+                href="/portfolio/"
                 className="btn-fill-white group inline-flex min-w-[280px] items-center justify-center whitespace-nowrap rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-bold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.45)] transition-[transform,color,text-shadow] duration-300 hover:scale-105 hover:text-black hover:[text-shadow:none]"
               >
                 <span className="relative z-10">Découvrir nos projets</span>
@@ -286,7 +286,7 @@ export default function Home() {
               professionnelles.
             </p>
             <Link
-              href="/a-propos"
+              href="/a-propos/"
               className="mx-auto block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
             >
               Notre agence
@@ -369,13 +369,13 @@ export default function Home() {
         </div>
         <div className="mt-16 flex flex-wrap justify-center gap-5">
           <Link
-            href="/services"
+            href="/services/"
             className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
           >
             Découvrez nos services
           </Link>
           <Link
-            href="/portfolio"
+            href="/portfolio/"
             className="inline-flex min-w-[280px] items-center justify-center btn-fill-dark rounded-full border-2 border-kinome-black bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
           >
             Découvrir nos projets
@@ -389,7 +389,7 @@ export default function Home() {
           {portfolio.map((p) => (
             <Link
               key={p.alt}
-              href="/portfolio"
+              href="/portfolio/"
               className="group relative block aspect-[16/9] overflow-hidden rounded-[20px] transition-transform duration-500 hover:scale-[1.02]"
             >
               <img
@@ -402,7 +402,7 @@ export default function Home() {
         </div>
         <div className="mt-16 flex justify-center pb-5">
           <Link
-            href="/portfolio"
+            href="/portfolio/"
             className="inline-flex min-w-[280px] items-center justify-center btn-fill-white rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-white/10"
           >
             Découvrir nos projets
@@ -419,7 +419,7 @@ export default function Home() {
           Parlons de ce dont vous avez besoin, avant ce que nous offrons&nbsp;!
         </h2>
         <Link
-          href="/processus"
+          href="/processus/"
           className="mx-auto block w-fit btn-fill-accent rounded-full bg-kinome-black px-[45px] py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
         >
           Découvrir notre processus de travail
