@@ -273,8 +273,9 @@ export default async function ProjetPage({ params }: { params: Params }) {
         </section>
       )}
 
-      {/* Témoignages (composant partagé) */}
-      <Testimonials />
+      {/* Témoignages (composant partagé) — avis client du projet si dispo,
+          sinon avis par défaut */}
+      <Testimonials review={projet.testimonial} />
 
       {/* Projets similaires (recommandation basée sur catégories communes) */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">

@@ -14,27 +14,43 @@
  */
 
 import { t, type Locale } from "../lib/i18n";
+import { type ProjetTestimonial } from "../lib/projets";
 
 type TestimonialsProps = {
   /** Marge verticale standard (par défaut), ou compact pour pages denses. */
   variant?: "default" | "compact";
   locale?: Locale;
+  /** Avis spécifique (ex. avis client d'une page projet). Sinon avis par défaut. */
+  review?: ProjetTestimonial;
 };
 
 export default function Testimonials({
   variant = "default",
   locale = "fr",
+  review: override,
 }: TestimonialsProps) {
-  // Une seule review pour l'instant — Manon Pichereau (La Voyagiste).
-  // Quand on en aura d'autres, transformer en tableau + sliders.
-  const review = {
-    image: "/assets/wp/La-Voyagist-780x390px-1.png",
-    alt: t("testimonials_voyagiste_alt", locale),
-    quote: t("testimonials_voyagiste_quote", locale),
-    name: "Manon Pichereau",
-    company: "La Voyagiste",
-    rating: 5,
-  };
+  // Avis par défaut — Manon Pichereau (La Voyagiste). Une page projet peut
+  // fournir son propre avis client via la prop `review`.
+  const review = override
+    ? {
+        image: override.image,
+        alt: override.alt,
+        quote:
+          locale === "en"
+            ? override.quote_en ?? override.quote
+            : override.quote,
+        name: override.name,
+        company: override.company,
+        rating: 5,
+      }
+    : {
+        image: "/assets/wp/La-Voyagist-780x390px-1.png",
+        alt: t("testimonials_voyagiste_alt", locale),
+        quote: t("testimonials_voyagiste_quote", locale),
+        name: "Manon Pichereau",
+        company: "La Voyagiste",
+        rating: 5,
+      };
 
   const paddingClass =
     variant === "compact"

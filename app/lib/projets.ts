@@ -23,6 +23,20 @@ export type Projet = {
   description_en?: string;
   pointFortTitle_en?: string;
   pointFortBody_en?: string;
+  /** Avis client optionnel — affiché dans le bloc « Ils nous font confiance »
+   *  de la page projet. Si absent, le bloc affiche l'avis par défaut. */
+  testimonial?: ProjetTestimonial;
+};
+
+/** Avis client rattaché à un projet. */
+export type ProjetTestimonial = {
+  quote: string;
+  /** Traduction anglaise (fallback FR si absente). */
+  quote_en?: string;
+  name: string;
+  company: string;
+  image: string;
+  alt: string;
 };
 
 export const projets: Projet[] = [
@@ -135,6 +149,16 @@ export const projets: Projet[] = [
     pointFortTitle_en: "Tasteful graphic design",
     pointFortBody_en:
       "A vibrant colour palette and an identity that is warm, festive and raw at the same time were designed to dress a richly coloured space, while preserving the standing expected by a clientele from upscale Parisian neighbourhoods. Particular attention was paid to our client's target audience and her wish to evoke the atmosphere of haciendas in her brand world. The logo embodies this intent with expressive typography, raw forms and dazzling hues.",
+    testimonial: {
+      quote:
+        "Un grand merci à Tanguy, de l'agence Kinome, qui m'a accompagnée et guidée dans la création de l'image de mon cabinet d'odontologie pédiatrique. Disponible, efficace, patient et passionné, il possède toutes les qualités nécessaires pour aider à faire aboutir un projet de création.",
+      quote_en:
+        "A heartfelt thank you to Tanguy, from agency Kinome, who supported and guided me in creating the visual identity of my paediatric dentistry practice. Available, efficient, patient and passionate, he has every quality needed to help bring a creative project to life.",
+      name: "Dre Esther Attal Surman",
+      company: "Cabinet Faraday",
+      image: "/assets/wp/Cabinet-Faraday-780x390px-1.png",
+      alt: "Cabinet Faraday — projet d'identité visuelle",
+    },
   },
   {
     slug: "alministratif",
