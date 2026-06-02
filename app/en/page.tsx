@@ -152,7 +152,7 @@ export default function HomeEN() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/assets/hero-poster.jpg"
           className="absolute inset-0 z-[1] h-full w-full object-cover"
         >
@@ -276,6 +276,8 @@ export default function HomeEN() {
               <img
                 src={bloc.img}
                 alt={bloc.alt}
+                loading="lazy"
+                decoding="async"
                 className="block h-full w-full object-cover"
               />
             </div>
@@ -351,6 +353,8 @@ export default function HomeEN() {
               <img
                 src={p.src}
                 alt={p.alt}
+                loading="lazy"
+                decoding="async"
                 className="block h-full w-full object-cover"
               />
             </Link>
@@ -400,6 +404,10 @@ export default function HomeEN() {
                 <img
                   src="/assets/home-illustration.png"
                   alt="Kinome illustration — creative studio"
+                  width={840}
+                  height={840}
+                  loading="lazy"
+                  decoding="async"
                   className="relative z-[1] block w-full object-contain"
                 />
               </picture>

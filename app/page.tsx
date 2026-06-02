@@ -162,17 +162,18 @@ export default function Home() {
       {/* HERO — vidéo de fond */}
       <section className="relative flex h-screen w-full items-center overflow-hidden">
         {/* Hero vidéo :
-            - `preload="auto"` : on charge la vidéo dès le départ (c'est le LCP de
-              la home, on ne veut pas attendre le user gesture).
-            - `poster` : image affichée pendant le chargement de la vidéo. Réduit
-              le LCP perçu et donne un fallback visuel aux bots qui ne lisent pas
-              la vidéo (Google, ChatGPT, Perplexity…). */}
+            - `preload="metadata"` : on ne télécharge PAS toute la vidéo au chargement.
+              Le `poster` (≈97 Ko) devient l'élément LCP et s'affiche en ~1 s, au lieu
+              d'attendre le téléchargement de la vidéo (LCP de 10 s constaté en 4G lente
+              avec preload="auto"). La vidéo se charge ensuite pour l'autoplay.
+            - `poster` : image affichée immédiatement, fallback visuel pour les bots
+              qui ne lisent pas la vidéo (Google, ChatGPT, Perplexity…). */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/assets/hero-poster.jpg"
           className="absolute inset-0 z-[1] h-full w-full object-cover"
         >
@@ -316,6 +317,8 @@ export default function Home() {
               <img
                 src={bloc.img}
                 alt={bloc.alt}
+                loading="lazy"
+                decoding="async"
                 className="block h-full w-full object-cover"
               />
             </div>
@@ -395,6 +398,8 @@ export default function Home() {
               <img
                 src={p.src}
                 alt={p.alt}
+                loading="lazy"
+                decoding="async"
                 className="block h-full w-full object-cover"
               />
             </Link>
@@ -448,6 +453,10 @@ export default function Home() {
                 <img
                   src="/assets/home-illustration.png"
                   alt="Illustration Kinome — atelier créatif"
+                  width={840}
+                  height={840}
+                  loading="lazy"
+                  decoding="async"
                   className="relative z-[1] block w-full object-contain"
                 />
               </picture>
