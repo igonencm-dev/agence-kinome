@@ -160,8 +160,14 @@ export default function Home() {
 
       <SplashScreen />
 
-      {/* HERO — vidéo de fond */}
-      <section className="relative flex h-screen w-full items-center overflow-hidden">
+      {/* HERO — vidéo de fond.
+          `bg-kinome-dark` : fond sombre dès le 1er paint CSS, AVANT que le
+          poster ne soit chargé. Sans lui, le H1 blanc était posé sur le fond
+          crème clair du body → Chrome ne le comptait pas comme "peint" tant
+          que le poster (backdrop sombre) n'était pas téléchargé → LCP bloqué
+          à ~9 s. Avec ce fond sombre, le H1 a son contraste immédiatement →
+          LCP ≈ FCP (~1 s). Le poster puis la vidéo se superposent ensuite. */}
+      <section className="relative flex h-screen w-full items-center overflow-hidden bg-kinome-dark">
         {/* Hero vidéo — voir app/components/HeroVideo.tsx : le poster est rendu
             en vraie <img fetchPriority="high"> (= élément LCP, ~1 s) et la vidéo
             n'est montée qu'après le `load` pour ne pas concurrencer le LCP. */}

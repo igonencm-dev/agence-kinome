@@ -146,8 +146,10 @@ export default function HomeEN() {
 
       <SplashScreen />
 
-      {/* HERO — background video */}
-      <section className="relative flex h-screen w-full items-center overflow-hidden">
+      {/* HERO — background video. `bg-kinome-dark` : fond sombre dès le 1er
+          paint CSS pour que le H1 blanc ait son contraste immédiatement
+          (sinon LCP bloqué jusqu'au chargement du poster). Voir page.tsx FR. */}
+      <section className="relative flex h-screen w-full items-center overflow-hidden bg-kinome-dark">
         <HeroVideo
           videoSrc={HERO_VIDEO}
           poster="/assets/hero-poster.jpg"
