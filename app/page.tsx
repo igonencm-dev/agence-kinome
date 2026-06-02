@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import SplashScreen from "./components/SplashScreen";
+import HeroVideo from "./components/HeroVideo";
 import HeroAnimatedWord from "./components/HeroAnimatedWord";
 import LogosMarquee from "./components/LogosMarquee";
 import ContactForm from "./contact/ContactForm";
@@ -161,24 +162,14 @@ export default function Home() {
 
       {/* HERO — vidéo de fond */}
       <section className="relative flex h-screen w-full items-center overflow-hidden">
-        {/* Hero vidéo :
-            - `preload="metadata"` : on ne télécharge PAS toute la vidéo au chargement.
-              Le `poster` (≈97 Ko) devient l'élément LCP et s'affiche en ~1 s, au lieu
-              d'attendre le téléchargement de la vidéo (LCP de 10 s constaté en 4G lente
-              avec preload="auto"). La vidéo se charge ensuite pour l'autoplay.
-            - `poster` : image affichée immédiatement, fallback visuel pour les bots
-              qui ne lisent pas la vidéo (Google, ChatGPT, Perplexity…). */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
+        {/* Hero vidéo — voir app/components/HeroVideo.tsx : le poster est rendu
+            en vraie <img fetchPriority="high"> (= élément LCP, ~1 s) et la vidéo
+            n'est montée qu'après le `load` pour ne pas concurrencer le LCP. */}
+        <HeroVideo
+          videoSrc={HERO_VIDEO}
           poster="/assets/hero-poster.jpg"
           className="absolute inset-0 z-[1] h-full w-full object-cover"
-        >
-          <source src={HERO_VIDEO} type="video/mp4" />
-        </video>
+        />
         {/* Overlay gradient : plus sombre en bas (zone CTA) pour assurer la
             lisibilité des boutons même quand la vidéo de fond montre des
             frames clairs (retours #86 #88). Au-dessus, voile uniforme léger

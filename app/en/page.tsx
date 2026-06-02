@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import SplashScreen from "../components/SplashScreen";
+import HeroVideo from "../components/HeroVideo";
 import HeroAnimatedWord from "../components/HeroAnimatedWord";
 import LogosMarquee from "../components/LogosMarquee";
 import ContactForm from "../contact/ContactForm";
@@ -147,17 +148,11 @@ export default function HomeEN() {
 
       {/* HERO — background video */}
       <section className="relative flex h-screen w-full items-center overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
+        <HeroVideo
+          videoSrc={HERO_VIDEO}
           poster="/assets/hero-poster.jpg"
           className="absolute inset-0 z-[1] h-full w-full object-cover"
-        >
-          <source src={HERO_VIDEO} type="video/mp4" />
-        </video>
+        />
         <div className="pointer-events-none absolute inset-0 z-[2] bg-black/35" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[55%] bg-gradient-to-t from-black/70 via-black/45 to-transparent" />
         <div className="relative z-[3] mx-auto flex w-full max-w-[1400px] flex-col items-start px-[5%]">
