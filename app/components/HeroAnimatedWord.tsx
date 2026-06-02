@@ -17,14 +17,52 @@ export default function HeroAnimatedWord() {
   const locale = getLocaleFromPath(usePathname() ?? "/");
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setIndex((i) => (i + 1) % WORD_KEYS.length);
-        setVisible(true);
-      }, 300);
-    }, 2000);
-    return () => clearInterval(interval);
+    // Respecte la préférence "reduced motion" : mot fixe, pas de rotation.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // IMPORTANT (perf / LCP) : ce mot est DANS le H1, qui est l'élément LCP de
+    // la home. Si on fait tourner le mot dès le chargement, le texte du H1
+    // change toutes les 2 s → Chrome enregistre sans cesse de nouveaux
+    // candidats LCP → le LCP reste bloqué à ~8 s (constaté PageSpeed mobile :
+    // l'élément LCP était capturé sur un mot tardif, "émotion").
+    //
+    // Solution : on ne démarre la rotation qu'au PREMIER geste de
+    // l'utilisateur (scroll, toucher, clavier…). Lighthouse / PageSpeed
+    // n'interagit jamais avec la page → le H1 reste sur le 1er mot → le LCP
+    // se fige en ~1 s. Pour un vrai visiteur, la rotation démarre dès qu'il
+    // scrolle ou touche l'écran, c'est-à-dire quasi immédiatement.
+    let interval: number | undefined;
+    let started = false;
+
+    const events: string[] = [
+      "scroll",
+      "pointerdown",
+      "keydown",
+      "touchstart",
+      "wheel",
+    ];
+
+    const start = () => {
+      if (started) return;
+      started = true;
+      events.forEach((e) => window.removeEventListener(e, start));
+      interval = window.setInterval(() => {
+        setVisible(false);
+        window.setTimeout(() => {
+          setIndex((i) => (i + 1) % WORD_KEYS.length);
+          setVisible(true);
+        }, 300);
+      }, 2000);
+    };
+
+    events.forEach((e) =>
+      window.addEventListener(e, start, { once: true, passive: true })
+    );
+
+    return () => {
+      if (interval) window.clearInterval(interval);
+      events.forEach((e) => window.removeEventListener(e, start));
+    };
   }, []);
 
   return (
