@@ -56,6 +56,8 @@ RewriteRule ^homepage/?$              /                             [L,R=301]
 
 # Anciens slugs d'articles de blog (WordPress avait un slug bizarre pour celui-ci)
 RewriteRule ^agence-kinome-ch-blog-creation-site-internet-geneve-guide/?$  /blog/creation-site-internet-geneve-guide/  [L,R=301]
+# Variante préfixée /blog/ du même slug malformé (404 vu dans GSC « Page en double »)
+RewriteRule ^blog/agence-kinome-ch-blog-creation-site-internet-geneve-guide/?$  /blog/creation-site-internet-geneve-guide/  [L,R=301]
 
 # Anciennes pages publiques /blog/{slug} qui étaient à la racine pendant la migration
 RewriteRule ^choisir-agence-communication-geneve/?$           /blog/choisir-agence-communication-geneve/           [L,R=301]
