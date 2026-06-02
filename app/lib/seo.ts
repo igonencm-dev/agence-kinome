@@ -276,6 +276,11 @@ export function organizationJsonLd() {
         sameAs: [
           "https://www.linkedin.com/company/agence-kinome",
           "https://www.instagram.com/agencekinome/",
+          // Fiches locales suisses — renforce l'entité locale pour Google
+          // (désambiguïsation + cohérence NAP). Voir SEO local Genève/Thônex.
+          "https://maps.app.goo.gl/Ge2EH3UVP2mfAZej9",
+          "https://www.local.ch/fr/d/thonex/1226/marketing/agence-kinome-sarl-dsPgFwzpabl9PXk39CS_6A",
+          "https://search.ch/tel/thonex/route-de-jussy-35/agence-kinome-sarl",
         ],
         contactPoint: [
           {
