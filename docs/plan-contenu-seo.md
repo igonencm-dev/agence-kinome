@@ -95,3 +95,4 @@ Pilier visé : **agence de communication Genève** (terme n°1, porté par la ho
 
 ## Journal
 - 2026-06-02 — Création du doc. 8 articles publiés. Fiches local.ch/search.ch/GBP/CCIFS reliées au schema `sameAs`.
+- 2026-06-03 — **Sprint cluster terminé : 8 sous-articles écrits** (charte graphique, stratégie de marque, WordPress/Webflow/sur-mesure, vitrine vs e-commerce, erreurs refonte site, rebranding, SEO Genève, tendances design 2026). **0 lien interne mort** (tous les slugs pré-câblés sont devenus de vrais articles ; `site-invisible` repointé vers l'article SEO). **Blog = 16 articles.** Tous les clusters 1-4 sont désormais couverts. Reste optionnel : cluster 5 (pages sectorielles/locales) + covers dédiées (placeholders pour l'instant).
