@@ -145,5 +145,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ],
   }));
 
-  return [...pairedPages, ...projetPages, ...blogPages];
+  // Pages de services dédiées (landing de conversion, FR — EN à venir).
+  const servicePages: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/services/identite-visuelle/`,
+      lastModified: new Date("2026-06-03"),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+  ];
+
+  return [...pairedPages, ...servicePages, ...projetPages, ...blogPages];
 }
