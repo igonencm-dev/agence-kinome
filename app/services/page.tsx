@@ -219,7 +219,7 @@ export default function ServicesPage() {
 
       {/* Aperçu projets */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(50px,10vw,100px)]">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6">
           {projetsApercu.map((p) => (
             <Link
               key={p.alt}

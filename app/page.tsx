@@ -385,7 +385,7 @@ export default function Home() {
 
       {/* Portfolio (fond dark) */}
       <section className="bg-kinome-dark px-[5%] pt-20 pb-[60px]">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-3 sm:gap-6">
           {portfolio.map((p) => (
             <Link
               key={p.alt}

@@ -133,13 +133,13 @@ const principes = [
     src: "/assets/wp/apropos-principe-photo1.jpg",
   },
   {
-    type: "photo" as const,
-    src: "/assets/wp/apropos-principe-photo2.jpg",
-  },
-  {
     type: "text" as const,
     title: "Empathie",
     body: "Comprendre votre métier, votre équipe, vos contraintes. La bonne idée naît toujours d'une écoute attentive.",
+  },
+  {
+    type: "photo" as const,
+    src: "/assets/wp/apropos-principe-photo2.jpg",
   },
   {
     type: "text" as const,
