@@ -381,6 +381,16 @@ body.no-scroll {
   margin: 0 0.2em;
 }
 
+/* GARDE-FOU : icônes SVG "libres" (hors li/p) héritées d'anciens articles
+   WordPress/Elementor. Sans contrainte, elles s'affichaient en PLEINE LARGEUR
+   (gros bug visuel). Les règles li>svg / p>svg ci-dessus restent prioritaires
+   (spécificité supérieure) → les petites icônes ne sont pas affectées. */
+.blog-prose svg {
+  width: 40px;
+  height: 40px;
+  max-width: 100%;
+}
+
 .blog-prose blockquote {
   margin: 2em 0;
   padding: 1.5em 2em;
