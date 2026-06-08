@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import CauserieBotWidget from "./components/CauserieBotWidget";
+import MobileStickyCta from "./components/MobileStickyCta";
 import {
   SITE,
   KEYWORDS_BASE,
@@ -163,6 +164,10 @@ export default function RootLayout({
         {/* Chatbot CauserieBot : chargé après la 1ère interaction utilisateur
             ou 8 s d'inactivité — préserve les Core Web Vitals (TBT, LCP). */}
         <CauserieBotWidget />
+
+        {/* Barre CTA collante mobile : apparaît au scroll, se cache près du
+            formulaire de contact, dismissible. Mobile uniquement. */}
+        <MobileStickyCta />
       </body>
     </html>
   );
