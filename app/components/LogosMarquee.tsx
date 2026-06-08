@@ -11,14 +11,14 @@ const LOGOS = [
 
 function LogosSet() {
   return (
-    <div className="flex h-[200px] flex-shrink-0 items-center gap-[100px] px-[50px]">
+    <div className="flex h-[120px] sm:h-[200px] flex-shrink-0 items-center gap-[56px] sm:gap-[100px] px-[28px] sm:px-[50px]">
       {LOGOS.map((logo) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           key={logo.alt}
           src={logo.src}
           alt={logo.alt}
-          className="block h-[140px] max-h-[140px] w-auto max-w-[420px] flex-shrink-0 object-contain opacity-80 grayscale transition-[opacity,filter] duration-300 hover:opacity-100 hover:grayscale-0"
+          className="block h-[72px] max-h-[72px] sm:h-[140px] sm:max-h-[140px] w-auto max-w-[200px] sm:max-w-[420px] flex-shrink-0 object-contain opacity-80 grayscale transition-[opacity,filter] duration-300 hover:opacity-100 hover:grayscale-0"
         />
       ))}
     </div>
@@ -27,7 +27,7 @@ function LogosSet() {
 
 export default function LogosMarquee() {
   return (
-    <section className="cursor-grab select-none overflow-hidden border-y border-kinome-grey/15 bg-kinome-cream py-[50px] active:cursor-grabbing">
+    <section className="cursor-grab select-none overflow-hidden border-y border-kinome-grey/15 bg-kinome-cream py-8 sm:py-[50px] active:cursor-grabbing">
       <div className="anim-marquee flex w-max">
         <LogosSet />
         <LogosSet />

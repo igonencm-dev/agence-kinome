@@ -222,7 +222,7 @@ export default function Home() {
 
       {/* "Ki" sommes-nous ? */}
       <section className="mx-auto my-[60px] max-w-[1300px] rounded-[20px] px-[clamp(20px,5vw,60px)] py-[clamp(50px,8vw,80px)]">
-        <div className="grid grid-cols-1 items-start gap-20 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-start gap-10 sm:gap-20 lg:grid-cols-2">
           <div>
             <h2 className="mb-10 text-center font-heading text-[clamp(28px,5.2vw,64px)] font-normal leading-[1.1] md:text-left">
               &ldquo;Ki&rdquo; sommes-nous&nbsp;?
@@ -295,7 +295,7 @@ export default function Home() {
 
       {/* Préparons ensemble les enjeux de demain */}
       <section className="mx-auto max-w-[1400px] bg-kinome-cream px-[5%] py-[clamp(50px,10vw,100px)]">
-        <h2 className="mx-auto mb-20 max-w-[600px] text-center font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1] md:mx-0 md:text-left">
+        <h2 className="mx-auto mb-10 sm:mb-20 max-w-[600px] text-center font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1] md:mx-0 md:text-left">
           Préparons ensemble
           <ResponsiveBr />
           les enjeux de demain
@@ -304,7 +304,7 @@ export default function Home() {
         {enjeuxBlocs.map((bloc, i) => (
           <div
             key={i}
-            className="mb-[100px] grid grid-cols-1 items-center gap-20 lg:grid-cols-2"
+            className="mb-12 sm:mb-[100px] grid grid-cols-1 items-center gap-10 sm:gap-20 lg:grid-cols-2"
           >
             <div
               className={`overflow-hidden rounded-[20px] aspect-[4/3] ${
@@ -350,7 +350,7 @@ export default function Home() {
 
       {/* Notre expertise & notre accompagnement */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
-        <h2 className="mb-20 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
+        <h2 className="mb-10 sm:mb-20 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Notre expertise
           <ResponsiveBr />
           &amp; notre accompagnement
@@ -367,7 +367,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className="mt-16 flex flex-wrap justify-center gap-5">
+        <div className="mt-8 sm:mt-16 flex flex-wrap justify-center gap-5">
           <Link
             href="/services/"
             className="inline-flex min-w-[280px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
@@ -384,7 +384,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio (fond dark) */}
-      <section className="bg-kinome-dark px-[5%] pt-20 pb-[60px]">
+      <section className="bg-kinome-dark px-[5%] pt-10 sm:pt-20 pb-9 sm:pb-[60px]">
         <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-3 sm:gap-6">
           {portfolio.map((p) => (
             <Link
@@ -402,7 +402,7 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <div className="mt-16 flex justify-center pb-5">
+        <div className="mt-8 sm:mt-16 flex justify-center pb-5">
           <Link
             href="/portfolio/"
             className="inline-flex min-w-[280px] items-center justify-center btn-fill-white rounded-full border-2 border-white bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-white/10"
@@ -417,7 +417,7 @@ export default function Home() {
 
       {/* CTA processus */}
       <section className="px-[5%] py-[clamp(70px,14vw,140px)] text-center">
-        <h2 className="mx-auto mb-16 max-w-[1000px] font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1]">
+        <h2 className="mx-auto mb-8 sm:mb-16 max-w-[1000px] font-heading text-[clamp(28px,5vw,60px)] font-normal leading-[1.1]">
           Parlons de ce dont vous avez besoin, avant ce que nous offrons&nbsp;!
         </h2>
         <Link
@@ -429,15 +429,15 @@ export default function Home() {
       </section>
 
       {/* Émotion */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[60px]">
-        <div className="grid grid-cols-1 items-center gap-[100px] py-[60px] lg:grid-cols-2">
+      <section className="mx-auto max-w-[1400px] px-[5%] py-9 sm:py-[60px]">
+        <div className="grid grid-cols-1 items-center gap-12 sm:gap-[100px] py-9 sm:py-[60px] lg:grid-cols-2">
           <div>
             <h2 className="mb-2 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1] md:text-left">
               Kinome, c&rsquo;est avant
               <ResponsiveBr />
               tout de l&rsquo;émotion&nbsp;!
             </h2>
-            <div className="relative mt-20 w-full max-w-[420px]">
+            <div className="relative mt-10 sm:mt-20 w-full max-w-[420px]">
               {/* Retour #89 — RÉSOLU : nouvelle illustration HD livrée par
                   Tanguy (mai 2026, transfer swisstransfer). Le trait
                   parasite n'existe plus sur cette version. WebP HQ + PNG
@@ -539,7 +539,7 @@ export default function Home() {
             Vous avez un projet sur lequel vous souhaitez échanger&nbsp;?
           </h2>
         </section>
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-20 px-[5%] pb-[clamp(60px,12vw,120px)] lg:grid-cols-[1fr_1.5fr]">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 sm:gap-20 px-[5%] pb-[clamp(60px,12vw,120px)] lg:grid-cols-[1fr_1.5fr]">
           <div>
             <h3 className="mb-12 font-heading text-[2.8rem] font-bold">
               Kinome

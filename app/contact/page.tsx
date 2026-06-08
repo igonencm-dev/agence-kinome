@@ -55,7 +55,7 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: jsonLdScript(contactPageLd) }}
       />
       {/* Bloc principal : adresse + formulaire */}
-      <section className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-[5%] py-[40px] lg:grid-cols-[1fr_1.3fr]">
+      <section className="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 sm:gap-16 px-[5%] py-6 sm:py-[40px] lg:grid-cols-[1fr_1.3fr]">
         <div className="font-body text-[clamp(16px,1.3vw,19px)] leading-[1.6] text-kinome-black">
           {/* H1 enrichi avec mots-clés locaux SEO + AEO (au lieu d'un simple
               "Échangeons." minimaliste qui perdait du signal Google). On garde
@@ -72,7 +72,9 @@ export default function ContactPage() {
             <p className="text-kinome-grey">
               {contact.agency.name}
               <br />
-              Genève, Suisse
+              Route de Jussy 35
+              <br />
+              1226 Thônex (Genève)
             </p>
           </div>
 

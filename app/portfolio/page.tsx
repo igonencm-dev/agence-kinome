@@ -84,7 +84,7 @@ export default function PortfolioPage() {
 
       {/* Filtres — couleur retour #94 : passer du gris froid #f2f2f2 au
           beige chaud #dfdbd0, cohérent avec la charte sable Kinome. */}
-      <section className="mx-auto mt-24 max-w-[1400px]">
+      <section className="mx-auto mt-12 sm:mt-24 max-w-[1400px]">
         <div className="flex flex-wrap items-center justify-center gap-3">
           {filtres.map((f) => (
             <button
@@ -103,7 +103,7 @@ export default function PortfolioPage() {
         </div>
 
         {/* Grille */}
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {liste.map((p) => (
             <Link
               key={p.slug}
@@ -146,12 +146,12 @@ export default function PortfolioPage() {
         </div>
 
         {liste.length === 0 && (
-          <p className="mt-16 text-center font-body text-kinome-grey">
+          <p className="mt-8 sm:mt-16 text-center font-body text-kinome-grey">
             Aucun projet dans cette catégorie pour le moment.
           </p>
         )}
 
-        <div className="mt-20 flex justify-center">
+        <div className="mt-10 sm:mt-20 flex justify-center">
           <Link
             href="/contact/"
             className="inline-flex min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
@@ -162,7 +162,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Témoignages (composant partagé) */}
-      <div className="-mx-[5%] mt-24">
+      <div className="-mx-[5%] mt-12 sm:mt-24">
         <Testimonials />
       </div>
 

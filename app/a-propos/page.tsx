@@ -480,11 +480,11 @@ export default function AProposPage() {
               On retire le padding interne (qui les rendait trop petites au
               point de devenir illisibles d'après le retour Mathias). Les SVG
               remplissent maintenant la totalité du wrapper. */}
-          <div className="mt-[clamp(50px,6vw,90px)] grid grid-cols-1 gap-[clamp(12px,1vw,18px)] md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-[clamp(50px,6vw,90px)] grid grid-cols-2 gap-[clamp(12px,1vw,18px)] md:grid-cols-2 lg:grid-cols-4">
             {services.map((s) => (
               <article
                 key={s.title}
-                className="group flex min-h-[clamp(220px,20vw,320px)] cursor-pointer flex-col items-center gap-[clamp(14px,1.2vw,20px)] rounded-[20px] bg-white p-[clamp(24px,2vw,36px)] text-center text-kinome-black transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]"
+                className="group flex min-h-[180px] sm:min-h-[clamp(220px,20vw,320px)] cursor-pointer flex-col items-center gap-3 sm:gap-[clamp(14px,1.2vw,20px)] rounded-[20px] bg-white p-4 sm:p-[clamp(24px,2vw,36px)] text-center text-kinome-black transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]"
               >
                 <div className="flex aspect-square w-full max-w-[clamp(126px,12vw,212px)] flex-shrink-0 items-center justify-center">
                   <ServiceIcon name={s.icon} />

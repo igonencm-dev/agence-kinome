@@ -128,7 +128,7 @@ export default function ServicesPage() {
 
       {/* Onglets services */}
       <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
-        <div className="mb-16 flex flex-wrap justify-center gap-4">
+        <div className="mb-8 sm:mb-16 flex flex-wrap justify-center gap-4">
           {/* Couleur retours #90 : passer du gris froid #f2f2f2 au beige
               chaud #dfdbd0 (cohérence avec la charte cream/sable Kinome). */}
           <button
@@ -159,7 +159,7 @@ export default function ServicesPage() {
           {services.map((s) => (
             <div
               key={s.title}
-              className="rounded-[24px] bg-kinome-cream p-10 text-center"
+              className="rounded-[24px] bg-kinome-cream p-10 text-left md:text-center"
             >
               <h2 className="mb-6 font-heading text-[1.6rem] font-semibold leading-[1.2]">
                 {s.title}
@@ -173,8 +173,8 @@ export default function ServicesPage() {
       </section>
 
       {/* Comment les prestations se déroulent ? */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[60px]">
-        <h2 className="mb-16 font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
+      <section className="mx-auto max-w-[1400px] px-[5%] py-9 sm:py-[60px]">
+        <h2 className="mb-8 sm:mb-16 font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
           Comment les prestations
           <ResponsiveBr />
           se déroulent&nbsp;?
@@ -247,7 +247,7 @@ export default function ServicesPage() {
       {/* Pourquoi nous choisir — 6 raisons */}
       <section className="bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1400px]">
-          <h2 className="mb-16 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
+          <h2 className="mb-8 sm:mb-16 text-center font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
             Pourquoi choisir Kinome&nbsp;?
           </h2>
           {/* Retour #92 : hauteur uniforme sur les blocs "raisons" pour

@@ -188,7 +188,7 @@ export default function ProcessusPage() {
       {/* Définissons ensemble vos besoins — fond cream, 2 cards */}
       <section className="bg-kinome-cream px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1400px]">
-          <h2 className="mx-auto mb-16 max-w-[1100px] text-center font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
+          <h2 className="mx-auto mb-8 sm:mb-16 max-w-[1100px] text-center font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Définissons ensemble
             <ResponsiveBr />
             vos besoins
@@ -232,7 +232,7 @@ export default function ProcessusPage() {
       {/* Le processus de conception — 3 étapes numérotées avec photos */}
       <section className="bg-white px-[5%] py-[clamp(60px,12vw,120px)]">
         <div className="mx-auto max-w-[1400px]">
-          <h2 className="mb-20 font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
+          <h2 className="mb-10 sm:mb-20 font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14]">
             Le processus
             <ResponsiveBr />
             de conception
@@ -245,7 +245,7 @@ export default function ProcessusPage() {
           {etapes.map((e) => (
             <div
               key={e.num}
-              className="mb-16 grid grid-cols-1 items-center gap-[clamp(40px,5vw,90px)] last:mb-0 lg:grid-cols-2"
+              className="mb-8 sm:mb-16 grid grid-cols-1 items-center gap-[clamp(40px,5vw,90px)] last:mb-0 lg:grid-cols-2"
             >
               <div
                 className={`overflow-hidden rounded-[24px] aspect-[4/5] ${
