@@ -13,6 +13,15 @@ RewriteCond %{HTTP_HOST} ^www\.agence-kinome\.ch [NC]
 RewriteRule ^(.*)$ https://agence-kinome.ch/$1 [L,R=301]
 
 # ============================================================================
+# SÉCURITÉ — Interdire l'accès direct aux librairies PHP internes
+# Le dossier /api/lib/ (PHPMailer & co) ne doit jamais être servi : on n'expose
+# ni le code source ni la version des librairies (surface d'attaque CVE).
+# /api/contact.php (endpoint du formulaire) reste public ; config.php est déjà
+# verrouillé plus bas via FilesMatch.
+# ============================================================================
+RewriteRule ^api/lib/ - [F,L]
+
+# ============================================================================
 # REDIRECTIONS 301 — ancien WordPress → nouvelle structure Next.js
 # Conserve le SEO accumulé par l'ancien site (Google transfère le jus
 # d'indexation via les 301 permanentes).
