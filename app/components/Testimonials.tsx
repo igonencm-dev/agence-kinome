@@ -81,7 +81,7 @@ export default function Testimonials({
         <div className="mb-1 font-heading text-[clamp(18px,1.5vw,24px)] font-semibold">
           {review.name}
         </div>
-        <div className="mb-6 italic text-[#888]">{review.company}</div>
+        <div className="mb-6 italic text-[#a9a9a9]">{review.company}</div>
         <div
           aria-label={t("testimonials_rating_aria", locale).replace(
             "{n}",

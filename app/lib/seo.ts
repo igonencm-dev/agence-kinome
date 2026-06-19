@@ -88,7 +88,7 @@ export const KEYWORDS_BASE = [
 // --------------------------------------------------------------------------
 
 type BuildArgs = {
-  /** Titre court (sera suffixé "— Kinome | Agence à Genève" sauf si `bareTitle`). */
+  /** Titre court (sera suffixé "| Kinome" sauf si `bareTitle`). */
   title: string;
   description: string;
   /** Chemin canonique relatif au site, ex: "/services/" */
@@ -116,10 +116,12 @@ export function buildMetadata({
   noIndex = false,
 }: BuildArgs): Metadata {
   const url = `${SITE.url}${path}`;
-  // Le suffixe " — Kinome | Agence à Genève" est ajouté automatiquement par
-  // le `template` défini dans app/layout.tsx. Pour OG/Twitter (qui n'utilisent
-  // PAS le template Next.js), on l'inclut manuellement sauf si bareTitle.
-  const fullTitle = bareTitle ? title : `${title} — Kinome | Agence à Genève`;
+  // Le suffixe " | Kinome" est ajouté automatiquement par le `template`
+  // défini dans app/layout.tsx. Pour OG/Twitter (qui n'utilisent PAS le
+  // template Next.js), on l'inclut manuellement sauf si bareTitle.
+  // (Suffixe volontairement court : l'ancien "— Kinome | Agence à Genève"
+  // tronquait les titres en SERP et dupliquait "Genève".)
+  const fullTitle = bareTitle ? title : `${title} | Kinome`;
   const image = ogImage ?? SITE.ogImage;
   const fullImage = image.startsWith("http") ? image : `${SITE.url}${image}`;
 
@@ -169,7 +171,7 @@ export function buildMetadata({
 
   return {
     // bareTitle = true : on bypasse le template du layout (utile pour la home)
-    // bareTitle = false : on laisse le template du layout ajouter "— Kinome | Agence à Genève"
+    // bareTitle = false : on laisse le template du layout ajouter "| Kinome"
     title: bareTitle ? { absolute: title } : title,
     description,
     keywords: [...new Set(allKeywords)].join(", "),

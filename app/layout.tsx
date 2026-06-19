@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
     default: "Kinome — Agence de communication à Genève",
-    template: "%s — Kinome | Agence à Genève",
+    template: "%s | Kinome",
   },
   description:
     "Agence de communication indépendante à Genève. Branding, identité visuelle, création de logo et site internet pour entreprises et marques en Suisse romande.",

@@ -545,7 +545,7 @@ export default function Home() {
               Kinome
             </h3>
             <div className="mb-9">
-              <strong className="mb-2 block text-[0.9rem] uppercase text-[#888]">
+              <strong className="mb-2 block text-[0.9rem] uppercase text-[#5b5b5b]">
                 Mathias
               </strong>
               <p className="m-0 font-body text-[clamp(16px,1.2vw,18px)] text-kinome-grey">
@@ -567,7 +567,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mb-9">
-              <strong className="mb-2 block text-[0.9rem] uppercase text-[#888]">
+              <strong className="mb-2 block text-[0.9rem] uppercase text-[#5b5b5b]">
                 Tanguy
               </strong>
               <p className="m-0 font-body text-[clamp(16px,1.2vw,18px)] text-kinome-grey">
@@ -587,7 +587,7 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <strong className="mb-2 block text-[0.9rem] uppercase text-[#888]">
+              <strong className="mb-2 block text-[0.9rem] uppercase text-[#5b5b5b]">
                 Suivez-nous
               </strong>
               <p className="m-0 flex flex-col gap-1 font-body text-[clamp(16px,1.2vw,18px)] text-kinome-grey">
