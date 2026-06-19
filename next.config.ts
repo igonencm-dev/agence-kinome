@@ -8,7 +8,9 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   turbopack: {
-    root: path.resolve(__dirname),
+    // path.resolve() sans argument = cwd = racine du projet pendant build/dev.
+    // (Évite __dirname, indéfini quand Next 16 charge ce config en ESM sous Node 24.)
+    root: path.resolve(),
   },
 };
 
