@@ -119,20 +119,24 @@ const nouvelles = _blogPosts.slice(0, 3).map((p) => ({
 
 const portfolio = [
   {
+    src: "/assets/projets/tampon-audition/thumb.jpg",
+    alt: "Tampon Audition",
+    href: "/projets/tampon-audition/",
+  },
+  {
     src: "/assets/wp/Adapt-Project-780x390px-1.png",
     alt: "Adapt Project",
+    href: "/projets/adapt-project/",
   },
   {
     src: "/assets/wp/Cabinet-Faraday-780x390px-1.png",
     alt: "Cabinet Faraday",
+    href: "/projets/cabinet-faraday/",
   },
   {
     src: "/assets/wp/Alministratif-780x390px-1.png",
     alt: "Alministratif",
-  },
-  {
-    src: "/assets/wp/Authentik-Peak-780x390px-1.png",
-    alt: "Authentik Peak",
+    href: "/projets/alministratif/",
   },
 ];
 
@@ -389,7 +393,7 @@ export default function Home() {
           {portfolio.map((p) => (
             <Link
               key={p.alt}
-              href="/portfolio/"
+              href={p.href}
               className="group relative block aspect-[16/9] overflow-hidden rounded-[20px] transition-transform duration-500 hover:scale-[1.02]"
             >
               <img

@@ -116,10 +116,10 @@ const nouvelles = _blogPosts.slice(0, 3).map((p) => ({
 }));
 
 const portfolio = [
-  { src: "/assets/wp/Adapt-Project-780x390px-1.png", alt: "Adapt Project" },
-  { src: "/assets/wp/Cabinet-Faraday-780x390px-1.png", alt: "Cabinet Faraday" },
-  { src: "/assets/wp/Alministratif-780x390px-1.png", alt: "Alministratif" },
-  { src: "/assets/wp/Authentik-Peak-780x390px-1.png", alt: "Authentik Peak" },
+  { src: "/assets/projets/tampon-audition/thumb.jpg", alt: "Tampon Audition", href: "/en/projets/tampon-audition/" },
+  { src: "/assets/wp/Adapt-Project-780x390px-1.png", alt: "Adapt Project", href: "/en/projets/adapt-project/" },
+  { src: "/assets/wp/Cabinet-Faraday-780x390px-1.png", alt: "Cabinet Faraday", href: "/en/projets/cabinet-faraday/" },
+  { src: "/assets/wp/Alministratif-780x390px-1.png", alt: "Alministratif", href: "/en/projets/alministratif/" },
 ];
 
 export default function HomeEN() {
@@ -344,7 +344,7 @@ export default function HomeEN() {
           {portfolio.map((p) => (
             <Link
               key={p.alt}
-              href="/en/portfolio/"
+              href={p.href}
               className="group relative block aspect-[16/9] overflow-hidden rounded-[20px] transition-transform duration-500 hover:scale-[1.02]"
             >
               <img
