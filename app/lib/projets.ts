@@ -16,6 +16,8 @@ export type Projet = {
   pointFortBody?: string;
   gallery?: string[];
   siteUrl?: string;
+  /** Lien vers l'étude de cas blog détaillée (coulisses du projet), si elle existe. */
+  caseStudyUrl?: string;
   // --- Traductions anglaises (optionnelles, fallback vers FR si absentes) ---
   resume_en?: string;
   domaine_en?: string;
@@ -65,6 +67,7 @@ export const projets: Projet[] = [
       "/assets/projets/tampon-audition/pochettes.jpg",
       "/assets/projets/tampon-audition/moodboard.jpg",
     ],
+    caseStudyUrl: "/blog/etude-de-cas-logo-tampon-audition/",
     resume_en:
       "Modern, evocative visual identity for a hearing-care centre in Réunion, rooted in its local territory.",
     domaine_en: "Identity",

@@ -50,6 +50,7 @@ L'agence se distingue par son approche humaine et indépendante : équipe à tai
 
 ## Projets phares récents
 
+- [Tampon Audition](https://agence-kinome.ch/projets/tampon-audition/) : identité visuelle et logo d'un centre de prothèses auditives à La Réunion (oreille + onde + montagnes). Étude de cas détaillée : https://agence-kinome.ch/blog/etude-de-cas-logo-tampon-audition/
 - [Causerie Bot](https://agence-kinome.ch/projets/causerie-bot/) : SaaS chatbot IA français, alternative européenne conforme RGPD à Intercom et Crisp
 - [NOCODE IA](https://agence-kinome.ch/projets/no-code/) : organisme de formation IA et no-code certifié Qualiopi (Toulouse)
 - [Cabinet Faraday](https://agence-kinome.ch/projets/cabinet-faraday/) : identité visuelle d'un cabinet dentaire pédiatrique

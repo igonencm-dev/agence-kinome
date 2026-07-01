@@ -185,6 +185,15 @@ export default async function ProjetPage({ params }: { params: Params }) {
             <p className="font-body text-[clamp(16px,1.2vw,20px)] font-light leading-[1.6] text-kinome-black">
               {projet.description ?? projet.resume}
             </p>
+            {projet.caseStudyUrl && (
+              <Link
+                href={projet.caseStudyUrl}
+                className="mt-8 inline-flex items-center gap-2 font-heading text-[clamp(15px,1.2vw,19px)] font-semibold text-kinome-accent underline-offset-4 hover:underline"
+              >
+                Lire l&rsquo;étude de cas complète
+                <span aria-hidden="true">→</span>
+              </Link>
+            )}
           </div>
         </div>
       </section>

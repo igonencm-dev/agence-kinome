@@ -102,6 +102,7 @@ const PORTFOLIO = [
 ];
 
 const BLOG_LINKS = [
+  { href: "/blog/etude-de-cas-logo-tampon-audition/", label: "Étude de cas concrète : le logo de Tampon Audition" },
   { href: "/blog/creer-identite-visuelle-entreprise-geneve/", label: "Créer une identité visuelle forte : le guide" },
   { href: "/blog/creation-logo-geneve-processus/", label: "Création de logo : processus et erreurs à éviter" },
   { href: "/blog/charte-graphique-pme-guide/", label: "La charte graphique expliquée" },
