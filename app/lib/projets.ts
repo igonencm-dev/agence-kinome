@@ -41,6 +41,41 @@ export type ProjetTestimonial = {
 
 export const projets: Projet[] = [
   {
+    slug: "tampon-audition",
+    nom: "Tampon Audition",
+    client: "Tampon Audition",
+    categories: ["identite", "branding"],
+    cover: "/assets/projets/tampon-audition/hero.jpg",
+    heroImage: "/assets/projets/tampon-audition/hero.jpg",
+    resume:
+      "Identité visuelle moderne et évocatrice pour un centre de prothèses auditives à La Réunion, ancrée dans son territoire.",
+    annee: "2026",
+    domaine: "Identité",
+    role: "Création",
+    description:
+      "Tampon Audition, spécialiste des solutions auditives au Tampon, à La Réunion, souhaite mettre en avant son ancrage local et la richesse de son territoire. Nous avons développé une identité visuelle moderne, illustrative et évocatrice, reflétant proximité, confiance et accompagnement, pour offrir une expérience claire, rassurante et chaleureuse.",
+    pointFortTitle: "Graphisme avec goût",
+    pointFortBody:
+      "L'identité visuelle de Tampon Audition s'inspire de l'écoute, de la proximité et de l'ancrage réunionnais. Le logo associe une représentation subtile de l'oreille à une ligne sonore évoquant le mouvement, la précision et la qualité d'écoute. Les formes douces et contemporaines renforcent une image rassurante et accessible, tandis que l'univers graphique traduit un accompagnement humain, moderne et local.",
+    gallery: [
+      "/assets/projets/tampon-audition/concept.png",
+      "/assets/projets/tampon-audition/carte.jpg",
+      "/assets/projets/tampon-audition/enseigne.jpg",
+      "/assets/projets/tampon-audition/blouse.jpg",
+      "/assets/projets/tampon-audition/pochettes.jpg",
+      "/assets/projets/tampon-audition/moodboard.jpg",
+    ],
+    resume_en:
+      "Modern, evocative visual identity for a hearing-care centre in Réunion, rooted in its local territory.",
+    domaine_en: "Identity",
+    role_en: "Creation",
+    description_en:
+      "Tampon Audition, a hearing-solutions specialist based in Le Tampon, Réunion, wanted to highlight its local roots and the richness of its territory. We developed a modern, illustrative and evocative visual identity reflecting closeness, trust and support, to deliver a clear, reassuring and warm experience.",
+    pointFortTitle_en: "Tasteful graphic design",
+    pointFortBody_en:
+      "Tampon Audition's visual identity draws on listening, closeness and Réunion roots. The logo pairs a subtle representation of the ear with a sound line evoking movement, precision and hearing quality. Soft, contemporary shapes reinforce a reassuring, accessible image, while the graphic world conveys human, modern and local care.",
+  },
+  {
     slug: "codecircle",
     nom: "Codecircle",
     client: "Codecircle",
