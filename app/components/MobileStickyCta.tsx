@@ -80,7 +80,7 @@ export default function MobileStickyCta() {
 
   const href = isEn ? "/en/contact/" : "/contact/";
   const title = isEn ? "Got a project?" : "Un projet en tête ?";
-  const sub = isEn ? "Reply within 24 h." : "Réponse sous 24 h.";
+  const sub = isEn ? "Free 30-min diagnostic." : "Diagnostic 30 min offert.";
   const cta = isEn ? "Let’s talk →" : "Parlons-en →";
 
   return (

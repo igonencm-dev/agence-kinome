@@ -23,16 +23,25 @@ export default function ContactEN() {
     <main className="pt-[clamp(100px,14vw,140px)]">
       <section className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-[5%] py-[40px] lg:grid-cols-[1fr_1.3fr]">
         <div className="font-body text-[clamp(16px,1.3vw,19px)] leading-[1.6] text-kinome-black">
-          <h1 className="mb-12 font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black">
+          <h1 className="mb-3 font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black">
             Let's talk.
           </h1>
+          <p className="mb-12 font-body text-[clamp(15px,1.2vw,18px)] font-light text-kinome-grey">
+            First meeting: a{" "}
+            <strong className="font-semibold text-kinome-black">
+              free 30-minute strategy diagnostic
+            </strong>
+            , no strings attached.
+          </p>
 
           <div className="mb-10">
             <p className="mb-3 font-semibold">Address</p>
             <p className="text-kinome-grey">
               {contact.agency.name}
               <br />
-              Geneva, Switzerland
+              Route de Jussy 35
+              <br />
+              1226 Thônex (Geneva)
             </p>
           </div>
 

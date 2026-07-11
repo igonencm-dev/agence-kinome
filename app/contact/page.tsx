@@ -63,8 +63,15 @@ export default function ContactPage() {
           <h1 className="mb-2 text-center font-heading text-[clamp(38px,8vw,76px)] font-normal leading-[1.05] text-kinome-black md:text-left">
             Contact — Agence Kinome à Genève
           </h1>
-          <p className="mb-12 text-center font-heading text-[clamp(18px,2.2vw,28px)] font-light italic text-kinome-grey md:text-left">
+          <p className="mb-3 text-center font-heading text-[clamp(18px,2.2vw,28px)] font-light italic text-kinome-grey md:text-left">
             Échangeons.
+          </p>
+          <p className="mb-12 text-center font-body text-[clamp(15px,1.2vw,18px)] font-light text-kinome-grey md:text-left">
+            Premier rendez-vous : un{" "}
+            <strong className="font-semibold text-kinome-black">
+              diagnostic stratégique offert de 30 minutes
+            </strong>
+            , sans engagement.
           </p>
 
           <div className="mb-10">

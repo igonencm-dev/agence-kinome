@@ -26,13 +26,17 @@ export default function ContactForm() {
       return;
     }
 
+    const source = ((data.get("source") as string) ?? "").trim();
+
     const payload = {
       prenom: (data.get("prenom") as string) ?? "",
       nom: (data.get("nom") as string) ?? "",
       email: (data.get("email") as string) ?? "",
       societe: (data.get("societe") as string) ?? "",
       besoin: (data.get("besoin") as string) ?? "",
-      message: (data.get("message") as string) ?? "",
+      message:
+        ((data.get("message") as string) ?? "") +
+        (source ? `\n\nComment nous avez-vous connus : ${source}` : ""),
     };
 
     setEtat("envoi");
@@ -176,6 +180,22 @@ export default function ContactForm() {
           maxLength={200}
           className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
         />
+        {/* Attribution : d'où vient le lead ? (optionnel, ajouté au message) */}
+        <select
+          name="source"
+          aria-label={t("form_source", locale)}
+          defaultValue=""
+          className="w-full cursor-pointer rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none focus-visible:ring-2 focus-visible:ring-kinome-accent"
+        >
+          <option value="">{t("form_source", locale)}</option>
+          <option value={t("form_source_google", locale)}>{t("form_source_google", locale)}</option>
+          <option value={t("form_source_ai", locale)}>{t("form_source_ai", locale)}</option>
+          <option value={t("form_source_social", locale)}>{t("form_source_social", locale)}</option>
+          <option value={t("form_source_referral", locale)}>{t("form_source_referral", locale)}</option>
+          <option value={t("form_source_event", locale)}>{t("form_source_event", locale)}</option>
+          <option value={t("form_source_other", locale)}>{t("form_source_other", locale)}</option>
+        </select>
+
         <textarea
           name="message"
           placeholder={t("form_message", locale)}

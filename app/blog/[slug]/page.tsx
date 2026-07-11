@@ -309,7 +309,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                   Un projet en tête&nbsp;?
                 </p>
                 <p className="mb-4 font-body text-[0.85rem] font-light leading-[1.55] text-white/85">
-                  Discutons-en. Premier échange gratuit, réponse sous 48h.
+                  Diagnostic stratégique offert (30 min). Réponse sous 24 h.
                 </p>
                 <Link
                   href="/contact/"
