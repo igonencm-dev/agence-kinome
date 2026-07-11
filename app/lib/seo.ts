@@ -83,6 +83,18 @@ export const KEYWORDS_BASE = [
   "Kinome",
 ] as const;
 
+// Équivalent anglais, utilisé automatiquement sur les pages /en/.
+export const KEYWORDS_BASE_EN = [
+  "communication agency Geneva",
+  "branding agency Geneva",
+  "logo design Geneva",
+  "visual identity Geneva",
+  "web design agency Geneva",
+  "creative agency Switzerland",
+  "brand strategy Geneva",
+  "Kinome",
+] as const;
+
 // --------------------------------------------------------------------------
 // Helper buildMetadata
 // --------------------------------------------------------------------------
@@ -125,7 +137,10 @@ export function buildMetadata({
   const image = ogImage ?? SITE.ogImage;
   const fullImage = image.startsWith("http") ? image : `${SITE.url}${image}`;
 
-  const allKeywords = [...KEYWORDS_BASE, ...(keywords ?? [])];
+  const allKeywords = [
+    ...(path.startsWith("/en") ? KEYWORDS_BASE_EN : KEYWORDS_BASE),
+    ...(keywords ?? []),
+  ];
 
   // Calcul automatique des alternates hreflang (FR ↔ EN) basé sur le path
   // courant. Mapping des slugs traduits pour les pages avec slug différent.
@@ -311,7 +326,7 @@ export function organizationJsonLd() {
         url: SITE.url,
         name: SITE.name,
         publisher: { "@id": `${SITE.url}/#organization` },
-        inLanguage: SITE.language,
+        inLanguage: ["fr", "en"],
       },
     ],
   };
@@ -340,6 +355,8 @@ export function creativeWorkJsonLd(args: {
   client: string;
   year: string;
   about?: string;
+  /** Langue du contenu ("fr" par défaut, "en" pour les pages /en/). */
+  inLanguage?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -361,7 +378,7 @@ export function creativeWorkJsonLd(args: {
         addressCountry: BUSINESS.country,
       },
     },
-    inLanguage: SITE.language,
+    inLanguage: args.inLanguage ?? SITE.language,
     sourceOrganization: {
       "@type": "Organization",
       name: args.client,

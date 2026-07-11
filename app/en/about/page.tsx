@@ -4,7 +4,7 @@ import { contact } from "../../lib/contact";
 import ServiceIcon, { type ServiceIconName } from "../../components/ServiceIcon";
 import VisualDiary from "../../components/VisualDiary";
 import Testimonials from "../../components/Testimonials";
-import { buildMetadata, jsonLdScript, SITE } from "../../lib/seo";
+import { buildMetadata, faqJsonLd, jsonLdScript, SITE } from "../../lib/seo";
 import ResponsiveBr from "../../components/ResponsiveBr";
 
 export const metadata = buildMetadata({
@@ -399,6 +399,108 @@ export default function AboutPageEN() {
       </section>
 
       <Testimonials locale="en" />
+
+      {/* FAQ (AEO) */}
+      <section className="mx-auto max-w-[1100px] px-[5%] py-[clamp(50px,10vw,100px)]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(faqJsonLd([
+          {
+            question: "Who is behind Kinome?",
+            answer:
+              "Kinome is an independent agency founded by two French creatives based in Geneva: Tanguy, art director with ten years of agency experience, and Mathias, in charge of strategy and digital. You always work directly with the founders.",
+          },
+          {
+            question: "Where is Kinome located?",
+            answer:
+              "Our studio is in Thônex, in the canton of Geneva (Route de Jussy 35). We work with clients across Geneva, French-speaking Switzerland, France and internationally.",
+          },
+          {
+            question: "Can we work together in English?",
+            answer:
+              "Yes. We work in French and in English, with remote-friendly processes: video calls, shared documents and asynchronous reviews. Some of our branding projects are delivered fully remotely.",
+          },
+          {
+            question: "How do we start a project with Kinome?",
+            answer:
+              "It starts with a free 30-minute call to understand your goals, constraints and timeline. You then receive a clear, structured proposal, with no obligation.",
+          },
+        ])) }}
+        />
+        <h2 className="mb-12 text-center font-heading text-[clamp(24px,4.5vw,48px)] font-normal leading-[1.1]">
+          Frequently asked questions
+        </h2>
+        <div className="flex flex-col gap-4">
+            <details
+              key="Who is behind Kinome?"
+              className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
+                <span>Who is behind Kinome?</span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-kinome-cream text-[1.4rem] font-light leading-none transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                Kinome is an independent agency founded by two French creatives based in Geneva: Tanguy, art director with ten years of agency experience, and Mathias, in charge of strategy and digital. You always work directly with the founders.
+              </p>
+            </details>
+            <details
+              key="Where is Kinome located?"
+              className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
+                <span>Where is Kinome located?</span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-kinome-cream text-[1.4rem] font-light leading-none transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                Our studio is in Thônex, in the canton of Geneva (Route de Jussy 35). We work with clients across Geneva, French-speaking Switzerland, France and internationally.
+              </p>
+            </details>
+            <details
+              key="Can we work together in "
+              className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
+                <span>Can we work together in English?</span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-kinome-cream text-[1.4rem] font-light leading-none transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                Yes. We work in French and in English, with remote-friendly processes: video calls, shared documents and asynchronous reviews. Some of our branding projects are delivered fully remotely.
+              </p>
+            </details>
+            <details
+              key="How do we start a projec"
+              className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
+                <span>How do we start a project with Kinome?</span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-kinome-cream text-[1.4rem] font-light leading-none transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                It starts with a free 30-minute call to understand your goals, constraints and timeline. You then receive a clear, structured proposal, with no obligation.
+              </p>
+            </details>
+        </div>
+      </section>
 
       <section id="cta-form" className="bg-kinome-cream px-[5%] py-[clamp(80px,10vw,180px)]">
         <div className="mx-auto max-w-[1588px]">

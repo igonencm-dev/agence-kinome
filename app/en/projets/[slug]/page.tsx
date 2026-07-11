@@ -81,6 +81,7 @@ export default async function ProjetPageEN({ params }: { params: Params }) {
 
   const ld = {
     creativeWork: creativeWorkJsonLd({
+      inLanguage: "en",
       name: projet.nom,
       description: projet.description_en ?? projet.description ?? projet.resume,
       image: projet.cover,

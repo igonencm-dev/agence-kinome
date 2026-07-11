@@ -251,6 +251,83 @@ export default function ServicesEN() {
       </section>
 
       {/* CTA contact */}
+      {/* FAQ (AEO) */}
+      <section className="mx-auto max-w-[1100px] px-[5%] py-[clamp(50px,10vw,100px)]">
+        <h2 className="mb-12 text-center font-heading text-[clamp(24px,4.5vw,48px)] font-normal leading-[1.1]">
+          Frequently asked questions
+        </h2>
+        <div className="flex flex-col gap-4">
+            <details
+              key="What is the difference b"
+              className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
+                <span>What is the difference between a logo and a visual identity?</span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-kinome-cream text-[1.4rem] font-light leading-none transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                The logo is your brand's distinctive mark. The visual identity covers the whole graphic system: logo, colour palette, typography, composition principles, iconography and the usage rules that keep everything consistent. At Kinome we always design both together, so the brand holds up over time.
+              </p>
+            </details>
+            <details
+              key="How long does it take to"
+              className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
+                <span>How long does it take to create a complete visual identity?</span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-kinome-cream text-[1.4rem] font-light leading-none transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                A complete project (logo, brand guidelines and first applications) usually takes 4 to 8 weeks depending on scope. That includes discovery, first creative routes, iterations and final delivery with usage guidelines. A logo alone can be delivered in 2 to 3 weeks.
+              </p>
+            </details>
+            <details
+              key="Do you only work with co"
+              className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
+                <span>Do you only work with companies based in Geneva?</span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-kinome-cream text-[1.4rem] font-light leading-none transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                Our studio is based in Geneva and we mainly support clients across French-speaking Switzerland, but we also work with companies and independents in France and internationally, in French or in English. Meetings happen by video call, phone or in person depending on your location.
+              </p>
+            </details>
+            <details
+              key="Do you redesign existing"
+              className="group rounded-[16px] border border-[#e0ddd6] bg-white p-6 transition-shadow hover:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black list-none">
+                <span>Do you redesign existing websites?</span>
+                <span
+                  aria-hidden="true"
+                  className="ml-auto flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-kinome-cream text-[1.4rem] font-light leading-none transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-grey">
+                Yes. We handle both brand-new websites and redesigns: audit of the current site, strategic recommendations, digital identity redesign, UX/UI overhaul, SEO optimisation and technical migration to a modern stack (Next.js, Astro, WordPress, Webflow and more).
+              </p>
+            </details>
+        </div>
+      </section>
+
       <section className="mx-auto my-[100px] max-w-[1000px] rounded-[24px] bg-kinome-dark px-[5%] py-[clamp(50px,8vw,80px)] text-center text-white">
         <h2 className="mb-6 font-heading text-[clamp(28px,4vw,52px)] font-normal leading-[1.1]">
           A project in mind?
