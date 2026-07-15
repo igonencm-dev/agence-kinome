@@ -153,6 +153,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.85,
     },
+    {
+      url: `${base}/services/site-internet/`,
+      lastModified: new Date("2026-07-11"),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
   ];
 
   return [...pairedPages, ...servicePages, ...projetPages, ...blogPages];
