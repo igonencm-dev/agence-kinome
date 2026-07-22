@@ -62,6 +62,14 @@ jobs:
           #   --exclude : double-protection du config.php
           ARGS: "-rlzv --no-perms --no-times --exclude='api/config.php'"
 
+      # IndexNow : notifie Bing / Yandex / Seznam des URLs du sitemap après
+      # chaque déploiement (le script lit le sitemap fraîchement déployé en
+      # prod). Alimente aussi l'index utilisé par ChatGPT Search et Copilot.
+      # Non bloquant : un échec IndexNow ne doit pas faire échouer le deploy.
+      - name: Notifier IndexNow (Bing)
+        if: success()
+        run: node scripts/indexnow-submit.mjs || echo "::warning::IndexNow a échoué (non bloquant)"
+
       - name: Récapitulatif
         if: success()
         run: |
