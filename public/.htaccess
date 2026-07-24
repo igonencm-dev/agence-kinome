@@ -3,13 +3,16 @@
 
 RewriteEngine On
 
-# Forcer HTTPS (ceinture + bretelles, Hostinger fait déjà ça normalement)
+# Canoniser host + protocole en UNE redirection (évite les chaînes
+# http://www → https://www → https://apex qui faisaient 3 sauts sur les
+# anciens slugs WP ; ici : 1 saut pour l'hôte, +1 éventuel pour le slug).
+# 1) www (quel que soit le protocole) → https://apex directement
+RewriteCond %{HTTP_HOST} ^www\.agence-kinome\.ch [NC]
+RewriteRule ^(.*)$ https://agence-kinome.ch/$1 [L,R=301]
+
+# 2) apex en http → https (ceinture + bretelles, Hostinger force déjà https)
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Canoniser sur le domaine sans www (cohérent avec sitemap.xml + canonical URLs)
-RewriteCond %{HTTP_HOST} ^www\.agence-kinome\.ch [NC]
 RewriteRule ^(.*)$ https://agence-kinome.ch/$1 [L,R=301]
 
 # ============================================================================
