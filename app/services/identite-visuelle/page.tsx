@@ -86,7 +86,7 @@ const PRIX = [
   {
     type: "Identité visuelle complète",
     desc: "Logo + charte graphique + déclinaisons clés.",
-    price: "6 000 – 15 000 CHF",
+    price: "4 000 – 15 000 CHF",
   },
   {
     type: "Branding 360°",
@@ -113,7 +113,7 @@ const BLOG_LINKS = [
 const FAQ = [
   {
     q: "Combien coûte une identité visuelle à Genève ?",
-    a: "Pour un logo seul, comptez 1 500 à 5 000 CHF. Pour une identité visuelle complète (logo + charte graphique + déclinaisons), 6 000 à 15 000 CHF. Pour un branding 360° incluant la stratégie et le site internet, à partir de 15 000 CHF. Nous établissons toujours un devis transparent adapté à votre projet.",
+    a: "Pour un logo seul, comptez 1 500 à 5 000 CHF. Pour une identité visuelle complète (logo + charte graphique + déclinaisons), 4 000 à 15 000 CHF. Pour un branding 360° incluant la stratégie et le site internet, à partir de 15 000 CHF. Nous établissons toujours un devis transparent adapté à votre projet.",
   },
   {
     q: "Combien de temps faut-il pour créer une identité visuelle ?",
