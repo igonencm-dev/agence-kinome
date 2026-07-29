@@ -159,6 +159,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.85,
     },
+    {
+      url: `${base}/services/creation-logo/`,
+      lastModified: new Date("2026-07-29"),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
   ];
 
   return [...pairedPages, ...servicePages, ...projetPages, ...blogPages];

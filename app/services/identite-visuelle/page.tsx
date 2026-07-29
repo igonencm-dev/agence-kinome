@@ -17,16 +17,19 @@ import {
 // de conversion. Server component → exporte `metadata`.
 // ---------------------------------------------------------------------------
 
+// Ciblage recentré sur l'identité visuelle complète : la requête « création de
+// logo Genève » appartient désormais à /services/creation-logo/, pour éviter
+// que les deux pages se cannibalisent sur le même mot-clé.
 export const metadata = buildMetadata({
-  title: "Création d'identité visuelle & logo à Genève",
+  title: "Création d'identité visuelle à Genève",
   description:
-    "Agence d'identité visuelle à Genève : logo, charte graphique et stratégie de marque qui font ressortir votre PME. Devis transparent, premier appel offert.",
+    "Agence d'identité visuelle à Genève : charte graphique, déclinaisons et stratégie de marque pour votre PME. De 4 000 à 15 000 CHF, diagnostic offert.",
   path: "/services/identite-visuelle/",
   keywords: [
     "création identité visuelle Genève",
-    "création de logo Genève",
-    "agence branding Genève",
     "charte graphique entreprise",
+    "agence branding Genève",
+    "identité de marque PME Suisse",
   ],
 });
 
@@ -102,6 +105,7 @@ const PORTFOLIO = [
 ];
 
 const BLOG_LINKS = [
+  { href: "/services/creation-logo/", label: "Vous cherchez un logo seul ? Voir la page dédiée" },
   { href: "/blog/etude-de-cas-logo-tampon-audition/", label: "Étude de cas concrète : le logo de Tampon Audition" },
   { href: "/blog/creer-identite-visuelle-entreprise-geneve/", label: "Créer une identité visuelle forte : le guide" },
   { href: "/blog/creation-logo-geneve-processus/", label: "Création de logo : processus et erreurs à éviter" },
@@ -117,7 +121,7 @@ const FAQ = [
   },
   {
     q: "Combien de temps faut-il pour créer une identité visuelle ?",
-    a: "Comptez 3 à 6 semaines pour un logo, 6 à 12 semaines pour une identité visuelle complète avec charte graphique. Votre réactivité sur les validations influence le planning : un retour rapide fait gagner 1 à 2 semaines.",
+    a: "Comptez 2 à 3 semaines pour un logo seul, 4 à 8 semaines pour une identité visuelle complète avec charte graphique. Votre réactivité sur les validations influence le planning : un retour rapide fait gagner 1 à 2 semaines.",
   },
   {
     q: "Les fichiers sources m'appartiennent-ils ?",

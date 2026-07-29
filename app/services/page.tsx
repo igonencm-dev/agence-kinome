@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import ServicesHero from "./ServicesHero";
 import ResponsiveBr from "../components/ResponsiveBr";
+import { jsonLdScript, faqJsonLd, SITE, BUSINESS } from "../lib/seo";
 
 const servicesCrea = [
   {
@@ -116,12 +117,126 @@ const projetsApercu = [
   },
 ];
 
+const faqServices = [
+  {
+    question: "Quelle est la différence entre un logo et une identité visuelle ?",
+    answer:
+      "Le logo est le signe distinctif d'une marque ; l'identité visuelle englobe l'ensemble du système graphique : logo, palette de couleurs, typographies, principes de composition, iconographie, ainsi que les règles d'usage qui assurent la cohérence sur tous les supports. Chez Kinome, nous concevons systématiquement les deux ensemble pour garantir une marque qui tient dans la durée.",
+  },
+  {
+    question: "Combien de temps faut-il pour créer une identité visuelle complète ?",
+    answer:
+      "Un projet d'identité visuelle complet (logo + charte graphique + premières déclinaisons) prend en général de 4 à 8 semaines selon le périmètre. Le délai inclut la phase de cadrage, les premières propositions, les itérations et la livraison finale avec le manuel d'usage. Une création de logo seule peut être livrée en 2 à 3 semaines.",
+  },
+  {
+    question: "Travaillez-vous uniquement avec des entreprises basées à Genève ?",
+    answer:
+      "Notre studio est basé à Genève et nous accompagnons en priorité des clients de Suisse romande, mais nous travaillons également avec des entreprises et indépendants en France et à l'international. Les échanges se font en visio, par téléphone et lors de rendez-vous physiques selon votre localisation.",
+  },
+  {
+    question: "Proposez-vous la refonte de sites internet existants ?",
+    answer:
+      "Oui. Nous accompagnons aussi bien la création de sites depuis zéro que la refonte d'un site existant : audit du site actuel, recommandations stratégiques, redesign de l'identité numérique, refonte UX/UI, optimisation SEO et migration technique vers une stack moderne (Next.js, Astro, WordPress, Webflow…).",
+  },
+];
+
+// OfferCatalog : liste structurée des services proposés (boost AEO/GEO sur les
+// requêtes type "agence de logo à Genève", "site internet PME suisse romande").
+const offerCatalogLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${SITE.url}/services/#service`,
+  serviceType: "Communication, branding, design, web",
+  name: "Services de communication — Agence Kinome",
+  provider: { "@id": `${SITE.url}/#organization` },
+  areaServed: BUSINESS.areaServed.map((n) => ({
+    "@type": "AdministrativeArea",
+    name: n,
+  })),
+  description:
+    "Création de logo, identité visuelle, charte graphique, branding et conception de sites internet pour entreprises et marques en Suisse romande.",
+  url: `${SITE.url}/services/`,
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Prestations Agence Kinome",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Création de logo",
+          description:
+            "Conception d'un logo unique, mémorable et fonctionnel sur tous supports.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Identité visuelle & charte graphique",
+          description:
+            "Système graphique complet : palette, typographies, principes, règles d'usage.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Stratégie de branding",
+          description:
+            "Positionnement, messages-clés, et système visuel cohérent pour soutenir vos objectifs.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Sites internet vitrines",
+          description:
+            "Conception et développement de sites élégants, optimisés SEO et pensés pour convertir.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "E-commerce",
+          description:
+            "Boutiques en ligne robustes, attention portée au tunnel de conversion et à la performance.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Plateformes & dashboards",
+          description:
+            "Applications web métier, espaces clients, dashboards et outils internes sur mesure.",
+        },
+      },
+    ],
+  },
+};
+
 export default function ServicesPage() {
   const [onglet, setOnglet] = useState<"crea" | "web">("crea");
   const services = onglet === "crea" ? servicesCrea : servicesWeb;
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(faqJsonLd(faqServices)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(offerCatalogLd),
+        }}
+      />
+
       {/* Hero scroll-driven : vidéo seule au load, titre apparait au scroll
           (composant client dédié, voir ServicesHero.tsx) */}
       <ServicesHero />
