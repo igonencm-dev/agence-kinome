@@ -11,16 +11,33 @@ import {
   t,
 } from "../lib/i18n";
 import PortfolioMegaMenu from "./PortfolioMegaMenu";
+import ServicesMegaMenu from "./ServicesMegaMenu";
+
+/** Sous-liens services affichés dans le drawer mobile (FR uniquement : les
+ *  landings service n'ont pas encore de version anglaise). */
+const SERVICES_MOBILE = [
+  { href: "/services/creation-logo/", label: "Création de logo" },
+  { href: "/services/identite-visuelle/", label: "Identité visuelle" },
+  { href: "/services/site-internet/", label: "Création de site internet" },
+];
 
 export default function Header() {
   const pathname = usePathname() ?? "/";
   const locale = getLocaleFromPath(pathname);
   const r = ROUTES[locale];
 
-  // Identifiant unique pour les liens du nav. `kind === "mega-portfolio"`
-  // est traité spécialement plus bas (hover ouvre le mégamenu).
+  // Identifiant unique pour les liens du nav. Les `kind` en "mega-*" sont
+  // traités spécialement plus bas (hover ouvre le mégamenu correspondant).
+  // Le mégamenu services est FR seulement : côté /en/ les landings n'existent
+  // pas encore, on garde donc un lien simple vers le hub anglais.
   const navLinks = [
-    { href: r.services, label: t("nav_services", locale), kind: "link" as const },
+    {
+      href: r.services,
+      label: t("nav_services", locale),
+      kind: (locale === "fr" ? "mega-services" : "link") as
+        | "mega-services"
+        | "link",
+    },
     {
       href: r.portfolio,
       label: t("nav_portfolio", locale),
@@ -47,7 +64,11 @@ export default function Header() {
   // si le curseur ne fait que traverser le lien).
   // Close delay : 250 ms après leave, pour donner le temps de glisser dans
   // le panel sans qu'il se ferme bêtement.
-  const [megaOpen, setMegaOpen] = useState(false);
+  // `mega` porte l'identifiant du panel ouvert (ou null) : deux mégamenus
+  // cohabitent désormais, passer d'un lien à l'autre doit basculer le panel
+  // sans le refermer entre les deux.
+  type MegaId = "services" | "portfolio";
+  const [mega, setMega] = useState<MegaId | null>(null);
   const openTimerRef = useRef<number | null>(null);
   const closeTimerRef = useRef<number | null>(null);
 
@@ -64,18 +85,25 @@ export default function Header() {
     }
   };
 
-  const openMegaSoon = () => {
+  const openMegaSoon = (id: MegaId) => {
     clearCloseTimer();
-    openTimerRef.current = window.setTimeout(() => setMegaOpen(true), 120);
+    clearOpenTimer();
+    // Si un panel est déjà ouvert, on bascule immédiatement : l'utilisateur a
+    // déjà exprimé son intention, réappliquer le délai ferait clignoter.
+    if (mega !== null) {
+      setMega(id);
+      return;
+    }
+    openTimerRef.current = window.setTimeout(() => setMega(id), 120);
   };
   const scheduleCloseMega = () => {
     clearOpenTimer();
-    closeTimerRef.current = window.setTimeout(() => setMegaOpen(false), 250);
+    closeTimerRef.current = window.setTimeout(() => setMega(null), 250);
   };
   const closeMegaNow = () => {
     clearOpenTimer();
     clearCloseTimer();
-    setMegaOpen(false);
+    setMega(null);
   };
 
   useEffect(() => {
@@ -185,20 +213,25 @@ export default function Header() {
           {/* Nav desktop (lg+) */}
           <nav className="hidden items-center gap-9 font-body lg:flex">
             {navLinks.map((link) => {
-              const isMega = link.kind === "mega-portfolio";
+              const megaId: MegaId | null =
+                link.kind === "mega-portfolio"
+                  ? "portfolio"
+                  : link.kind === "mega-services"
+                    ? "services"
+                    : null;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  // Sur le lien Portfolio uniquement : hover déclenche le
+                  // Sur les liens Services et Portfolio : hover déclenche le
                   // mégamenu (avec intent delay), leave planifie la fermeture.
-                  // Le clic reste un lien classique vers /portfolio/.
-                  onMouseEnter={isMega ? openMegaSoon : undefined}
-                  onMouseLeave={isMega ? scheduleCloseMega : undefined}
-                  onFocus={isMega ? openMegaSoon : undefined}
-                  onBlur={isMega ? scheduleCloseMega : undefined}
-                  aria-haspopup={isMega ? "true" : undefined}
-                  aria-expanded={isMega ? megaOpen : undefined}
+                  // Le clic reste un lien classique vers la page de section.
+                  onMouseEnter={megaId ? () => openMegaSoon(megaId) : undefined}
+                  onMouseLeave={megaId ? scheduleCloseMega : undefined}
+                  onFocus={megaId ? () => openMegaSoon(megaId) : undefined}
+                  onBlur={megaId ? scheduleCloseMega : undefined}
+                  aria-haspopup={megaId ? "true" : undefined}
+                  aria-expanded={megaId ? mega === megaId : undefined}
                   className={`text-[0.95rem] font-medium transition-opacity hover:opacity-70 ${
                     solid ? "text-kinome-black" : "text-white"
                   }`}
@@ -296,9 +329,19 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mégamenu Portfolio (desktop uniquement, géré côté CSS via lg:block) */}
+      {/* Mégamenus (desktop uniquement, géré côté CSS via lg:block) */}
+      {/* Services : monté en FR seulement, sinon son contenu français se
+          retrouverait dans le DOM des pages anglaises. */}
+      {locale === "fr" && (
+        <ServicesMegaMenu
+          open={mega === "services"}
+          onMouseEnter={clearCloseTimer}
+          onMouseLeave={scheduleCloseMega}
+          onClose={closeMegaNow}
+        />
+      )}
       <PortfolioMegaMenu
-        open={megaOpen}
+        open={mega === "portfolio"}
         locale={locale}
         onMouseEnter={clearCloseTimer}
         onMouseLeave={scheduleCloseMega}
@@ -356,6 +399,25 @@ export default function Header() {
                     </span>
                   </span>
                 </Link>
+
+                {/* Sous-niveau services : l'équivalent tactile du mégamenu,
+                    sinon les landings ne sont atteignables que par le hub.
+                    FR uniquement, comme le mégamenu. */}
+                {link.kind === "mega-services" && locale === "fr" && (
+                  <ul className="border-b border-kinome-black/10 py-2">
+                    {SERVICES_MOBILE.map((s) => (
+                      <li key={s.href}>
+                        <Link
+                          href={s.href}
+                          onClick={() => setMenuOpen(false)}
+                          className="block py-2.5 pl-4 font-body text-[1rem] font-light text-kinome-grey transition-colors hover:text-kinome-accent"
+                        >
+                          {s.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
 

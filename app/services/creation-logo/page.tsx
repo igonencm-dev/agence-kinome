@@ -310,15 +310,17 @@ export default function CreationLogoPage() {
       {/* ------------------------------- HERO ------------------------------- */}
       <section className="relative isolate flex min-h-[clamp(560px,90vh,900px)] items-end overflow-hidden bg-kinome-dark">
         <img
-          src="/assets/projets/microclimat/1.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
+          src="/assets/services/logo/hero-creation-logo.webp"
+          alt="Carte de visite Microclimat posée sur une pierre, logo créé par Kinome"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
         />
-        {/* Voile sombre : garantit le contraste AA du texte blanc sur la photo */}
+        {/* Voile sombre : garantit le contraste AA du texte blanc sur une photo
+            très claire. Sur grand écran il s'allège vers la droite pour laisser
+            respirer la carte de visite, le texte restant calé à gauche. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.72)_0%,rgba(17,17,17,0.58)_45%,rgba(17,17,17,0.82)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.80)_0%,rgba(17,17,17,0.66)_45%,rgba(17,17,17,0.88)_100%)] lg:bg-[linear-gradient(100deg,rgba(17,17,17,0.90)_0%,rgba(17,17,17,0.78)_38%,rgba(17,17,17,0.46)_72%,rgba(17,17,17,0.38)_100%)]"
         />
         <div className="relative mx-auto w-full max-w-[1588px] px-[5%] pb-[clamp(56px,8vw,120px)] pt-[clamp(140px,18vw,300px)]">
           <h1 className="max-w-[16ch] font-heading text-[clamp(38px,7.4vw,90px)] font-normal leading-[1.12] text-white">
@@ -415,8 +417,10 @@ export default function CreationLogoPage() {
             </div>
             <div className="overflow-hidden rounded-[20px]">
               <img
-                src="/assets/projets/codecircle/1.png"
-                alt="Logo Codecircle décliné sur un support imprimé"
+                src="/assets/services/logo/icone-app-codecircle.webp"
+                alt="Symbole du logo Codecircle décliné en icône d'application sur un smartphone"
+                width={554}
+                height={835}
                 loading="lazy"
                 className="block h-full w-full object-cover"
               />
@@ -482,8 +486,10 @@ export default function CreationLogoPage() {
           <div className="mt-[clamp(40px,6vw,90px)] grid items-start gap-[clamp(32px,5vw,80px)] lg:grid-cols-2">
             <div className="overflow-hidden rounded-[20px] lg:sticky lg:top-24">
               <img
-                src="/assets/projets/tampon-audition/enseigne.jpg"
-                alt="Enseigne du centre auditif Tampon Audition portant le logo créé par Kinome"
+                src="/assets/services/logo/brandboard-tampon-audition.webp"
+                alt="Brandboard de Tampon Audition affiché sur un ordinateur : palette, typographie et univers photo"
+                width={1040}
+                height={1570}
                 loading="lazy"
                 className="block h-full w-full object-cover"
               />
