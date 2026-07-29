@@ -138,10 +138,17 @@ ErrorDocument 404 /404.html
     Header set Cache-Control "public, max-age=3600, must-revalidate"
   </FilesMatch>
 
-  # Cache HTML : court (5 min) + revalidation stale-while-revalidate (1 sem)
-  # → CWV-friendly + revalidation rapide après push
+  # Cache HTML : volontairement très court.
+  # L'ancien réglage (s-maxage=86400 + stale-while-revalidate=604800) faisait
+  # garder le HTML 24 h par le CDN Hostinger, et l'autorisait à servir du
+  # périmé une semaine de plus : les déploiements n'étaient pas visibles sur
+  # les URLs normales, seulement avec un paramètre anti-cache. Sur un site
+  # déployé plusieurs fois par semaine, c'est inacceptable.
+  # 60 s suffisent à absorber les pics de trafic, et un push est visible dans
+  # la minute. Le vrai levier CWV reste le cache immuable des assets
+  # fingerprintés (1 an, réglé plus haut), pas celui du HTML.
   <FilesMatch "\.(html|htm)$">
-    Header set Cache-Control "public, max-age=300, s-maxage=86400, stale-while-revalidate=604800"
+    Header set Cache-Control "public, max-age=60, s-maxage=60, stale-while-revalidate=60"
   </FilesMatch>
 
   # Sitemap + robots : cache 1h
