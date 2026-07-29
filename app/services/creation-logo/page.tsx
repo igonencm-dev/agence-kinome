@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import Reveal from "../../components/Reveal";
 import Testimonials from "../../components/Testimonials";
 import {
   buildMetadata,
@@ -279,6 +280,10 @@ const PILL_DARK =
   "btn-fill-accent inline-flex min-w-[240px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-body text-[clamp(15px,1.1vw,20px)] font-semibold text-white transition-transform duration-300 hover:scale-105";
 const STEP_NUM =
   "font-body text-[clamp(38px,4.5vw,70px)] font-thin leading-none text-kinome-black";
+// Micro-interaction des cartes : léger soulèvement + ombre au survol, dans le
+// vocabulaire du site (hover:scale + transition courte).
+const CARD_HOVER =
+  "transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)]";
 
 export default function CreationLogoPage() {
   const service = serviceJsonLd(
@@ -323,15 +328,27 @@ export default function CreationLogoPage() {
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.80)_0%,rgba(17,17,17,0.66)_45%,rgba(17,17,17,0.88)_100%)] lg:bg-[linear-gradient(100deg,rgba(17,17,17,0.90)_0%,rgba(17,17,17,0.78)_38%,rgba(17,17,17,0.46)_72%,rgba(17,17,17,0.38)_100%)]"
         />
         <div className="relative mx-auto w-full max-w-[1588px] px-[5%] pb-[clamp(56px,8vw,120px)] pt-[clamp(140px,18vw,300px)]">
-          <h1 className="max-w-[16ch] font-heading text-[clamp(38px,7.4vw,90px)] font-normal leading-[1.12] text-white">
+          {/* Entrée du hero en CSS pur (pas d'IntersectionObserver above the
+              fold, sinon flash au chargement). `text-focus-in` est le keyframe
+              de la charte, jusqu'ici défini mais inutilisé. */}
+          <h1
+            className="max-w-[16ch] font-heading text-[clamp(38px,7.4vw,90px)] font-normal leading-[1.12] text-white motion-reduce:!animate-none"
+            style={{ animation: "text-focus-in 900ms cubic-bezier(0.22,1,0.36,1) both" }}
+          >
             Création de logo à Genève
           </h1>
-          <p className="mt-[clamp(20px,3vw,44px)] max-w-[52ch] font-body text-[clamp(17px,1.9vw,28px)] font-light leading-[1.5] text-white/90">
+          <p
+            className="mt-[clamp(20px,3vw,44px)] max-w-[52ch] font-body text-[clamp(17px,1.9vw,28px)] font-light leading-[1.5] text-white/90 motion-reduce:!animate-none"
+            style={{ animation: "kinome-fade-in 800ms 220ms ease-out both" }}
+          >
             Un logo n'est pas une image, c'est la première promesse que fait
             votre marque. Nous concevons des identités graphiques fortes,
             pensées pour durer et pour être reconnues au premier coup d'oeil.
           </p>
-          <div className="mt-[clamp(32px,4.5vw,60px)] flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+          <div
+            className="mt-[clamp(32px,4.5vw,60px)] flex flex-col gap-4 sm:flex-row sm:flex-wrap motion-reduce:!animate-none"
+            style={{ animation: "kinome-fade-in 800ms 420ms ease-out both" }}
+          >
             <Link
               href="/contact/"
               className="btn-fill-accent inline-flex min-w-[240px] items-center justify-center rounded-full bg-white px-8 py-4 text-center font-body text-[clamp(15px,1.1vw,20px)] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
@@ -351,10 +368,14 @@ export default function CreationLogoPage() {
       {/* ----------------------------- CHIFFRES ----------------------------- */}
       <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,150px)]">
         <div className="mx-auto max-w-[1588px]">
-          <h2 className={`${H2} text-center`}>Notre fonctionnement en chiffres</h2>
+          <Reveal>
+            <h2 className={`${H2} text-center`}>
+              Notre fonctionnement en chiffres
+            </h2>
+          </Reveal>
           <dl className="mt-[clamp(40px,6vw,110px)] grid grid-cols-2 gap-x-6 gap-y-[clamp(36px,5vw,60px)] lg:grid-cols-4">
-            {CHIFFRES.map((c) => (
-              <div key={c.label} className="text-center">
+            {CHIFFRES.map((c, i) => (
+              <Reveal key={c.label} delay={i * 110} className="text-center">
                 <dt className="sr-only">{c.label}</dt>
                 <dd>
                   <span className="block font-body text-[clamp(40px,6.5vw,80px)] font-light leading-[1.2] text-kinome-black">
@@ -367,7 +388,7 @@ export default function CreationLogoPage() {
                     {c.label}
                   </span>
                 </dd>
-              </div>
+              </Reveal>
             ))}
           </dl>
         </div>
@@ -376,10 +397,15 @@ export default function CreationLogoPage() {
       {/* -------------------- QU'EST-CE QU'UN LOGO, AU JUSTE ? -------------------- */}
       <section className="bg-white px-[5%] py-[clamp(60px,9vw,150px)]">
         <div className="mx-auto max-w-[1588px]">
-          <h2 className={`${H2} text-center`}>
-            Qu'est-ce qu'un logo, au juste&nbsp;?
-          </h2>
-          <div className="mt-[clamp(36px,5vw,90px)] grid gap-[clamp(24px,4vw,60px)] lg:grid-cols-2">
+          <Reveal>
+            <h2 className={`${H2} text-center`}>
+              Qu'est-ce qu'un logo, au juste&nbsp;?
+            </h2>
+          </Reveal>
+          <Reveal
+            delay={120}
+            className="mt-[clamp(36px,5vw,90px)] grid gap-[clamp(24px,4vw,60px)] lg:grid-cols-2"
+          >
             <p className={LEAD}>
               Un logo est le signe graphique qui identifie une marque : une
               forme, une typographie ou une combinaison des deux, conçue pour
@@ -399,32 +425,35 @@ export default function CreationLogoPage() {
               que l'entreprise fait, comment elle le fait, et pourquoi elle le
               fait différemment des autres.
             </p>
-          </div>
+          </Reveal>
 
           <div className="mt-[clamp(40px,6vw,90px)] grid items-start gap-[clamp(32px,5vw,80px)] lg:grid-cols-2">
             <div className="flex flex-col gap-[clamp(24px,3vw,40px)]">
-              {COMPOSANTS.map((c) => (
-                <div key={c.titre}>
+              {COMPOSANTS.map((c, i) => (
+                <Reveal key={c.titre} effect="fade-left" delay={i * 130}>
                   <h3 className={CARD_TITLE}>{c.titre}</h3>
                   <p className={`${BODY} mt-2`}>{c.body}</p>
-                </div>
+                </Reveal>
               ))}
-              <div className="mt-2">
+              <Reveal delay={COMPOSANTS.length * 130} className="mt-2">
                 <Link href="/portfolio/" className={PILL_DARK}>
                   Découvrir nos projets
                 </Link>
-              </div>
+              </Reveal>
             </div>
-            <div className="overflow-hidden rounded-[20px]">
+            <Reveal
+              effect="fade-right"
+              className="group overflow-hidden rounded-[20px]"
+            >
               <img
                 src="/assets/services/logo/icone-app-codecircle.webp"
                 alt="Symbole du logo Codecircle décliné en icône d'application sur un smartphone"
                 width={554}
                 height={835}
                 loading="lazy"
-                className="block h-full w-full object-cover"
+                className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
               />
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -432,8 +461,13 @@ export default function CreationLogoPage() {
       {/* ---------------------------- NOS PRINCIPES ---------------------------- */}
       <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,150px)]">
         <div className="mx-auto max-w-[1588px]">
-          <h2 className={H2}>Nos principes</h2>
-          <div className="mt-[clamp(28px,4vw,60px)] grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
+          <Reveal>
+            <h2 className={H2}>Nos principes</h2>
+          </Reveal>
+          <Reveal
+            delay={120}
+            className="mt-[clamp(28px,4vw,60px)] grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2"
+          >
             <p className={LEAD}>
               Un logo daté envoie un signal, même involontaire : celui d'une
               entreprise qui n'a pas suivi son époque. À l'inverse, une identité
@@ -447,16 +481,17 @@ export default function CreationLogoPage() {
               impression et la confiance : il rend crédible ce que les mots
               seuls mettent plus de temps à démontrer.
             </p>
-          </div>
+          </Reveal>
           <div className="mt-[clamp(40px,6vw,90px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
-            {PRINCIPES.map((p) => (
-              <div
-                key={p.titre}
-                className="flex flex-col items-center justify-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(40px,6vw,90px)] text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
-              >
-                <h3 className={CARD_TITLE}>{p.titre}</h3>
-                <p className={`${BODY} mt-[clamp(16px,2vw,32px)]`}>{p.body}</p>
-              </div>
+            {PRINCIPES.map((p, i) => (
+              <Reveal key={p.titre} delay={i * 130}>
+                <div
+                  className={`flex h-full flex-col items-center justify-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(40px,6vw,90px)] text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)] ${CARD_HOVER}`}
+                >
+                  <h3 className={CARD_TITLE}>{p.titre}</h3>
+                  <p className={`${BODY} mt-[clamp(16px,2vw,32px)]`}>{p.body}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -466,10 +501,12 @@ export default function CreationLogoPage() {
       <section className="bg-white px-[5%] py-[clamp(60px,9vw,150px)]">
         <div className="mx-auto max-w-[1588px]">
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
-            <h2 className={H2}>
-              Comment fait-on un logo qui tient dans le temps
-            </h2>
-            <div>
+            <Reveal>
+              <h2 className={H2}>
+                Comment fait-on un logo qui tient dans le temps
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
               <p className={BODY}>
                 Un bon logo ne sort jamais d'un simple coup de crayon inspiré.
                 C'est le résultat d'une méthode, où chaque choix graphique
@@ -480,23 +517,30 @@ export default function CreationLogoPage() {
                   Travaillons ensemble
                 </Link>
               </div>
-            </div>
+            </Reveal>
           </div>
 
           <div className="mt-[clamp(40px,6vw,90px)] grid items-start gap-[clamp(32px,5vw,80px)] lg:grid-cols-2">
-            <div className="overflow-hidden rounded-[20px] lg:sticky lg:top-24">
-              <img
-                src="/assets/services/logo/brandboard-tampon-audition.webp"
-                alt="Brandboard de Tampon Audition affiché sur un ordinateur : palette, typographie et univers photo"
-                width={1040}
-                height={1570}
-                loading="lazy"
-                className="block h-full w-full object-cover"
-              />
-            </div>
+            <Reveal effect="fade-left" className="lg:sticky lg:top-24">
+              <div className="group overflow-hidden rounded-[20px]">
+                <img
+                  src="/assets/services/logo/brandboard-tampon-audition.webp"
+                  alt="Brandboard de Tampon Audition affiché sur un ordinateur : palette, typographie et univers photo"
+                  width={1040}
+                  height={1570}
+                  loading="lazy"
+                  className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+            </Reveal>
             <ol className="flex flex-col gap-[clamp(28px,3.5vw,52px)]">
-              {METHODE.map((m) => (
-                <li key={m.n} className="flex gap-[clamp(16px,2.5vw,40px)]">
+              {METHODE.map((m, i) => (
+                <Reveal
+                  key={m.n}
+                  as="li"
+                  delay={i * 90}
+                  className="flex gap-[clamp(16px,2.5vw,40px)]"
+                >
                   <span aria-hidden="true" className={STEP_NUM}>
                     {m.n}
                   </span>
@@ -504,7 +548,7 @@ export default function CreationLogoPage() {
                     <h3 className={CARD_TITLE}>{m.titre}</h3>
                     <p className={`${BODY} mt-3`}>{m.body}</p>
                   </div>
-                </li>
+                </Reveal>
               ))}
             </ol>
           </div>
@@ -515,11 +559,13 @@ export default function CreationLogoPage() {
       <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,150px)]">
         <div className="mx-auto max-w-[1588px]">
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
-            <h2 className={H2}>
-              Notre processus
-              <br className="hidden sm:block" /> de création de logo
-            </h2>
-            <div>
+            <Reveal>
+              <h2 className={H2}>
+                Notre processus
+                <br className="hidden sm:block" /> de création de logo
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
               <p className={BODY}>
                 Six étapes cadrées, du premier échange jusqu'à la livraison du
                 pack complet. Chaque étape produit un livrable concret, validé
@@ -530,13 +576,14 @@ export default function CreationLogoPage() {
                   Découvrir nos projets
                 </Link>
               </div>
-            </div>
+            </Reveal>
           </div>
 
           <ol className="mx-auto mt-[clamp(44px,6vw,110px)] flex max-w-[1330px] flex-col">
             {PROCESSUS.map((p, i) => (
-              <li
+              <Reveal
                 key={p.n}
+                as="li"
                 className="relative flex gap-[clamp(16px,3vw,60px)] pb-[clamp(32px,4vw,64px)]"
               >
                 <div className="relative flex flex-col items-center">
@@ -560,7 +607,7 @@ export default function CreationLogoPage() {
                     </p>
                   )}
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ol>
         </div>
@@ -570,31 +617,39 @@ export default function CreationLogoPage() {
       <section className="bg-kinome-cream px-[5%] pb-[clamp(60px,9vw,150px)]">
         <div className="mx-auto max-w-[1588px]">
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
-            <h2 className={H2}>Le résultat final</h2>
-            <p className={BODY}>
-              Au terme du projet, vous recevez un pack complet directement
-              exploitable, quel que soit le support ou l'imprimeur, et un
-              brandbook qui garantit l'usage cohérent du logo dans le temps.
-            </p>
+            <Reveal>
+              <h2 className={H2}>Le résultat final</h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className={BODY}>
+                Au terme du projet, vous recevez un pack complet directement
+                exploitable, quel que soit le support ou l'imprimeur, et un
+                brandbook qui garantit l'usage cohérent du logo dans le temps.
+              </p>
+            </Reveal>
           </div>
           <div className="mt-[clamp(40px,6vw,110px)] grid gap-[clamp(20px,2.2vw,32px)] sm:grid-cols-2 lg:grid-cols-3">
-            {RESULTAT.map((r) => (
-              <div
-                key={r.titre}
-                className="flex flex-col items-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(36px,4.5vw,64px)] text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
-              >
-                <img
-                  src={r.icon}
-                  alt=""
-                  aria-hidden="true"
-                  loading="lazy"
-                  width={112}
-                  height={112}
-                  className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain"
-                />
-                <h3 className={CARD_TITLE}>{r.titre}</h3>
-                <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)]`}>{r.body}</p>
-              </div>
+            {RESULTAT.map((r, i) => (
+              // Décalage par colonne plutôt que par index : sur 3 colonnes les
+              // cartes d'une même ligne apparaissent en cascade de gauche à
+              // droite, pas en diagonale hasardeuse.
+              <Reveal key={r.titre} delay={(i % 3) * 120}>
+                <div
+                  className={`group flex h-full flex-col items-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(36px,4.5vw,64px)] text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)] ${CARD_HOVER}`}
+                >
+                  <img
+                    src={r.icon}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    width={112}
+                    height={112}
+                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <h3 className={CARD_TITLE}>{r.titre}</h3>
+                  <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)]`}>{r.body}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -604,38 +659,43 @@ export default function CreationLogoPage() {
       <section className="bg-white px-[5%] py-[clamp(60px,9vw,150px)]">
         <div className="mx-auto max-w-[1588px]">
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
-            <h2 className={H2}>Explorer nos services</h2>
-            <p className={BODY}>
-              Le logo est le point de départ. Ces prestations permettent de
-              construire une présence de marque complète et cohérente.
-            </p>
+            <Reveal>
+              <h2 className={H2}>Explorer nos services</h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className={BODY}>
+                Le logo est le point de départ. Ces prestations permettent de
+                construire une présence de marque complète et cohérente.
+              </p>
+            </Reveal>
           </div>
           <div className="mt-[clamp(40px,6vw,110px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
-            {SERVICES_LIES.map((s) => (
-              <div
-                key={s.titre}
-                className="flex flex-col items-center rounded-[20px] bg-kinome-cream px-[clamp(24px,3vw,48px)] py-[clamp(36px,4.5vw,64px)] text-center"
-              >
-                <img
-                  src={s.icon}
-                  alt=""
-                  aria-hidden="true"
-                  loading="lazy"
-                  width={112}
-                  height={112}
-                  className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain"
-                />
-                <h3 className={CARD_TITLE}>{s.titre}</h3>
-                <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)] flex-1`}>
-                  {s.body}
-                </p>
-                <Link
-                  href={s.href}
-                  className={`${PILL_DARK} mt-[clamp(24px,3vw,44px)] min-w-0 w-full max-w-[315px]`}
+            {SERVICES_LIES.map((s, i) => (
+              <Reveal key={s.titre} delay={i * 120}>
+                <div
+                  className={`group flex h-full flex-col items-center rounded-[20px] bg-kinome-cream px-[clamp(24px,3vw,48px)] py-[clamp(36px,4.5vw,64px)] text-center ${CARD_HOVER}`}
                 >
-                  Découvrir le service
-                </Link>
-              </div>
+                  <img
+                    src={s.icon}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    width={112}
+                    height={112}
+                    className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <h3 className={CARD_TITLE}>{s.titre}</h3>
+                  <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)] flex-1`}>
+                    {s.body}
+                  </p>
+                  <Link
+                    href={s.href}
+                    className={`${PILL_DARK} mt-[clamp(24px,3vw,44px)] min-w-0 w-full max-w-[315px]`}
+                  >
+                    Découvrir le service
+                  </Link>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -644,93 +704,107 @@ export default function CreationLogoPage() {
       {/* ------------------------------- PORTFOLIO ------------------------------- */}
       <section className="bg-white px-[5%] pb-[clamp(60px,9vw,150px)]">
         <div className="mx-auto max-w-[1588px]">
-          <h2 className={`${H2} text-center`}>
-            Des logos livrés, des marques renforcées
-          </h2>
+          <Reveal>
+            <h2 className={`${H2} text-center`}>
+              Des logos livrés, des marques renforcées
+            </h2>
+          </Reveal>
           <div className="mt-[clamp(40px,6vw,110px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-2">
-            {PORTFOLIO.map((p) => (
-              <Link
-                key={p.href}
-                href={p.href}
-                className="group block overflow-hidden rounded-[20px] transition-transform duration-500 hover:scale-[1.02]"
-              >
-                <img
-                  src={p.img}
-                  alt={p.alt}
-                  loading="lazy"
-                  className="block aspect-[2/1] h-full w-full object-cover"
-                />
-              </Link>
+            {PORTFOLIO.map((p, i) => (
+              <Reveal key={p.href} delay={(i % 2) * 130}>
+                <Link
+                  href={p.href}
+                  className="group block overflow-hidden rounded-[20px]"
+                >
+                  <img
+                    src={p.img}
+                    alt={p.alt}
+                    loading="lazy"
+                    className="block aspect-[2/1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                  />
+                </Link>
+              </Reveal>
             ))}
           </div>
-          <div className="mt-[clamp(36px,5vw,70px)] flex justify-center">
+          <Reveal className="mt-[clamp(36px,5vw,70px)] flex justify-center">
             <Link href="/portfolio/" className={PILL_DARK}>
               Découvrir nos projets
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ---------------------------------- FAQ ---------------------------------- */}
       <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,150px)]">
         <div className="mx-auto max-w-[1330px]">
-          <h2 className={`${H2} text-center`}>
-            Questions fréquentes
-            <br className="hidden sm:block" /> sur la création de logo
-          </h2>
+          <Reveal>
+            <h2 className={`${H2} text-center`}>
+              Questions fréquentes
+              <br className="hidden sm:block" /> sur la création de logo
+            </h2>
+          </Reveal>
           <div className="mt-[clamp(40px,6vw,110px)] flex flex-col gap-[clamp(12px,1.2vw,18px)]">
             {FAQ.map((f, i) => (
-              <details
-                key={f.q}
-                open={i === 0}
-                className="group rounded-[20px] bg-white px-[clamp(20px,3vw,90px)] py-[clamp(20px,2.4vw,36px)] [&_summary::-webkit-details-marker]:hidden"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6">
-                  <h3 className={CARD_TITLE}>{f.q}</h3>
-                  <span
-                    aria-hidden="true"
-                    className="relative block h-10 w-10 shrink-0 rounded-full border border-kinome-black/25"
+              <Reveal key={f.q} delay={i * 70}>
+                <details
+                  open={i === 0}
+                  className="group rounded-[20px] bg-white px-[clamp(20px,3vw,90px)] py-[clamp(20px,2.4vw,36px)] transition-shadow duration-500 hover:shadow-[0_14px_34px_-18px_rgba(0,0,0,0.16)] [&_summary::-webkit-details-marker]:hidden"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6">
+                    <h3
+                      className={`${CARD_TITLE} transition-colors duration-300 group-hover:text-kinome-accent`}
+                    >
+                      {f.q}
+                    </h3>
+                    <span
+                      aria-hidden="true"
+                      className="relative block h-10 w-10 shrink-0 rounded-full border border-kinome-black/25 transition-colors duration-300 group-hover:border-kinome-accent/60"
+                    >
+                      <span className="absolute left-1/2 top-1/2 h-px w-4 -translate-x-1/2 -translate-y-1/2 bg-kinome-black" />
+                      <span className="absolute left-1/2 top-1/2 h-4 w-px -translate-x-1/2 -translate-y-1/2 bg-kinome-black transition-transform duration-300 group-open:rotate-90 group-open:opacity-0" />
+                    </span>
+                  </summary>
+                  <p
+                    className={`${BODY} mt-[clamp(16px,2vw,28px)] max-w-[900px]`}
                   >
-                    <span className="absolute left-1/2 top-1/2 h-px w-4 -translate-x-1/2 -translate-y-1/2 bg-kinome-black" />
-                    <span className="absolute left-1/2 top-1/2 h-4 w-px -translate-x-1/2 -translate-y-1/2 bg-kinome-black transition-transform duration-300 group-open:rotate-90 group-open:opacity-0" />
-                  </span>
-                </summary>
-                <p className={`${BODY} mt-[clamp(16px,2vw,28px)] max-w-[900px]`}>
-                  {f.a}
-                </p>
-              </details>
+                    {f.a}
+                  </p>
+                </details>
+              </Reveal>
             ))}
           </div>
-          <div className="mt-[clamp(36px,5vw,70px)] flex justify-center">
+          <Reveal className="mt-[clamp(36px,5vw,70px)] flex justify-center">
             <Link href="/contact/" className={PILL_DARK}>
               D&apos;autres questions&nbsp;?
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ---------------------------- POUR ALLER PLUS LOIN ---------------------------- */}
       <section className="bg-white px-[5%] py-[clamp(50px,7vw,110px)]">
         <div className="mx-auto max-w-[1330px]">
-          <h2 className={`${H2} mb-[clamp(24px,3vw,48px)]`}>
-            Pour aller plus loin
-          </h2>
+          <Reveal>
+            <h2 className={`${H2} mb-[clamp(24px,3vw,48px)]`}>
+              Pour aller plus loin
+            </h2>
+          </Reveal>
           <ul className="grid gap-3 md:grid-cols-2">
-            {BLOG_LINKS.map((l) => (
-              <li key={l.href}>
+            {BLOG_LINKS.map((l, i) => (
+              <Reveal key={l.href} as="li" delay={(i % 2) * 110}>
                 <Link
                   href={l.href}
                   className="group flex items-center gap-3 rounded-[14px] bg-kinome-cream px-5 py-4 font-body text-[clamp(15px,1.15vw,18px)] font-light text-kinome-black transition-colors hover:bg-kinome-dark hover:text-white"
                 >
                   <span
                     aria-hidden="true"
-                    className="text-kinome-accent group-hover:text-white"
+                    className="text-kinome-accent transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
                   >
                     &rarr;
                   </span>
                   {l.label}
                 </Link>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
@@ -741,7 +815,7 @@ export default function CreationLogoPage() {
 
       {/* ------------------------------- CTA FINAL ------------------------------- */}
       <section className="bg-kinome-dark px-[5%] py-[clamp(70px,10vw,130px)] text-center text-kinome-cream">
-        <div className="mx-auto max-w-[820px]">
+        <Reveal className="mx-auto max-w-[820px]">
           <h2 className="font-heading text-[clamp(28px,4.4vw,56px)] font-normal leading-[1.12]">
             Vous avez un projet de logo
             <br className="hidden sm:block" /> sur lequel échanger&nbsp;?
@@ -757,7 +831,7 @@ export default function CreationLogoPage() {
           >
             Demander un devis
           </Link>
-        </div>
+        </Reveal>
       </section>
     </main>
   );
