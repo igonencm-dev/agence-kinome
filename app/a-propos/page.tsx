@@ -375,8 +375,12 @@ export default function AProposPage() {
         </div>
       </section>
 
-      {/* Nos principes — 3x2 (4 textes + 2 photos en sandwich) */}
-      <section className="bg-kinome-cream px-[5%] py-[clamp(70px,10vw,170px)]">
+      {/* Nos principes — 3x2 (4 textes + 2 photos en diagonale).
+          Mise en page reprise du Figma (node 504:954) : fond de section blanc
+          et cartes crème, texte centré sur les deux axes, cartes au ratio
+          516/596. Les tailles de texte restent celles du site, pas les 22 px
+          du canevas Figma calibré en 1728 px de large. */}
+      <section className="bg-white px-[5%] py-[clamp(70px,10vw,170px)]">
         <div className="mx-auto max-w-[1588px]">
           <h2 className="font-heading text-[clamp(34px,4.4vw,70px)] font-normal leading-[1.14] text-kinome-black">
             Nos principes
@@ -393,19 +397,25 @@ export default function AProposPage() {
               p.type === "text" ? (
                 <article
                   key={i}
-                  className="flex min-h-[clamp(260px,28vw,400px)] flex-col rounded-[20px] bg-white p-[clamp(30px,3vw,60px)]"
+                  className="flex min-h-[clamp(300px,33.3vw,596px)] flex-col items-center justify-center rounded-[20px] bg-kinome-cream px-[8%] py-[clamp(36px,4vw,70px)] text-center sm:px-[14%]"
                 >
-                  <h3 className="mb-5 font-heading text-[clamp(22px,1.9vw,30px)] font-semibold leading-[1.3] text-kinome-black">
-                    {p.title}
-                  </h3>
-                  <p className="font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
-                    {p.body}
-                  </p>
+                  {/* Colonne de texte à 72 % de la carte, comme le bloc de
+                      373 px sur les 516 px du Figma. */}
+                  <div>
+                    <h3 className="font-heading text-[clamp(22px,1.9vw,30px)] font-semibold leading-[1.3] text-kinome-black">
+                      {p.title}
+                    </h3>
+                    {/* Le Figma laisse deux lignes vides entre le titre et le
+                        corps, soit ~72 px à pleine échelle. */}
+                    <p className="mt-[clamp(20px,4.2vw,72px)] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+                      {p.body}
+                    </p>
+                  </div>
                 </article>
               ) : (
                 <div
                   key={i}
-                  className="min-h-[clamp(260px,28vw,400px)] overflow-hidden rounded-[20px] bg-[#e9e4d8]"
+                  className="min-h-[clamp(300px,33.3vw,596px)] overflow-hidden rounded-[20px] bg-[#e9e4d8]"
                 >
                   <img
                     src={p.src}
