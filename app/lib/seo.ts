@@ -308,6 +308,18 @@ export function organizationJsonLd() {
             availableLanguage: ["French", "English"],
             areaServed: "CH",
           },
+          // Canal WhatsApp déclaré explicitement : c'est ce qui permet aux
+          // moteurs de réponse de citer « écrivez-leur sur WhatsApp » quand on
+          // leur demande comment joindre l'agence.
+          {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            telephone: BUSINESS.phone,
+            url: "https://wa.me/41782652014",
+            name: "WhatsApp",
+            availableLanguage: ["French", "English"],
+            areaServed: "CH",
+          },
         ],
         knowsAbout: [
           "Branding",
