@@ -269,17 +269,17 @@ const BLOG_LINKS = [
 /* --------------------------------- Styles --------------------------------- */
 // Classes répétées, factorisées pour garder le JSX lisible.
 const H2 =
-  "font-heading text-[clamp(30px,4.6vw,70px)] font-normal leading-[1.14] text-kinome-black";
+  "font-heading text-[clamp(26px,3.6vw,44px)] font-normal leading-[1.14] text-kinome-black";
 const LEAD =
-  "font-body text-[clamp(17px,1.9vw,28px)] font-light leading-[1.5] text-kinome-black";
+  "font-body text-[clamp(17px,1.5vw,21px)] font-light leading-[1.5] text-kinome-black";
 const BODY =
-  "font-body text-[clamp(15px,1.35vw,22px)] font-light leading-[1.55] text-kinome-black";
+  "font-body text-[clamp(15px,1.4vw,17px)] font-light leading-[1.55] text-kinome-black";
 const CARD_TITLE =
-  "font-heading text-[clamp(19px,2vw,30px)] font-semibold leading-[1.3] text-kinome-black";
+  "font-heading text-[clamp(18px,1.8vw,22px)] font-semibold leading-[1.3] text-kinome-black";
 const PILL_DARK =
-  "btn-fill-accent inline-flex min-w-[240px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-body text-[clamp(15px,1.1vw,20px)] font-semibold text-white transition-transform duration-300 hover:scale-105";
+  "btn-fill-accent inline-flex min-w-[240px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-body text-[1rem] font-semibold text-white transition-transform duration-300 hover:scale-105";
 const STEP_NUM =
-  "font-body text-[clamp(38px,4.5vw,70px)] font-thin leading-none text-kinome-black";
+  "font-body text-[clamp(30px,3vw,48px)] font-thin leading-none text-kinome-black";
 // Micro-interaction des cartes : léger soulèvement + ombre au survol, dans le
 // vocabulaire du site (hover:scale + transition courte).
 const CARD_HOVER =
@@ -332,13 +332,13 @@ export default function CreationLogoPage() {
               fold, sinon flash au chargement). `text-focus-in` est le keyframe
               de la charte, jusqu'ici défini mais inutilisé. */}
           <h1
-            className="max-w-[16ch] font-heading text-[clamp(38px,7.4vw,90px)] font-normal leading-[1.12] text-white motion-reduce:!animate-none"
+            className="max-w-[16ch] font-heading text-[clamp(34px,5.5vw,64px)] font-normal leading-[1.12] text-white motion-reduce:!animate-none"
             style={{ animation: "text-focus-in 900ms cubic-bezier(0.22,1,0.36,1) both" }}
           >
             Création de logo à Genève
           </h1>
           <p
-            className="mt-[clamp(20px,3vw,44px)] max-w-[52ch] font-body text-[clamp(17px,1.9vw,28px)] font-light leading-[1.5] text-white/90 motion-reduce:!animate-none"
+            className="mt-[clamp(20px,3vw,44px)] max-w-[52ch] font-body text-[clamp(17px,1.5vw,21px)] font-light leading-[1.5] text-white/90 motion-reduce:!animate-none"
             style={{ animation: "kinome-fade-in 800ms 220ms ease-out both" }}
           >
             Un logo n'est pas une image, c'est la première promesse que fait
@@ -351,13 +351,13 @@ export default function CreationLogoPage() {
           >
             <Link
               href="/contact/"
-              className="btn-fill-accent inline-flex min-w-[240px] items-center justify-center rounded-full bg-white px-8 py-4 text-center font-body text-[clamp(15px,1.1vw,20px)] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
+              className="btn-fill-accent inline-flex min-w-[240px] items-center justify-center rounded-full bg-white px-8 py-4 text-center font-body text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
             >
               Vous avez un projet&nbsp;?
             </Link>
             <Link
               href="/portfolio/"
-              className="btn-fill-white inline-flex min-w-[240px] items-center justify-center rounded-full border border-white px-8 py-4 text-center font-body text-[clamp(15px,1.1vw,20px)] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105 hover:text-kinome-black"
+              className="btn-fill-white inline-flex min-w-[240px] items-center justify-center rounded-full border border-white px-8 py-4 text-center font-body text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105 hover:text-kinome-black"
             >
               Découvrir nos projets
             </Link>
@@ -366,24 +366,24 @@ export default function CreationLogoPage() {
       </section>
 
       {/* ----------------------------- CHIFFRES ----------------------------- */}
-      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,150px)]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
               Notre fonctionnement en chiffres
             </h2>
           </Reveal>
-          <dl className="mt-[clamp(40px,6vw,110px)] grid grid-cols-2 gap-x-6 gap-y-[clamp(36px,5vw,60px)] lg:grid-cols-4">
+          <dl className="mt-[clamp(36px,5vw,72px)] grid grid-cols-2 gap-x-6 gap-y-[clamp(36px,5vw,60px)] lg:grid-cols-4">
             {CHIFFRES.map((c, i) => (
               <Reveal key={c.label} delay={i * 110} className="text-center">
                 <dt className="sr-only">{c.label}</dt>
                 <dd>
-                  <span className="block font-body text-[clamp(40px,6.5vw,80px)] font-light leading-[1.2] text-kinome-black">
+                  <span className="block font-body text-[clamp(34px,4.5vw,56px)] font-light leading-[1.2] text-kinome-black">
                     {c.valeur}
                   </span>
                   <span
                     aria-hidden="true"
-                    className="mt-3 block font-heading text-[clamp(16px,2vw,30px)] font-semibold leading-[1.25] text-kinome-black"
+                    className="mt-3 block font-heading text-[clamp(15px,1.3vw,20px)] font-semibold leading-[1.25] text-kinome-black"
                   >
                     {c.label}
                   </span>
@@ -395,7 +395,7 @@ export default function CreationLogoPage() {
       </section>
 
       {/* -------------------- QU'EST-CE QU'UN LOGO, AU JUSTE ? -------------------- */}
-      <section className="bg-white px-[5%] py-[clamp(60px,9vw,150px)]">
+      <section className="bg-white px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
@@ -459,7 +459,7 @@ export default function CreationLogoPage() {
       </section>
 
       {/* ---------------------------- NOS PRINCIPES ---------------------------- */}
-      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,150px)]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={H2}>Nos principes</h2>
@@ -498,7 +498,7 @@ export default function CreationLogoPage() {
       </section>
 
       {/* ------------------- COMMENT FAIT-ON UN LOGO QUI TIENT ------------------- */}
-      <section className="bg-white px-[5%] py-[clamp(60px,9vw,150px)]">
+      <section className="bg-white px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
             <Reveal>
@@ -556,7 +556,7 @@ export default function CreationLogoPage() {
       </section>
 
       {/* ------------------------------ PROCESSUS ------------------------------ */}
-      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,150px)]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
             <Reveal>
@@ -579,7 +579,7 @@ export default function CreationLogoPage() {
             </Reveal>
           </div>
 
-          <ol className="mx-auto mt-[clamp(44px,6vw,110px)] flex max-w-[1330px] flex-col">
+          <ol className="mx-auto mt-[clamp(36px,5vw,72px)] flex max-w-[1330px] flex-col">
             {PROCESSUS.map((p, i) => (
               <Reveal
                 key={p.n}
@@ -602,7 +602,7 @@ export default function CreationLogoPage() {
                   <h3 className={CARD_TITLE}>{p.titre}</h3>
                   <p className={`${BODY} mt-3`}>{p.body}</p>
                   {p.note && (
-                    <p className="mt-3 font-body text-[clamp(13px,1.15vw,18px)] font-medium uppercase tracking-[0.04em] text-kinome-grey">
+                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-medium uppercase tracking-[0.04em] text-kinome-grey">
                       {p.note}
                     </p>
                   )}
@@ -614,7 +614,7 @@ export default function CreationLogoPage() {
       </section>
 
       {/* --------------------------- LE RÉSULTAT FINAL --------------------------- */}
-      <section className="bg-kinome-cream px-[5%] pb-[clamp(60px,9vw,150px)]">
+      <section className="bg-kinome-cream px-[5%] pb-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
             <Reveal>
@@ -628,7 +628,7 @@ export default function CreationLogoPage() {
               </p>
             </Reveal>
           </div>
-          <div className="mt-[clamp(40px,6vw,110px)] grid gap-[clamp(20px,2.2vw,32px)] sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] sm:grid-cols-2 lg:grid-cols-3">
             {RESULTAT.map((r, i) => (
               // Décalage par colonne plutôt que par index : sur 3 colonnes les
               // cartes d'une même ligne apparaissent en cascade de gauche à
@@ -657,10 +657,10 @@ export default function CreationLogoPage() {
                       WebkitMaskSize: "contain",
                     }}
                   />
-                  <h3 className="font-heading text-[clamp(19px,2vw,30px)] font-semibold leading-[1.3]">
+                  <h3 className="font-heading text-[clamp(18px,1.8vw,22px)] font-semibold leading-[1.3]">
                     {r.titre}
                   </h3>
-                  <p className="mt-[clamp(14px,1.8vw,28px)] font-body text-[clamp(15px,1.35vw,22px)] font-light leading-[1.55]">
+                  <p className="mt-[clamp(14px,1.8vw,28px)] font-body text-[clamp(15px,1.4vw,17px)] font-light leading-[1.55]">
                     {r.body}
                   </p>
                 </div>
@@ -671,7 +671,7 @@ export default function CreationLogoPage() {
       </section>
 
       {/* -------------------------- EXPLORER NOS SERVICES ------------------------- */}
-      <section className="bg-white px-[5%] py-[clamp(60px,9vw,150px)]">
+      <section className="bg-white px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
             <Reveal>
@@ -684,7 +684,7 @@ export default function CreationLogoPage() {
               </p>
             </Reveal>
           </div>
-          <div className="mt-[clamp(40px,6vw,110px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
+          <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
             {SERVICES_LIES.map((s, i) => (
               <Reveal key={s.titre} delay={i * 120}>
                 <div
@@ -717,14 +717,14 @@ export default function CreationLogoPage() {
       </section>
 
       {/* ------------------------------- PORTFOLIO ------------------------------- */}
-      <section className="bg-white px-[5%] pb-[clamp(60px,9vw,150px)]">
+      <section className="bg-white px-[5%] pb-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
               Des logos livrés, des marques renforcées
             </h2>
           </Reveal>
-          <div className="mt-[clamp(40px,6vw,110px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-2">
+          <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-2">
             {PORTFOLIO.map((p, i) => (
               <Reveal key={p.href} delay={(i % 2) * 130}>
                 <Link
@@ -750,7 +750,7 @@ export default function CreationLogoPage() {
       </section>
 
       {/* ---------------------------------- FAQ ---------------------------------- */}
-      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,150px)]">
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1330px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
@@ -758,7 +758,7 @@ export default function CreationLogoPage() {
               <br className="hidden sm:block" /> sur la création de logo
             </h2>
           </Reveal>
-          <div className="mt-[clamp(40px,6vw,110px)] flex flex-col gap-[clamp(12px,1.2vw,18px)]">
+          <div className="mt-[clamp(36px,5vw,72px)] flex flex-col gap-[clamp(12px,1.2vw,18px)]">
             {FAQ.map((f, i) => (
               <Reveal key={f.q} delay={i * 70}>
                 <details
@@ -809,7 +809,7 @@ export default function CreationLogoPage() {
               <Reveal key={l.href} as="li" delay={(i % 2) * 110}>
                 <Link
                   href={l.href}
-                  className="group flex items-center gap-3 rounded-[14px] bg-kinome-cream px-5 py-4 font-body text-[clamp(15px,1.15vw,18px)] font-light text-kinome-black transition-colors hover:bg-kinome-dark hover:text-white"
+                  className="group flex items-center gap-3 rounded-[14px] bg-kinome-cream px-5 py-4 font-body text-[1.05rem] font-light text-kinome-black transition-colors hover:bg-kinome-dark hover:text-white"
                 >
                   <span
                     aria-hidden="true"
@@ -831,18 +831,18 @@ export default function CreationLogoPage() {
       {/* ------------------------------- CTA FINAL ------------------------------- */}
       <section className="bg-kinome-dark px-[5%] py-[clamp(70px,10vw,130px)] text-center text-kinome-cream">
         <Reveal className="mx-auto max-w-[820px]">
-          <h2 className="font-heading text-[clamp(28px,4.4vw,56px)] font-normal leading-[1.12]">
+          <h2 className="font-heading text-[clamp(28px,4vw,48px)] font-normal leading-[1.12]">
             Vous avez un projet de logo
             <br className="hidden sm:block" /> sur lequel échanger&nbsp;?
           </h2>
-          <p className="mx-auto mt-[clamp(18px,2.4vw,32px)] max-w-[620px] font-body text-[clamp(16px,1.35vw,22px)] font-light leading-[1.6] text-kinome-cream/85">
+          <p className="mx-auto mt-[clamp(18px,2.4vw,32px)] max-w-[620px] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.6] text-kinome-cream/85">
             Diagnostic stratégique offert de 30 minutes, sans engagement, pour
             cadrer votre projet et vous dire franchement ce qui ferait sens dans
             votre cas.
           </p>
           <Link
             href="/contact/"
-            className="mt-[clamp(28px,4vw,48px)] inline-flex min-w-[260px] items-center justify-center rounded-full bg-kinome-accent px-9 py-4 font-heading text-[clamp(15px,1.1vw,18px)] font-bold text-white shadow-[0_8px_30px_rgba(224,64,52,0.35)] transition-transform duration-300 hover:scale-105"
+            className="mt-[clamp(28px,4vw,48px)] inline-flex min-w-[260px] items-center justify-center rounded-full bg-kinome-accent px-9 py-4 font-heading text-[1rem] font-bold text-white shadow-[0_8px_30px_rgba(224,64,52,0.35)] transition-transform duration-300 hover:scale-105"
           >
             Demander un devis
           </Link>
