@@ -128,18 +128,22 @@ const principes = [
     title: "Intelligence",
     body: "Chaque recommandation s'appuie sur l'analyse, l'écoute et l'expérience. Nous préférons la pertinence à l'effet de mode.",
   },
+  // Les deux portraits sont volontairement adjacents : sur la grille à 3
+  // colonnes, Tanguy tombe en fin de première ligne et Mathias en début de
+  // seconde, ce qui les place en diagonale. La version anglaise suit déjà cet
+  // ordre, le français était l'exception.
   {
     type: "photo" as const,
     src: "/assets/wp/apropos-principe-photo1.jpg",
   },
   {
+    type: "photo" as const,
+    src: "/assets/wp/apropos-principe-photo2.jpg",
+  },
+  {
     type: "text" as const,
     title: "Empathie",
     body: "Comprendre votre métier, votre équipe, vos contraintes. La bonne idée naît toujours d'une écoute attentive.",
-  },
-  {
-    type: "photo" as const,
-    src: "/assets/wp/apropos-principe-photo2.jpg",
   },
   {
     type: "text" as const,
