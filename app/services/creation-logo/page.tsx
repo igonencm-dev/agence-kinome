@@ -634,20 +634,35 @@ export default function CreationLogoPage() {
               // cartes d'une même ligne apparaissent en cascade de gauche à
               // droite, pas en diagonale hasardeuse.
               <Reveal key={r.titre} delay={(i % 3) * 120}>
-                <div
-                  className={`group flex h-full flex-col items-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(36px,4.5vw,64px)] text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)] ${CARD_HOVER}`}
-                >
-                  <img
-                    src={r.icon}
-                    alt=""
+                {/* Carte qui bascule en sombre au survol, reprise exacte de la
+                    grille d'expertises de /a-propos/. Titre et texte n'ont pas
+                    de couleur propre : ils héritent de la carte pour s'inverser
+                    avec elle. */}
+                <div className="group flex h-full cursor-default flex-col items-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(36px,4.5vw,64px)] text-center text-kinome-black shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]">
+                  {/* Les SVG de Tanguy sont des aplats #47453C : servis en
+                      masque CSS plutôt qu'en <img>, ils prennent la couleur du
+                      texte et s'éclaircissent donc sur fond sombre. Une image
+                      resterait noire, donc invisible. */}
+                  <span
                     aria-hidden="true"
-                    loading="lazy"
-                    width={112}
-                    height={112}
-                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain transition-transform duration-500 group-hover:scale-110"
+                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] bg-current transition-transform duration-500 group-hover:scale-110"
+                    style={{
+                      maskImage: `url(${r.icon})`,
+                      WebkitMaskImage: `url(${r.icon})`,
+                      maskRepeat: "no-repeat",
+                      WebkitMaskRepeat: "no-repeat",
+                      maskPosition: "center",
+                      WebkitMaskPosition: "center",
+                      maskSize: "contain",
+                      WebkitMaskSize: "contain",
+                    }}
                   />
-                  <h3 className={CARD_TITLE}>{r.titre}</h3>
-                  <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)]`}>{r.body}</p>
+                  <h3 className="font-heading text-[clamp(19px,2vw,30px)] font-semibold leading-[1.3]">
+                    {r.titre}
+                  </h3>
+                  <p className="mt-[clamp(14px,1.8vw,28px)] font-body text-[clamp(15px,1.35vw,22px)] font-light leading-[1.55]">
+                    {r.body}
+                  </p>
                 </div>
               </Reveal>
             ))}
