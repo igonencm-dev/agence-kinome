@@ -325,8 +325,8 @@ export default function StrategieDeMarquePage() {
       {/* ------------------------------- HERO ------------------------------- */}
       <section className="relative isolate flex min-h-[clamp(560px,90vh,900px)] items-end overflow-hidden bg-kinome-dark">
         <img
-          src="/assets/services/logo/hero-creation-logo.webp"
-          alt="Carte de visite Microclimat posée sur une pierre, projet Kinome"
+          src="/assets/services/marque/photo-hero.webp"
+          alt="Atelier de positionnement, notes repositionnables sur une vitre"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
         />
@@ -441,13 +441,13 @@ export default function StrategieDeMarquePage() {
             </div>
             <Reveal
               effect="fade-right"
-              className="group overflow-hidden rounded-[20px]"
+              className="group aspect-[516/777] overflow-hidden rounded-[20px]"
             >
               <img
-                src="/assets/services/logo/icone-app-codecircle.webp"
-                alt="Interface Codecircle sur mobile, projet web optimisé par Kinome"
-                width={554}
-                height={835}
+                src="/assets/services/marque/photo-portrait1.webp"
+                alt="Deux personnes en atelier de positionnement de marque"
+                width={1100}
+                height={1100}
                 loading="lazy"
                 className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
               />
@@ -521,12 +521,12 @@ export default function StrategieDeMarquePage() {
 
           <div className="mt-[clamp(36px,5vw,72px)] grid items-start gap-[clamp(32px,5vw,80px)] lg:grid-cols-2">
             <Reveal effect="fade-left" className="lg:sticky lg:top-24">
-              <div className="group overflow-hidden rounded-[20px]">
+              <div className="group aspect-[516/779] overflow-hidden rounded-[20px]">
                 <img
-                  src="/assets/services/logo/brandboard-tampon-audition.webp"
-                  alt="Brandboard de Tampon Audition affiché sur un ordinateur"
-                  width={1040}
-                  height={1570}
+                  src="/assets/services/marque/photo-portrait2.webp"
+                  alt="Travail de recherche et d'analyse concurrentielle sur ordinateur"
+                  width={1100}
+                  height={684}
                   loading="lazy"
                   className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />

@@ -4,20 +4,19 @@
 /**
  * Mégamenu Services — apparait au survol du lien "Nos services" du header.
  *
- * Même mécanique que PortfolioMegaMenu (intent delay géré par le Header, échap
- * pour fermer, desktop uniquement), mais une grille de cartes plutôt qu'un
- * projet vedette en rotation : ici l'utilisateur choisit une prestation, il ne
- * feuillette pas.
+ * Structure alignée sur PortfolioMegaMenu : une colonne de liens à gauche, un
+ * visuel mis en avant à droite. C'est ce qui permet de tenir 6 services dans
+ * la hauteur de fenêtre. La version précédente affichait 6 cartes illustrées
+ * en grille : 867 px de haut pour 720 px de fenêtre, la dernière ligne et le
+ * pied de menu passaient sous l'écran, hors d'atteinte.
  *
- * On n'affiche que les pages service réellement en ligne. Les prestations dont
- * la landing n'existe pas encore (SEO, stratégie de marque, réseaux sociaux)
- * restent accessibles via le hub, on n'écrit pas de lien mort dans la nav.
+ * Le visuel de droite suit la ligne survolée, ce qui donne un aperçu sans
+ * clic. Sans survol, il montre le premier service.
  *
- * Le menu est FR uniquement : les landings service n'ont pas encore de version
- * anglaise, donc côté /en/ le header garde un lien simple vers /en/services/.
+ * FR uniquement : les landings service n'ont pas encore de version anglaise.
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 type Service = {
@@ -64,7 +63,7 @@ const SERVICES: Service[] = [
       "Audit technique, mots-clés, contenu et netlinking, pour être trouvé là où vos clients cherchent.",
     prix: "audit dès 800 CHF",
     image: "/assets/projets/no-code/1.png",
-    alt: "Projet NOCODE IA, organisme de formation accompagné par Kinome",
+    alt: "NOCODE IA, organisme de formation accompagné par Kinome",
   },
   {
     titre: "Stratégie de marque",
@@ -102,6 +101,12 @@ export default function ServicesMegaMenu({
   onMouseLeave,
   onClose,
 }: Props) {
+  const [actif, setActif] = useState(0);
+
+  useEffect(() => {
+    if (open) setActif(0);
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -110,6 +115,8 @@ export default function ServicesMegaMenu({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
+
+  const courant = SERVICES[actif];
 
   return (
     <div
@@ -124,63 +131,110 @@ export default function ServicesMegaMenu({
           : "invisible -translate-y-3 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="mx-auto max-w-[1728px] px-[5%] py-12">
-        <p className="mb-7 font-heading text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-kinome-grey">
-          Nos prestations
-        </p>
-
-        <ul className="grid grid-cols-3 gap-x-6 gap-y-8">
-          {SERVICES.map((s) => (
-            <li key={s.href}>
-              <Link href={s.href} onClick={onClose} className="group block">
-                <div className="relative aspect-[16/9] overflow-hidden rounded-[20px] bg-white">
-                  <img
-                    src={s.image}
-                    alt={s.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute inset-0 bg-kinome-black/0 transition-colors duration-500 group-hover:bg-kinome-black/10" />
-                </div>
-                <div className="mt-5 flex items-baseline justify-between gap-4">
-                  <h3 className="font-heading text-[clamp(19px,1.5vw,24px)] font-semibold leading-[1.2] text-kinome-black transition-colors group-hover:text-kinome-accent">
+      <div className="mx-auto grid max-w-[1728px] grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-16 px-[5%] py-10">
+        {/* ─────────── Colonne 1 : les 6 services ─────────── */}
+        <div>
+          <p className="mb-5 font-heading text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-kinome-grey">
+            Nos prestations
+          </p>
+          <ul className="flex flex-col">
+            {SERVICES.map((s, i) => (
+              <li key={s.href}>
+                <Link
+                  href={s.href}
+                  onClick={onClose}
+                  onMouseEnter={() => setActif(i)}
+                  onFocus={() => setActif(i)}
+                  className={`group flex items-baseline justify-between gap-6 border-b border-kinome-black/8 py-2.5 transition-colors ${
+                    i === actif ? "border-kinome-accent/40" : ""
+                  }`}
+                >
+                  <span
+                    className={`font-heading text-[clamp(17px,1.5vw,22px)] font-normal leading-[1.2] transition-colors ${
+                      i === actif ? "text-kinome-accent" : "text-kinome-black"
+                    }`}
+                  >
                     {s.titre}
-                  </h3>
+                  </span>
                   <span className="whitespace-nowrap font-body text-[0.78rem] font-light text-kinome-grey">
                     {s.prix}
                   </span>
-                </div>
-                <p className="mt-2 font-body text-[0.92rem] font-light leading-[1.5] text-kinome-grey">
-                  {s.resume}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-kinome-black/8 pt-6">
-          <Link
-            href="/services/"
-            onClick={onClose}
-            className="group inline-flex items-center gap-2 font-heading text-[0.92rem] font-semibold text-kinome-black transition-colors hover:text-kinome-accent"
-          >
-            Voir toutes nos expertises
-            <span
-              aria-hidden="true"
-              className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <Link
+              href="/services/"
+              onClick={onClose}
+              className="group inline-flex items-center gap-2 font-heading text-[0.92rem] font-semibold text-kinome-black transition-colors hover:text-kinome-accent"
             >
-              →
-            </span>
-          </Link>
-          <Link
-            href="/contact/"
-            onClick={onClose}
-            className="font-body text-[0.88rem] font-light text-kinome-grey transition-colors hover:text-kinome-accent"
-          >
-            Diagnostic stratégique offert de 30 minutes
-          </Link>
+              Voir toutes nos expertises
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </Link>
+            <Link
+              href="/contact/"
+              onClick={onClose}
+              className="font-body text-[0.85rem] font-light text-kinome-grey transition-colors hover:text-kinome-accent"
+            >
+              Diagnostic offert de 30 minutes
+            </Link>
+          </div>
         </div>
+
+        {/* ─────────── Colonne 2 : aperçu du service survolé ─────────── */}
+        <Link
+          href={courant.href}
+          onClick={onClose}
+          className="group block"
+          aria-label={`Découvrir ${courant.titre}`}
+        >
+          {/* Toutes les images sont rendues et on bascule l'opacité : évite un
+              rechargement (et donc un flash) à chaque survol de ligne. */}
+          <div className="relative aspect-[16/9] overflow-hidden rounded-[20px] bg-white">
+            {SERVICES.map((s, i) => (
+              <img
+                key={s.href}
+                src={s.image}
+                alt={s.alt}
+                loading="lazy"
+                decoding="async"
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out ${
+                  i === actif ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+            <div className="absolute inset-0 bg-kinome-black/0 transition-colors duration-500 group-hover:bg-kinome-black/10" />
+          </div>
+          <div
+            key={courant.href}
+            className="mt-4 flex items-baseline justify-between gap-8"
+            style={{ animation: "kinome-fade-in 350ms ease-out both" }}
+          >
+            <div>
+              <h3 className="font-heading text-[clamp(18px,1.6vw,24px)] font-semibold leading-[1.2] text-kinome-black transition-colors group-hover:text-kinome-accent">
+                {courant.titre}
+              </h3>
+              <p className="mt-1.5 max-w-[520px] font-body text-[0.92rem] font-light leading-[1.5] text-kinome-grey">
+                {courant.resume}
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-1.5 whitespace-nowrap font-heading text-[0.9rem] font-semibold text-kinome-black transition-colors group-hover:text-kinome-accent">
+              Découvrir
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   );
