@@ -260,9 +260,11 @@ export default function ServicesPage() {
           (composant client dédié, voir ServicesHero.tsx) */}
       <ServicesHero />
 
-      {/* Onglets services */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-[clamp(60px,12vw,120px)]">
-        <div className="mb-8 sm:mb-16 flex flex-wrap justify-center gap-4">
+      {/* Onglets services — le Figma alterne : bande blanche pour les onglets,
+          bande crème pour les cartes, et les cartes elles-mêmes sont blanches. */}
+      <section>
+        <div className="mx-auto max-w-[1400px] px-[5%] pb-[clamp(28px,5vw,56px)] pt-[clamp(60px,12vw,120px)]">
+          <div className="flex flex-wrap justify-center gap-4">
           {/* Couleur retours #90 : passer du gris froid #f2f2f2 au beige
               chaud #dfdbd0 (cohérence avec la charte cream/sable Kinome). */}
           <button
@@ -285,11 +287,14 @@ export default function ServicesPage() {
                 : "bg-[#dfdbd0] text-kinome-black hover:bg-[#cbc6b8]"
             }`}
           >
-            Services web design
-          </button>
+              Services web design
+            </button>
+          </div>
         </div>
 
-        {onglets.map((o) => (
+        <div className="bg-kinome-cream">
+          <div className="mx-auto max-w-[1400px] px-[5%] py-[clamp(50px,9vw,110px)]">
+            {onglets.map((o) => (
           <div
             key={o.cle}
             className={`grid grid-cols-1 gap-8 lg:grid-cols-3 ${
@@ -301,7 +306,7 @@ export default function ServicesPage() {
               <Link
                 key={s.title}
                 href={s.href}
-                className="group flex flex-col rounded-[24px] bg-kinome-cream p-10 text-left transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)] lg:text-center"
+                className="group flex flex-col rounded-[24px] bg-white p-10 text-left transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)] lg:text-center"
               >
                 <h2 className="mb-2 font-heading text-[1.6rem] font-semibold leading-[1.2] text-kinome-black transition-colors group-hover:text-kinome-accent">
                   {s.title}
@@ -321,10 +326,33 @@ export default function ServicesPage() {
                     →
                   </span>
                 </span>
-              </Link>
+                </Link>
+              ))}
+            </div>
             ))}
+
+            <div className="mt-[clamp(32px,5vw,60px)] flex items-center justify-center gap-2.5">
+              {onglets.map((o) => (
+                <button
+                  key={o.cle}
+                  type="button"
+                  onClick={() => setOnglet(o.cle)}
+                  aria-label={
+                    o.cle === "crea"
+                      ? "Afficher les services créa"
+                      : "Afficher les services web design"
+                  }
+                  aria-pressed={onglet === o.cle}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    onglet === o.cle
+                      ? "w-9 bg-[#47453c]"
+                      : "w-2.5 bg-kinome-black/20 hover:bg-kinome-black/40"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-        ))}
+        </div>
       </section>
 
       {/* Comment les prestations se déroulent ? */}
