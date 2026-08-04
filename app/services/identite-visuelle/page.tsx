@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import Reveal from "../../components/Reveal";
 import Testimonials from "../../components/Testimonials";
 import {
   buildMetadata,
@@ -7,150 +8,315 @@ import {
   breadcrumbJsonLd,
   faqJsonLd,
   jsonLdScript,
-  SITE,
 } from "../../lib/seo";
 
 // ---------------------------------------------------------------------------
-// Landing page de conversion (BOFU) — Service "Identité visuelle & logo".
-// Cible transactionnelle ("création identité visuelle / logo à Genève").
-// Les articles de blog (informationnels) pointent vers cette page = pilier
-// de conversion. Server component → exporte `metadata`.
+// Page service « Identité visuelle » — design Figma de Tanguy
+// (node 2216:4048 « Services - Identité visuelle »).
+//
+// L'URL existait déjà : on garde le chemin pour conserver l'acquis SEO, et on
+// maintient le recentrage fait en juillet, le mot-clé « création de logo »
+// appartenant désormais à /services/creation-logo/.
 // ---------------------------------------------------------------------------
 
-// Ciblage recentré sur l'identité visuelle complète : la requête « création de
-// logo Genève » appartient désormais à /services/creation-logo/, pour éviter
-// que les deux pages se cannibalisent sur le même mot-clé.
 export const metadata = buildMetadata({
   title: "Création d'identité visuelle à Genève",
   description:
-    "Agence d'identité visuelle à Genève : charte graphique, déclinaisons et stratégie de marque pour votre PME. De 4 000 à 15 000 CHF, diagnostic offert.",
+    "Identité visuelle et charte graphique à Genève : palette, typographies, gabarits et règles d'usage. Livrée en 4 à 6 semaines, de 4 000 à 15 000 CHF.",
   path: "/services/identite-visuelle/",
   keywords: [
     "création identité visuelle Genève",
     "charte graphique entreprise",
     "agence branding Genève",
     "identité de marque PME Suisse",
+    "prix charte graphique",
   ],
 });
 
-const INCLUS = [
+/* --------------------------------- Données -------------------------------- */
+
+const CHIFFRES = [
+  { valeur: "30 à 60", label: "Pages de charte graphique livrées" },
+  { valeur: "4 à 6", label: "Semaines de la conception à la livraison" },
+  { valeur: "100 %", label: "Des supports cadrés par des règles écrites" },
+  { valeur: "0", label: "Template : chaque système est sur-mesure" },
+];
+
+const PILIERS = [
   {
-    title: "Logo & déclinaisons",
-    body: "Un logo distinctif, mémorable et fonctionnel sur tous les supports, livré dans toutes ses versions (couleur, noir, blanc, monochrome) et formats (vectoriels + raster).",
+    titre: "Une palette de couleurs",
+    body: "Les teintes principales et secondaires de la marque, avec leurs codes exacts (RVB, CMJN, HEX) pour un rendu identique sur tous les supports.",
   },
   {
-    title: "Charte graphique",
-    body: "Palette de couleurs, typographies, iconographie, règles d'usage : le référentiel qui garantit la cohérence de votre marque dans le temps, pour vous et vos prestataires.",
+    titre: "Un système typographique",
+    body: "Les polices de titres et de texte courant, avec leurs graisses et hiérarchies, pour une lecture cohérente partout.",
   },
   {
-    title: "Stratégie de marque",
-    body: "Avant le visuel, le sens : positionnement, personnalité et messages clés. Une identité qui raconte vraiment qui vous êtes et vous distingue de vos concurrents.",
-  },
-  {
-    title: "Déclinaisons clés",
-    body: "Carte de visite, signature mail, templates réseaux sociaux, modèle de présentation : votre identité prête à l'emploi sur vos supports du quotidien.",
+    titre: "Des règles d'usage",
+    body: "Mise en page, iconographie, traitement photo et gabarits, qui cadrent la création de tout nouveau support sans repartir de zéro.",
   },
 ];
 
-const PROCESS = [
+const ENJEUX = [
+  {
+    titre: "Reconnaissance",
+    body: "Une identité cohérente sur tous les supports renforce la mémorisation de la marque à chaque point de contact.",
+  },
+  {
+    titre: "Autonomie",
+    body: "Une charte graphique claire permet à vos équipes ou à vos prestataires de produire du contenu fidèle, sans validation permanente.",
+  },
+  {
+    titre: "Professionnalisme",
+    body: "La cohérence entre les supports réduit les doutes : une marque qui se tient inspire davantage confiance qu'une marque qui change de visage.",
+  },
+];
+
+const METHODE = [
   {
     n: "01",
-    title: "Cadrage & immersion",
-    body: "On comprend votre activité, votre cible, vos concurrents et vos ambitions. C'est la fondation de toute la suite.",
+    titre: "Partir du logo et de la stratégie",
+    body: "Le logo existant ou en cours de création sert de point de départ, avec la stratégie de marque qui l'accompagne : positionnement, cible, valeurs.",
   },
   {
     n: "02",
-    title: "Direction artistique",
-    body: "2 à 3 pistes créatives distinctes, chacune argumentée stratégiquement. Vous choisissez celle qui résonne le plus.",
+    titre: "Définir la palette et la typographie",
+    body: "Les couleurs et polices sont choisies pour prolonger l'univers du logo, avec des codes précis et des hiérarchies claires entre titres et textes.",
   },
   {
     n: "03",
-    title: "Conception du système",
-    body: "On affine la piste retenue au pixel près : logo finalisé, palette, typographies, iconographie, ton d'image.",
+    titre: "Construire les gabarits clés",
+    body: "Les supports les plus utilisés (réseaux sociaux, papeterie, présentations) sont maquettés en premier, pour valider le système sur des cas concrets.",
   },
   {
     n: "04",
-    title: "Charte & déclinaisons",
-    body: "On documente tout dans une charte claire et on décline l'identité sur vos supports clés.",
+    titre: "Fixer les règles d'usage",
+    body: "Zones de protection, interdits graphiques et bonnes pratiques sont documentés, pour que le système reste cohérent entre les mains de tous.",
   },
   {
     n: "05",
-    title: "Livraison & accompagnement",
-    body: "Vous recevez tous les fichiers sources, et on vous accompagne sur le déploiement de votre nouvelle identité.",
+    titre: "Livrer un document de référence",
+    body: "L'ensemble est compilé dans une charte graphique claire, pensée pour être consultée facilement par vos équipes et vos prestataires.",
   },
 ];
 
-const PRIX = [
+const PROCESSUS = [
   {
-    type: "Logo seul",
-    desc: "Création de logo + déclinaisons de base.",
-    price: "1 500 – 5 000 CHF",
+    n: "01",
+    titre: "Cadrage et audit de l'existant",
+    body: "On ne construit pas une identité sur du vide. Cette première étape analyse le logo et les supports existants, la cible et le positionnement de la marque, ainsi que l'univers concurrentiel, pour définir un cap clair.",
+    note: "Livrable : brief stratégique validé",
   },
   {
-    type: "Identité visuelle complète",
-    desc: "Logo + charte graphique + déclinaisons clés.",
-    price: "4 000 – 15 000 CHF",
+    n: "02",
+    titre: "Recherche et direction créative",
+    body: "Une exploration visuelle permet d'aligner la direction avant la création : moodboard de styles, palettes et typographies candidates, références graphiques cohérentes.",
+    note: "Objectif : valider une direction avant création",
   },
   {
-    type: "Branding 360°",
-    desc: "Stratégie de marque + identité + site internet + supports.",
-    price: "dès 15 000 CHF",
+    n: "03",
+    titre: "Construction du système graphique",
+    body: "Palette de couleurs, typographies, iconographie et éléments graphiques distinctifs sont définis pour former un système cohérent et reconnaissable.",
+  },
+  {
+    n: "04",
+    titre: "Maquettage des supports clés",
+    body: "Les gabarits des supports prioritaires (réseaux sociaux, papeterie, présentations, signalétique) sont créés et ajustés jusqu'à validation, sans jamais repartir de zéro.",
+    note: "Objectif : valider le système sur des cas réels",
+  },
+  {
+    n: "05",
+    titre: "Rédaction de la charte graphique",
+    body: "L'ensemble des règles, interdits et exemples d'application est compilé dans un document de référence clair, destiné à vos équipes et prestataires.",
+    note: "Livrable : charte graphique complète",
+  },
+  {
+    n: "06",
+    titre: "Livraison finale",
+    body: "Un pack complet est remis, prêt à l'usage sur tous vos supports, print comme digital, accompagné de la charte et des fichiers sources.",
+    note: "Livrable : pack complet + charte graphique",
+  },
+];
+
+const RESULTAT = [
+  {
+    icon: "/assets/services/identite/charte.svg",
+    titre: "Charte graphique de 30 à 60 pages",
+    body: "Palette, typographies, iconographie, règles d'usage et exemples d'application, réunis dans un document de référence clair.",
+  },
+  {
+    icon: "/assets/services/identite/couleurs.svg",
+    titre: "Codes couleurs complets",
+    body: "Codes RVB, CMJN, HEX et Pantone si nécessaire, pour un rendu fidèle du digital au print.",
+  },
+  {
+    icon: "/assets/services/identite/typographie.svg",
+    titre: "Système typographique",
+    body: "Polices de titres et de texte courant, licences associées, et hiérarchies définies pour tous vos supports.",
+  },
+  {
+    icon: "/assets/services/identite/gabarits.svg",
+    titre: "Gabarits prêts à l'emploi",
+    body: "Modèles pour réseaux sociaux, présentations, papeterie et signalétique, directement réutilisables par vos équipes.",
+  },
+  {
+    icon: "/assets/services/identite/interdits.svg",
+    titre: "Interdits et bonnes pratiques",
+    body: "Ce qu'il ne faut jamais faire avec la marque (déformations, mauvaises couleurs, associations à éviter), pour préserver la cohérence dans le temps.",
+  },
+  {
+    icon: "/assets/services/logo/symbole-durable.svg",
+    titre: "Une image prête à durer",
+    body: "Un système graphique pensé pour absorber de nouveaux supports sans jamais perdre en cohérence, même plusieurs années après sa création.",
+  },
+];
+
+const SERVICES_LIES = [
+  {
+    icon: "/assets/services/logo/formats-vectoriels.svg",
+    titre: "Création de logo",
+    body: "Le point de départ de toute identité : un signe graphique fort, autour duquel se construit le système complet.",
+    href: "/services/creation-logo/",
+  },
+  {
+    icon: "/assets/services/logo/service-seo.svg",
+    titre: "Référencement naturel",
+    body: "Une stratégie de contenu et une structure technique pensées pour être identifié durablement dans les recherches Google.",
+    href: "/services/referencement-naturel/",
+  },
+  {
+    icon: "/assets/services/identite/service-social.svg",
+    titre: "Stratégie de marque",
+    body: "Le socle qui précède l'identité : positionnement, plateforme de marque et ton de voix, formulés noir sur blanc.",
+    href: "/services/strategie-de-marque/",
   },
 ];
 
 const PORTFOLIO = [
-  { img: "/assets/wp/Cabinet-Faraday-780x390px-1.png", alt: "Cabinet Faraday — identité visuelle" },
-  { img: "/assets/wp/Authentik-Peak-780x390px-1.png", alt: "Authentik Peak — identité visuelle" },
-  { img: "/assets/wp/Adapt-Project-780x390px-1.png", alt: "Adapt Project — identité visuelle" },
-];
-
-const BLOG_LINKS = [
-  { href: "/services/creation-logo/", label: "Vous cherchez un logo seul ? Voir la page dédiée" },
-  { href: "/blog/etude-de-cas-logo-tampon-audition/", label: "Étude de cas concrète : le logo de Tampon Audition" },
-  { href: "/blog/creer-identite-visuelle-entreprise-geneve/", label: "Créer une identité visuelle forte : le guide" },
-  { href: "/blog/creation-logo-geneve-processus/", label: "Création de logo : processus et erreurs à éviter" },
-  { href: "/blog/charte-graphique-pme-guide/", label: "La charte graphique expliquée" },
-  { href: "/blog/strategie-branding-geneve/", label: "Stratégie de marque : le guide du branding" },
-  { href: "/blog/refonte-identite-visuelle-quand-repenser-marque/", label: "Refonte d'identité : 6 signaux qu'il est temps" },
+  {
+    img: "/assets/wp/Cabinet-Faraday-780x390px-1.png",
+    alt: "Identité visuelle du Cabinet Faraday, cabinet dentaire pédiatrique",
+    href: "/projets/cabinet-faraday/",
+  },
+  {
+    img: "/assets/wp/Authentik-Peak-780x390px-1.png",
+    alt: "Identité visuelle d'Authentik Peak, organisme de formation",
+    href: "/projets/authentik-peak/",
+  },
+  {
+    img: "/assets/wp/Adapt-Project-780x390px-1.png",
+    alt: "Identité visuelle d'Adapt Project",
+    href: "/projets/adapt-project/",
+  },
+  {
+    img: "/assets/wp/Alministratif-780x390px-1.png",
+    alt: "Identité visuelle d'Alministratif",
+    href: "/projets/alministratif/",
+  },
 ];
 
 const FAQ = [
   {
+    q: "Combien de temps prend la création d'une identité visuelle ?",
+    a: "Une identité visuelle complète se livre généralement en 4 à 6 semaines, cadrage compris. Ce délai peut varier selon le nombre de supports à maquetter et si le logo doit être créé en parallèle. Un logo seul, sans charte, se livre en 2 à 3 semaines.",
+  },
+  {
     q: "Combien coûte une identité visuelle à Genève ?",
-    a: "Pour un logo seul, comptez 1 500 à 5 000 CHF. Pour une identité visuelle complète (logo + charte graphique + déclinaisons), 4 000 à 15 000 CHF. Pour un branding 360° incluant la stratégie et le site internet, à partir de 15 000 CHF. Nous établissons toujours un devis transparent adapté à votre projet.",
+    a: "Pour un logo seul, comptez 1 500 à 5 000 CHF. Pour une identité visuelle complète (logo, charte graphique et déclinaisons), 4 000 à 15 000 CHF. Pour un branding 360° incluant la stratégie de marque et le site internet, à partir de 15 000 CHF. Nous établissons toujours un devis transparent adapté à votre projet.",
   },
   {
-    q: "Combien de temps faut-il pour créer une identité visuelle ?",
-    a: "Comptez 2 à 3 semaines pour un logo seul, 4 à 8 semaines pour une identité visuelle complète avec charte graphique. Votre réactivité sur les validations influence le planning : un retour rapide fait gagner 1 à 2 semaines.",
+    q: "Quelle est la différence entre un logo et une identité visuelle ?",
+    a: "Le logo est le signe qui identifie la marque. L'identité visuelle est le système complet qui l'entoure : palette de couleurs, typographies, iconographie, traitement photo et règles d'usage. Un logo seul ne suffit pas à rendre une marque reconnaissable sur tous ses supports, c'est le système qui crée la cohérence.",
   },
   {
-    q: "Les fichiers sources m'appartiennent-ils ?",
-    a: "Oui. À la livraison, vous recevez l'ensemble des fichiers vectoriels (AI, SVG, EPS) et raster (PNG, JPG), ainsi que votre charte graphique. Votre identité vous appartient entièrement — vous n'êtes dépendant de personne pour la faire évoluer.",
+    q: "Faut-il déjà avoir un logo pour commencer ?",
+    a: "Non. Nous pouvons partir d'un logo existant, le retravailler, ou le créer en même temps que l'identité. Dans ce dernier cas, le projet est simplement plus long et le logo est validé avant la construction du système graphique.",
   },
   {
-    q: "Travaillez-vous avec des entreprises hors de Genève ?",
-    a: "Oui. Nous sommes basés à Genève (Thônex) et accompagnons des marques dans toute la Suisse romande, en France et à l'international. La majorité de nos échanges se font à distance, avec des points de contact réguliers.",
+    q: "Mes équipes pourront-elles créer des supports elles-mêmes ?",
+    a: "Oui, c'est même l'objectif de la charte. Elle contient des gabarits prêts à l'emploi pour vos réseaux sociaux, vos présentations et votre papeterie, ainsi que les règles et les interdits. Vos équipes ou vos prestataires produisent des supports fidèles sans avoir à demander une validation à chaque fois.",
   },
   {
-    q: "Faut-il une stratégie de marque avant le logo ?",
-    a: "Idéalement, oui. Un logo posé sur une stratégie floue ne raconte rien. Nous commençons toujours par cadrer votre positionnement, même brièvement, pour que l'identité visuelle qui en découle ait du sens et vous différencie réellement.",
+    q: "Que se passe-t-il si la marque évolue dans quelques années ?",
+    a: "Le système est conçu pour absorber de nouveaux supports sans perdre en cohérence. Si le positionnement change en profondeur, une refonte d'identité est justifiée : nous la traitons alors comme un projet à part entière, en préservant ce qui reste pertinent.",
   },
 ];
 
+const BLOG_LINKS = [
+  {
+    href: "/blog/creer-identite-visuelle-entreprise-geneve/",
+    label: "Créer une identité visuelle d'entreprise : le guide complet",
+  },
+  {
+    href: "/blog/charte-graphique-pme-guide/",
+    label: "La charte graphique d'entreprise expliquée",
+  },
+  {
+    href: "/blog/etude-de-cas-logo-tampon-audition/",
+    label: "Étude de cas : l'identité de Tampon Audition",
+  },
+  {
+    href: "/blog/refonte-identite-visuelle-quand-repenser-marque/",
+    label: "Refonte d'identité : 6 signaux qu'il est temps",
+  },
+];
+
+/* --------------------------------- Styles --------------------------------- */
+// Échelle alignée sur /services/creation-logo/ et /services/identite-visuelle/.
+const H2 =
+  "font-heading text-[clamp(26px,3.6vw,44px)] font-normal leading-[1.14] text-kinome-black";
+const LEAD =
+  "font-body text-[clamp(17px,1.5vw,21px)] font-light leading-[1.5] text-kinome-black";
+const BODY =
+  "font-body text-[clamp(15px,1.4vw,17px)] font-light leading-[1.55] text-kinome-black";
+const CARD_TITLE =
+  "font-heading text-[clamp(18px,1.8vw,22px)] font-semibold leading-[1.3] text-kinome-black";
+const PILL_DARK =
+  "btn-fill-accent inline-flex min-w-[240px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-body text-[1rem] font-semibold text-white transition-transform duration-300 hover:scale-105";
+const STEP_NUM =
+  "font-body text-[clamp(30px,3vw,48px)] font-thin leading-none text-kinome-black";
+const CARD_HOVER =
+  "transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)]";
+
 export default function IdentiteVisuellePage() {
+  const service = {
+    ...serviceJsonLd(
+      "Création d'identité visuelle et de charte graphique à Genève",
+      "Conception du système graphique complet d'une marque à Genève : palette de couleurs, typographies, iconographie, gabarits de supports et charte graphique de 30 à 60 pages."
+    ),
+    // Les offres chiffrées sont ce que les moteurs de réponse citent quand on
+    // leur demande « combien coûte le SEO à Genève ».
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Identité visuelle complète (logo + charte graphique)",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: 4000,
+          maxPrice: 15000,
+          priceCurrency: "CHF",
+        },
+      },
+      {
+        "@type": "Offer",
+        name: "Branding 360° (stratégie + identité + site internet)",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: 15000,
+          priceCurrency: "CHF",
+        },
+      },
+    ],
+  };
   const breadcrumb = breadcrumbJsonLd([
-    { name: "Accueil", url: `${SITE.url}/` },
-    { name: "Services", url: `${SITE.url}/services/` },
-    { name: "Identité visuelle", url: `${SITE.url}/services/identite-visuelle/` },
+    { name: "Accueil", url: "/" },
+    { name: "Services", url: "/services/" },
+    { name: "Identité visuelle", url: "/services/identite-visuelle/" },
   ]);
-  const service = serviceJsonLd(
-    "Création d'identité visuelle et de logo",
-    "Conception d'identités visuelles, logos et chartes graphiques pour PME à Genève et en Suisse romande : stratégie de marque, design sur-mesure et déclinaisons."
-  );
   const faq = faqJsonLd(FAQ.map((f) => ({ question: f.q, answer: f.a })));
 
   return (
-    <main className="bg-kinome-cream">
+    <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(service) }}
@@ -164,256 +330,529 @@ export default function IdentiteVisuellePage() {
         dangerouslySetInnerHTML={{ __html: jsonLdScript(faq) }}
       />
 
-      {/* HERO */}
-      <section className="bg-kinome-dark px-[5%] pt-[clamp(120px,16vw,180px)] pb-[clamp(60px,9vw,110px)] text-kinome-cream">
-        <div className="mx-auto max-w-[900px] text-center">
-          <nav
-            aria-label="Fil d'Ariane"
-            className="mb-6 font-body text-[0.85rem] text-kinome-cream/55"
+      {/* ------------------------------- HERO ------------------------------- */}
+      <section className="relative isolate flex min-h-[clamp(560px,90vh,900px)] items-end overflow-hidden bg-kinome-dark">
+        <img
+          src="/assets/services/logo/hero-creation-logo.webp"
+          alt="Carte de visite Microclimat posée sur une pierre, projet Kinome"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.80)_0%,rgba(17,17,17,0.66)_45%,rgba(17,17,17,0.88)_100%)] lg:bg-[linear-gradient(100deg,rgba(17,17,17,0.90)_0%,rgba(17,17,17,0.78)_38%,rgba(17,17,17,0.46)_72%,rgba(17,17,17,0.38)_100%)]"
+        />
+        <div className="relative mx-auto w-full max-w-[1588px] px-[5%] pb-[clamp(56px,8vw,120px)] pt-[clamp(140px,18vw,300px)]">
+          <h1
+            className="max-w-[18ch] font-heading text-[clamp(34px,5.5vw,64px)] font-normal leading-[1.12] text-white motion-reduce:!animate-none"
+            style={{ animation: "text-focus-in 900ms cubic-bezier(0.22,1,0.36,1) both" }}
           >
-            <Link href="/" className="hover:text-white">Accueil</Link>
-            <span className="mx-2" aria-hidden="true">/</span>
-            <Link href="/services/" className="hover:text-white">Services</Link>
-            <span className="mx-2" aria-hidden="true">/</span>
-            <span className="text-kinome-cream/80">Identité visuelle</span>
-          </nav>
-          <span className="mb-5 inline-block rounded-full border border-kinome-cream/20 px-4 py-1.5 font-heading text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-kinome-cream/80">
-            Service · Branding
-          </span>
-          <h1 className="mb-6 font-heading text-[clamp(34px,5.5vw,64px)] font-semibold leading-[1.05]">
-            Création d&apos;identité visuelle &amp; logo à Genève
+            Identité visuelle et charte graphique
           </h1>
-          <p className="mx-auto mb-9 max-w-[640px] font-body text-[clamp(17px,1.5vw,21px)] font-light leading-[1.55] text-kinome-cream/85">
-            On donne à votre PME une marque qui inspire confiance et vous
-            distingue : logo, charte graphique et stratégie, alliant rigueur et
-            émotion.
+          <p
+            className="mt-[clamp(20px,3vw,44px)] max-w-[56ch] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.5] text-white/90 motion-reduce:!animate-none"
+            style={{ animation: "kinome-fade-in 800ms 220ms ease-out both" }}
+          >
+            Un logo seul ne suffit pas à faire reconnaître une marque. Nous
+            construisons le système graphique complet autour de lui : couleurs,
+            typographies, règles d'usage, pour une image cohérente sur tous vos
+            supports.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div
+            className="mt-[clamp(32px,4.5vw,60px)] flex flex-col gap-4 sm:flex-row sm:flex-wrap motion-reduce:!animate-none"
+            style={{ animation: "kinome-fade-in 800ms 420ms ease-out both" }}
+          >
             <Link
               href="/contact/"
-              className="inline-flex min-w-[240px] items-center justify-center rounded-full bg-white px-8 py-4 font-heading text-[1rem] font-bold text-black shadow-[0_6px_24px_rgba(0,0,0,0.25)] transition-transform duration-300 hover:scale-105"
+              className="btn-fill-accent inline-flex min-w-[240px] items-center justify-center rounded-full bg-white px-8 py-4 text-center font-body text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
             >
-              Demander un devis
+              Vous avez un projet&nbsp;?
             </Link>
             <Link
               href="/portfolio/"
-              className="inline-flex min-w-[240px] items-center justify-center rounded-full border-2 border-white/70 px-8 py-4 font-heading text-[1rem] font-bold text-white transition-colors duration-300 hover:bg-white hover:text-black"
+              className="btn-fill-white inline-flex min-w-[240px] items-center justify-center rounded-full border border-white px-8 py-4 text-center font-body text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105 hover:text-kinome-black"
             >
-              Voir nos réalisations
+              Découvrir nos projets
             </Link>
           </div>
         </div>
       </section>
 
-      {/* CONSTAT / PROBLÈME */}
-      <section className="px-[5%] py-[clamp(60px,9vw,110px)]">
-        <div className="mx-auto max-w-[820px] text-center">
-          <h2 className="mb-6 font-heading text-[clamp(26px,3.6vw,44px)] font-normal leading-[1.15] text-kinome-black">
-            Votre travail est excellent. Votre marque le montre-t-elle&nbsp;?
-          </h2>
-          <p className="font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.7] text-kinome-grey">
-            Un logo qui date, des supports incohérents, une image qui vous fait
-            paraître plus petit que vous ne l&apos;êtes : une identité faible
-            vous fait perdre des opportunités sans même que vous le sachiez. Une
-            identité forte, à l&apos;inverse, installe la confiance dès le
-            premier regard — et fait pencher la décision en votre faveur, à
-            compétences égales.
-          </p>
+      {/* ----------------------------- CHIFFRES ----------------------------- */}
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,110px)]">
+        <div className="mx-auto max-w-[1588px]">
+          <Reveal>
+            <h2 className={`${H2} text-center`}>
+              Notre fonctionnement en chiffres
+            </h2>
+          </Reveal>
+          <dl className="mt-[clamp(36px,5vw,72px)] grid grid-cols-2 gap-x-6 gap-y-[clamp(36px,5vw,60px)] lg:grid-cols-4">
+            {CHIFFRES.map((c, i) => (
+              <Reveal key={c.label} delay={i * 110} className="text-center">
+                <dt className="sr-only">{c.label}</dt>
+                <dd>
+                  <span className="block font-body text-[clamp(34px,4.5vw,56px)] font-light leading-[1.2] text-kinome-black">
+                    {c.valeur}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="mx-auto mt-3 block max-w-[22ch] font-heading text-[clamp(15px,1.3vw,20px)] font-semibold leading-[1.25] text-kinome-black"
+                  >
+                    {c.label}
+                  </span>
+                </dd>
+              </Reveal>
+            ))}
+          </dl>
         </div>
       </section>
 
-      {/* CE QUE NOUS CRÉONS */}
+      {/* ------------------ QU'EST-CE QUE LE RÉFÉRENCEMENT NATUREL ------------------ */}
       <section className="bg-white px-[5%] py-[clamp(60px,9vw,110px)]">
-        <div className="mx-auto max-w-[1100px]">
-          <h2 className="mb-[clamp(36px,5vw,64px)] text-center font-heading text-[clamp(26px,3.6vw,44px)] font-normal leading-[1.15] text-kinome-black">
-            Ce que comprend votre identité visuelle
-          </h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {INCLUS.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-[20px] bg-kinome-cream p-8"
-              >
-                <h3 className="mb-3 font-heading text-[1.35rem] font-semibold text-kinome-black">
-                  {item.title}
-                </h3>
-                <p className="font-body text-[1rem] font-light leading-[1.6] text-kinome-grey">
-                  {item.body}
-                </p>
-              </div>
+        <div className="mx-auto max-w-[1588px]">
+          <Reveal>
+            <h2 className={`${H2} text-center`}>
+              Qu'est-ce qu'une identité visuelle&nbsp;?
+            </h2>
+          </Reveal>
+          <Reveal
+            delay={120}
+            className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(24px,4vw,60px)] lg:grid-cols-2"
+          >
+            <p className={LEAD}>
+              L'identité visuelle est le système graphique complet qui entoure
+              votre logo. Elle repose sur trois ensembles de décisions : une
+              palette de couleurs, un système typographique et des règles
+              d'usage.
+            </p>
+            <p className={BODY}>
+              Chaque support incohérent dilue la mémorisation de la marque : un
+              site qui ne ressemble pas aux réseaux sociaux, une plaquette qui
+              ne ressemble pas au site. Une charte graphique claire évite cette
+              dispersion et permet à quiconque, en interne comme en externe, de
+              produire un support fidèle.
+            </p>
+          </Reveal>
+
+          <div className="mt-[clamp(40px,6vw,90px)] grid items-start gap-[clamp(32px,5vw,80px)] lg:grid-cols-2">
+            <div className="flex flex-col gap-[clamp(24px,3vw,40px)]">
+              {PILIERS.map((c, i) => (
+                <Reveal key={c.titre} effect="fade-left" delay={i * 130}>
+                  <h3 className={CARD_TITLE}>{c.titre}</h3>
+                  <p className={`${BODY} mt-2`}>{c.body}</p>
+                </Reveal>
+              ))}
+              <Reveal delay={PILIERS.length * 130} className="mt-2">
+                <Link href="/portfolio/" className={PILL_DARK}>
+                  Découvrir nos projets
+                </Link>
+              </Reveal>
+            </div>
+            <Reveal
+              effect="fade-right"
+              className="group overflow-hidden rounded-[20px]"
+            >
+              <img
+                src="/assets/services/logo/icone-app-codecircle.webp"
+                alt="Interface Codecircle sur mobile, projet web optimisé par Kinome"
+                width={554}
+                height={835}
+                loading="lazy"
+                className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* --------------- POURQUOI LA VISIBILITÉ CONDITIONNE LA CROISSANCE --------------- */}
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,110px)]">
+        <div className="mx-auto max-w-[1588px]">
+          <Reveal>
+            <h2 className={H2}>
+              Pourquoi une identité cohérente renforce la marque
+            </h2>
+          </Reveal>
+          <Reveal
+            delay={120}
+            className="mt-[clamp(28px,4vw,60px)] grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2"
+          >
+            <p className={LEAD}>
+              Une marque se mémorise par répétition. Si chaque support raconte
+              une histoire visuelle différente, la répétition n'opère pas et
+              l'effort de communication se dilue au lieu de s'accumuler.
+            </p>
+            <p className={BODY}>
+              La cohérence est aussi un gain de temps : avec des règles écrites
+              et des gabarits prêts, vos équipes produisent sans repartir de zéro
+              et sans solliciter une validation à chaque support.
+            </p>
+          </Reveal>
+          <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
+            {ENJEUX.map((p, i) => (
+              <Reveal key={p.titre} delay={i * 130}>
+                <div
+                  className={`flex h-full flex-col items-center justify-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(40px,6vw,90px)] text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)] ${CARD_HOVER}`}
+                >
+                  <h3 className={CARD_TITLE}>{p.titre}</h3>
+                  <p className={`${BODY} mt-[clamp(16px,2vw,32px)]`}>{p.body}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PROCESSUS */}
-      <section className="px-[5%] py-[clamp(60px,9vw,110px)]">
-        <div className="mx-auto max-w-[1000px]">
-          <h2 className="mb-[clamp(36px,5vw,64px)] text-center font-heading text-[clamp(26px,3.6vw,44px)] font-normal leading-[1.15] text-kinome-black">
-            Notre processus, en 5 étapes
-          </h2>
-          <div className="space-y-5">
-            {PROCESS.map((step) => (
-              <div
-                key={step.n}
-                className="flex gap-5 rounded-[18px] bg-white p-6 md:gap-8 md:p-8"
+      {/* ------------------- COMMENT CONSTRUIT-ON UNE VISIBILITÉ ------------------- */}
+      <section className="bg-white px-[5%] py-[clamp(60px,9vw,110px)]">
+        <div className="mx-auto max-w-[1588px]">
+          <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
+            <Reveal>
+              <h2 className={H2}>
+                Comment construit-on une identité cohérente
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className={BODY}>
+                Une charte graphique ne s'improvise pas après coup. Elle se
+                construit en même temps que la réflexion de marque, pour que
+                chaque règle réponde à un usage réel.
+              </p>
+              <div className="mt-[clamp(24px,3vw,44px)]">
+                <Link href="/contact/" className={PILL_DARK}>
+                  Travaillons ensemble
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="mt-[clamp(36px,5vw,72px)] grid items-start gap-[clamp(32px,5vw,80px)] lg:grid-cols-2">
+            <Reveal effect="fade-left" className="lg:sticky lg:top-24">
+              <div className="group overflow-hidden rounded-[20px]">
+                <img
+                  src="/assets/services/logo/brandboard-tampon-audition.webp"
+                  alt="Brandboard de Tampon Audition affiché sur un ordinateur"
+                  width={1040}
+                  height={1570}
+                  loading="lazy"
+                  className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+            </Reveal>
+            <ol className="flex flex-col gap-[clamp(28px,3.5vw,52px)]">
+              {METHODE.map((m, i) => (
+                <Reveal
+                  key={m.n}
+                  as="li"
+                  delay={i * 90}
+                  className="flex gap-[clamp(16px,2.5vw,40px)]"
+                >
+                  <span aria-hidden="true" className={STEP_NUM}>
+                    {m.n}
+                  </span>
+                  <div>
+                    <h3 className={CARD_TITLE}>{m.titre}</h3>
+                    <p className={`${BODY} mt-3`}>{m.body}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------ PROCESSUS ------------------------------ */}
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,110px)]">
+        <div className="mx-auto max-w-[1588px]">
+          <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
+            <Reveal>
+              <h2 className={H2}>
+                Notre processus
+                <br className="hidden sm:block" /> de création d'identité
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className={BODY}>
+                Six étapes cadrées, du cadrage stratégique à la livraison de la
+                charte complète. Chaque étape produit un livrable concret, validé
+                avant de passer à la suivante.
+              </p>
+              <div className="mt-[clamp(24px,3vw,44px)]">
+                <Link href="/portfolio/" className={PILL_DARK}>
+                  Découvrir nos projets
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+
+          <ol className="mx-auto mt-[clamp(36px,5vw,72px)] flex max-w-[1330px] flex-col">
+            {PROCESSUS.map((p, i) => (
+              <Reveal
+                key={p.n}
+                as="li"
+                className="relative flex gap-[clamp(16px,3vw,60px)] pb-[clamp(32px,4vw,64px)]"
               >
-                <div className="font-heading text-[clamp(28px,4vw,44px)] font-bold leading-none text-kinome-accent">
-                  {step.n}
+                <div className="relative flex flex-col items-center">
+                  <span aria-hidden="true" className={STEP_NUM}>
+                    {p.n}
+                  </span>
+                  {i < PROCESSUS.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="mt-4 w-px flex-1 bg-kinome-black/25"
+                    />
+                  )}
                 </div>
-                <div>
-                  <h3 className="mb-2 font-heading text-[1.25rem] font-semibold text-kinome-black">
-                    {step.title}
+                <div className="pt-[clamp(4px,1vw,14px)]">
+                  <h3 className={CARD_TITLE}>{p.titre}</h3>
+                  <p className={`${BODY} mt-3`}>{p.body}</p>
+                  {p.note && (
+                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-medium uppercase tracking-[0.04em] text-kinome-grey">
+                      {p.note}
+                    </p>
+                  )}
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* --------------------------- LE RÉSULTAT FINAL --------------------------- */}
+      <section className="bg-kinome-cream px-[5%] pb-[clamp(60px,9vw,110px)]">
+        <div className="mx-auto max-w-[1588px]">
+          <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
+            <Reveal>
+              <h2 className={H2}>Le résultat final</h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className={BODY}>
+                Au terme du projet, vous recevez un système graphique complet et
+                un document de référence qui garantit une image cohérente sur
+                tous vos supports, pour plusieurs années.
+              </p>
+            </Reveal>
+          </div>
+          <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] sm:grid-cols-2 lg:grid-cols-3">
+            {RESULTAT.map((r, i) => (
+              <Reveal key={r.titre} delay={(i % 3) * 120}>
+                <div className="group flex h-full cursor-default flex-col items-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(36px,4.5vw,64px)] text-center text-kinome-black shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]">
+                  {/* Icônes servies en masque CSS : elles prennent la couleur du
+                      texte et s'éclaircissent quand la carte passe en sombre. */}
+                  <span
+                    aria-hidden="true"
+                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] bg-current transition-transform duration-500 group-hover:scale-110"
+                    style={{
+                      maskImage: `url(${r.icon})`,
+                      WebkitMaskImage: `url(${r.icon})`,
+                      maskRepeat: "no-repeat",
+                      WebkitMaskRepeat: "no-repeat",
+                      maskPosition: "center",
+                      WebkitMaskPosition: "center",
+                      maskSize: "contain",
+                      WebkitMaskSize: "contain",
+                    }}
+                  />
+                  <h3 className="font-heading text-[clamp(18px,1.8vw,22px)] font-semibold leading-[1.3]">
+                    {r.titre}
                   </h3>
-                  <p className="font-body text-[1rem] font-light leading-[1.6] text-kinome-grey">
-                    {step.body}
+                  <p className="mt-[clamp(14px,1.8vw,28px)] font-body text-[clamp(15px,1.4vw,17px)] font-light leading-[1.55]">
+                    {r.body}
                   </p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* BUDGET */}
+      {/* -------------------------- EXPLORER NOS SERVICES ------------------------- */}
       <section className="bg-white px-[5%] py-[clamp(60px,9vw,110px)]">
-        <div className="mx-auto max-w-[1000px]">
-          <h2 className="mb-4 text-center font-heading text-[clamp(26px,3.6vw,44px)] font-normal leading-[1.15] text-kinome-black">
-            Un budget transparent
-          </h2>
-          <p className="mx-auto mb-[clamp(32px,4vw,52px)] max-w-[620px] text-center font-body text-[1.05rem] font-light leading-[1.6] text-kinome-grey">
-            Des fourchettes claires, sans surprise. Le devis final dépend du
-            périmètre exact, défini ensemble lors d&apos;un premier échange
-            offert.
-          </p>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {PRIX.map((p) => (
-              <div
-                key={p.type}
-                className="flex flex-col rounded-[20px] border border-kinome-black/10 bg-kinome-cream p-8 text-center"
-              >
-                <h3 className="mb-2 font-heading text-[1.25rem] font-semibold text-kinome-black">
-                  {p.type}
-                </h3>
-                <p className="mb-5 flex-1 font-body text-[0.95rem] font-light leading-[1.55] text-kinome-grey">
-                  {p.desc}
-                </p>
-                <div className="font-heading text-[1.2rem] font-bold text-kinome-accent">
-                  {p.price}
+        <div className="mx-auto max-w-[1588px]">
+          <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
+            <Reveal>
+              <h2 className={H2}>Explorer nos services</h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className={BODY}>
+                L'identité visuelle prend tout son sens une fois déployée et
+                rendue visible. Ces prestations complètent votre présence de
+                marque.
+              </p>
+            </Reveal>
+          </div>
+          <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
+            {SERVICES_LIES.map((s, i) => (
+              <Reveal key={s.titre} delay={i * 120}>
+                <div
+                  className={`group flex h-full flex-col items-center rounded-[20px] bg-kinome-cream px-[clamp(24px,3vw,48px)] py-[clamp(36px,4.5vw,64px)] text-center ${CARD_HOVER}`}
+                >
+                  <img
+                    src={s.icon}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    width={112}
+                    height={112}
+                    className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <h3 className={CARD_TITLE}>{s.titre}</h3>
+                  <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)] flex-1`}>
+                    {s.body}
+                  </p>
+                  <Link
+                    href={s.href}
+                    className={`${PILL_DARK} mt-[clamp(24px,3vw,44px)] min-w-0 w-full max-w-[315px]`}
+                  >
+                    Découvrir le service
+                  </Link>
                 </div>
-              </div>
+              </Reveal>
             ))}
-          </div>
-          <p className="mt-8 text-center font-body text-[0.95rem] text-kinome-grey">
-            Pour le détail, consultez notre{" "}
-            <Link
-              href="/blog/tarifs-agence-communication-geneve/"
-              className="text-kinome-accent underline underline-offset-2 hover:text-kinome-black"
-            >
-              grille tarifaire complète
-            </Link>
-            .
-          </p>
-        </div>
-      </section>
-
-      {/* PORTFOLIO */}
-      <section className="px-[5%] py-[clamp(60px,9vw,110px)]">
-        <div className="mx-auto max-w-[1100px]">
-          <h2 className="mb-[clamp(36px,5vw,56px)] text-center font-heading text-[clamp(26px,3.6vw,44px)] font-normal leading-[1.15] text-kinome-black">
-            Quelques marques que nous avons façonnées
-          </h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {PORTFOLIO.map((p) => (
-              <Link
-                key={p.alt}
-                href="/portfolio/"
-                className="group block aspect-[16/9] overflow-hidden rounded-[18px] transition-transform duration-500 hover:scale-[1.02]"
-              >
-                <img
-                  src={p.img}
-                  alt={p.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="block h-full w-full object-cover"
-                />
-              </Link>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <Link
-              href="/portfolio/"
-              className="inline-flex items-center justify-center rounded-full bg-kinome-black px-8 py-4 font-heading text-[1rem] font-bold text-white transition-transform duration-300 hover:scale-105"
-            >
-              Voir tout le portfolio
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* TÉMOIGNAGE (composant partagé) */}
-      <Testimonials />
+      {/* ------------------------------- PORTFOLIO ------------------------------- */}
+      <section className="bg-white px-[5%] pb-[clamp(60px,9vw,110px)]">
+        <div className="mx-auto max-w-[1588px]">
+          <Reveal>
+            <h2 className={`${H2} text-center`}>
+              Des identités déployées, des marques reconnues
+            </h2>
+          </Reveal>
+          <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-2">
+            {PORTFOLIO.map((p, i) => (
+              <Reveal key={p.href} delay={(i % 2) * 130}>
+                <Link
+                  href={p.href}
+                  className="group block overflow-hidden rounded-[20px]"
+                >
+                  <img
+                    src={p.img}
+                    alt={p.alt}
+                    loading="lazy"
+                    className="block aspect-[2/1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                  />
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="mt-[clamp(36px,5vw,70px)] flex justify-center">
+            <Link href="/portfolio/" className={PILL_DARK}>
+              Découvrir nos projets
+            </Link>
+          </Reveal>
+        </div>
+      </section>
 
-      {/* POUR ALLER PLUS LOIN (maillage blog) */}
-      <section className="px-[5%] py-[clamp(60px,9vw,100px)]">
-        <div className="mx-auto max-w-[820px]">
-          <h2 className="mb-8 text-center font-heading text-[clamp(24px,3vw,36px)] font-normal leading-[1.15] text-kinome-black">
-            Pour aller plus loin
-          </h2>
-          <ul className="space-y-3">
-            {BLOG_LINKS.map((l) => (
-              <li key={l.href}>
+      {/* ---------------------------------- FAQ ---------------------------------- */}
+      <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,110px)]">
+        <div className="mx-auto max-w-[1330px]">
+          <Reveal>
+            <h2 className={`${H2} text-center`}>
+              Questions fréquentes
+              <br className="hidden sm:block" /> sur l'identité visuelle
+            </h2>
+          </Reveal>
+          <div className="mt-[clamp(36px,5vw,72px)] flex flex-col gap-[clamp(12px,1.2vw,18px)]">
+            {FAQ.map((f, i) => (
+              <Reveal key={f.q} delay={i * 70}>
+                <details
+                  open={i === 0}
+                  className="group rounded-[20px] bg-white px-[clamp(20px,3vw,90px)] py-[clamp(20px,2.4vw,36px)] transition-shadow duration-500 hover:shadow-[0_14px_34px_-18px_rgba(0,0,0,0.16)] [&_summary::-webkit-details-marker]:hidden"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6">
+                    <h3
+                      className={`${CARD_TITLE} transition-colors duration-300 group-hover:text-kinome-accent`}
+                    >
+                      {f.q}
+                    </h3>
+                    <span
+                      aria-hidden="true"
+                      className="relative block h-10 w-10 shrink-0 rounded-full border border-kinome-black/25 transition-colors duration-300 group-hover:border-kinome-accent/60"
+                    >
+                      <span className="absolute left-1/2 top-1/2 h-px w-4 -translate-x-1/2 -translate-y-1/2 bg-kinome-black" />
+                      <span className="absolute left-1/2 top-1/2 h-4 w-px -translate-x-1/2 -translate-y-1/2 bg-kinome-black transition-transform duration-300 group-open:rotate-90 group-open:opacity-0" />
+                    </span>
+                  </summary>
+                  <p
+                    className={`${BODY} mt-[clamp(16px,2vw,28px)] max-w-[900px]`}
+                  >
+                    {f.a}
+                  </p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="mt-[clamp(36px,5vw,70px)] flex justify-center">
+            <Link href="/contact/" className={PILL_DARK}>
+              D&apos;autres questions&nbsp;?
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------------------- POUR ALLER PLUS LOIN ---------------------------- */}
+      <section className="bg-white px-[5%] py-[clamp(50px,7vw,110px)]">
+        <div className="mx-auto max-w-[1330px]">
+          <Reveal>
+            <h2 className={`${H2} mb-[clamp(24px,3vw,48px)]`}>
+              Pour aller plus loin
+            </h2>
+          </Reveal>
+          <ul className="grid gap-3 md:grid-cols-2">
+            {BLOG_LINKS.map((l, i) => (
+              <Reveal key={l.href} as="li" delay={(i % 2) * 110}>
                 <Link
                   href={l.href}
-                  className="group flex items-center gap-2 rounded-[14px] bg-white px-5 py-4 font-body text-[1.05rem] text-kinome-black transition-colors hover:bg-kinome-dark hover:text-white"
+                  className="group flex items-center gap-3 rounded-[14px] bg-kinome-cream px-5 py-4 font-body text-[1.05rem] font-light text-kinome-black transition-colors hover:bg-kinome-dark hover:text-white"
                 >
-                  <span aria-hidden="true" className="text-kinome-accent group-hover:text-white">→</span>
+                  <span
+                    aria-hidden="true"
+                    className="text-kinome-accent transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
+                  >
+                    &rarr;
+                  </span>
                   {l.label}
                 </Link>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="bg-white px-[5%] py-[clamp(60px,9vw,110px)]">
-        <div className="mx-auto max-w-[820px]">
-          <h2 className="mb-[clamp(32px,4vw,52px)] text-center font-heading text-[clamp(26px,3.6vw,44px)] font-normal leading-[1.15] text-kinome-black">
-            Questions fréquentes
-          </h2>
-          <div className="space-y-6">
-            {FAQ.map((f) => (
-              <div key={f.q} className="border-b border-kinome-black/10 pb-6">
-                <h3 className="mb-2 font-heading text-[1.2rem] font-semibold text-kinome-black">
-                  {f.q}
-                </h3>
-                <p className="font-body text-[1rem] font-light leading-[1.65] text-kinome-grey">
-                  {f.a}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ------------------------- ILS NOUS FONT CONFIANCE ------------------------- */}
+      <Testimonials />
 
-      {/* CTA FINAL */}
-      <section className="bg-kinome-dark px-[5%] py-[clamp(70px,10vw,120px)] text-center text-kinome-cream">
-        <div className="mx-auto max-w-[720px]">
-          <h2 className="mb-5 font-heading text-[clamp(28px,4vw,48px)] font-semibold leading-[1.1]">
-            Prêt à donner une vraie identité à votre marque&nbsp;?
+      {/* ------------------------------- CTA FINAL ------------------------------- */}
+      {/* Carte sombre arrondie, nouveau motif introduit par Tanguy dans ce
+          design (node 2236:6588). */}
+      <section className="bg-white px-[5%] py-[clamp(50px,7vw,110px)]">
+        <Reveal className="mx-auto max-w-[1330px] rounded-[20px] bg-kinome-dark px-[5%] py-[clamp(50px,7vw,90px)] text-center text-kinome-cream">
+          <h2 className="font-heading text-[clamp(26px,3.4vw,46px)] font-normal leading-[1.15]">
+            Un projet en tête&nbsp;?
           </h2>
-          <p className="mx-auto mb-9 max-w-[540px] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.6] text-kinome-cream/85">
-            Premier appel de 30 minutes offert, sans engagement, pour cadrer
-            votre projet et vous dire ce qui ferait sens dans votre cas.
+          <p className="mx-auto mt-[clamp(16px,2.2vw,28px)] max-w-[680px] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.6] text-kinome-cream/85">
+            Parlez-nous de vos enjeux et de vos contraintes : nous reviendrons
+            vers vous avec une proposition cadrée. Diagnostic stratégique offert
+            de 30 minutes.
           </p>
-          <Link
-            href="/contact/"
-            className="inline-flex min-w-[260px] items-center justify-center rounded-full bg-kinome-accent px-9 py-4 font-heading text-[1rem] font-bold text-white shadow-[0_8px_30px_rgba(224,64,52,0.35)] transition-transform duration-300 hover:scale-105"
-          >
-            Demander un devis
-          </Link>
-        </div>
+          <div className="mt-[clamp(28px,4vw,44px)] flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/contact/"
+              className="btn-fill-accent inline-flex min-w-[260px] items-center justify-center rounded-full bg-white px-8 py-4 text-center font-body text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
+            >
+              Discutons de votre projet
+            </Link>
+            <Link
+              href="/portfolio/"
+              className="btn-fill-white inline-flex min-w-[260px] items-center justify-center rounded-full border-2 border-white px-8 py-4 text-center font-body text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105 hover:text-kinome-black"
+            >
+              Voir nos projets
+            </Link>
+          </div>
+        </Reveal>
       </section>
     </main>
   );

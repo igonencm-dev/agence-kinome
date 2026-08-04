@@ -11,180 +11,178 @@ import {
 } from "../../lib/seo";
 
 // ---------------------------------------------------------------------------
-// Page service « Création de site internet » — design Figma de Tanguy
-// (node 2201:3419 « Services - Site internet »).
+// Page service « Réseaux sociaux et contenus créatifs » — design Figma de
+// Tanguy (node 2216:4364 « Services - Réseaux sociaux »).
 //
-// L'URL existait depuis juillet avec une landing plus simple. On garde le même
-// chemin pour ne rien perdre de l'acquis SEO : seul le contenu change, et les
-// deux questions de FAQ de l'ancienne version qui visaient de vraies requêtes
-// (refonte, choix de techno) sont conservées en plus des 5 du design.
+// C'est le second service à revenu récurrent avec le SEO, et celui qui
+// hébergera l'offre de fin d'année (cartes de voeux, posts créatifs) prévue
+// pour la rentrée.
 // ---------------------------------------------------------------------------
 
 export const metadata = buildMetadata({
-  title: "Création de site internet à Genève",
+  title: "Réseaux sociaux et community management à Genève",
   description:
-    "Création de site internet à Genève : site vitrine, e-commerce ou application web. Livraison en 6 à 10 semaines, dès 3 000 CHF. Diagnostic de 30 minutes offert.",
-  path: "/services/site-internet/",
+    "Gestion des réseaux sociaux à Genève : ligne éditoriale, production de contenus, community management et reporting mensuel. Forfaits dès 1 500 CHF par mois.",
+  path: "/services/reseaux-sociaux/",
   keywords: [
-    "création site internet Genève",
-    "agence web Genève",
-    "site vitrine Suisse romande",
-    "création site e-commerce Genève",
-    "refonte site internet Genève",
-    "prix site internet Suisse",
+    "community management Genève",
+    "gestion réseaux sociaux Genève",
+    "agence social media Suisse romande",
+    "création de contenu Instagram LinkedIn",
+    "prix community management",
   ],
 });
 
 /* --------------------------------- Données -------------------------------- */
 
 const CHIFFRES = [
-  { valeur: "6 à 10", label: "Semaines de la conception à la mise en ligne" },
-  { valeur: "100 %", label: "Responsive, mobile et tablette" },
-  { valeur: "< 3 s", label: "Temps de chargement visé" },
-  { valeur: "0", label: "Template : chaque site est sur-mesure" },
+  { valeur: "1", label: "Ligne éditoriale claire pour tous vos formats" },
+  { valeur: "4 à 12", label: "Contenus produits par mois selon le rythme choisi" },
+  { valeur: "100 %", label: "Des contenus produits sur mesure pour votre marque" },
+  { valeur: "0", label: "Contenu générique : chaque post sert un objectif" },
 ];
 
 const PILIERS = [
   {
-    titre: "Le site vitrine",
-    body: "Il présente l'entreprise, ses services et ses preuves de crédibilité, pour convertir un visiteur en prise de contact.",
+    titre: "La ligne éditoriale",
+    body: "Les thématiques, le ton et les formats récurrents qui structurent votre prise de parole dans la durée.",
   },
   {
-    titre: "Le site e-commerce",
-    body: "Il permet la vente en ligne directe, avec catalogue, paiement et gestion des commandes.",
+    titre: "La production créative",
+    body: "Photo, vidéo, motion design ou graphisme, adaptés aux codes de chaque plateforme.",
   },
   {
-    titre: "L'application web",
-    body: "Un outil interactif sur-mesure, au-delà du simple site : espace client, plateforme, outil métier.",
+    titre: "Le community management",
+    body: "La publication, la modération et l'animation des échanges avec votre audience au quotidien.",
   },
 ];
 
 const ENJEUX = [
   {
-    titre: "3 secondes",
-    body: "Passé ce délai de chargement, une part importante des visiteurs quitte la page sans attendre.",
+    titre: "Preuve sociale",
+    body: "Un compte actif et soigné rassure un prospect qui vérifie votre sérieux avant de vous contacter.",
   },
   {
-    titre: "Mobile d'abord",
-    body: "La majorité du trafic web se fait aujourd'hui sur mobile : un site non adapté perd une audience importante.",
+    titre: "Régularité",
+    body: "Une présence constante entretient la mémorisation de la marque, bien au-delà du moment de la publication.",
   },
   {
-    titre: "Confiance",
-    body: "Un site clair, rapide et à jour rassure un visiteur avant même qu'il ait lu le moindre argument commercial.",
+    titre: "Proximité",
+    body: "Le format social permet un dialogue direct avec votre audience, impossible sur d'autres supports plus formels.",
   },
 ];
 
 const METHODE = [
   {
     n: "01",
-    titre: "Définir les objectifs et l'arborescence",
-    body: "Les objectifs du site (prise de contact, vente, notoriété) et la structure des pages sont définis en premier, pour que chaque page ait un rôle clair.",
+    titre: "Choisir les bonnes plateformes",
+    body: "Toutes les plateformes ne servent pas votre audience de la même façon. La priorité est donnée à celles où se trouve réellement votre cible.",
   },
   {
     n: "02",
-    titre: "Construire les parcours utilisateurs",
-    body: "Des maquettes fonctionnelles (wireframes) organisent le contenu et les actions attendues sur chaque page, avant tout habillage visuel.",
+    titre: "Définir une ligne éditoriale",
+    body: "Thématiques récurrentes, ton et formats sont posés pour que chaque publication serve la mémorisation de la marque, pas seulement le moment présent.",
   },
   {
     n: "03",
-    titre: "Concevoir le design visuel",
-    body: "L'identité de marque est déclinée en interface : couleurs, typographies, images, dans un design qui installe la confiance et guide l'oeil.",
+    titre: "Planifier avant de produire",
+    body: "Un calendrier éditorial organise les contenus à l'avance, pour garder de la cohérence sans improviser au dernier moment.",
   },
   {
     n: "04",
-    titre: "Développer et intégrer",
-    body: "Le site est développé pour être rapide, sécurisé et facile à maintenir, avec un back-office adapté à votre niveau d'autonomie souhaité.",
+    titre: "Produire avec exigence",
+    body: "Chaque contenu (photo, vidéo, design) est produit avec un vrai soin créatif, adapté aux codes visuels et techniques de chaque plateforme.",
   },
   {
     n: "05",
-    titre: "Tester avant la mise en ligne",
-    body: "Chaque page est vérifiée sur mobile, tablette et ordinateur, et les bases du référencement technique sont posées avant le lancement.",
+    titre: "Analyser et ajuster",
+    body: "Les performances de chaque contenu sont suivies pour affiner la ligne éditoriale au fil du temps, selon ce qui engage réellement votre audience.",
   },
 ];
 
 const PROCESSUS = [
   {
     n: "01",
-    titre: "Cadrage et arborescence",
-    body: "On ne construit pas un site sans savoir ce qu'il doit accomplir. Cette première étape définit les objectifs du site, la cible visée, le contenu nécessaire et l'arborescence complète des pages.",
-    note: "Livrable : arborescence et cahier des charges validés",
+    titre: "Audit et benchmark",
+    body: "On ne publie pas sans savoir d'où l'on part. Cette première étape analyse vos comptes existants, votre audience et les meilleures pratiques de vos concurrents et références sectorielles.",
+    note: "Livrable : rapport d'audit social",
   },
   {
     n: "02",
-    titre: "Wireframes et parcours utilisateur",
-    body: "Des maquettes fonctionnelles organisent le contenu et les actions attendues sur chaque page clé, pour valider la structure avant tout habillage visuel.",
-    note: "Objectif : valider les parcours avant le design",
+    titre: "Stratégie éditoriale et direction créative",
+    body: "Les thématiques, le ton et l'identité visuelle des contenus sont définis, pour poser une direction claire avant toute production.",
+    note: "Objectif : valider une ligne éditoriale avant production",
   },
   {
     n: "03",
-    titre: "Design UI",
-    body: "L'identité de marque est déclinée en interface complète : pages principales, composants, responsive mobile et tablette.",
+    titre: "Calendrier éditorial",
+    body: "Les contenus à venir sont planifiés dans un calendrier mensuel, avec un équilibre pensé entre notoriété, engagement et conversion.",
   },
   {
     n: "04",
-    titre: "Développement et intégration",
-    body: "Le site est développé et intégré avec une attention particulière portée à la vitesse, la sécurité et la facilité de mise à jour. Les ajustements se poursuivent jusqu'à validation complète.",
-    note: "Objectif : un site fiable, rapide et maintenable",
+    titre: "Production des contenus",
+    body: "Photo, vidéo, motion design ou graphisme sont produits selon le calendrier validé, avec des allers-retours d'ajustement jusqu'à validation, sans jamais repartir de zéro.",
+    note: "Objectif : des contenus fidèles à la marque",
   },
   {
     n: "05",
-    titre: "Contenu et référencement technique",
-    body: "Les textes et visuels finaux sont intégrés, et les bases du SEO technique (balises, structure, vitesse, indexation) sont posées pour préparer la visibilité du site.",
-    note: "Livrable : site prêt pour l'indexation Google",
+    titre: "Publication et community management",
+    body: "Les contenus sont publiés aux moments optimaux, et la communauté est animée au quotidien : commentaires, messages, modération.",
+    note: "Livrable : comptes actifs et animés",
   },
   {
     n: "06",
-    titre: "Tests, formation et mise en ligne",
-    body: "Le site est testé sur tous les supports, vos équipes sont formées à son utilisation, puis le site est mis en ligne accompagné d'un guide d'utilisation.",
-    note: "Livrable : site en ligne + guide d'utilisation",
+    titre: "Reporting et ajustements",
+    body: "Les performances sont analysées chaque mois, avec un rapport clair et des ajustements réguliers de la ligne éditoriale selon ce qui fonctionne réellement.",
+    note: "Livrable : rapport mensuel + plan d'action",
   },
 ];
 
 const RESULTAT = [
   {
-    icon: "/assets/services/site/site-rapide.svg",
-    titre: "Site rapide et responsive",
-    body: "Optimisé pour un chargement rapide et un affichage impeccable sur mobile, tablette et ordinateur.",
+    icon: "/assets/services/social/calendrier.svg",
+    titre: "Calendrier éditorial mensuel",
+    body: "Une planification claire des contenus à venir, équilibrée entre notoriété, engagement et conversion.",
   },
   {
-    icon: "/assets/services/site/back-office.svg",
-    titre: "Back-office autonome",
-    body: "Un espace d'administration simple, pour modifier textes et images sans compétence technique.",
+    icon: "/assets/services/social/contenus.svg",
+    titre: "Contenus prêts à publier",
+    body: "Photos, vidéos et visuels produits selon votre identité de marque, adaptés aux codes de chaque plateforme.",
   },
   {
-    icon: "/assets/services/site/securite.svg",
-    titre: "Sécurité et hébergement",
-    body: "Certificat SSL, sauvegardes régulières et recommandations d'hébergement adaptées à votre trafic.",
+    icon: "/assets/services/social/community.svg",
+    titre: "Community management",
+    body: "Publication, modération et animation de votre communauté au quotidien, pour un compte réellement vivant.",
   },
   {
-    icon: "/assets/services/site/bases-seo.svg",
-    titre: "Bases SEO posées",
-    body: "Structure, balises et vitesse optimisées dès le lancement, pour préparer le référencement naturel.",
+    icon: "/assets/services/social/gabarits.svg",
+    titre: "Gabarits réseaux sociaux",
+    body: "Des modèles réutilisables pour publier rapidement et garder une cohérence visuelle, même en dehors des périodes d'accompagnement.",
   },
   {
-    icon: "/assets/services/site/formation.svg",
-    titre: "Formation de vos équipes",
-    body: "Une session de prise en main du back-office, accompagnée d'un guide d'utilisation écrit, pour que vous soyez autonome sur les mises à jour courantes.",
+    icon: "/assets/services/social/rapport.svg",
+    titre: "Rapport mensuel de performance",
+    body: "Portée, engagement et croissance de votre audience suivis dans un rapport clair, accompagné d'un plan d'action pour le mois suivant.",
   },
   {
-    icon: "/assets/services/site/evolutif.svg",
-    titre: "Un site prêt à évoluer",
-    body: "Une architecture pensée pour accueillir de nouvelles pages ou fonctionnalités sans tout reconstruire, à mesure que votre activité grandit.",
+    icon: "/assets/services/social/duree.svg",
+    titre: "Une présence qui dure",
+    body: "Une ligne éditoriale pensée pour rester cohérente et pertinente, tout en s'adaptant aux tendances de chaque plateforme.",
   },
 ];
 
 const SERVICES_LIES = [
   {
-    icon: "/assets/services/site/service-identite.svg",
+    icon: "/assets/services/marque/positionnement.svg",
+    titre: "Stratégie de marque",
+    body: "Le positionnement et le ton de voix qui donnent du sens à chacun de vos contenus.",
+    href: "/services/strategie-de-marque/",
+  },
+  {
+    icon: "/assets/services/social/service-identite.svg",
     titre: "Identité visuelle",
     body: "Palette de couleurs, typographies, iconographie et règles d'usage : le système graphique complet de votre marque.",
     href: "/services/identite-visuelle/",
-  },
-  {
-    icon: "/assets/services/logo/formats-vectoriels.svg",
-    titre: "Création de logo",
-    body: "Le point de départ de toute identité : un signe graphique fort, pensé pour être décliné sur votre site.",
-    href: "/services/creation-logo/",
   },
   {
     icon: "/assets/services/logo/service-seo.svg",
@@ -197,7 +195,7 @@ const SERVICES_LIES = [
 const PORTFOLIO = [
   {
     img: "/assets/wp/Adapt-Project-780x390px-1.png",
-    alt: "Adapt Project, site réalisé par Kinome",
+    alt: "Adapt Project, marque accompagnée par Kinome",
     href: "/projets/adapt-project/",
   },
   {
@@ -217,56 +215,45 @@ const PORTFOLIO = [
   },
 ];
 
-// Les 5 questions du design, plus les 2 de l'ancienne version de la page qui
-// visaient de vraies requêtes (refonte, choix de techno) : une refonte de page
-// ne doit pas faire perdre de surface de réponse.
 const FAQ = [
   {
-    q: "Combien de temps prend la création d'un site internet ?",
-    a: "Un site vitrine se livre généralement en 6 à 10 semaines, cadrage compris. Un site e-commerce ou une application web sur-mesure demande davantage de temps selon les fonctionnalités attendues. Votre réactivité sur les validations et la fourniture des contenus influence directement le planning.",
+    q: "À quelle fréquence faut-il publier sur les réseaux sociaux ?",
+    a: "Le rythme est adapté à vos objectifs et à votre budget, généralement entre 4 et 12 publications par mois selon les plateformes couvertes. Il est défini ensemble lors du cadrage initial. Mieux vaut un rythme tenable dans la durée qu'un démarrage intense suivi d'un silence.",
   },
   {
-    q: "Combien coûte la création d'un site internet à Genève ?",
-    a: "Un site vitrine professionnel se situe entre 3 000 et 12 000 CHF selon le nombre de pages et le niveau de sur-mesure. Un site e-commerce démarre autour de 8 000 CHF et peut monter à 30 000 CHF selon le catalogue et les intégrations. Une refonte de site existant démarre dès 3 000 CHF. Le devis est toujours établi après le cadrage.",
+    q: "Combien coûte la gestion des réseaux sociaux à Genève ?",
+    a: "Les forfaits mensuels démarrent généralement autour de 1 500 CHF par mois pour un accompagnement régulier incluant la ligne éditoriale, la production des contenus et le community management. Le montant dépend du nombre de plateformes, du volume de contenus et de la part de production vidéo. Un devis est établi après le cadrage.",
   },
   {
-    q: "Pourrai-je modifier le contenu moi-même après la livraison ?",
-    a: "Oui. Chaque site est livré avec un back-office adapté à votre niveau d'autonomie, et une session de formation est prévue avant la mise en ligne. Vous pouvez modifier les textes, les images et ajouter des pages sans compétence technique. Un guide d'utilisation écrit vous reste comme référence.",
+    q: "Sur quelles plateformes faut-il être présent ?",
+    a: "Uniquement celles où se trouve réellement votre cible. Pour une PME B2B genevoise, LinkedIn est souvent prioritaire. Pour un commerce ou un lieu, Instagram prime. Être présent partout avec peu de moyens donne de moins bons résultats qu'une présence soignée sur une ou deux plateformes.",
   },
   {
-    q: "Pouvez-vous refaire mon site internet existant ?",
-    a: "Oui, la refonte est une part importante de notre activité : audit de l'existant, redesign aligné sur votre marque, migration technique et préservation de votre référencement (redirections, balises, positions acquises). Une refonte démarre dès 3 000 CHF.",
+    q: "Puis-je garder la main sur ce qui est publié ?",
+    a: "Oui. Le calendrier éditorial est validé avec vous avant toute production, et les contenus vous sont soumis avant publication. Une fois la confiance installée, certains clients préfèrent alléger ce circuit de validation pour gagner en réactivité, mais rien n'est imposé.",
   },
   {
-    q: "WordPress, Webflow ou sur-mesure : que choisirez-vous pour mon site ?",
-    a: "Cela dépend de votre besoin réel : autonomie de mise à jour, budget, fonctionnalités. Nous travaillons avec les deux mondes (CMS et sur-mesure Next.js ou Astro) et recommandons l'approche la plus simple qui remplit vos objectifs, pas la plus chère.",
-  },
-  {
-    q: "Le site sera-t-il bien référencé sur Google dès sa mise en ligne ?",
-    a: "Les bases techniques du référencement sont posées avant le lancement : structure des URL, balises, vitesse, compatibilité mobile, indexation. Cela garantit que Google peut lire et comprendre le site. En revanche, se positionner sur des recherches concurrentielles demande un travail de contenu dans la durée, que couvre notre prestation de référencement naturel.",
-  },
-  {
-    q: "Que se passe-t-il après la mise en ligne ?",
-    a: "Vous restez propriétaire du site et de ses fichiers sources. Nous proposons un accompagnement optionnel pour la maintenance technique, les évolutions et le référencement, mais rien ne vous y oblige : le site est conçu pour être repris par n'importe quel prestataire compétent.",
+    q: "Que se passe-t-il si nous arrêtons l'accompagnement ?",
+    a: "Vous conservez vos comptes, vos contenus et les gabarits produits. La charte éditoriale et les modèles réutilisables sont conçus pour que vos équipes puissent prendre le relais sans repartir de zéro.",
   },
 ];
 
 const BLOG_LINKS = [
   {
-    href: "/blog/creation-site-internet-geneve-guide/",
-    label: "Créer un site internet à Genève : le guide complet",
+    href: "/blog/communication-360-geneve/",
+    label: "Communication 360° à Genève : canaux et budget",
   },
   {
-    href: "/blog/prix-site-internet-suisse-2026/",
-    label: "Prix d'un site internet en Suisse : les fourchettes réelles",
+    href: "/blog/strategie-branding-geneve/",
+    label: "Stratégie de marque : le guide du branding pour PME",
   },
   {
-    href: "/blog/wordpress-webflow-sur-mesure-comparatif/",
-    label: "WordPress, Webflow ou sur-mesure : quelle techno choisir ?",
+    href: "/blog/tarifs-agence-communication-geneve/",
+    label: "Les tarifs d'une agence de communication à Genève",
   },
   {
-    href: "/blog/erreurs-refonte-site-web/",
-    label: "Refonte de site : 6 erreurs à éviter sans perdre son SEO",
+    href: "/blog/tendances-design-graphique-2026/",
+    label: "Tendances design graphique 2026",
   },
 ];
 
@@ -287,42 +274,23 @@ const STEP_NUM =
 const CARD_HOVER =
   "transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)]";
 
-export default function SiteInternetPage() {
+export default function ReseauxSociauxPage() {
   const service = {
     ...serviceJsonLd(
-      "Création de site internet à Genève",
-      "Conception et développement de sites internet à Genève : site vitrine, e-commerce ou application web sur-mesure, livrés rapides, sécurisés et prêts pour le référencement."
+      "Gestion des réseaux sociaux et création de contenus à Genève",
+      "Prestation social media à Genève : audit et benchmark, ligne éditoriale, calendrier, production de contenus photo, vidéo et motion, community management et reporting mensuel."
     ),
     // Les offres chiffrées sont ce que les moteurs de réponse citent quand on
     // leur demande « combien coûte le SEO à Genève ».
     offers: [
       {
         "@type": "Offer",
-        name: "Site vitrine",
+        name: "Forfait mensuel réseaux sociaux",
         priceSpecification: {
-          "@type": "PriceSpecification",
-          minPrice: 3000,
-          maxPrice: 12000,
+          "@type": "UnitPriceSpecification",
+          minPrice: 1500,
           priceCurrency: "CHF",
-        },
-      },
-      {
-        "@type": "Offer",
-        name: "Site e-commerce",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          minPrice: 8000,
-          maxPrice: 30000,
-          priceCurrency: "CHF",
-        },
-      },
-      {
-        "@type": "Offer",
-        name: "Refonte de site existant",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          minPrice: 3000,
-          priceCurrency: "CHF",
+          unitCode: "MON",
         },
       },
     ],
@@ -330,7 +298,7 @@ export default function SiteInternetPage() {
   const breadcrumb = breadcrumbJsonLd([
     { name: "Accueil", url: "/" },
     { name: "Services", url: "/services/" },
-    { name: "Création de site internet", url: "/services/site-internet/" },
+    { name: "Réseaux sociaux", url: "/services/reseaux-sociaux/" },
   ]);
   const faq = faqJsonLd(FAQ.map((f) => ({ question: f.q, answer: f.a })));
 
@@ -366,16 +334,16 @@ export default function SiteInternetPage() {
             className="max-w-[18ch] font-heading text-[clamp(34px,5.5vw,64px)] font-normal leading-[1.12] text-white motion-reduce:!animate-none"
             style={{ animation: "text-focus-in 900ms cubic-bezier(0.22,1,0.36,1) both" }}
           >
-            Création de site internet à Genève
+            Réseaux sociaux et contenus créatifs
           </h1>
           <p
             className="mt-[clamp(20px,3vw,44px)] max-w-[56ch] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.5] text-white/90 motion-reduce:!animate-none"
             style={{ animation: "kinome-fade-in 800ms 220ms ease-out both" }}
           >
-            Un site internet n'est pas une brochure en ligne, c'est votre
-            meilleur commercial : disponible 24 h/24, capable de convaincre un
-            visiteur avant même le premier contact humain. Nous concevons des
-            sites rapides, clairs et pensés pour convertir.
+            Publier pour publier ne construit rien. Nous concevons une ligne
+            éditoriale claire et des contenus soignés, pensés pour faire vivre
+            votre marque au quotidien et créer un vrai lien avec votre
+            audience.
           </p>
           <div
             className="mt-[clamp(32px,4.5vw,60px)] flex flex-col gap-4 sm:flex-row sm:flex-wrap motion-reduce:!animate-none"
@@ -431,7 +399,7 @@ export default function SiteInternetPage() {
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
-              Qu'est-ce qu'un site internet performant&nbsp;?
+              Qu'est-ce que la gestion des réseaux sociaux&nbsp;?
             </h2>
           </Reveal>
           <Reveal
@@ -439,17 +407,15 @@ export default function SiteInternetPage() {
             className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(24px,4vw,60px)] lg:grid-cols-2"
           >
             <p className={LEAD}>
-              Un site internet professionnel est bien plus qu'une suite de
-              pages en ligne : c'est un outil de conversion, pensé pour guider
-              un visiteur, répondre à ses questions et le transformer en client,
-              sans intervention humaine.
+              La gestion des réseaux sociaux couvre trois métiers qui avancent
+              ensemble : la ligne éditoriale, la production créative et le
+              community management au quotidien.
             </p>
             <p className={BODY}>
-              Un bon site combine trois dimensions qui doivent avancer
-              ensemble : une structure claire qui organise l'information, un
-              design qui installe la confiance, et une technique fiable qui
-              garantit rapidité et sécurité. Négliger l'une des trois fragilise
-              les deux autres.
+              Contrairement à une idée reçue, ce n'est pas une accumulation de
+              publications isolées : c'est un exercice éditorial, où chaque
+              contenu répond à un objectif précis (notoriété, confiance,
+              conversion) et s'inscrit dans une ligne visuelle reconnaissable.
             </p>
           </Reveal>
 
@@ -489,7 +455,7 @@ export default function SiteInternetPage() {
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={H2}>
-              Pourquoi un site performant conditionne la confiance
+              Pourquoi une présence régulière renforce la confiance
             </h2>
           </Reveal>
           <Reveal
@@ -497,17 +463,16 @@ export default function SiteInternetPage() {
             className="mt-[clamp(28px,4vw,60px)] grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2"
           >
             <p className={LEAD}>
-              Un site lent, mal structuré ou illisible sur mobile fait fuir un
-              visiteur avant même qu'il ait lu votre offre. À l'inverse, un site
-              clair et rapide installe la confiance dès les premières secondes
-              et laisse le temps à votre message de convaincre.
+              Les réseaux sociaux sont souvent le premier réflexe d'un prospect
+              qui veut vérifier votre sérieux après vous avoir découvert. Un
+              contenu bâclé ou irrégulier fragilise en quelques secondes une
+              réputation construite ailleurs.
             </p>
             <p className={BODY}>
-              Le site est souvent le premier contact réel avec votre entreprise,
-              avant même un appel ou un rendez-vous. Sa qualité perçue devient,
-              dans l'esprit du visiteur, un indicateur direct du sérieux de vos
-              services : un site daté ou peu soigné fait douter, quelle que soit
-              la qualité réelle de votre travail.
+              À l'inverse, un compte vivant et cohérent agit comme une preuve
+              continue : il montre que l'entreprise est active, qu'elle a des
+              choses à dire, et qu'elle prend soin de son image jusque dans les
+              détails du quotidien.
             </p>
           </Reveal>
           <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
@@ -531,14 +496,14 @@ export default function SiteInternetPage() {
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
             <Reveal>
               <h2 className={H2}>
-                Comment concevoir un site qui convertit
+                Comment construit-on une présence qui compte
               </h2>
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Un bon site ne commence jamais par le design. Il commence par
-                la réflexion sur ce que doit faire chaque page, avant même de
-                penser à son apparence.
+                Une bonne présence sociale ne se résume pas à publier souvent.
+                Elle répond à une intention claire, propre à chaque plateforme et
+                à chaque type de contenu.
               </p>
               <div className="mt-[clamp(24px,3vw,44px)]">
                 <Link href="/contact/" className={PILL_DARK}>
@@ -590,12 +555,12 @@ export default function SiteInternetPage() {
             <Reveal>
               <h2 className={H2}>
                 Notre processus
-                <br className="hidden sm:block" /> de création de site internet
+                <br className="hidden sm:block" /> de gestion des réseaux sociaux
               </h2>
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Six étapes cadrées, du cadrage stratégique à la mise en ligne.
+                Six étapes cadrées, de l'audit initial au reporting mensuel.
                 Chaque étape produit un livrable concret, validé avant de passer
                 à la suivante.
               </p>
@@ -649,9 +614,9 @@ export default function SiteInternetPage() {
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Au terme du projet, vous recevez un site en ligne, fonctionnel,
-                sur lequel votre équipe est formée, et prêt à évoluer avec votre
-                activité.
+                Les réseaux sociaux sont un travail continu : au-delà du
+                lancement, vous bénéficiez d'une production et d'un suivi
+                réguliers qui font vivre votre marque mois après mois.
               </p>
             </Reveal>
           </div>
@@ -697,9 +662,9 @@ export default function SiteInternetPage() {
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Un site performant s'appuie sur une marque forte et une
-                visibilité travaillée. Ces prestations complètent votre présence
-                en ligne.
+                Des contenus percutants s'appuient sur une marque claire et bien
+                identifiée. Ces prestations renforcent la cohérence de votre
+                présence en ligne.
               </p>
             </Reveal>
           </div>
@@ -740,7 +705,7 @@ export default function SiteInternetPage() {
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
-              Des sites livrés, des marques renforcées
+              Des marques vivantes, suivies au quotidien
             </h2>
           </Reveal>
           <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-2">
@@ -774,7 +739,7 @@ export default function SiteInternetPage() {
           <Reveal>
             <h2 className={`${H2} text-center`}>
               Questions fréquentes
-              <br className="hidden sm:block" /> sur la création de site internet
+              <br className="hidden sm:block" /> sur les réseaux sociaux
             </h2>
           </Reveal>
           <div className="mt-[clamp(36px,5vw,72px)] flex flex-col gap-[clamp(12px,1.2vw,18px)]">

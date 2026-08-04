@@ -66,6 +66,24 @@ const SERVICES: Service[] = [
     image: "/assets/projets/no-code/1.png",
     alt: "Projet NOCODE IA, organisme de formation accompagné par Kinome",
   },
+  {
+    titre: "Stratégie de marque",
+    href: "/services/strategie-de-marque/",
+    resume:
+      "Positionnement, plateforme de marque et ton de voix : le socle qui précède toute création.",
+    prix: "cadrage 3 à 5 semaines",
+    image: "/assets/projets/authentik-peak/1.png",
+    alt: "Authentik Peak, marque accompagnée par Kinome",
+  },
+  {
+    titre: "Réseaux sociaux",
+    href: "/services/reseaux-sociaux/",
+    resume:
+      "Ligne éditoriale, production de contenus et animation quotidienne de votre communauté.",
+    prix: "dès 1 500 CHF/mois",
+    image: "/assets/projets/lea-vigier/1.png",
+    alt: "Léa Vigier, marque accompagnée par Kinome",
+  },
 ];
 
 type Props = {
@@ -111,7 +129,7 @@ export default function ServicesMegaMenu({
           Nos prestations
         </p>
 
-        <ul className="grid grid-cols-4 gap-6">
+        <ul className="grid grid-cols-3 gap-x-6 gap-y-8">
           {SERVICES.map((s) => (
             <li key={s.href}>
               <Link href={s.href} onClick={onClose} className="group block">

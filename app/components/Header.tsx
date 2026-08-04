@@ -20,6 +20,8 @@ const SERVICES_MOBILE = [
   { href: "/services/identite-visuelle/", label: "Identité visuelle" },
   { href: "/services/site-internet/", label: "Création de site internet" },
   { href: "/services/referencement-naturel/", label: "Référencement naturel" },
+  { href: "/services/strategie-de-marque/", label: "Stratégie de marque" },
+  { href: "/services/reseaux-sociaux/", label: "Réseaux sociaux" },
 ];
 
 export default function Header() {

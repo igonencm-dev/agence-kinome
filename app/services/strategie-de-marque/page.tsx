@@ -11,193 +11,192 @@ import {
 } from "../../lib/seo";
 
 // ---------------------------------------------------------------------------
-// Page service « Création de site internet » — design Figma de Tanguy
-// (node 2201:3419 « Services - Site internet »).
+// Page service « Stratégie de marque » — design Figma de Tanguy
+// (node 2202:3734 « Services - Stratégie de marque »).
 //
-// L'URL existait depuis juillet avec une landing plus simple. On garde le même
-// chemin pour ne rien perdre de l'acquis SEO : seul le contenu change, et les
-// deux questions de FAQ de l'ancienne version qui visaient de vraies requêtes
-// (refonte, choix de techno) sont conservées en plus des 5 du design.
+// Deux coquilles du Figma corrigées ici : « Document de référencement » devenu
+// « Document de référence » (il s'agit du document de marque, pas de SEO), et
+// « Fontation » devenu « Fondation ».
 // ---------------------------------------------------------------------------
 
 export const metadata = buildMetadata({
-  title: "Création de site internet à Genève",
+  title: "Stratégie de marque à Genève",
   description:
-    "Création de site internet à Genève : site vitrine, e-commerce ou application web. Livraison en 6 à 10 semaines, dès 3 000 CHF. Diagnostic de 30 minutes offert.",
-  path: "/services/site-internet/",
+    "Stratégie de marque à Genève : positionnement, plateforme de marque, personas et ton de voix. Cadrage en 3 à 5 semaines, livré en un document actionnable.",
+  path: "/services/strategie-de-marque/",
   keywords: [
-    "création site internet Genève",
-    "agence web Genève",
-    "site vitrine Suisse romande",
-    "création site e-commerce Genève",
-    "refonte site internet Genève",
-    "prix site internet Suisse",
+    "stratégie de marque Genève",
+    "positionnement de marque",
+    "plateforme de marque PME",
+    "agence branding Genève",
+    "atelier de positionnement",
+    "ton de voix marque",
   ],
 });
 
 /* --------------------------------- Données -------------------------------- */
 
 const CHIFFRES = [
-  { valeur: "6 à 10", label: "Semaines de la conception à la mise en ligne" },
-  { valeur: "100 %", label: "Responsive, mobile et tablette" },
-  { valeur: "< 3 s", label: "Temps de chargement visé" },
-  { valeur: "0", label: "Template : chaque site est sur-mesure" },
+  { valeur: "3 à 5", label: "Semaines de cadrage stratégique" },
+  { valeur: "1", label: "Document de référence pour toutes vos équipes" },
+  { valeur: "100 %", label: "Fondation posée avant toute création visuelle" },
+  { valeur: "0", label: "Jargon : un positionnement dit en une phrase" },
 ];
 
 const PILIERS = [
   {
-    titre: "Le site vitrine",
-    body: "Il présente l'entreprise, ses services et ses preuves de crédibilité, pour convertir un visiteur en prise de contact.",
+    titre: "Le positionnement",
+    body: "La place que vous occupez dans l'esprit de votre cible, par rapport à vos concurrents et à ce qu'elle recherche vraiment.",
   },
   {
-    titre: "Le site e-commerce",
-    body: "Il permet la vente en ligne directe, avec catalogue, paiement et gestion des commandes.",
+    titre: "La plateforme de marque",
+    body: "Mission, vision, valeurs et promesse, qui expliquent pourquoi l'entreprise existe au-delà de son chiffre d'affaires.",
   },
   {
-    titre: "L'application web",
-    body: "Un outil interactif sur-mesure, au-delà du simple site : espace client, plateforme, outil métier.",
+    titre: "Le ton de voix",
+    body: "La manière dont la marque s'exprime, à l'écrit comme à l'oral, pour être reconnaissable même sans logo visible.",
   },
 ];
 
 const ENJEUX = [
   {
-    titre: "3 secondes",
-    body: "Passé ce délai de chargement, une part importante des visiteurs quitte la page sans attendre.",
+    titre: "Cohérence",
+    body: "Une direction commune évite qu'un logo, un site et des réseaux sociaux racontent trois histoires différentes.",
   },
   {
-    titre: "Mobile d'abord",
-    body: "La majorité du trafic web se fait aujourd'hui sur mobile : un site non adapté perd une audience importante.",
+    titre: "Différenciation",
+    body: "Un positionnement clair explique pourquoi choisir votre entreprise plutôt qu'un concurrent aux services similaires.",
   },
   {
-    titre: "Confiance",
-    body: "Un site clair, rapide et à jour rassure un visiteur avant même qu'il ait lu le moindre argument commercial.",
+    titre: "Rapidité",
+    body: "Une stratégie posée en amont accélère toutes les décisions créatives qui suivent, sans repartir de zéro à chaque fois.",
   },
 ];
 
 const METHODE = [
   {
     n: "01",
-    titre: "Définir les objectifs et l'arborescence",
-    body: "Les objectifs du site (prise de contact, vente, notoriété) et la structure des pages sont définis en premier, pour que chaque page ait un rôle clair.",
+    titre: "Comprendre l'entreprise de l'intérieur",
+    body: "Histoire, ambitions, forces réelles et contraintes sont recueillies directement auprès des dirigeants et des équipes clés.",
   },
   {
     n: "02",
-    titre: "Construire les parcours utilisateurs",
-    body: "Des maquettes fonctionnelles (wireframes) organisent le contenu et les actions attendues sur chaque page, avant tout habillage visuel.",
+    titre: "Analyser le marché et la concurrence",
+    body: "Les concurrents directs et indirects sont étudiés pour identifier les espaces de différenciation encore disponibles.",
   },
   {
     n: "03",
-    titre: "Concevoir le design visuel",
-    body: "L'identité de marque est déclinée en interface : couleurs, typographies, images, dans un design qui installe la confiance et guide l'oeil.",
+    titre: "Écouter la cible réelle",
+    body: "Les attentes, freins et déclencheurs d'achat de votre audience sont pris en compte, au-delà des suppositions internes.",
   },
   {
     n: "04",
-    titre: "Développer et intégrer",
-    body: "Le site est développé pour être rapide, sécurisé et facile à maintenir, avec un back-office adapté à votre niveau d'autonomie souhaité.",
+    titre: "Formuler un positionnement clair",
+    body: "Toutes ces informations convergent vers une formulation simple : ce que vous promettez, à qui, et pourquoi c'est crédible.",
   },
   {
     n: "05",
-    titre: "Tester avant la mise en ligne",
-    body: "Chaque page est vérifiée sur mobile, tablette et ordinateur, et les bases du référencement technique sont posées avant le lancement.",
+    titre: "Documenter pour que ça serve vraiment",
+    body: "La stratégie est mise par écrit dans un document actionnable, pensé pour guider les décisions créatives à venir, pas pour rester dans un tiroir.",
   },
 ];
 
 const PROCESSUS = [
   {
     n: "01",
-    titre: "Cadrage et arborescence",
-    body: "On ne construit pas un site sans savoir ce qu'il doit accomplir. Cette première étape définit les objectifs du site, la cible visée, le contenu nécessaire et l'arborescence complète des pages.",
-    note: "Livrable : arborescence et cahier des charges validés",
+    titre: "Immersion et audit de l'existant",
+    body: "On ne définit pas une stratégie sans comprendre l'entreprise en profondeur. Cette première étape recueille l'histoire, les ambitions et les supports existants, à travers des entretiens avec les personnes clés.",
+    note: "Livrable : synthèse d'immersion",
   },
   {
     n: "02",
-    titre: "Wireframes et parcours utilisateur",
-    body: "Des maquettes fonctionnelles organisent le contenu et les actions attendues sur chaque page clé, pour valider la structure avant tout habillage visuel.",
-    note: "Objectif : valider les parcours avant le design",
+    titre: "Recherche marché et concurrence",
+    body: "Une analyse du marché et des concurrents directs et indirects permet d'identifier les espaces de différenciation encore disponibles pour votre marque.",
+    note: "Objectif : cartographier le terrain de jeu",
   },
   {
     n: "03",
-    titre: "Design UI",
-    body: "L'identité de marque est déclinée en interface complète : pages principales, composants, responsive mobile et tablette.",
+    titre: "Atelier de positionnement",
+    body: "Un atelier collaboratif avec vos équipes fait émerger et challenge les pistes de positionnement, pour converger vers une direction partagée.",
   },
   {
     n: "04",
-    titre: "Développement et intégration",
-    body: "Le site est développé et intégré avec une attention particulière portée à la vitesse, la sécurité et la facilité de mise à jour. Les ajustements se poursuivent jusqu'à validation complète.",
-    note: "Objectif : un site fiable, rapide et maintenable",
+    titre: "Construction de la plateforme de marque",
+    body: "Mission, vision, valeurs, promesse et personas sont formulés avec précision, puis ajustés jusqu'à validation complète, sans jamais repartir de zéro.",
+    note: "Objectif : une plateforme claire et partagée",
   },
   {
     n: "05",
-    titre: "Contenu et référencement technique",
-    body: "Les textes et visuels finaux sont intégrés, et les bases du SEO technique (balises, structure, vitesse, indexation) sont posées pour préparer la visibilité du site.",
-    note: "Livrable : site prêt pour l'indexation Google",
+    titre: "Ton de voix et messages clés",
+    body: "La manière dont la marque s'exprime à l'écrit et à l'oral est définie, avec des exemples concrets et des messages clés prêts à être déclinés.",
+    note: "Livrable : guide de ton de voix",
   },
   {
     n: "06",
-    titre: "Tests, formation et mise en ligne",
-    body: "Le site est testé sur tous les supports, vos équipes sont formées à son utilisation, puis le site est mis en ligne accompagné d'un guide d'utilisation.",
-    note: "Livrable : site en ligne + guide d'utilisation",
+    titre: "Livraison du document stratégique",
+    body: "L'ensemble est compilé dans un document de référence clair, présenté à vos équipes et prêt à guider toutes vos futures décisions créatives.",
+    note: "Livrable : document de stratégie de marque complet",
   },
 ];
 
 const RESULTAT = [
   {
-    icon: "/assets/services/site/site-rapide.svg",
-    titre: "Site rapide et responsive",
-    body: "Optimisé pour un chargement rapide et un affichage impeccable sur mobile, tablette et ordinateur.",
+    icon: "/assets/services/marque/positionnement.svg",
+    titre: "Positionnement formulé",
+    body: "Une formulation claire de ce que vous promettez, à qui, et pourquoi c'est crédible face à vos concurrents.",
   },
   {
-    icon: "/assets/services/site/back-office.svg",
-    titre: "Back-office autonome",
-    body: "Un espace d'administration simple, pour modifier textes et images sans compétence technique.",
+    icon: "/assets/services/logo/brandbook.svg",
+    titre: "Mission, vision, valeurs",
+    body: "Les fondements de l'entreprise, formulés simplement, pour orienter les décisions internes comme externes.",
   },
   {
-    icon: "/assets/services/site/securite.svg",
-    titre: "Sécurité et hébergement",
-    body: "Certificat SSL, sauvegardes régulières et recommandations d'hébergement adaptées à votre trafic.",
+    icon: "/assets/services/marque/personas.svg",
+    titre: "Personas de cible",
+    body: "Le profil de vos clients types, leurs attentes et leurs freins, pour ancrer chaque message dans une réalité concrète.",
   },
   {
-    icon: "/assets/services/site/bases-seo.svg",
-    titre: "Bases SEO posées",
-    body: "Structure, balises et vitesse optimisées dès le lancement, pour préparer le référencement naturel.",
+    icon: "/assets/services/marque/ton-de-voix.svg",
+    titre: "Guide de ton de voix",
+    body: "La manière dont la marque s'exprime, avec des exemples concrets applicables à tous vos supports de communication.",
   },
   {
-    icon: "/assets/services/site/formation.svg",
-    titre: "Formation de vos équipes",
-    body: "Une session de prise en main du back-office, accompagnée d'un guide d'utilisation écrit, pour que vous soyez autonome sur les mises à jour courantes.",
+    icon: "/assets/services/marque/document-strategique.svg",
+    titre: "Document stratégique complet",
+    body: "Un document unique, clair et partageable, qui devient la référence de toutes les décisions créatives à venir : logo, site, contenu, campagnes.",
   },
   {
-    icon: "/assets/services/site/evolutif.svg",
-    titre: "Un site prêt à évoluer",
-    body: "Une architecture pensée pour accueillir de nouvelles pages ou fonctionnalités sans tout reconstruire, à mesure que votre activité grandit.",
+    icon: "/assets/services/marque/base-durable.svg",
+    titre: "Une base prête à durer",
+    body: "Une stratégie pensée pour rester pertinente plusieurs années, même si son expression visuelle évolue avec le temps.",
   },
 ];
 
 const SERVICES_LIES = [
   {
-    icon: "/assets/services/site/service-identite.svg",
+    icon: "/assets/services/logo/formats-vectoriels.svg",
+    titre: "Création de logo",
+    body: "Le point de départ de toute identité : un signe graphique fort, qui traduit visuellement le positionnement défini.",
+    href: "/services/creation-logo/",
+  },
+  {
+    icon: "/assets/services/marque/service-identite.svg",
     titre: "Identité visuelle",
     body: "Palette de couleurs, typographies, iconographie et règles d'usage : le système graphique complet de votre marque.",
     href: "/services/identite-visuelle/",
   },
   {
-    icon: "/assets/services/logo/formats-vectoriels.svg",
-    titre: "Création de logo",
-    body: "Le point de départ de toute identité : un signe graphique fort, pensé pour être décliné sur votre site.",
-    href: "/services/creation-logo/",
-  },
-  {
-    icon: "/assets/services/logo/service-seo.svg",
-    titre: "Référencement naturel",
-    body: "Une stratégie de contenu et une structure technique pensées pour être identifié durablement dans les recherches Google.",
-    href: "/services/referencement-naturel/",
+    icon: "/assets/services/marque/service-site.svg",
+    titre: "Création de site internet",
+    body: "Votre stratégie mise en scène : un site qui traduit votre positionnement en parcours de conversion.",
+    href: "/services/site-internet/",
   },
 ];
 
 const PORTFOLIO = [
   {
     img: "/assets/wp/Adapt-Project-780x390px-1.png",
-    alt: "Adapt Project, site réalisé par Kinome",
+    alt: "Adapt Project, marque accompagnée par Kinome",
     href: "/projets/adapt-project/",
   },
   {
@@ -217,56 +216,49 @@ const PORTFOLIO = [
   },
 ];
 
-// Les 5 questions du design, plus les 2 de l'ancienne version de la page qui
-// visaient de vraies requêtes (refonte, choix de techno) : une refonte de page
-// ne doit pas faire perdre de surface de réponse.
 const FAQ = [
   {
-    q: "Combien de temps prend la création d'un site internet ?",
-    a: "Un site vitrine se livre généralement en 6 à 10 semaines, cadrage compris. Un site e-commerce ou une application web sur-mesure demande davantage de temps selon les fonctionnalités attendues. Votre réactivité sur les validations et la fourniture des contenus influence directement le planning.",
+    q: "Combien de temps prend un cadrage stratégique ?",
+    a: "Un cadrage stratégique complet se livre généralement en 3 à 5 semaines, incluant les entretiens, la recherche marché et les ateliers de positionnement. Le délai dépend surtout de la disponibilité de vos équipes pour les entretiens et l'atelier.",
   },
   {
-    q: "Combien coûte la création d'un site internet à Genève ?",
-    a: "Un site vitrine professionnel se situe entre 3 000 et 12 000 CHF selon le nombre de pages et le niveau de sur-mesure. Un site e-commerce démarre autour de 8 000 CHF et peut monter à 30 000 CHF selon le catalogue et les intégrations. Une refonte de site existant démarre dès 3 000 CHF. Le devis est toujours établi après le cadrage.",
+    q: "Faut-il une stratégie de marque avant de créer un logo ?",
+    a: "Idéalement oui. Sans positionnement clair, chaque décision créative devient une question de goût personnel plutôt qu'une réponse à un objectif. Un logo peut être esthétiquement réussi et ne rien dire de qui vous êtes. Cela dit, pour une petite structure au positionnement déjà évident, un cadrage léger intégré au projet de logo suffit souvent.",
   },
   {
-    q: "Pourrai-je modifier le contenu moi-même après la livraison ?",
-    a: "Oui. Chaque site est livré avec un back-office adapté à votre niveau d'autonomie, et une session de formation est prévue avant la mise en ligne. Vous pouvez modifier les textes, les images et ajouter des pages sans compétence technique. Un guide d'utilisation écrit vous reste comme référence.",
+    q: "Combien coûte une stratégie de marque à Genève ?",
+    a: "Le cadrage stratégique seul fait l'objet d'un devis après le premier échange, car son périmètre dépend du nombre d'entretiens et d'ateliers nécessaires. Intégré à un branding complet avec l'identité visuelle, l'ensemble se situe généralement entre 8 000 et 25 000 CHF à Genève.",
   },
   {
-    q: "Pouvez-vous refaire mon site internet existant ?",
-    a: "Oui, la refonte est une part importante de notre activité : audit de l'existant, redesign aligné sur votre marque, migration technique et préservation de votre référencement (redirections, balises, positions acquises). Une refonte démarre dès 3 000 CHF.",
+    q: "Qui doit participer aux ateliers de positionnement ?",
+    a: "Les personnes qui décident et celles qui parlent aux clients. En pratique : la direction, et une ou deux personnes du terrain (commercial, service client). Un groupe de trois à six participants fonctionne bien. Au-delà, l'atelier perd en profondeur.",
   },
   {
-    q: "WordPress, Webflow ou sur-mesure : que choisirez-vous pour mon site ?",
-    a: "Cela dépend de votre besoin réel : autonomie de mise à jour, budget, fonctionnalités. Nous travaillons avec les deux mondes (CMS et sur-mesure Next.js ou Astro) et recommandons l'approche la plus simple qui remplit vos objectifs, pas la plus chère.",
+    q: "Cela fonctionne-t-il pour une petite entreprise ou une startup ?",
+    a: "Oui, et c'est souvent là que le retour est le plus rapide. Une petite structure prend beaucoup de décisions de communication avec peu de moyens : un positionnement clair évite de disperser ce budget. Le format est simplement resserré, avec moins d'entretiens et un atelier plus court.",
   },
   {
-    q: "Le site sera-t-il bien référencé sur Google dès sa mise en ligne ?",
-    a: "Les bases techniques du référencement sont posées avant le lancement : structure des URL, balises, vitesse, compatibilité mobile, indexation. Cela garantit que Google peut lire et comprendre le site. En revanche, se positionner sur des recherches concurrentielles demande un travail de contenu dans la durée, que couvre notre prestation de référencement naturel.",
-  },
-  {
-    q: "Que se passe-t-il après la mise en ligne ?",
-    a: "Vous restez propriétaire du site et de ses fichiers sources. Nous proposons un accompagnement optionnel pour la maintenance technique, les évolutions et le référencement, mais rien ne vous y oblige : le site est conçu pour être repris par n'importe quel prestataire compétent.",
+    q: "La stratégie de marque peut-elle évoluer avec le temps ?",
+    a: "Le positionnement est conçu pour tenir plusieurs années, mais il n'est pas figé. Un changement d'offre, de cible ou de marché justifie de le revoir. En pratique, c'est l'expression visuelle qui évolue le plus souvent, pendant que le socle stratégique reste valable.",
   },
 ];
 
 const BLOG_LINKS = [
   {
-    href: "/blog/creation-site-internet-geneve-guide/",
-    label: "Créer un site internet à Genève : le guide complet",
+    href: "/blog/strategie-branding-geneve/",
+    label: "Stratégie de marque à Genève : le guide du branding pour PME",
   },
   {
-    href: "/blog/prix-site-internet-suisse-2026/",
-    label: "Prix d'un site internet en Suisse : les fourchettes réelles",
+    href: "/blog/rebranding-refaire-identite-marque/",
+    label: "Rebranding : quand et comment refaire sa marque",
   },
   {
-    href: "/blog/wordpress-webflow-sur-mesure-comparatif/",
-    label: "WordPress, Webflow ou sur-mesure : quelle techno choisir ?",
+    href: "/blog/creer-identite-visuelle-entreprise-geneve/",
+    label: "Créer une identité visuelle d'entreprise : le guide",
   },
   {
-    href: "/blog/erreurs-refonte-site-web/",
-    label: "Refonte de site : 6 erreurs à éviter sans perdre son SEO",
+    href: "/blog/tarifs-agence-communication-geneve/",
+    label: "Les tarifs d'une agence de communication à Genève",
   },
 ];
 
@@ -287,41 +279,22 @@ const STEP_NUM =
 const CARD_HOVER =
   "transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)]";
 
-export default function SiteInternetPage() {
+export default function StrategieDeMarquePage() {
   const service = {
     ...serviceJsonLd(
-      "Création de site internet à Genève",
-      "Conception et développement de sites internet à Genève : site vitrine, e-commerce ou application web sur-mesure, livrés rapides, sécurisés et prêts pour le référencement."
+      "Stratégie de marque à Genève",
+      "Cadrage stratégique de marque à Genève : immersion, analyse concurrentielle, atelier de positionnement, plateforme de marque, personas et ton de voix, livrés dans un document de référence."
     ),
     // Les offres chiffrées sont ce que les moteurs de réponse citent quand on
     // leur demande « combien coûte le SEO à Genève ».
     offers: [
       {
         "@type": "Offer",
-        name: "Site vitrine",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          minPrice: 3000,
-          maxPrice: 12000,
-          priceCurrency: "CHF",
-        },
-      },
-      {
-        "@type": "Offer",
-        name: "Site e-commerce",
+        name: "Branding complet (stratégie de marque + identité visuelle)",
         priceSpecification: {
           "@type": "PriceSpecification",
           minPrice: 8000,
-          maxPrice: 30000,
-          priceCurrency: "CHF",
-        },
-      },
-      {
-        "@type": "Offer",
-        name: "Refonte de site existant",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          minPrice: 3000,
+          maxPrice: 25000,
           priceCurrency: "CHF",
         },
       },
@@ -330,7 +303,7 @@ export default function SiteInternetPage() {
   const breadcrumb = breadcrumbJsonLd([
     { name: "Accueil", url: "/" },
     { name: "Services", url: "/services/" },
-    { name: "Création de site internet", url: "/services/site-internet/" },
+    { name: "Stratégie de marque", url: "/services/strategie-de-marque/" },
   ]);
   const faq = faqJsonLd(FAQ.map((f) => ({ question: f.q, answer: f.a })));
 
@@ -366,16 +339,16 @@ export default function SiteInternetPage() {
             className="max-w-[18ch] font-heading text-[clamp(34px,5.5vw,64px)] font-normal leading-[1.12] text-white motion-reduce:!animate-none"
             style={{ animation: "text-focus-in 900ms cubic-bezier(0.22,1,0.36,1) both" }}
           >
-            Création de site internet à Genève
+            Stratégie de marque
           </h1>
           <p
             className="mt-[clamp(20px,3vw,44px)] max-w-[56ch] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.5] text-white/90 motion-reduce:!animate-none"
             style={{ animation: "kinome-fade-in 800ms 220ms ease-out both" }}
           >
-            Un site internet n'est pas une brochure en ligne, c'est votre
-            meilleur commercial : disponible 24 h/24, capable de convaincre un
-            visiteur avant même le premier contact humain. Nous concevons des
-            sites rapides, clairs et pensés pour convertir.
+            Avant un logo, un site ou une campagne, il y a une décision plus
+            importante : savoir précisément qui vous êtes, pour qui, et pourquoi
+            on devrait vous choisir vous plutôt qu'un autre. C'est le rôle de la
+            stratégie de marque.
           </p>
           <div
             className="mt-[clamp(32px,4.5vw,60px)] flex flex-col gap-4 sm:flex-row sm:flex-wrap motion-reduce:!animate-none"
@@ -431,7 +404,7 @@ export default function SiteInternetPage() {
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
-              Qu'est-ce qu'un site internet performant&nbsp;?
+              Qu'est-ce qu'une stratégie de marque&nbsp;?
             </h2>
           </Reveal>
           <Reveal
@@ -439,17 +412,16 @@ export default function SiteInternetPage() {
             className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(24px,4vw,60px)] lg:grid-cols-2"
           >
             <p className={LEAD}>
-              Un site internet professionnel est bien plus qu'une suite de
-              pages en ligne : c'est un outil de conversion, pensé pour guider
-              un visiteur, répondre à ses questions et le transformer en client,
-              sans intervention humaine.
+              Une stratégie de marque définit ce que vous représentez et pour
+              qui, avant toute traduction visuelle. Elle repose sur trois
+              piliers : le positionnement, la plateforme de marque et le ton de
+              voix.
             </p>
             <p className={BODY}>
-              Un bon site combine trois dimensions qui doivent avancer
-              ensemble : une structure claire qui organise l'information, un
-              design qui installe la confiance, et une technique fiable qui
-              garantit rapidité et sécurité. Négliger l'une des trois fragilise
-              les deux autres.
+              Sans cette clarté, chaque décision créative devient une question
+              de goût personnel plutôt qu'une réponse cohérente à un objectif.
+              Un logo, un site ou un post peuvent être esthétiquement réussis et
+              pourtant ne rien dire de qui vous êtes réellement.
             </p>
           </Reveal>
 
@@ -489,7 +461,7 @@ export default function SiteInternetPage() {
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={H2}>
-              Pourquoi un site performant conditionne la confiance
+              Pourquoi une stratégie claire précède toute création
             </h2>
           </Reveal>
           <Reveal
@@ -497,17 +469,15 @@ export default function SiteInternetPage() {
             className="mt-[clamp(28px,4vw,60px)] grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2"
           >
             <p className={LEAD}>
-              Un site lent, mal structuré ou illisible sur mobile fait fuir un
-              visiteur avant même qu'il ait lu votre offre. À l'inverse, un site
-              clair et rapide installe la confiance dès les premières secondes
-              et laisse le temps à votre message de convaincre.
+              Une stratégie claire agit comme un filtre de décision : elle
+              permet de dire non aux idées séduisantes mais hors-sujet, et oui à
+              celles qui renforcent réellement la marque.
             </p>
             <p className={BODY}>
-              Le site est souvent le premier contact réel avec votre entreprise,
-              avant même un appel ou un rendez-vous. Sa qualité perçue devient,
-              dans l'esprit du visiteur, un indicateur direct du sérieux de vos
-              services : un site daté ou peu soigné fait douter, quelle que soit
-              la qualité réelle de votre travail.
+              Elle accélère aussi le travail créatif qui suit, puisque chaque
+              prestataire, interne ou externe, travaille à partir de la même
+              référence écrite plutôt que d'une intuition différente à chaque
+              projet.
             </p>
           </Reveal>
           <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
@@ -531,14 +501,15 @@ export default function SiteInternetPage() {
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
             <Reveal>
               <h2 className={H2}>
-                Comment concevoir un site qui convertit
+                Comment construit-on une stratégie qui tient
               </h2>
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Un bon site ne commence jamais par le design. Il commence par
-                la réflexion sur ce que doit faire chaque page, avant même de
-                penser à son apparence.
+                Une bonne stratégie ne sort pas d'une intuition, ni d'un
+                brainstorming isolé. Elle se construit à partir de faits : votre
+                marché, vos clients, et ce que vous seul pouvez réellement
+                promettre.
               </p>
               <div className="mt-[clamp(24px,3vw,44px)]">
                 <Link href="/contact/" className={PILL_DARK}>
@@ -590,14 +561,14 @@ export default function SiteInternetPage() {
             <Reveal>
               <h2 className={H2}>
                 Notre processus
-                <br className="hidden sm:block" /> de création de site internet
+                <br className="hidden sm:block" /> de stratégie de marque
               </h2>
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Six étapes cadrées, du cadrage stratégique à la mise en ligne.
-                Chaque étape produit un livrable concret, validé avant de passer
-                à la suivante.
+                Six étapes cadrées, de l'immersion initiale à la livraison de
+                votre plateforme de marque. Chaque étape produit un livrable
+                concret, validé avant de passer à la suivante.
               </p>
               <div className="mt-[clamp(24px,3vw,44px)]">
                 <Link href="/portfolio/" className={PILL_DARK}>
@@ -649,9 +620,9 @@ export default function SiteInternetPage() {
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Au terme du projet, vous recevez un site en ligne, fonctionnel,
-                sur lequel votre équipe est formée, et prêt à évoluer avec votre
-                activité.
+                Au terme du projet, vous recevez un document de référence clair,
+                qui devient le socle de toutes vos futures décisions de marque et
+                de communication.
               </p>
             </Reveal>
           </div>
@@ -697,9 +668,8 @@ export default function SiteInternetPage() {
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Un site performant s'appuie sur une marque forte et une
-                visibilité travaillée. Ces prestations complètent votre présence
-                en ligne.
+                Une fois la stratégie posée, elle se déploie dans chacune de vos
+                créations. Ces prestations prennent le relais.
               </p>
             </Reveal>
           </div>
@@ -740,7 +710,7 @@ export default function SiteInternetPage() {
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
-              Des sites livrés, des marques renforcées
+              Des marques que nous accompagnons durablement
             </h2>
           </Reveal>
           <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-2">
@@ -774,7 +744,7 @@ export default function SiteInternetPage() {
           <Reveal>
             <h2 className={`${H2} text-center`}>
               Questions fréquentes
-              <br className="hidden sm:block" /> sur la création de site internet
+              <br className="hidden sm:block" /> sur la stratégie de marque
             </h2>
           </Reveal>
           <div className="mt-[clamp(36px,5vw,72px)] flex flex-col gap-[clamp(12px,1.2vw,18px)]">

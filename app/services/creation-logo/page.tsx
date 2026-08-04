@@ -227,7 +227,7 @@ const PORTFOLIO = [
 const FAQ = [
   {
     q: "Combien de temps prend la création d'un logo ?",
-    a: "Une création de logo seule se livre généralement en 2 à 3 semaines, cadrage compris. Si le projet inclut une identité visuelle complète avec charte graphique, comptez plutôt 4 à 8 semaines selon le périmètre. Votre réactivité sur les validations influence directement le planning.",
+    a: "Une création de logo seule se livre généralement en 2 à 3 semaines, cadrage compris. Si le projet inclut une identité visuelle complète avec charte graphique, comptez plutôt 4 à 6 semaines selon le périmètre. Votre réactivité sur les validations influence directement le planning.",
   },
   {
     q: "Combien coûte la création d'un logo à Genève ?",

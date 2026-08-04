@@ -171,6 +171,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${base}/services/strategie-de-marque/`,
+      lastModified: new Date("2026-08-04"),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${base}/services/reseaux-sociaux/`,
+      lastModified: new Date("2026-08-04"),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
   ];
 
   return [...pairedPages, ...servicePages, ...projetPages, ...blogPages];
