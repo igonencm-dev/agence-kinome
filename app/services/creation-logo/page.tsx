@@ -186,9 +186,9 @@ const SERVICES_LIES = [
   },
   {
     icon: "/assets/services/logo/service-social.svg",
-    titre: "Social média",
+    titre: "Réseaux sociaux",
     body: "Direction artistique et gestion de vos réseaux sociaux, pour faire vivre votre identité au quotidien auprès de votre audience.",
-    href: "/services/",
+    href: "/services/reseaux-sociaux/",
   },
   {
     icon: "/assets/services/logo/service-seo.svg",

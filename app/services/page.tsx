@@ -218,6 +218,49 @@ const offerCatalogLd = {
   },
 };
 
+
+// Les 6 landings de service. Le hub est la page la plus autoritaire de la
+// section (elle reçoit le lien du menu principal depuis toutes les pages) et
+// ne transmettait rien à ses enfants : c'était un cul-de-sac dans le maillage.
+const landings = [
+  {
+    titre: "Création de logo",
+    href: "/services/creation-logo/",
+    prix: "dès 1 500 CHF",
+    body: "Cadrage stratégique, 3 à 5 concepts distincts, déclinaisons complètes et brandbook de 20 à 40 pages.",
+  },
+  {
+    titre: "Identité visuelle",
+    href: "/services/identite-visuelle/",
+    prix: "4 000 à 15 000 CHF",
+    body: "Palette, typographies, gabarits et règles d'usage, réunis dans une charte graphique de 30 à 60 pages.",
+  },
+  {
+    titre: "Création de site internet",
+    href: "/services/site-internet/",
+    prix: "dès 3 000 CHF",
+    body: "Site vitrine, e-commerce ou application web, livré rapide, sécurisé et prêt pour le référencement.",
+  },
+  {
+    titre: "Référencement naturel",
+    href: "/services/referencement-naturel/",
+    prix: "audit dès 800 CHF",
+    body: "Audit technique, recherche de mots-clés, contenu et netlinking, avec un suivi mensuel des positions.",
+  },
+  {
+    titre: "Stratégie de marque",
+    href: "/services/strategie-de-marque/",
+    prix: "cadrage 3 à 5 semaines",
+    body: "Positionnement, plateforme de marque, personas et ton de voix, livrés dans un document actionnable.",
+  },
+  {
+    titre: "Réseaux sociaux",
+    href: "/services/reseaux-sociaux/",
+    prix: "dès 1 500 CHF/mois",
+    body: "Ligne éditoriale, production de contenus, animation quotidienne de la communauté et reporting mensuel.",
+  },
+];
+
 export default function ServicesPage() {
   const [onglet, setOnglet] = useState<"crea" | "web">("crea");
   const services = onglet === "crea" ? servicesCrea : servicesWeb;
@@ -285,6 +328,48 @@ export default function ServicesPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Les 6 prestations détaillées — passerelle du hub vers ses landings */}
+      <section className="mx-auto max-w-[1400px] px-[5%] py-9 sm:py-[60px]">
+        <h2 className="mb-4 font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
+          Nos prestations en détail
+        </h2>
+        <p className="mb-8 max-w-[760px] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.6] text-kinome-grey sm:mb-12">
+          Chaque prestation a sa page dédiée : le périmètre exact, la méthode,
+          les livrables, les délais et les fourchettes de prix.
+        </p>
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {landings.map((l) => (
+            <li key={l.href}>
+              <Link
+                href={l.href}
+                className="group flex h-full flex-col rounded-[20px] bg-kinome-cream p-7 transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)]"
+              >
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="font-heading text-[1.3rem] font-semibold leading-[1.25] text-kinome-black transition-colors group-hover:text-kinome-accent">
+                    {l.titre}
+                  </h3>
+                  <span className="whitespace-nowrap font-body text-[0.78rem] font-light text-kinome-grey">
+                    {l.prix}
+                  </span>
+                </div>
+                <p className="mt-3 flex-1 font-body text-[0.98rem] font-light leading-[1.55] text-kinome-grey">
+                  {l.body}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-2 font-heading text-[0.92rem] font-semibold text-kinome-black transition-colors group-hover:text-kinome-accent">
+                  Découvrir le service
+                  <span
+                    aria-hidden="true"
+                    className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Comment les prestations se déroulent ? */}
