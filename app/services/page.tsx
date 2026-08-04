@@ -10,30 +10,42 @@ import { jsonLdScript, faqJsonLd, SITE, BUSINESS } from "../lib/seo";
 const servicesCrea = [
   {
     title: "Création de logo",
-    body: "La conception de logos est réalisée avec une attention particulière à l'unicité et à la pertinence pour chaque marque. En effet, chaque projet est unique. Un processus créatif approfondi est employé pour développer des logos qui non seulement captent l'essence de la marque, mais sont également mémorables et fonctionnels sur divers supports. Cette étape cruciale assure que le logo devienne un symbole reconnaissable et puissant de l'identité de la marque.",
+    href: "/services/creation-logo/",
+    prix: "dès 1 500 CHF",
+    body: "La conception de logos est réalisée avec une attention particulière à l'unicité et à la pertinence pour chaque marque. Un processus créatif approfondi développe des logos qui captent l'essence de la marque, mémorables et fonctionnels sur tous les supports.",
   },
   {
-    title: "Développement de charte graphique",
-    body: "Des chartes graphiques complètes sont élaborées, établissant les fondations visuelles de la marque. Ce processus inclut la définition des palettes de couleurs, des polices de caractères, et des styles graphiques, assurant une cohérence visuelle sur tous les supports de communication. La charte graphique sert de guide pour la création de tous les éléments visuels de la marque, garantissant une identité visuelle forte et homogène. On y retrouve également les règles d'usage pour savoir comment utiliser tous les éléments graphiques cités.",
+    title: "Identité visuelle et charte graphique",
+    href: "/services/identite-visuelle/",
+    prix: "4 000 à 15 000 CHF",
+    body: "Des chartes graphiques complètes établissent les fondations visuelles de la marque : palettes de couleurs, typographies, iconographie et styles. La charte sert de guide à la création de tous vos supports, avec les règles d'usage qui garantissent la cohérence.",
   },
   {
-    title: "Stratégie de branding",
-    body: "Des stratégies de branding sont développées pour renforcer l'identité et la présence de la marque sur le marché. Cela inclut l'analyse du positionnement de la marque, la définition des messages clés sur le plan graphique, et la création d'une identité visuelle reconnaissable. L'objectif est de construire une image de marque forte et cohérente qui résonne avec le public cible et soutient les objectifs commerciaux du client.",
+    title: "Stratégie de marque",
+    href: "/services/strategie-de-marque/",
+    prix: "cadrage 3 à 5 semaines",
+    body: "Le positionnement, la plateforme de marque et le ton de voix sont formulés avant toute création visuelle. L'objectif : une image forte et cohérente qui résonne avec votre cible et soutient vos objectifs commerciaux.",
   },
 ];
 
 const servicesWeb = [
   {
-    title: "Sites vitrines",
-    body: "Conception et développement de sites internet vitrines élégants, optimisés SEO et pensés pour convertir. Nous travaillons avec les technologies modernes (Next.js, Astro, WordPress headless) selon les besoins de chaque projet.",
+    title: "Création de site internet",
+    href: "/services/site-internet/",
+    prix: "dès 3 000 CHF",
+    body: "Sites vitrines, boutiques e-commerce et plateformes métier sur mesure. Conçus pour être rapides, sécurisés, faciles à mettre à jour et prêts pour le référencement dès la mise en ligne.",
   },
   {
-    title: "E-commerce",
-    body: "Mise en place de boutiques en ligne robustes (Shopify, WooCommerce, sur-mesure), avec une attention particulière portée à l'expérience d'achat, à la performance et au tunnel de conversion.",
+    title: "Référencement naturel",
+    href: "/services/referencement-naturel/",
+    prix: "audit dès 800 CHF",
+    body: "Audit technique, recherche de mots-clés, production de contenu et netlinking. Un travail continu qui construit une visibilité durable sur Google, avec un suivi mensuel des positions et du trafic.",
   },
   {
-    title: "Plateformes & dashboards",
-    body: "Développement d'applications web métier, espaces clients, dashboards et outils internes — depuis la conception UX jusqu'au déploiement, en passant par l'intégration aux APIs existantes.",
+    title: "Réseaux sociaux",
+    href: "/services/reseaux-sociaux/",
+    prix: "dès 1 500 CHF/mois",
+    body: "Ligne éditoriale, production de contenus photo, vidéo et motion, animation quotidienne de votre communauté et reporting mensuel. Une présence régulière qui fait vivre la marque au-delà du site.",
   },
 ];
 
@@ -219,51 +231,15 @@ const offerCatalogLd = {
 };
 
 
-// Les 6 landings de service. Le hub est la page la plus autoritaire de la
-// section (elle reçoit le lien du menu principal depuis toutes les pages) et
-// ne transmettait rien à ses enfants : c'était un cul-de-sac dans le maillage.
-const landings = [
-  {
-    titre: "Création de logo",
-    href: "/services/creation-logo/",
-    prix: "dès 1 500 CHF",
-    body: "Cadrage stratégique, 3 à 5 concepts distincts, déclinaisons complètes et brandbook de 20 à 40 pages.",
-  },
-  {
-    titre: "Identité visuelle",
-    href: "/services/identite-visuelle/",
-    prix: "4 000 à 15 000 CHF",
-    body: "Palette, typographies, gabarits et règles d'usage, réunis dans une charte graphique de 30 à 60 pages.",
-  },
-  {
-    titre: "Création de site internet",
-    href: "/services/site-internet/",
-    prix: "dès 3 000 CHF",
-    body: "Site vitrine, e-commerce ou application web, livré rapide, sécurisé et prêt pour le référencement.",
-  },
-  {
-    titre: "Référencement naturel",
-    href: "/services/referencement-naturel/",
-    prix: "audit dès 800 CHF",
-    body: "Audit technique, recherche de mots-clés, contenu et netlinking, avec un suivi mensuel des positions.",
-  },
-  {
-    titre: "Stratégie de marque",
-    href: "/services/strategie-de-marque/",
-    prix: "cadrage 3 à 5 semaines",
-    body: "Positionnement, plateforme de marque, personas et ton de voix, livrés dans un document actionnable.",
-  },
-  {
-    titre: "Réseaux sociaux",
-    href: "/services/reseaux-sociaux/",
-    prix: "dès 1 500 CHF/mois",
-    body: "Ligne éditoriale, production de contenus, animation quotidienne de la communauté et reporting mensuel.",
-  },
-];
-
 export default function ServicesPage() {
   const [onglet, setOnglet] = useState<"crea" | "web">("crea");
-  const services = onglet === "crea" ? servicesCrea : servicesWeb;
+  // Les deux jeux sont rendus, on bascule la visibilité en CSS : garder les
+  // 6 liens dans le HTML statique, sinon la moitié échappe au crawl (Google
+  // ne clique pas sur un onglet).
+  const onglets = [
+    { cle: "crea" as const, services: servicesCrea },
+    { cle: "web" as const, services: servicesWeb },
+  ];
 
   return (
     <main>
@@ -313,51 +289,30 @@ export default function ServicesPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {services.map((s) => (
-            <div
-              key={s.title}
-              className="rounded-[24px] bg-kinome-cream p-10 text-left md:text-center"
-            >
-              <h2 className="mb-6 font-heading text-[1.6rem] font-semibold leading-[1.2]">
-                {s.title}
-              </h2>
-              <p className="font-body text-[1rem] leading-[1.6] text-kinome-grey">
-                {s.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Les 6 prestations détaillées — passerelle du hub vers ses landings */}
-      <section className="mx-auto max-w-[1400px] px-[5%] py-9 sm:py-[60px]">
-        <h2 className="mb-4 font-heading text-[clamp(26px,4.8vw,56px)] font-normal leading-[1.1]">
-          Nos prestations en détail
-        </h2>
-        <p className="mb-8 max-w-[760px] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.6] text-kinome-grey sm:mb-12">
-          Chaque prestation a sa page dédiée : le périmètre exact, la méthode,
-          les livrables, les délais et les fourchettes de prix.
-        </p>
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {landings.map((l) => (
-            <li key={l.href}>
+        {onglets.map((o) => (
+          <div
+            key={o.cle}
+            className={`grid grid-cols-1 gap-8 lg:grid-cols-3 ${
+              onglet === o.cle ? "" : "hidden"
+            }`}
+            aria-hidden={onglet !== o.cle}
+          >
+            {o.services.map((s) => (
               <Link
-                href={l.href}
-                className="group flex h-full flex-col rounded-[20px] bg-kinome-cream p-7 transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)]"
+                key={s.title}
+                href={s.href}
+                className="group flex flex-col rounded-[24px] bg-kinome-cream p-10 text-left transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)] lg:text-center"
               >
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-heading text-[1.3rem] font-semibold leading-[1.25] text-kinome-black transition-colors group-hover:text-kinome-accent">
-                    {l.titre}
-                  </h3>
-                  <span className="whitespace-nowrap font-body text-[0.78rem] font-light text-kinome-grey">
-                    {l.prix}
-                  </span>
-                </div>
-                <p className="mt-3 flex-1 font-body text-[0.98rem] font-light leading-[1.55] text-kinome-grey">
-                  {l.body}
+                <h2 className="mb-2 font-heading text-[1.6rem] font-semibold leading-[1.2] text-kinome-black transition-colors group-hover:text-kinome-accent">
+                  {s.title}
+                </h2>
+                <p className="mb-6 font-body text-[0.85rem] font-light text-kinome-grey">
+                  {s.prix}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-2 font-heading text-[0.92rem] font-semibold text-kinome-black transition-colors group-hover:text-kinome-accent">
+                <p className="flex-1 font-body text-[1rem] leading-[1.6] text-kinome-grey">
+                  {s.body}
+                </p>
+                <span className="mt-8 inline-flex items-center justify-center gap-2 font-heading text-[0.95rem] font-semibold text-kinome-black transition-colors group-hover:text-kinome-accent">
                   Découvrir le service
                   <span
                     aria-hidden="true"
@@ -367,9 +322,9 @@ export default function ServicesPage() {
                   </span>
                 </span>
               </Link>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        ))}
       </section>
 
       {/* Comment les prestations se déroulent ? */}
