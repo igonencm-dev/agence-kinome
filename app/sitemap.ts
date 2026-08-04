@@ -165,6 +165,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.85,
     },
+    {
+      url: `${base}/services/referencement-naturel/`,
+      lastModified: new Date("2026-08-04"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
   ];
 
   return [...pairedPages, ...servicePages, ...projetPages, ...blogPages];

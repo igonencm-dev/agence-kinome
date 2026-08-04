@@ -57,6 +57,15 @@ const SERVICES: Service[] = [
     image: "/assets/projets/causerie-bot/1.png",
     alt: "Site internet de Causerie Bot réalisé par Kinome",
   },
+  {
+    titre: "Référencement naturel",
+    href: "/services/referencement-naturel/",
+    resume:
+      "Audit technique, mots-clés, contenu et netlinking, pour être trouvé là où vos clients cherchent.",
+    prix: "audit dès 800 CHF",
+    image: "/assets/projets/no-code/1.png",
+    alt: "Projet NOCODE IA, organisme de formation accompagné par Kinome",
+  },
 ];
 
 type Props = {
@@ -102,7 +111,7 @@ export default function ServicesMegaMenu({
           Nos prestations
         </p>
 
-        <ul className="grid grid-cols-3 gap-8">
+        <ul className="grid grid-cols-4 gap-6">
           {SERVICES.map((s) => (
             <li key={s.href}>
               <Link href={s.href} onClick={onClose} className="group block">

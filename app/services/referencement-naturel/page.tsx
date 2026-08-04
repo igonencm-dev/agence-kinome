@@ -11,263 +11,270 @@ import {
 } from "../../lib/seo";
 
 // ---------------------------------------------------------------------------
-// Page service « Création de logo » — intégration du design Figma de Tanguy
-// (node 2167:173 « Services - Logo »).
+// Page service « Référencement naturel » — design Figma de Tanguy
+// (node 2187:2283 « Services - Référencement »).
 //
-// Structure fidèle au design : hero sombre, chiffres, définition du logo,
-// principes, méthode, processus 01-06, résultat final, services connexes,
-// portfolio, FAQ, témoignages.
+// SEO : c'est la page la plus attendue du plan d'août. « référencement naturel
+// genève » sortait déjà en position 5,5 avec 104 impressions par mois sans
+// aucune page de conversion derrière : les visiteurs nous trouvaient et
+// repartaient. Cette page est ce point d'arrivée.
 //
-// SEO / AEO : cible transactionnelle « création de logo Genève » (position 6,1
-// en juillet côté article). Cette page devient le point d'arrivée commercial
-// du cluster logo, /services/identite-visuelle/ se recentre sur l'identité
-// complète pour éviter la cannibalisation. Chaque H2 est une question ou une
-// promesse indexable, la FAQ est balisée FAQPage.
+// AEO / GEO : chaque H2 est une question réelle d'internaute, la FAQ couvre les
+// 5 objections commerciales classiques, les fourchettes de prix et les délais
+// sont énoncés en clair (c'est ce que les moteurs de réponse citent), et le
+// JSON-LD déclare le service avec ses offres chiffrées.
 // ---------------------------------------------------------------------------
 
 export const metadata = buildMetadata({
-  title: "Création de logo à Genève",
+  title: "Référencement naturel à Genève",
   description:
-    "Création de logo à Genève : 3 à 5 concepts, livraison en 2 à 3 semaines, pack complet et brandbook. À partir de 1 500 CHF. Diagnostic de 30 minutes offert.",
-  path: "/services/creation-logo/",
+    "Agence SEO à Genève : audit technique, mots-clés, contenu et netlinking. Premiers résultats durables en 3 à 6 mois. Audit dès 800 CHF, suivi dès 800 CHF/mois.",
+  path: "/services/referencement-naturel/",
   keywords: [
-    "création de logo Genève",
-    "créer un logo à Genève",
-    "designer logo Genève",
-    "agence de logo Suisse romande",
-    "prix création logo",
+    "référencement naturel Genève",
+    "agence SEO Genève",
+    "consultant SEO Suisse romande",
+    "audit SEO Genève",
+    "prix référencement naturel",
+    "être visible sur Google Genève",
   ],
 });
 
 /* --------------------------------- Données -------------------------------- */
 
 const CHIFFRES = [
-  { valeur: "3 à 5", label: "Concepts proposés" },
-  { valeur: "2 à 3", label: "Semaines de livraison" },
-  { valeur: "20 à 40", label: "Pages de brandbook" },
-  { valeur: "100%", label: "Sur-mesure, zéro template" },
+  { valeur: "93 %", label: "Des parcours d'achat démarrent sur un moteur de recherche" },
+  { valeur: "1 à 3", label: "Positions Google visées en priorité" },
+  { valeur: "3 à 6", label: "Mois pour les premiers résultats durables" },
+  { valeur: "100 %", label: "Stratégie sur mesure, zéro pratique à risque" },
 ];
 
-const COMPOSANTS = [
+const PILIERS = [
   {
-    titre: "Un symbole ou un monogramme",
-    body: "L'élément iconique, parfois autonome, souvent décliné seul sur les petits formats (favicon, réseaux sociaux, packaging).",
+    titre: "Le SEO technique",
+    body: "La fondation : vitesse de chargement, structure du site, compatibilité mobile, sécurité. Autant de critères que Google évalue avant même de lire votre contenu.",
   },
   {
-    titre: "Un logotype",
-    body: "Le nom de la marque mis en forme par une typographie travaillée, avec un espacement, une graisse et un rythme propres à l'entreprise.",
+    titre: "Le SEO de contenu",
+    body: "Les mots, les pages et les réponses que vous apportez aux questions que se posent réellement vos futurs clients sur Google.",
   },
   {
-    titre: "Une combinaison",
-    body: "Symbole et logotype assemblés, avec des règles précises de proportion et de zone de protection entre les deux.",
+    titre: "Le SEO off-site",
+    body: "La réputation et l'autorité du site aux yeux de Google, notamment via les liens externes qui pointent vers vos pages.",
   },
 ];
 
-const PRINCIPES = [
+const ENJEUX = [
   {
-    titre: "7 secondes",
-    body: "C'est le temps moyen qu'il faut à un visiteur pour se forger une première impression d'une marque à partir de son identité visuelle.",
+    titre: "Top 3",
+    body: "Les trois premiers résultats Google concentrent la grande majorité des clics sur une recherche donnée.",
   },
   {
-    titre: "Plus de cohérence",
-    body: "Un logo actuel et modulaire s'adapte à tous les supports : site, réseaux sociaux, print, signalétique, sans perte de lisibilité.",
+    titre: "Trafic durable",
+    body: "Contrairement à la publicité payante, une position acquise en SEO continue de générer du trafic sans coût par clic.",
   },
   {
-    titre: "Moins de friction",
-    body: "Une image professionnelle réduit les objections commerciales liées au sérieux perçu de l'entreprise, avant même le premier échange.",
+    titre: "Confiance",
+    body: "Un site rapide, structuré et bien positionné rassure autant Google que les visiteurs qui l'atteignent.",
   },
 ];
 
 const METHODE = [
   {
     n: "01",
-    titre: "Comprendre la marque avant de dessiner",
-    body: "Mission, valeurs, positionnement, cible et concurrence sont analysés en premier lieu. Un logo réussi traduit une stratégie, il ne la précède jamais.",
+    titre: "Comprendre le marché avant d'optimiser",
+    body: "Recherches des internautes, positionnement des concurrents et état actuel du site sont analysés en premier lieu. Un SEO efficace répond à une demande réelle, il ne l'invente pas.",
   },
   {
     n: "02",
-    titre: "Explorer un territoire visuel",
-    body: "Formes, typographies, couleurs et références sont rassemblées pour définir un univers graphique cohérent, validé avant toute création finale.",
+    titre: "Corriger les fondations techniques",
+    body: "Vitesse, indexation, structure des pages et compatibilité mobile sont assainies en priorité : sans base technique saine, aucun contenu ne peut bien se positionner.",
   },
   {
     n: "03",
-    titre: "Créer plusieurs pistes distinctes",
-    body: "Plusieurs concepts sont développés en parallèle, chacun porteur d'une intention différente, pour offrir un vrai choix plutôt qu'une seule proposition.",
+    titre: "Créer du contenu qui répond aux recherches",
+    body: "Chaque page est pensée pour répondre précisément à une intention de recherche, avec les mots-clés que vos clients utilisent réellement.",
   },
   {
     n: "04",
-    titre: "Affiner jusqu'à la précision",
-    body: "La piste retenue est ajustée dans le détail : proportions, courbes, espacements, couleurs, jusqu'à obtenir un symbole net à toutes les échelles.",
+    titre: "Renforcer l'autorité du site",
+    body: "Des liens externes de qualité et des signaux de confiance sont développés pour asseoir la crédibilité du site aux yeux de Google.",
   },
   {
     n: "05",
-    titre: "Construire les déclinaisons",
-    body: "Le logo est décliné en plusieurs versions et intégré dans un système de marque complet, prêt à être utilisé sur tous les supports.",
+    titre: "Mesurer, ajuster, répéter",
+    body: "Les positions et le trafic sont suivis en continu, pour ajuster la stratégie de contenu selon ce qui fonctionne réellement.",
   },
 ];
 
 const PROCESSUS = [
   {
     n: "01",
-    titre: "Cadrage et direction stratégique",
-    body: "On ne dessine pas un logo au hasard. Cette première étape pose l'ADN de la marque (mission, vision, valeurs), sa cible et son positionnement, l'univers concurrentiel, ainsi que les premières intentions créatives : mots-clés et territoire visuel.",
-    note: "Livrable : brief créatif écrit et validé",
+    titre: "Audit et diagnostic technique",
+    body: "On n'optimise pas un site au hasard. Cette première étape analyse l'état technique du site (vitesse, indexation, structure, mobile), son positionnement actuel sur Google, et l'univers concurrentiel sur vos recherches cibles.",
+    note: "Livrable : rapport d'audit SEO complet",
   },
   {
     n: "02",
-    titre: "Recherche et inspirations",
-    body: "Une exploration visuelle permet d'aligner la direction avant la création : moodboard de styles, couleurs et typographies, références graphiques cohérentes, et premières pistes d'univers.",
-    note: "Objectif : valider une direction avant création",
+    titre: "Recherche de mots-clés et stratégie",
+    body: "Une exploration des recherches réelles de vos futurs clients permet de définir les mots-clés prioritaires, le volume et la difficulté associés, ainsi qu'une première architecture de contenu.",
+    note: "Objectif : valider une stratégie avant production",
   },
   {
     n: "03",
-    titre: "Création de pistes",
-    body: "De 3 à 5 concepts distincts sont développés, chacun porteur d'une intention et d'une lecture différente de votre marque.",
+    titre: "Optimisation technique et on-page",
+    body: "Les corrections techniques prioritaires sont déployées, et chaque page ciblée est optimisée : balises, structure, contenu, maillage interne.",
   },
   {
     n: "04",
-    titre: "Sélection et ajustements",
-    body: "Une piste principale est choisie, puis ajustée avec précision : formes, proportions, couleurs. Les retouches se poursuivent jusqu'à validation complète, sans jamais repartir de zéro.",
-    note: "Objectif : affiner sans repartir de zéro",
+    titre: "Production de contenu",
+    body: "Des pages et des articles sont rédigés pour répondre précisément aux intentions de recherche identifiées. Les contenus existants sont retravaillés jusqu'à validation complète, sans repartir de zéro.",
+    note: "Objectif : un contenu qui répond vraiment aux recherches",
   },
   {
     n: "05",
-    titre: "Déclinaisons et brandboard",
-    body: "L'univers autour du logo est développé : variantes (horizontale, verticale, icône seule), palette de couleurs, typographies associées, et mises en situation en mockups.",
-    note: "Livrable : brandboard cohérent",
+    titre: "Netlinking et autorité",
+    body: "Des liens externes de qualité sont développés pour renforcer la crédibilité du site aux yeux de Google, en évitant toute pratique risquée pouvant pénaliser le site.",
+    note: "Livrable : plan de netlinking",
   },
   {
     n: "06",
-    titre: "Livraison finale",
-    body: "Un pack complet est remis, prêt à l'usage sur tous vos supports, print comme digital, accompagné d'un guide d'utilisation détaillé.",
-    note: "Livrable : pack complet + brandbook",
+    titre: "Suivi et reporting mensuel",
+    body: "Les positions, le trafic et les conversions sont suivis en continu, avec un rapport mensuel clair et des ajustements réguliers de la stratégie.",
+    note: "Livrable : rapport mensuel + plan d'action",
   },
 ];
 
 const RESULTAT = [
   {
-    icon: "/assets/services/logo/formats-vectoriels.svg",
-    titre: "Formats vectoriels et images",
-    body: "SVG, PNG, AI et EPS, pour une exploitation sans perte de qualité, du web au grand format print.",
+    icon: "/assets/services/seo/rapport-audit.svg",
+    titre: "Rapport d'audit détaillé",
+    body: "Un diagnostic complet de l'état technique et concurrentiel du site, avec les priorités d'action classées par impact.",
   },
   {
-    icon: "/assets/services/logo/digital-impression.svg",
-    titre: "Digital et impression",
-    body: "Versions RVB pour le digital et CMJN pour l'impression, calibrées pour un rendu fidèle sur tous les supports.",
+    icon: "/assets/services/seo/mots-cles.svg",
+    titre: "Liste de mots-clés stratégiques",
+    body: "Les recherches prioritaires identifiées, avec le volume, la difficulté et l'intention associés à chacune.",
   },
   {
-    icon: "/assets/services/logo/clair-sombre.svg",
-    titre: "Clair, sombre, monochrome",
-    body: "Des versions adaptées à tous les fonds, pour garantir la lisibilité du logo en toute circonstance.",
+    icon: "/assets/services/seo/pages-optimisees.svg",
+    titre: "Pages optimisées et indexées",
+    body: "Des pages structurées et rédigées pour Google comme pour vos visiteurs, prêtes à être positionnées.",
   },
   {
-    icon: "/assets/services/logo/declinaisons.svg",
-    titre: "Standard, horizontale, verticale",
-    body: "Versions symbole seul et simplifiée, pour s'adapter aux contraintes d'espace de chaque support.",
+    icon: "/assets/services/seo/liens-externes.svg",
+    titre: "Liens externes de qualité",
+    body: "Un maillage externe construit progressivement pour renforcer l'autorité du site, sans pratique à risque.",
   },
   {
-    icon: "/assets/services/logo/brandbook.svg",
-    titre: "Brandbook de 20 à 40 pages",
-    body: "Règles d'utilisation, interdits graphiques, zones de protection et exemples d'application concrets, pour que le logo reste cohérent quelle que soit la personne qui le manipule.",
+    icon: "/assets/services/seo/rapport-mensuel.svg",
+    titre: "Rapport mensuel de performance",
+    body: "Positions, trafic organique et conversions suivis dans un rapport clair, accompagné d'un plan d'action pour le mois suivant.",
   },
   {
-    icon: "/assets/services/logo/symbole-durable.svg",
-    titre: "Un symbole prêt à durer",
-    body: "Un logo pensé pour rester pertinent plusieurs années, sans nécessiter de refonte au premier changement de tendance.",
+    icon: "/assets/services/seo/visibilite-durable.svg",
+    titre: "Une visibilité qui dure",
+    body: "Un référencement pensé pour continuer à générer du trafic longtemps après les premières actions, sans dépendre d'un budget publicitaire.",
   },
 ];
 
+// Le Figma plaçait « Référencement SEO » dans cette grille, sur la page
+// référencement elle-même : reste d'un copier-coller depuis la page logo. On
+// pointe vers les trois autres landings réellement en ligne, ce qui referme
+// aussi le maillage entre pages services.
 const SERVICES_LIES = [
   {
-    icon: "/assets/services/logo/service-identite.svg",
+    icon: "/assets/services/logo/formats-vectoriels.svg",
+    titre: "Création de logo",
+    body: "Le signe qui vous identifie : cadrage stratégique, 3 à 5 concepts distincts et pack complet livré.",
+    href: "/services/creation-logo/",
+  },
+  {
+    icon: "/assets/services/seo/service-identite.svg",
     titre: "Identité visuelle",
-    body: "Palette de couleurs, typographies, iconographie et règles d'usage : le système graphique complet qui entoure votre logo.",
+    body: "Palette de couleurs, typographies, iconographie et règles d'usage : le système graphique complet de votre marque.",
     href: "/services/identite-visuelle/",
   },
   {
-    icon: "/assets/services/logo/service-social.svg",
-    titre: "Social média",
-    body: "Direction artistique et gestion de vos réseaux sociaux, pour faire vivre votre identité au quotidien auprès de votre audience.",
-    href: "/services/",
-  },
-  {
-    icon: "/assets/services/logo/service-seo.svg",
-    titre: "Référencement naturel",
-    body: "Une stratégie de contenu et une structure technique pensées pour être identifié durablement dans les recherches Google.",
-    href: "/services/referencement-naturel/",
+    // Icône de page web reprise des livrables : Tanguy n'a pas encore dessiné
+    // d'icône dédiée au service « site internet ».
+    icon: "/assets/services/seo/pages-optimisees.svg",
+    titre: "Création de site internet",
+    body: "Un site rapide et bien structuré, la base technique sans laquelle aucun contenu ne se positionne durablement.",
+    href: "/services/site-internet/",
   },
 ];
 
 const PORTFOLIO = [
   {
     img: "/assets/wp/Adapt-Project-780x390px-1.png",
-    alt: "Logo et identité visuelle d'Adapt Project, réalisés par Kinome",
+    alt: "Adapt Project, marque accompagnée par Kinome",
     href: "/projets/adapt-project/",
   },
   {
     img: "/assets/wp/Cabinet-Faraday-780x390px-1.png",
-    alt: "Logo du Cabinet Faraday, cabinet dentaire pédiatrique",
+    alt: "Cabinet Faraday, cabinet dentaire pédiatrique accompagné par Kinome",
     href: "/projets/cabinet-faraday/",
   },
   {
     img: "/assets/wp/Alministratif-780x390px-1.png",
-    alt: "Logo d'Alministratif, service d'accompagnement administratif",
+    alt: "Alministratif, service d'accompagnement administratif",
     href: "/projets/alministratif/",
   },
   {
     img: "/assets/wp/Authentik-Peak-780x390px-1.png",
-    alt: "Logo mascotte d'Authentik Peak, organisme de formation",
+    alt: "Authentik Peak, organisme de formation accompagné par Kinome",
     href: "/projets/authentik-peak/",
   },
 ];
 
-// Les 4 dernières réponses complètent celle rédigée dans le design, en
-// cohérence avec les fourchettes déjà publiées sur le blog (1 500 à 5 000 CHF
-// pour un logo seul, 4 000 à 15 000 CHF pour une identité complète).
+// Les 5 questions viennent du design. Les réponses reprennent les fourchettes
+// déjà publiées sur le blog (audit 800 à 3 000 CHF, suivi 800 à 2 500 CHF par
+// mois) pour que le site dise partout la même chose.
 const FAQ = [
   {
-    q: "Combien de temps prend la création d'un logo ?",
-    a: "Une création de logo seule se livre généralement en 2 à 3 semaines, cadrage compris. Si le projet inclut une identité visuelle complète avec charte graphique, comptez plutôt 4 à 8 semaines selon le périmètre. Votre réactivité sur les validations influence directement le planning.",
+    q: "Au bout de combien de temps voit-on des résultats en SEO ?",
+    a: "Les premiers effets techniques sont souvent visibles en quelques semaines, mais des positions durables sur des recherches concurrentielles demandent généralement 3 à 6 mois de travail continu. Le référencement local, lui, bouge plus vite : 4 à 8 semaines suffisent souvent sur des requêtes peu disputées. Le SEO reste un investissement de moyen à long terme, pas un levier d'urgence.",
   },
   {
-    q: "Combien coûte la création d'un logo à Genève ?",
-    a: "À Genève, un logo professionnel se situe entre 1 500 et 5 000 CHF selon la complexité du projet et le nombre de déclinaisons attendues. Une identité visuelle complète, qui ajoute la charte graphique et les déclinaisons sur vos supports, se situe entre 4 000 et 15 000 CHF. Nous établissons toujours un devis détaillé après le cadrage.",
+    q: "Combien coûte une prestation de référencement naturel à Genève ?",
+    a: "À Genève, un audit SEO complet se situe généralement entre 800 et 3 000 CHF selon la taille du site. Un accompagnement mensuel, qui couvre le contenu, les optimisations techniques et le suivi, démarre autour de 800 CHF par mois et monte jusqu'à 2 500 CHF selon l'ambition et la concurrence sur vos mots-clés. Nous établissons toujours un devis après l'audit, jamais avant.",
   },
   {
-    q: "Combien de concepts de logo sont proposés ?",
-    a: "De 3 à 5 concepts distincts vous sont présentés, chacun porteur d'une intention et d'une lecture différentes de votre marque. L'objectif est de vous offrir un vrai choix stratégique, pas des variantes cosmétiques du même dessin. La piste retenue est ensuite affinée jusqu'à validation, sans repartir de zéro.",
+    q: "Quelle est la différence entre le SEO et les Google Ads ?",
+    a: "Les Google Ads achètent une position : la visibilité est immédiate mais s'arrête net dès que le budget s'arrête. Le SEO construit une position : c'est plus lent, mais le trafic acquis continue d'arriver sans coût par clic. Les deux sont complémentaires. En pratique, nous recommandons souvent les Ads pour tester rapidement des messages et le SEO pour installer une visibilité qui tient dans la durée.",
   },
   {
-    q: "Ai-je les droits complets sur mon logo une fois livré ?",
-    a: "Oui. À la livraison et au paiement du solde, vous détenez la pleine propriété du logo et de ses déclinaisons, sans limite de durée, de territoire ni de support. Vous recevez également les fichiers sources vectoriels, ce qui vous laisse totalement libre de votre prestataire pour la suite.",
+    q: "Le référencement naturel fonctionne-t-il pour toutes les entreprises ?",
+    a: "Il fonctionne dès lors que des gens cherchent activement ce que vous proposez. Pour un commerce, un cabinet ou un artisan à Genève, le référencement local donne des résultats rapides et très rentables. Pour un marché de niche où personne ne fait de recherche, le SEO seul ne suffira pas et il vaut mieux investir ailleurs. C'est précisément ce que l'audit tranche, avant tout engagement.",
   },
   {
-    q: "Puis-je demander des retouches après la livraison ?",
-    a: "Les allers-retours d'ajustement sont inclus dans la phase de sélection, jusqu'à validation complète du logo. Après la livraison finale, une évolution du logo ou une déclinaison supplémentaire fait l'objet d'un devis court, généralement à l'heure. Le brandbook est justement conçu pour limiter ce besoin en documentant tous les cas d'usage.",
+    q: "Utilisez-vous des pratiques risquées pour aller plus vite ?",
+    a: "Non. Achat massif de liens, contenu généré en masse, pages satellites : ces techniques peuvent donner un gain court puis faire chuter durablement un site lors d'une mise à jour d'algorithme. Nous travaillons uniquement avec des méthodes conformes aux consignes de Google, ce qui est plus lent mais ne met jamais votre site en danger.",
   },
 ];
 
 const BLOG_LINKS = [
   {
-    href: "/blog/etude-de-cas-logo-tampon-audition/",
-    label: "Étude de cas : le logo de Tampon Audition, du croquis à l'enseigne",
+    href: "/blog/seo-referencement-naturel-geneve/",
+    label: "SEO à Genève : les 3 piliers, les délais et les coûts réels",
   },
   {
-    href: "/blog/creation-logo-geneve-processus/",
-    label: "Création de logo à Genève : prix, étapes et erreurs à éviter",
+    href: "/blog/referencement-local-google-maps-geneve/",
+    label: "Référencement local : entrer dans le top 3 de Google Maps",
   },
   {
-    href: "/blog/creer-identite-visuelle-entreprise-geneve/",
-    label: "Créer une identité visuelle d'entreprise : le guide complet",
+    href: "/blog/creation-site-internet-geneve-guide/",
+    label: "Créer un site internet à Genève : le guide complet",
   },
   {
-    href: "/blog/tarifs-agence-communication-geneve/",
-    label: "Les tarifs d'une agence de communication à Genève en 2026",
+    href: "/blog/erreurs-refonte-site-web/",
+    label: "Refonte de site : 6 erreurs qui font perdre son référencement",
   },
 ];
 
 /* --------------------------------- Styles --------------------------------- */
-// Classes répétées, factorisées pour garder le JSX lisible.
+// Échelle alignée sur /services/creation-logo/ et /services/identite-visuelle/.
 const H2 =
   "font-heading text-[clamp(26px,3.6vw,44px)] font-normal leading-[1.14] text-kinome-black";
 const LEAD =
@@ -280,38 +287,37 @@ const PILL_DARK =
   "btn-fill-accent inline-flex min-w-[240px] items-center justify-center rounded-full bg-kinome-black px-8 py-4 text-center font-body text-[1rem] font-semibold text-white transition-transform duration-300 hover:scale-105";
 const STEP_NUM =
   "font-body text-[clamp(30px,3vw,48px)] font-thin leading-none text-kinome-black";
-// Micro-interaction des cartes : léger soulèvement + ombre au survol, dans le
-// vocabulaire du site (hover:scale + transition courte).
 const CARD_HOVER =
   "transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_rgba(0,0,0,0.18)]";
 
-export default function CreationLogoPage() {
+export default function ReferencementNaturelPage() {
   const service = {
     ...serviceJsonLd(
-      "Création de logo à Genève",
-      "Création de logo sur-mesure à Genève : cadrage stratégique, 3 à 5 concepts, déclinaisons complètes et brandbook de 20 à 40 pages."
+      "Référencement naturel (SEO) à Genève",
+      "Prestation de référencement naturel à Genève : audit technique, recherche de mots-clés, optimisation on-page, production de contenu, netlinking et suivi mensuel."
     ),
-    // Fourchettes déclarées explicitement : c'est ce que les moteurs de réponse
-    // citent quand on leur demande combien coûte un logo à Genève.
+    // Les offres chiffrées sont ce que les moteurs de réponse citent quand on
+    // leur demande « combien coûte le SEO à Genève ».
     offers: [
       {
         "@type": "Offer",
-        name: "Création de logo",
+        name: "Audit SEO complet",
         priceSpecification: {
           "@type": "PriceSpecification",
-          minPrice: 1500,
-          maxPrice: 5000,
+          minPrice: 800,
+          maxPrice: 3000,
           priceCurrency: "CHF",
         },
       },
       {
         "@type": "Offer",
-        name: "Identité visuelle complète (logo + charte graphique)",
+        name: "Accompagnement SEO mensuel",
         priceSpecification: {
-          "@type": "PriceSpecification",
-          minPrice: 4000,
-          maxPrice: 15000,
+          "@type": "UnitPriceSpecification",
+          minPrice: 800,
+          maxPrice: 2500,
           priceCurrency: "CHF",
+          unitCode: "MON",
         },
       },
     ],
@@ -319,7 +325,7 @@ export default function CreationLogoPage() {
   const breadcrumb = breadcrumbJsonLd([
     { name: "Accueil", url: "/" },
     { name: "Services", url: "/services/" },
-    { name: "Création de logo", url: "/services/creation-logo/" },
+    { name: "Référencement naturel", url: "/services/referencement-naturel/" },
   ]);
   const faq = faqJsonLd(FAQ.map((f) => ({ question: f.q, answer: f.a })));
 
@@ -342,34 +348,29 @@ export default function CreationLogoPage() {
       <section className="relative isolate flex min-h-[clamp(560px,90vh,900px)] items-end overflow-hidden bg-kinome-dark">
         <img
           src="/assets/services/logo/hero-creation-logo.webp"
-          alt="Carte de visite Microclimat posée sur une pierre, logo créé par Kinome"
+          alt="Carte de visite Microclimat posée sur une pierre, projet Kinome"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
         />
-        {/* Voile sombre : garantit le contraste AA du texte blanc sur une photo
-            très claire. Sur grand écran il s'allège vers la droite pour laisser
-            respirer la carte de visite, le texte restant calé à gauche. */}
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,17,17,0.80)_0%,rgba(17,17,17,0.66)_45%,rgba(17,17,17,0.88)_100%)] lg:bg-[linear-gradient(100deg,rgba(17,17,17,0.90)_0%,rgba(17,17,17,0.78)_38%,rgba(17,17,17,0.46)_72%,rgba(17,17,17,0.38)_100%)]"
         />
         <div className="relative mx-auto w-full max-w-[1588px] px-[5%] pb-[clamp(56px,8vw,120px)] pt-[clamp(140px,18vw,300px)]">
-          {/* Entrée du hero en CSS pur (pas d'IntersectionObserver above the
-              fold, sinon flash au chargement). `text-focus-in` est le keyframe
-              de la charte, jusqu'ici défini mais inutilisé. */}
           <h1
-            className="max-w-[16ch] font-heading text-[clamp(34px,5.5vw,64px)] font-normal leading-[1.12] text-white motion-reduce:!animate-none"
+            className="max-w-[18ch] font-heading text-[clamp(34px,5.5vw,64px)] font-normal leading-[1.12] text-white motion-reduce:!animate-none"
             style={{ animation: "text-focus-in 900ms cubic-bezier(0.22,1,0.36,1) both" }}
           >
-            Création de logo à Genève
+            Référencement naturel et visibilité Google
           </h1>
           <p
-            className="mt-[clamp(20px,3vw,44px)] max-w-[52ch] font-body text-[clamp(17px,1.5vw,21px)] font-light leading-[1.5] text-white/90 motion-reduce:!animate-none"
+            className="mt-[clamp(20px,3vw,44px)] max-w-[56ch] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.5] text-white/90 motion-reduce:!animate-none"
             style={{ animation: "kinome-fade-in 800ms 220ms ease-out both" }}
           >
-            Un logo n'est pas une image, c'est la première promesse que fait
-            votre marque. Nous concevons des identités graphiques fortes,
-            pensées pour durer et pour être reconnues au premier coup d'oeil.
+            Être bien référencé, ce n'est pas une question de chance : c'est le
+            résultat d'une stratégie de contenu et d'une structure technique
+            pensées pour Google. Nous construisons votre visibilité pour qu'on
+            vous trouve, là où vos clients cherchent.
           </p>
           <div
             className="mt-[clamp(32px,4.5vw,60px)] flex flex-col gap-4 sm:flex-row sm:flex-wrap motion-reduce:!animate-none"
@@ -409,7 +410,7 @@ export default function CreationLogoPage() {
                   </span>
                   <span
                     aria-hidden="true"
-                    className="mt-3 block font-heading text-[clamp(15px,1.3vw,20px)] font-semibold leading-[1.25] text-kinome-black"
+                    className="mx-auto mt-3 block max-w-[22ch] font-heading text-[clamp(15px,1.3vw,20px)] font-semibold leading-[1.25] text-kinome-black"
                   >
                     {c.label}
                   </span>
@@ -420,48 +421,43 @@ export default function CreationLogoPage() {
         </div>
       </section>
 
-      {/* -------------------- QU'EST-CE QU'UN LOGO, AU JUSTE ? -------------------- */}
+      {/* ------------------ QU'EST-CE QUE LE RÉFÉRENCEMENT NATUREL ------------------ */}
       <section className="bg-white px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
-              Qu'est-ce qu'un logo, au juste&nbsp;?
+              Qu'est-ce que le référencement naturel&nbsp;?
             </h2>
           </Reveal>
           <Reveal
             delay={120}
-            className="mt-[clamp(36px,5vw,90px)] grid gap-[clamp(24px,4vw,60px)] lg:grid-cols-2"
+            className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(24px,4vw,60px)] lg:grid-cols-2"
           >
             <p className={LEAD}>
-              Un logo est le signe graphique qui identifie une marque : une
-              forme, une typographie ou une combinaison des deux, conçue pour
-              être reconnue instantanément, à n'importe quelle taille et sur
-              n'importe quel support.
+              Le référencement naturel, ou SEO (<em>Search Engine
+              Optimization</em>), regroupe l'ensemble des techniques qui
+              permettent à un site d'apparaître dans les meilleures positions
+              des résultats Google, sans passer par la publicité payante.
             </p>
             <p className={BODY}>
-              Contrairement à une{" "}
-              <Link
-                href="/services/identite-visuelle/"
-                className="underline decoration-kinome-accent underline-offset-4 hover:text-kinome-accent"
-              >
-                identité visuelle complète
-              </Link>
-              , le logo n'est pas l'ensemble du système de marque : c'est son
-              point d'entrée, la signature qui condense en un seul symbole ce
-              que l'entreprise fait, comment elle le fait, et pourquoi elle le
-              fait différemment des autres.
+              Contrairement aux campagnes publicitaires (SEA), le SEO ne
+              s'achète pas au clic : il se construit dans la durée, à travers la
+              technique, le contenu et la réputation d'un site. C'est un
+              investissement qui continue de rapporter longtemps après sa mise
+              en place, contrairement à une campagne qui s'arrête dès qu'on
+              cesse de payer.
             </p>
           </Reveal>
 
           <div className="mt-[clamp(40px,6vw,90px)] grid items-start gap-[clamp(32px,5vw,80px)] lg:grid-cols-2">
             <div className="flex flex-col gap-[clamp(24px,3vw,40px)]">
-              {COMPOSANTS.map((c, i) => (
+              {PILIERS.map((c, i) => (
                 <Reveal key={c.titre} effect="fade-left" delay={i * 130}>
                   <h3 className={CARD_TITLE}>{c.titre}</h3>
                   <p className={`${BODY} mt-2`}>{c.body}</p>
                 </Reveal>
               ))}
-              <Reveal delay={COMPOSANTS.length * 130} className="mt-2">
+              <Reveal delay={PILIERS.length * 130} className="mt-2">
                 <Link href="/portfolio/" className={PILL_DARK}>
                   Découvrir nos projets
                 </Link>
@@ -473,7 +469,7 @@ export default function CreationLogoPage() {
             >
               <img
                 src="/assets/services/logo/icone-app-codecircle.webp"
-                alt="Symbole du logo Codecircle décliné en icône d'application sur un smartphone"
+                alt="Interface Codecircle sur mobile, projet web optimisé par Kinome"
                 width={554}
                 height={835}
                 loading="lazy"
@@ -484,32 +480,35 @@ export default function CreationLogoPage() {
         </div>
       </section>
 
-      {/* ---------------------------- NOS PRINCIPES ---------------------------- */}
+      {/* --------------- POURQUOI LA VISIBILITÉ CONDITIONNE LA CROISSANCE --------------- */}
       <section className="bg-kinome-cream px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
-            <h2 className={H2}>Nos principes</h2>
+            <h2 className={H2}>
+              Pourquoi la visibilité Google conditionne votre croissance
+            </h2>
           </Reveal>
           <Reveal
             delay={120}
             className="mt-[clamp(28px,4vw,60px)] grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2"
           >
             <p className={LEAD}>
-              Un logo daté envoie un signal, même involontaire : celui d'une
-              entreprise qui n'a pas suivi son époque. À l'inverse, une identité
-              actuelle rassure un prospect avant même qu'il ait lu une seule
-              ligne sur vos services.
+              Si votre site n'apparaît pas dans les premiers résultats, il
+              n'existe pas aux yeux de la grande majorité des internautes. Peu
+              de gens vont au-delà de la première page de résultats, et encore
+              moins au-delà des trois premières positions.
             </p>
             <p className={BODY}>
-              En quelques secondes, un visiteur se fait une opinion sur le
-              sérieux d'une structure à partir de son image. Un logo pensé,
-              cohérent et bien exécuté raccourcit la distance entre la première
-              impression et la confiance : il rend crédible ce que les mots
-              seuls mettent plus de temps à démontrer.
+              Être visible sur les bonnes recherches, c'est capter des visiteurs
+              qui cherchent activement une solution comme la vôtre, au moment
+              précis où ils la cherchent. C'est aussi une question de
+              crédibilité : un site bien positionné, rapide et bien structuré
+              inspire davantage confiance qu'un concurrent invisible ou mal
+              indexé.
             </p>
           </Reveal>
-          <div className="mt-[clamp(40px,6vw,90px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
-            {PRINCIPES.map((p, i) => (
+          <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-3">
+            {ENJEUX.map((p, i) => (
               <Reveal key={p.titre} delay={i * 130}>
                 <div
                   className={`flex h-full flex-col items-center justify-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(40px,6vw,90px)] text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)] ${CARD_HOVER}`}
@@ -523,20 +522,20 @@ export default function CreationLogoPage() {
         </div>
       </section>
 
-      {/* ------------------- COMMENT FAIT-ON UN LOGO QUI TIENT ------------------- */}
+      {/* ------------------- COMMENT CONSTRUIT-ON UNE VISIBILITÉ ------------------- */}
       <section className="bg-white px-[5%] py-[clamp(60px,9vw,110px)]">
         <div className="mx-auto max-w-[1588px]">
           <div className="grid gap-[clamp(20px,4vw,60px)] lg:grid-cols-2">
             <Reveal>
               <h2 className={H2}>
-                Comment fait-on un logo qui tient dans le temps
+                Comment construit-on une visibilité qui dure
               </h2>
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Un bon logo ne sort jamais d'un simple coup de crayon inspiré.
-                C'est le résultat d'une méthode, où chaque choix graphique
-                répond à une décision stratégique prise en amont.
+                Le SEO n'est jamais un coup unique. C'est une méthode continue,
+                où la technique, le contenu et l'autorité progressent ensemble,
+                étape après étape.
               </p>
               <div className="mt-[clamp(24px,3vw,44px)]">
                 <Link href="/contact/" className={PILL_DARK}>
@@ -546,12 +545,12 @@ export default function CreationLogoPage() {
             </Reveal>
           </div>
 
-          <div className="mt-[clamp(40px,6vw,90px)] grid items-start gap-[clamp(32px,5vw,80px)] lg:grid-cols-2">
+          <div className="mt-[clamp(36px,5vw,72px)] grid items-start gap-[clamp(32px,5vw,80px)] lg:grid-cols-2">
             <Reveal effect="fade-left" className="lg:sticky lg:top-24">
               <div className="group overflow-hidden rounded-[20px]">
                 <img
                   src="/assets/services/logo/brandboard-tampon-audition.webp"
-                  alt="Brandboard de Tampon Audition affiché sur un ordinateur : palette, typographie et univers photo"
+                  alt="Brandboard de Tampon Audition affiché sur un ordinateur"
                   width={1040}
                   height={1570}
                   loading="lazy"
@@ -588,14 +587,14 @@ export default function CreationLogoPage() {
             <Reveal>
               <h2 className={H2}>
                 Notre processus
-                <br className="hidden sm:block" /> de création de logo
+                <br className="hidden sm:block" /> de référencement naturel
               </h2>
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Six étapes cadrées, du premier échange jusqu'à la livraison du
-                pack complet. Chaque étape produit un livrable concret, validé
-                avant de passer à la suivante.
+                Six étapes cadrées, de l'audit initial au suivi mensuel. Chaque
+                étape produit un livrable concret, validé avant de passer à la
+                suivante.
               </p>
               <div className="mt-[clamp(24px,3vw,44px)]">
                 <Link href="/portfolio/" className={PILL_DARK}>
@@ -616,7 +615,6 @@ export default function CreationLogoPage() {
                   <span aria-hidden="true" className={STEP_NUM}>
                     {p.n}
                   </span>
-                  {/* Trait de liaison vertical entre les étapes (design Figma) */}
                   {i < PROCESSUS.length - 1 && (
                     <span
                       aria-hidden="true"
@@ -648,27 +646,18 @@ export default function CreationLogoPage() {
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Au terme du projet, vous recevez un pack complet directement
-                exploitable, quel que soit le support ou l'imprimeur, et un
-                brandbook qui garantit l'usage cohérent du logo dans le temps.
+                Le SEO est un travail continu : au-delà des livrables initiaux,
+                vous bénéficiez d'un suivi régulier qui fait progresser votre
+                visibilité mois après mois.
               </p>
             </Reveal>
           </div>
           <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] sm:grid-cols-2 lg:grid-cols-3">
             {RESULTAT.map((r, i) => (
-              // Décalage par colonne plutôt que par index : sur 3 colonnes les
-              // cartes d'une même ligne apparaissent en cascade de gauche à
-              // droite, pas en diagonale hasardeuse.
               <Reveal key={r.titre} delay={(i % 3) * 120}>
-                {/* Carte qui bascule en sombre au survol, reprise exacte de la
-                    grille d'expertises de /a-propos/. Titre et texte n'ont pas
-                    de couleur propre : ils héritent de la carte pour s'inverser
-                    avec elle. */}
                 <div className="group flex h-full cursor-default flex-col items-center rounded-[20px] bg-white px-[clamp(24px,3vw,48px)] py-[clamp(36px,4.5vw,64px)] text-center text-kinome-black shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all duration-[350ms] hover:-translate-y-1 hover:bg-kinome-dark hover:text-kinome-cream hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]">
-                  {/* Les SVG de Tanguy sont des aplats #47453C : servis en
-                      masque CSS plutôt qu'en <img>, ils prennent la couleur du
-                      texte et s'éclaircissent donc sur fond sombre. Une image
-                      resterait noire, donc invisible. */}
+                  {/* Icônes servies en masque CSS : elles prennent la couleur du
+                      texte et s'éclaircissent quand la carte passe en sombre. */}
                   <span
                     aria-hidden="true"
                     className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] bg-current transition-transform duration-500 group-hover:scale-110"
@@ -705,8 +694,9 @@ export default function CreationLogoPage() {
             </Reveal>
             <Reveal delay={140}>
               <p className={BODY}>
-                Le logo est le point de départ. Ces prestations permettent de
-                construire une présence de marque complète et cohérente.
+                Le SEO fonctionne d'autant mieux qu'il s'appuie sur une marque
+                forte et un site sain. Ces prestations complètent votre présence
+                en ligne.
               </p>
             </Reveal>
           </div>
@@ -747,7 +737,7 @@ export default function CreationLogoPage() {
         <div className="mx-auto max-w-[1588px]">
           <Reveal>
             <h2 className={`${H2} text-center`}>
-              Des logos livrés, des marques renforcées
+              Des marques que nous accompagnons durablement
             </h2>
           </Reveal>
           <div className="mt-[clamp(36px,5vw,72px)] grid gap-[clamp(20px,2.2vw,32px)] md:grid-cols-2">
@@ -781,7 +771,7 @@ export default function CreationLogoPage() {
           <Reveal>
             <h2 className={`${H2} text-center`}>
               Questions fréquentes
-              <br className="hidden sm:block" /> sur la création de logo
+              <br className="hidden sm:block" /> sur le référencement naturel
             </h2>
           </Reveal>
           <div className="mt-[clamp(36px,5vw,72px)] flex flex-col gap-[clamp(12px,1.2vw,18px)]">
@@ -855,23 +845,32 @@ export default function CreationLogoPage() {
       <Testimonials />
 
       {/* ------------------------------- CTA FINAL ------------------------------- */}
-      <section className="bg-kinome-dark px-[5%] py-[clamp(70px,10vw,130px)] text-center text-kinome-cream">
-        <Reveal className="mx-auto max-w-[820px]">
-          <h2 className="font-heading text-[clamp(28px,4vw,48px)] font-normal leading-[1.12]">
-            Vous avez un projet de logo
-            <br className="hidden sm:block" /> sur lequel échanger&nbsp;?
+      {/* Carte sombre arrondie, nouveau motif introduit par Tanguy dans ce
+          design (node 2236:6588). */}
+      <section className="bg-white px-[5%] py-[clamp(50px,7vw,110px)]">
+        <Reveal className="mx-auto max-w-[1330px] rounded-[20px] bg-kinome-dark px-[5%] py-[clamp(50px,7vw,90px)] text-center text-kinome-cream">
+          <h2 className="font-heading text-[clamp(26px,3.4vw,46px)] font-normal leading-[1.15]">
+            Un projet en tête&nbsp;?
           </h2>
-          <p className="mx-auto mt-[clamp(18px,2.4vw,32px)] max-w-[620px] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.6] text-kinome-cream/85">
-            Diagnostic stratégique offert de 30 minutes, sans engagement, pour
-            cadrer votre projet et vous dire franchement ce qui ferait sens dans
-            votre cas.
+          <p className="mx-auto mt-[clamp(16px,2.2vw,28px)] max-w-[680px] font-body text-[clamp(16px,1.35vw,19px)] font-light leading-[1.6] text-kinome-cream/85">
+            Parlez-nous de vos enjeux et de vos contraintes : nous reviendrons
+            vers vous avec une proposition cadrée. Diagnostic stratégique offert
+            de 30 minutes.
           </p>
-          <Link
-            href="/contact/"
-            className="mt-[clamp(28px,4vw,48px)] inline-flex min-w-[260px] items-center justify-center rounded-full bg-kinome-accent px-9 py-4 font-heading text-[1rem] font-bold text-white shadow-[0_8px_30px_rgba(224,64,52,0.35)] transition-transform duration-300 hover:scale-105"
-          >
-            Demander un devis
-          </Link>
+          <div className="mt-[clamp(28px,4vw,44px)] flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/contact/"
+              className="btn-fill-accent inline-flex min-w-[260px] items-center justify-center rounded-full bg-white px-8 py-4 text-center font-body text-[1rem] font-semibold text-kinome-black transition-[transform,color] duration-300 hover:scale-105 hover:text-white"
+            >
+              Discutons de votre projet
+            </Link>
+            <Link
+              href="/portfolio/"
+              className="btn-fill-white inline-flex min-w-[260px] items-center justify-center rounded-full border-2 border-white px-8 py-4 text-center font-body text-[1rem] font-semibold text-white transition-[transform,color] duration-300 hover:scale-105 hover:text-kinome-black"
+            >
+              Voir nos projets
+            </Link>
+          </div>
         </Reveal>
       </section>
     </main>
