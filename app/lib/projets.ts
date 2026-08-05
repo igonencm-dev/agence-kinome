@@ -237,7 +237,7 @@ export const projets: Projet[] = [
     slug: "authentik-peak",
     nom: "Authentik Peak",
     client: "Authentik Peak",
-    categories: ["branding", "website"],
+    categories: ["identite", "branding", "website"],
     cover:
       "/assets/wp/Authentik-Peak-780x390px-1.png",
     heroImage: "/assets/projets/authentik-peak/1.png",
@@ -511,7 +511,7 @@ export const projets: Projet[] = [
     slug: "lea-vigier",
     nom: "Léa Vigier",
     client: "Léa Vigier",
-    categories: ["website", "branding"],
+    categories: ["website"],
     cover: "/assets/projets/lea-vigier/1.png",
     heroImage: "/assets/projets/lea-vigier/1.png",
     resume:
@@ -575,7 +575,7 @@ export const projets: Projet[] = [
     slug: "vp-conseils",
     nom: "VP Conseils",
     client: "VP Conseils Immo",
-    categories: ["website", "branding"],
+    categories: ["website"],
     cover: "/assets/projets/vp-conseils/1.png",
     heroImage: "/assets/projets/vp-conseils/1.png",
     resume:
@@ -642,7 +642,7 @@ export const projets: Projet[] = [
     slug: "cryo-control",
     nom: "Cryo Control",
     client: "Cryo Control",
-    categories: ["website", "branding"],
+    categories: ["website"],
     cover: "/assets/projets/cryo-control/1.webp",
     heroImage: "/assets/projets/cryo-control/1.webp",
     resume:
@@ -655,6 +655,7 @@ export const projets: Projet[] = [
     pointFortTitle: "Vendre un produit expert sans perdre en clarté",
     pointFortBody:
       "Le défi : présenter une offre technique (cryothérapie, protocoles, gammes professionnelles et grand public) dans un parcours limpide. La maquette s'appuie sur une architecture par segment, des fiches produit épurées et un bleu glacier identitaire qui installe l'univers du froid. L'expertise (inventeur du bain froid moderne, fabrication française, vingt ans de recul) structure la réassurance à chaque étape du parcours d'achat.",
+    siteUrl: "https://www.cryocontrol.fr",
     gallery: [
       "/assets/projets/cryo-control/2.webp",
       "/assets/projets/cryo-control/3.webp",
