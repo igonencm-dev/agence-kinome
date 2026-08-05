@@ -32,7 +32,7 @@ function LogosColumn() {
           key={logo.alt}
           src={logo.src}
           alt={logo.alt}
-          className="block max-h-[80px] w-auto max-w-[200px] flex-shrink-0 object-contain opacity-80 grayscale transition-[opacity,filter] duration-300 hover:opacity-100 hover:grayscale-0"
+          className="block max-h-[104px] w-auto max-w-[250px] flex-shrink-0 object-contain opacity-80 grayscale transition-[opacity,filter] duration-300 hover:opacity-100 hover:grayscale-0"
           loading="lazy"
         />
       ))}

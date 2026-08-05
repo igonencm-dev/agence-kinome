@@ -133,79 +133,114 @@ export default function ContactForm() {
           </label>
         </div>
 
-        <input
-          type="text"
-          name="prenom"
-          placeholder={t("form_first_name", locale)}
-          aria-label={t("form_aria_first_name", locale)}
-          required
-          maxLength={80}
-          autoComplete="given-name"
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
-        />
-        <input
-          type="text"
-          name="nom"
-          placeholder={t("form_last_name", locale)}
-          aria-label={t("form_aria_last_name", locale)}
-          required
-          maxLength={80}
-          autoComplete="family-name"
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder={t("form_email", locale)}
-          aria-label={t("form_aria_email", locale)}
-          required
-          autoComplete="email"
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
-        />
-        <input
-          type="text"
-          name="societe"
-          placeholder={t("form_company", locale)}
-          aria-label={t("form_aria_company", locale)}
-          required
-          maxLength={120}
-          autoComplete="organization"
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
-        />
-        <input
-          type="text"
-          name="besoin"
-          placeholder={t("form_need", locale)}
-          aria-label={t("form_aria_need", locale)}
-          maxLength={200}
-          className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
-        />
+        <div>
+          <label htmlFor="cf-prenom" className="mb-1.5 block pl-1 font-body text-[0.8rem] font-medium text-white/70">
+            {t("form_first_name", locale)}
+          </label>
+          <input
+            id="cf-prenom"
+            type="text"
+            name="prenom"
+            placeholder={t("form_first_name", locale)}
+            required
+            maxLength={80}
+            autoComplete="given-name"
+            className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
+          />
+        </div>
+        <div>
+          <label htmlFor="cf-nom" className="mb-1.5 block pl-1 font-body text-[0.8rem] font-medium text-white/70">
+            {t("form_last_name", locale)}
+          </label>
+          <input
+            id="cf-nom"
+            type="text"
+            name="nom"
+            placeholder={t("form_last_name", locale)}
+            required
+            maxLength={80}
+            autoComplete="family-name"
+            className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
+          />
+        </div>
+        <div>
+          <label htmlFor="cf-email" className="mb-1.5 block pl-1 font-body text-[0.8rem] font-medium text-white/70">
+            {t("form_email", locale)}
+          </label>
+          <input
+            id="cf-email"
+            type="email"
+            name="email"
+            placeholder={t("form_email", locale)}
+            required
+            autoComplete="email"
+            className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
+          />
+        </div>
+        <div>
+          <label htmlFor="cf-societe" className="mb-1.5 block pl-1 font-body text-[0.8rem] font-medium text-white/70">
+            {t("form_company", locale)}
+          </label>
+          <input
+            id="cf-societe"
+            type="text"
+            name="societe"
+            placeholder={t("form_company", locale)}
+            required
+            maxLength={120}
+            autoComplete="organization"
+            className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
+          />
+        </div>
+        <div>
+          <label htmlFor="cf-besoin" className="mb-1.5 block pl-1 font-body text-[0.8rem] font-medium text-white/70">
+            {t("form_need", locale)}
+          </label>
+          <input
+            id="cf-besoin"
+            type="text"
+            name="besoin"
+            placeholder={t("form_need", locale)}
+            maxLength={200}
+            className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
+          />
+        </div>
         {/* Attribution : d'où vient le lead ? (optionnel, ajouté au message) */}
-        <select
-          name="source"
-          aria-label={t("form_source", locale)}
-          defaultValue=""
-          className="w-full cursor-pointer rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none focus-visible:ring-2 focus-visible:ring-kinome-accent"
-        >
-          <option value="">{t("form_source", locale)}</option>
-          <option value={t("form_source_google", locale)}>{t("form_source_google", locale)}</option>
-          <option value={t("form_source_ai", locale)}>{t("form_source_ai", locale)}</option>
-          <option value={t("form_source_social", locale)}>{t("form_source_social", locale)}</option>
-          <option value={t("form_source_referral", locale)}>{t("form_source_referral", locale)}</option>
-          <option value={t("form_source_event", locale)}>{t("form_source_event", locale)}</option>
-          <option value={t("form_source_other", locale)}>{t("form_source_other", locale)}</option>
-        </select>
+        <div>
+          <label htmlFor="cf-source" className="mb-1.5 block pl-1 font-body text-[0.8rem] font-medium text-white/70">
+            {t("form_source", locale)}
+          </label>
+          <select
+            id="cf-source"
+            name="source"
+            defaultValue=""
+            className="w-full cursor-pointer rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none focus-visible:ring-2 focus-visible:ring-kinome-accent"
+          >
+            <option value="">{t("form_source", locale)}</option>
+            <option value={t("form_source_google", locale)}>{t("form_source_google", locale)}</option>
+            <option value={t("form_source_ai", locale)}>{t("form_source_ai", locale)}</option>
+            <option value={t("form_source_social", locale)}>{t("form_source_social", locale)}</option>
+            <option value={t("form_source_referral", locale)}>{t("form_source_referral", locale)}</option>
+            <option value={t("form_source_event", locale)}>{t("form_source_event", locale)}</option>
+            <option value={t("form_source_other", locale)}>{t("form_source_other", locale)}</option>
+          </select>
+        </div>
 
-        <textarea
-          name="message"
-          placeholder={t("form_message", locale)}
-          aria-label={t("form_aria_message", locale)}
-          required
-          rows={6}
-          minLength={10}
-          maxLength={5000}
-          className="w-full resize-none rounded-[15px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
-        />
+        <div>
+          <label htmlFor="cf-message" className="mb-1.5 block pl-1 font-body text-[0.8rem] font-medium text-white/70">
+            {t("form_message", locale)}
+          </label>
+          <textarea
+            id="cf-message"
+            name="message"
+            placeholder={t("form_message", locale)}
+            required
+            rows={6}
+            minLength={10}
+            maxLength={5000}
+            className="w-full resize-none rounded-[15px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"
+          />
+        </div>
 
         {etat === "erreur" && (
           <p

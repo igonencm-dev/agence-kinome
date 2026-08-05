@@ -124,7 +124,10 @@ export default function ContactPage() {
           </div>
 
           <div className="mb-10">
-            <p className="mb-3 font-semibold">Contact — Mathias</p>
+            <p className="font-semibold">Contact — Mathias</p>
+            <p className="mb-3 font-body text-[0.85rem] text-kinome-grey">
+              Cofondateur — Directeur marketing &amp; stratégie
+            </p>
             <p className="text-kinome-grey">
               <a
                 href={`tel:${contact.phones.mathias.e164}`}
@@ -143,7 +146,10 @@ export default function ContactPage() {
           </div>
 
           <div className="mb-10">
-            <p className="mb-3 font-semibold">Contact — Tanguy</p>
+            <p className="font-semibold">Contact — Tanguy</p>
+            <p className="mb-3 font-body text-[0.85rem] text-kinome-grey">
+              Cofondateur — Directeur de création
+            </p>
             <p className="text-kinome-grey">
               <a
                 href={`tel:${contact.phones.tanguy.e164}`}
@@ -192,15 +198,14 @@ export default function ContactPage() {
       <section className="my-[60px] bg-kinome-cream py-[clamp(50px,8vw,80px)]">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-[5%] lg:grid-cols-[1fr_320px]">
           <div className="text-center lg:text-left">
-            <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
+            {/* Retour Pastel #152 : « Ils nous font confiance » devient le
+                titre, la trentaine de marques passe en sous-titre. */}
+            <h2 className="mb-4 font-heading text-[clamp(30px,3.8vw,56px)] font-normal leading-[1.1] text-kinome-black">
               Ils nous font confiance
-            </p>
-            {/* Retour #110 : titre doublé en taille (clamp 28-56 → 40-100)
-                pour donner le poids visuel que Tanguy souhaitait sur ce
-                compteur clé. */}
-            <h2 className="mb-6 font-heading text-[clamp(40px,7.5vw,100px)] font-normal leading-[1.05] text-kinome-black">
-              Une trentaine de marques accompagnées depuis Genève
             </h2>
+            <p className="mb-6 font-heading text-[clamp(18px,1.8vw,26px)] font-light leading-[1.35] text-kinome-dark">
+              Une trentaine de marques accompagnées depuis Genève
+            </p>
             <p className="max-w-[480px] font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.6] text-kinome-grey lg:mx-0 mx-auto">
               Identités, sites internet, campagnes — de la PME au cabinet de
               conseil, du restaurant à l&rsquo;agence de voyage, des marques

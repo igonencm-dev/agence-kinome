@@ -237,7 +237,7 @@ export const projets: Projet[] = [
     slug: "authentik-peak",
     nom: "Authentik Peak",
     client: "Authentik Peak",
-    categories: ["identite", "branding", "website"],
+    categories: ["branding", "website"],
     cover:
       "/assets/wp/Authentik-Peak-780x390px-1.png",
     heroImage: "/assets/projets/authentik-peak/1.png",
@@ -477,8 +477,8 @@ export const projets: Projet[] = [
     nom: "Causerie Bot",
     client: "CauserieBot",
     categories: ["website", "branding"],
-    cover: "/assets/projets/causerie-bot/1.png",
-    heroImage: "/assets/projets/causerie-bot/1.png",
+    cover: "/assets/projets/causerie-bot/1.webp",
+    heroImage: "/assets/projets/causerie-bot/1.webp",
     resume:
       "Site et identité d'un SaaS français de chatbot IA conversationnel, alternative européenne à Intercom et Crisp.",
     annee: "2025",
@@ -490,11 +490,11 @@ export const projets: Projet[] = [
     pointFortBody:
       "Le défi : traduire visuellement une promesse de simplicité radicale (« lancez votre bot avant la fin de votre café »). La direction artistique mise sur une typographie franche, beaucoup d'air et un système d'icônes colorées qui guide le visiteur vers les fonctionnalités clés. Le ton, à la fois rassurant et un brin malicieux, transparaît dans chaque écran : on comprend en quelques secondes ce que fait l'outil et pourquoi le choisir.",
     gallery: [
-      "/assets/projets/causerie-bot/2.png",
-      "/assets/projets/causerie-bot/3.png",
-      "/assets/projets/causerie-bot/4.png",
-      "/assets/projets/causerie-bot/5.png",
-      "/assets/projets/causerie-bot/6.png",
+      "/assets/projets/causerie-bot/2.webp",
+      "/assets/projets/causerie-bot/3.webp",
+      "/assets/projets/causerie-bot/4.webp",
+      "/assets/projets/causerie-bot/5.webp",
+      "/assets/projets/causerie-bot/6.webp",
     ],
     siteUrl: "https://causeriebot.com",
     resume_en:
@@ -511,7 +511,7 @@ export const projets: Projet[] = [
     slug: "lea-vigier",
     nom: "Léa Vigier",
     client: "Léa Vigier",
-    categories: ["identite", "website"],
+    categories: ["website", "branding"],
     cover: "/assets/projets/lea-vigier/1.png",
     heroImage: "/assets/projets/lea-vigier/1.png",
     resume:
@@ -575,7 +575,7 @@ export const projets: Projet[] = [
     slug: "vp-conseils",
     nom: "VP Conseils",
     client: "VP Conseils Immo",
-    categories: ["website", "identite"],
+    categories: ["website", "branding"],
     cover: "/assets/projets/vp-conseils/1.png",
     heroImage: "/assets/projets/vp-conseils/1.png",
     resume:
@@ -608,8 +608,8 @@ export const projets: Projet[] = [
     nom: "NOCODE IA",
     client: "NOCODE IA",
     categories: ["website", "branding"],
-    cover: "/assets/projets/no-code/1.png",
-    heroImage: "/assets/projets/no-code/1.png",
+    cover: "/assets/projets/no-code/1.webp",
+    heroImage: "/assets/projets/no-code/1.webp",
     resume:
       "Site et identité d'un centre de formation IA et no-code basé à Toulouse, certifié Qualiopi.",
     annee: "2024",
@@ -621,11 +621,11 @@ export const projets: Projet[] = [
     pointFortBody:
       "La promesse de NOCODE IA tient en une phrase : un retour sur investissement concret, sans gadget ni complexité inutile. La direction artistique reflète ce parti pris : composition franche, hiérarchie typographique nette, mise en avant des chiffres clés (732 professionnels formés, 4,9/5, +80 sessions). Les logos des outils du marché sont assumés, l'agrément Qualiopi mis en avant — tout pour rassurer rapidement et déclencher la prise de contact.",
     gallery: [
-      "/assets/projets/no-code/2.png",
-      "/assets/projets/no-code/3.png",
-      "/assets/projets/no-code/4.png",
-      "/assets/projets/no-code/5.png",
-      "/assets/projets/no-code/6.png",
+      "/assets/projets/no-code/2.webp",
+      "/assets/projets/no-code/3.webp",
+      "/assets/projets/no-code/4.webp",
+      "/assets/projets/no-code/5.webp",
+      "/assets/projets/no-code/6.webp",
     ],
     siteUrl: "https://nocodetoulouse.fr",
     resume_en:
@@ -637,6 +637,40 @@ export const projets: Projet[] = [
     pointFortTitle_en: "No jargon, straight to the point",
     pointFortBody_en:
       "NOCODE IA's promise can be stated in one sentence: a concrete return on investment, with no gimmicks or unnecessary complexity. The art direction mirrors that stance: bold composition, sharp typographic hierarchy, prominent key figures (732 professionals trained, 4.9/5, +80 sessions). The market's tool logos are owned, the Qualiopi accreditation showcased — everything to reassure visitors quickly and trigger the first contact.",
+  },
+  {
+    slug: "cryo-control",
+    nom: "Cryo Control",
+    client: "Cryo Control",
+    categories: ["website", "branding"],
+    cover: "/assets/projets/cryo-control/1.webp",
+    heroImage: "/assets/projets/cryo-control/1.webp",
+    resume:
+      "Maquettes du site e-commerce de l'inventeur français du bain froid moderne, pionnier de la cryothérapie depuis 2004.",
+    annee: "2026",
+    domaine: "Web-design",
+    role: "Web-design / Maquettes du site",
+    description:
+      "Cryo Control conçoit et fabrique en France des bains froids et solutions de cryothérapie depuis plus de vingt ans, pour les clubs sportifs professionnels, les centres de bien-être et les particuliers. Nous avons conçu les maquettes de son site e-commerce : parcours par segment (sport professionnel, santé et bien-être, particuliers), boutique avec la gamme nomade Cryopack, pages gammes (FORM Sport, FORM Premium, sur-mesure) et mise en avant de l'expertise maison.",
+    pointFortTitle: "Vendre un produit expert sans perdre en clarté",
+    pointFortBody:
+      "Le défi : présenter une offre technique (cryothérapie, protocoles, gammes professionnelles et grand public) dans un parcours limpide. La maquette s'appuie sur une architecture par segment, des fiches produit épurées et un bleu glacier identitaire qui installe l'univers du froid. L'expertise (inventeur du bain froid moderne, fabrication française, vingt ans de recul) structure la réassurance à chaque étape du parcours d'achat.",
+    gallery: [
+      "/assets/projets/cryo-control/2.webp",
+      "/assets/projets/cryo-control/3.webp",
+      "/assets/projets/cryo-control/4.webp",
+      "/assets/projets/cryo-control/5.webp",
+      "/assets/projets/cryo-control/6.webp",
+    ],
+    resume_en:
+      "E-commerce website mockups for the French inventor of the modern cold bath, a cryotherapy pioneer since 2004.",
+    domaine_en: "Web design",
+    role_en: "Web design / Website mockups",
+    description_en:
+      "Cryo Control has been designing and manufacturing cold baths and cryotherapy solutions in France for over twenty years, serving professional sports clubs, wellness centres and individuals. We designed the mockups for its e-commerce website: segment-based journeys (professional sport, health and well-being, individuals), a shop featuring the Cryopack nomad range, range pages (FORM Sport, FORM Premium, custom-made) and a strong showcase of the company's in-house expertise.",
+    pointFortTitle_en: "Selling an expert product without losing clarity",
+    pointFortBody_en:
+      "The challenge: presenting a technical offer (cryotherapy, protocols, professional and consumer ranges) within a crystal-clear journey. The mockups rely on a segment-based architecture, clean product pages and a signature glacier blue that sets the cold-therapy universe. The company's expertise (inventor of the modern cold bath, French manufacturing, twenty years of experience) drives reassurance at every step of the purchase journey.",
   },
 ];
 

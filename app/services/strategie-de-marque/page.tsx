@@ -146,7 +146,7 @@ const RESULTAT = [
     body: "Une formulation claire de ce que vous promettez, à qui, et pourquoi c'est crédible face à vos concurrents.",
   },
   {
-    icon: "/assets/services/logo/brandbook.svg",
+    icon: "/assets/services/marque/vision-lunettes.svg",
     titre: "Mission, vision, valeurs",
     body: "Les fondements de l'entreprise, formulés simplement, pour orienter les décisions internes comme externes.",
   },
@@ -174,7 +174,7 @@ const RESULTAT = [
 
 const SERVICES_LIES = [
   {
-    icon: "/assets/services/logo/formats-vectoriels.svg",
+    icon: "/assets/services/logo/brandbook.svg",
     titre: "Création de logo",
     body: "Le point de départ de toute identité : un signe graphique fort, qui traduit visuellement le positionnement défini.",
     href: "/services/creation-logo/",
@@ -325,7 +325,7 @@ export default function StrategieDeMarquePage() {
       {/* ------------------------------- HERO ------------------------------- */}
       <section className="relative isolate flex min-h-[clamp(560px,90vh,900px)] items-end overflow-hidden bg-kinome-dark">
         <img
-          src="/assets/services/marque/photo-hero.webp"
+          src="/assets/services/marque/hero-marque-hd.webp"
           alt="Atelier de positionnement, notes repositionnables sur une vitre"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
@@ -444,7 +444,7 @@ export default function StrategieDeMarquePage() {
               className="group aspect-[516/777] overflow-hidden rounded-[20px]"
             >
               <img
-                src="/assets/services/marque/photo-portrait1.webp"
+                src="/assets/services/marque/atelier-post-its.webp"
                 alt="Deux personnes en atelier de positionnement de marque"
                 width={1100}
                 height={1100}
@@ -523,7 +523,7 @@ export default function StrategieDeMarquePage() {
             <Reveal effect="fade-left" className="lg:sticky lg:top-24">
               <div className="group aspect-[516/779] overflow-hidden rounded-[20px]">
                 <img
-                  src="/assets/services/marque/photo-portrait2.webp"
+                  src="/assets/services/marque/plateforme-marque.webp"
                   alt="Travail de recherche et d'analyse concurrentielle sur ordinateur"
                   width={1100}
                   height={684}
@@ -600,7 +600,7 @@ export default function StrategieDeMarquePage() {
                   <h3 className={CARD_TITLE}>{p.titre}</h3>
                   <p className={`${BODY} mt-3`}>{p.body}</p>
                   {p.note && (
-                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-medium uppercase tracking-[0.04em] text-kinome-grey">
+                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-semibold uppercase tracking-[0.04em] text-kinome-black">
                       {p.note}
                     </p>
                   )}
@@ -634,7 +634,7 @@ export default function StrategieDeMarquePage() {
                       texte et s'éclaircissent quand la carte passe en sombre. */}
                   <span
                     aria-hidden="true"
-                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] bg-current transition-transform duration-500 group-hover:scale-110"
+                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(60px,5.8vw,92px)] w-[clamp(60px,5.8vw,92px)] bg-current transition-transform duration-500 group-hover:scale-110"
                     style={{
                       maskImage: `url(${r.icon})`,
                       WebkitMaskImage: `url(${r.icon})`,
@@ -686,7 +686,7 @@ export default function StrategieDeMarquePage() {
                     loading="lazy"
                     width={112}
                     height={112}
-                    className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain transition-transform duration-500 group-hover:scale-110"
+                    className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(60px,5.8vw,92px)] w-[clamp(60px,5.8vw,92px)] object-contain transition-transform duration-500 group-hover:scale-110"
                   />
                   <h3 className={CARD_TITLE}>{s.titre}</h3>
                   <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)] flex-1`}>

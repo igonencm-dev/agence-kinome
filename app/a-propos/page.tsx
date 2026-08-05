@@ -461,15 +461,15 @@ export default function AProposPage() {
                   <h3 className="mb-5 font-heading text-[clamp(24px,2.1vw,30px)] font-semibold leading-[1.3]">
                     {s.title}
                   </h3>
-                  <p className="mb-5 font-body text-[clamp(16px,1.35vw,22px)] font-bold leading-[1.55]">
+                  <p className="mb-5 font-body text-[clamp(17px,1.5vw,21px)] font-bold leading-[1.5]">
                     {s.lead}
                   </p>
-                  <p className="mb-6 font-body text-[clamp(16px,1.35vw,22px)] font-light leading-[1.55] text-kinome-dark">
+                  <p className="mb-6 font-body text-[clamp(15px,1.4vw,17px)] font-light leading-[1.55] text-kinome-dark">
                     {s.body}
                   </p>
                   <Link
                     href={s.cta.href}
-                    className="inline-flex items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
+                    className="inline-flex items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-body text-[1rem] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
                   >
                     {s.cta.label}
                   </Link>
@@ -516,7 +516,7 @@ export default function AProposPage() {
           <div className="mt-[clamp(40px,4vw,60px)] text-center">
             <Link
               href="/services/"
-              className="inline-flex items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
+              className="inline-flex items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-body text-[1rem] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
             >
               En savoir plus
             </Link>
@@ -540,12 +540,12 @@ export default function AProposPage() {
           </h2>
 
           <div className="mx-auto mb-[clamp(40px,6vw,80px)] grid max-w-[1588px] grid-cols-1 gap-[clamp(40px,5vw,90px)] lg:grid-cols-2">
-            <p className="font-body text-[clamp(20px,1.75vw,28px)] font-light leading-[1.5] text-kinome-dark">
+            <p className="font-body text-[clamp(17px,1.5vw,21px)] font-light leading-[1.5] text-kinome-dark">
               Chaque échange est pensé comme le point de départ d&rsquo;une
               collaboration sincère, où la confiance et l&rsquo;engagement
               commun façonnent des résultats à la hauteur de vos ambitions.
             </p>
-            <p className="font-body text-[clamp(16px,1.35vw,22px)] font-light leading-[1.55] text-kinome-dark">
+            <p className="font-body text-[clamp(15px,1.4vw,17px)] font-light leading-[1.55] text-kinome-dark">
               Nous serons ravis de vous accompagner et d&rsquo;explorer
               ensemble les meilleures solutions pour le faire grandir. Que
               vous ayez une idée précise ou que vous soyez en quête
@@ -561,7 +561,7 @@ export default function AProposPage() {
           <div className="mx-auto flex justify-center">
             <Link
               href="/contact/"
-              className="mx-auto flex w-fit min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-10 py-4 font-heading text-[clamp(16px,1.3vw,20px)] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
+              className="mx-auto flex w-fit min-w-[300px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 font-body text-[1rem] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#1a1a1a]"
             >
               Discutons de votre projet
             </Link>

@@ -35,7 +35,7 @@ const SERVICES: Service[] = [
     resume:
       "Cadrage stratégique, 3 à 5 concepts distincts, déclinaisons complètes et brandbook.",
     prix: "dès 1 500 CHF",
-    image: "/assets/services/logo/hero-creation-logo.webp",
+    image: "/assets/services/logo/hero-creation-logo-hd.webp",
     alt: "Carte de visite Microclimat, logo créé par Kinome",
   },
   {
@@ -53,7 +53,7 @@ const SERVICES: Service[] = [
     resume:
       "Site vitrine ou e-commerce, rapide, optimisé pour le référencement et pensé pour convertir.",
     prix: "dès 3 000 CHF",
-    image: "/assets/projets/causerie-bot/1.png",
+    image: "/assets/projets/causerie-bot/1.webp",
     alt: "Site internet de Causerie Bot réalisé par Kinome",
   },
   {
@@ -62,7 +62,7 @@ const SERVICES: Service[] = [
     resume:
       "Audit technique, mots-clés, contenu et netlinking, pour être trouvé là où vos clients cherchent.",
     prix: "audit dès 800 CHF",
-    image: "/assets/projets/no-code/1.png",
+    image: "/assets/projets/no-code/1.webp",
     alt: "NOCODE IA, organisme de formation accompagné par Kinome",
   },
   {

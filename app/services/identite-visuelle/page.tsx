@@ -173,7 +173,7 @@ const RESULTAT = [
 
 const SERVICES_LIES = [
   {
-    icon: "/assets/services/logo/formats-vectoriels.svg",
+    icon: "/assets/services/logo/brandbook.svg",
     titre: "Création de logo",
     body: "Le point de départ de toute identité : un signe graphique fort, autour duquel se construit le système complet.",
     href: "/services/creation-logo/",
@@ -185,7 +185,7 @@ const SERVICES_LIES = [
     href: "/services/referencement-naturel/",
   },
   {
-    icon: "/assets/services/identite/service-social.svg",
+    icon: "/assets/services/marque/service-marque.svg",
     titre: "Stratégie de marque",
     body: "Le socle qui précède l'identité : positionnement, plateforme de marque et ton de voix, formulés noir sur blanc.",
     href: "/services/strategie-de-marque/",
@@ -333,7 +333,7 @@ export default function IdentiteVisuellePage() {
       {/* ------------------------------- HERO ------------------------------- */}
       <section className="relative isolate flex min-h-[clamp(560px,90vh,900px)] items-end overflow-hidden bg-kinome-dark">
         <img
-          src="/assets/services/identite/photo-hero.webp"
+          src="/assets/services/identite/hero-identite-hd.webp"
           alt="Tote bag Le Ravenala, déclinaison d'une identité visuelle"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
@@ -453,7 +453,7 @@ export default function IdentiteVisuellePage() {
               className="group aspect-[516/777] overflow-hidden rounded-[20px]"
             >
               <img
-                src="/assets/services/identite/photo-portrait1.webp"
+                src="/assets/services/identite/totebag-authentik-peak.webp"
                 alt="Tote bag imprimé, déclinaison d'identité visuelle sur un support textile"
                 width={1100}
                 height={619}
@@ -530,7 +530,7 @@ export default function IdentiteVisuellePage() {
             <Reveal effect="fade-left" className="lg:sticky lg:top-24">
               <div className="group aspect-[516/779] overflow-hidden rounded-[20px]">
                 <img
-                  src="/assets/services/identite/photo-portrait2.webp"
+                  src="/assets/services/identite/badges-cinars.webp"
                   alt="Badges imprimés reprenant l'identité visuelle d'une marque"
                   width={1100}
                   height={619}
@@ -607,7 +607,7 @@ export default function IdentiteVisuellePage() {
                   <h3 className={CARD_TITLE}>{p.titre}</h3>
                   <p className={`${BODY} mt-3`}>{p.body}</p>
                   {p.note && (
-                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-medium uppercase tracking-[0.04em] text-kinome-grey">
+                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-semibold uppercase tracking-[0.04em] text-kinome-black">
                       {p.note}
                     </p>
                   )}
@@ -641,7 +641,7 @@ export default function IdentiteVisuellePage() {
                       texte et s'éclaircissent quand la carte passe en sombre. */}
                   <span
                     aria-hidden="true"
-                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] bg-current transition-transform duration-500 group-hover:scale-110"
+                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(60px,5.8vw,92px)] w-[clamp(60px,5.8vw,92px)] bg-current transition-transform duration-500 group-hover:scale-110"
                     style={{
                       maskImage: `url(${r.icon})`,
                       WebkitMaskImage: `url(${r.icon})`,
@@ -694,7 +694,7 @@ export default function IdentiteVisuellePage() {
                     loading="lazy"
                     width={112}
                     height={112}
-                    className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain transition-transform duration-500 group-hover:scale-110"
+                    className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(60px,5.8vw,92px)] w-[clamp(60px,5.8vw,92px)] object-contain transition-transform duration-500 group-hover:scale-110"
                   />
                   <h3 className={CARD_TITLE}>{s.titre}</h3>
                   <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)] flex-1`}>

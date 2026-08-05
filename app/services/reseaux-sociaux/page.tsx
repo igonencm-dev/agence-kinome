@@ -150,12 +150,12 @@ const RESULTAT = [
     body: "Photos, vidéos et visuels produits selon votre identité de marque, adaptés aux codes de chaque plateforme.",
   },
   {
-    icon: "/assets/services/social/community.svg",
+    icon: "/assets/services/social/community-management.svg",
     titre: "Community management",
     body: "Publication, modération et animation de votre communauté au quotidien, pour un compte réellement vivant.",
   },
   {
-    icon: "/assets/services/social/gabarits.svg",
+    icon: "/assets/services/social/gabarits-mobile.svg",
     titre: "Gabarits réseaux sociaux",
     body: "Des modèles réutilisables pour publier rapidement et garder une cohérence visuelle, même en dehors des périodes d'accompagnement.",
   },
@@ -173,13 +173,15 @@ const RESULTAT = [
 
 const SERVICES_LIES = [
   {
-    icon: "/assets/services/marque/positionnement.svg",
+    icon: "/assets/services/marque/service-marque.svg",
     titre: "Stratégie de marque",
     body: "Le positionnement et le ton de voix qui donnent du sens à chacun de vos contenus.",
     href: "/services/strategie-de-marque/",
   },
   {
     icon: "/assets/services/social/service-identite.svg",
+    /* +10 % demandé par Tanguy : le t-shirt paraît plus petit que ses voisins. */
+    taille: "h-[clamp(66px,6.4vw,101px)] w-[clamp(66px,6.4vw,101px)]",
     titre: "Identité visuelle",
     body: "Palette de couleurs, typographies, iconographie et règles d'usage : le système graphique complet de votre marque.",
     href: "/services/identite-visuelle/",
@@ -320,7 +322,7 @@ export default function ReseauxSociauxPage() {
       {/* ------------------------------- HERO ------------------------------- */}
       <section className="relative isolate flex min-h-[clamp(560px,90vh,900px)] items-end overflow-hidden bg-kinome-dark">
         <img
-          src="/assets/services/social/photo-hero.webp"
+          src="/assets/services/social/hero-social-hd.webp"
           alt="Personne consultant les réseaux sociaux sur son téléphone"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
@@ -438,7 +440,7 @@ export default function ReseauxSociauxPage() {
               className="group aspect-[516/777] overflow-hidden rounded-[20px]"
             >
               <img
-                src="/assets/services/social/photo-portrait1.webp"
+                src="/assets/services/social/grille-dl.webp"
                 alt="Maquettes de publications conçues pour les réseaux sociaux"
                 width={1100}
                 height={790}
@@ -517,7 +519,7 @@ export default function ReseauxSociauxPage() {
             <Reveal effect="fade-left" className="lg:sticky lg:top-24">
               <div className="group aspect-[516/779] overflow-hidden rounded-[20px]">
                 <img
-                  src="/assets/services/social/photo-portrait2.webp"
+                  src="/assets/services/social/grille-a4.webp"
                   alt="Contenus visuels d'une campagne sur les réseaux sociaux"
                   width={1100}
                   height={791}
@@ -594,7 +596,7 @@ export default function ReseauxSociauxPage() {
                   <h3 className={CARD_TITLE}>{p.titre}</h3>
                   <p className={`${BODY} mt-3`}>{p.body}</p>
                   {p.note && (
-                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-medium uppercase tracking-[0.04em] text-kinome-grey">
+                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-semibold uppercase tracking-[0.04em] text-kinome-black">
                       {p.note}
                     </p>
                   )}
@@ -628,7 +630,7 @@ export default function ReseauxSociauxPage() {
                       texte et s'éclaircissent quand la carte passe en sombre. */}
                   <span
                     aria-hidden="true"
-                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] bg-current transition-transform duration-500 group-hover:scale-110"
+                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(60px,5.8vw,92px)] w-[clamp(60px,5.8vw,92px)] bg-current transition-transform duration-500 group-hover:scale-110"
                     style={{
                       maskImage: `url(${r.icon})`,
                       WebkitMaskImage: `url(${r.icon})`,
@@ -681,7 +683,7 @@ export default function ReseauxSociauxPage() {
                     loading="lazy"
                     width={112}
                     height={112}
-                    className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain transition-transform duration-500 group-hover:scale-110"
+                    className={`mb-[clamp(20px,2.5vw,40px)] block ${s.taille ?? "h-[clamp(60px,5.8vw,92px)] w-[clamp(60px,5.8vw,92px)]"} object-contain transition-transform duration-500 group-hover:scale-110`}
                   />
                   <h3 className={CARD_TITLE}>{s.titre}</h3>
                   <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)] flex-1`}>

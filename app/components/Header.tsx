@@ -195,7 +195,15 @@ export default function Header() {
           <Link
             href={r.home}
             aria-label={locale === "fr" ? "Accueil Kinome" : "Kinome Home"}
-            className="block"
+            /* Retour Pastel #140 : effet bouton au survol, et depuis l'accueil
+               le clic remonte simplement en haut de page. */
+            className="block transition-transform duration-300 hover:scale-105 active:scale-95"
+            onClick={(e) => {
+              if (isHome) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
           >
             <Image
               src="/assets/logo-kinome.svg"

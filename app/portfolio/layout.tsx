@@ -3,9 +3,9 @@ import { projets, categoriesLabels } from "../lib/projets";
 import { SITE } from "../lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Portfolio Kinome : 16 projets de branding & web à Genève",
+  title: "Portfolio Kinome : 18 projets de branding & web à Genève",
   description:
-    "Découvrez 16 projets récents de l'Agence Kinome à Genève : identités visuelles, sites internet et campagnes pour PME suisses, françaises et internationales.",
+    "Découvrez 18 projets récents de l'Agence Kinome à Genève : identités visuelles, sites internet et campagnes pour PME suisses, françaises et internationales.",
   path: "/portfolio/",
   keywords: [
     "portfolio agence Genève",

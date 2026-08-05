@@ -157,6 +157,8 @@ const RESULTAT = [
   },
   {
     icon: "/assets/services/logo/clair-sombre.svg",
+    /* Étincelles du SVG asymétriques : recentrage optique vers la gauche (retour Tanguy). */
+    pos: "40% 50%",
     titre: "Clair, sombre, monochrome",
     body: "Des versions adaptées à tous les fonds, pour garantir la lisibilité du logo en toute circonstance.",
   },
@@ -341,7 +343,7 @@ export default function CreationLogoPage() {
       {/* ------------------------------- HERO ------------------------------- */}
       <section className="relative isolate flex min-h-[clamp(560px,90vh,900px)] items-end overflow-hidden bg-kinome-dark">
         <img
-          src="/assets/services/logo/hero-creation-logo.webp"
+          src="/assets/services/logo/hero-creation-logo-hd.webp"
           alt="Carte de visite Microclimat posée sur une pierre, logo créé par Kinome"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
@@ -472,10 +474,10 @@ export default function CreationLogoPage() {
               className="group overflow-hidden rounded-[20px]"
             >
               <img
-                src="/assets/services/logo/icone-app-codecircle.webp"
-                alt="Symbole du logo Codecircle décliné en icône d'application sur un smartphone"
-                width={554}
-                height={835}
+                src="/assets/services/logo/icone-app-elips.webp"
+                alt="Symbole du logo Elips décliné en icône d'application sur un smartphone"
+                width={716}
+                height={1080}
                 loading="lazy"
                 className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
               />
@@ -550,7 +552,7 @@ export default function CreationLogoPage() {
             <Reveal effect="fade-left" className="lg:sticky lg:top-24">
               <div className="group overflow-hidden rounded-[20px]">
                 <img
-                  src="/assets/services/logo/brandboard-tampon-audition.webp"
+                  src="/assets/services/logo/brandboard-tampon-audition-hd.webp"
                   alt="Brandboard de Tampon Audition affiché sur un ordinateur : palette, typographie et univers photo"
                   width={1040}
                   height={1570}
@@ -628,7 +630,7 @@ export default function CreationLogoPage() {
                   <h3 className={CARD_TITLE}>{p.titre}</h3>
                   <p className={`${BODY} mt-3`}>{p.body}</p>
                   {p.note && (
-                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-medium uppercase tracking-[0.04em] text-kinome-grey">
+                    <p className="mt-3 font-body text-[clamp(12px,1.1vw,14px)] font-semibold uppercase tracking-[0.04em] text-kinome-black">
                       {p.note}
                     </p>
                   )}
@@ -671,14 +673,14 @@ export default function CreationLogoPage() {
                       resterait noire, donc invisible. */}
                   <span
                     aria-hidden="true"
-                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] bg-current transition-transform duration-500 group-hover:scale-110"
+                    className="mb-[clamp(24px,3vw,48px)] block h-[clamp(60px,5.8vw,92px)] w-[clamp(60px,5.8vw,92px)] bg-current transition-transform duration-500 group-hover:scale-110"
                     style={{
                       maskImage: `url(${r.icon})`,
                       WebkitMaskImage: `url(${r.icon})`,
                       maskRepeat: "no-repeat",
                       WebkitMaskRepeat: "no-repeat",
-                      maskPosition: "center",
-                      WebkitMaskPosition: "center",
+                      maskPosition: r.pos ?? "center",
+                      WebkitMaskPosition: r.pos ?? "center",
                       maskSize: "contain",
                       WebkitMaskSize: "contain",
                     }}
@@ -723,7 +725,7 @@ export default function CreationLogoPage() {
                     loading="lazy"
                     width={112}
                     height={112}
-                    className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(72px,7vw,112px)] w-[clamp(72px,7vw,112px)] object-contain transition-transform duration-500 group-hover:scale-110"
+                    className="mb-[clamp(20px,2.5vw,40px)] block h-[clamp(60px,5.8vw,92px)] w-[clamp(60px,5.8vw,92px)] object-contain transition-transform duration-500 group-hover:scale-110"
                   />
                   <h3 className={CARD_TITLE}>{s.titre}</h3>
                   <p className={`${BODY} mt-[clamp(14px,1.8vw,28px)] flex-1`}>
