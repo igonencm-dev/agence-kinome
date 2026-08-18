@@ -352,8 +352,8 @@ export default function SiteInternetPage() {
       {/* ------------------------------- HERO ------------------------------- */}
       <section className="relative isolate flex min-h-[clamp(560px,90vh,900px)] items-end overflow-hidden bg-kinome-dark">
         <img
-          src="/assets/services/site/hero-site-hd.webp"
-          alt="Site internet affiché sur un ordinateur portable"
+          src="/assets/services/site/hero-site-cryo.webp"
+          alt="Site e-commerce de Cryo Control affiché sur une tablette, conçu par Kinome"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
         />
@@ -472,8 +472,8 @@ export default function SiteInternetPage() {
               className="group aspect-[516/777] overflow-hidden rounded-[20px]"
             >
               <img
-                src="/assets/services/site/mockup-cryo-portrait.webp"
-                alt="Site e-commerce de Cryo Control affiché sur une tablette, conçu par Kinome"
+                src="/assets/services/site/mockup-nocode-portrait.webp"
+                alt="Site de formation NOCODE IA affiché sur un ordinateur portable"
                 width={716}
                 height={1078}
                 loading="lazy"

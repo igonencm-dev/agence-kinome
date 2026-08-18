@@ -352,11 +352,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 href={`/blog/${p.slug}/`}
                 className="group flex flex-col overflow-hidden rounded-[16px] bg-kinome-cream transition-shadow hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
               >
-                <div className="aspect-[3/2] overflow-hidden bg-white">
+                <div className="overflow-hidden">
                   <img
                     src={p.featuredImage}
                     alt={p.title}
-                    className="block h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>

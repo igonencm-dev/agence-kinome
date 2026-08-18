@@ -94,11 +94,11 @@ export default function BlogIndexPage() {
             className="group block overflow-hidden rounded-[24px] bg-white shadow-[0_4px_30px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-[0_12px_50px_rgba(0,0,0,0.10)]"
           >
             <div className="grid grid-cols-1 md:grid-cols-[1.15fr_1fr]">
-              <div className="flex aspect-[3/2] items-center justify-center overflow-hidden bg-white md:aspect-auto">
+              <div className="aspect-[3/2] overflow-hidden bg-kinome-cream md:aspect-auto">
                 <img
                   src={featured.featuredImage}
                   alt={featured.title}
-                  className="block max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
+                  className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="eager"
                 />
               </div>
@@ -151,12 +151,12 @@ export default function BlogIndexPage() {
                 <Link
                   href={`/blog/${post.slug}/`}
                   aria-label={`Lire : ${post.title}`}
-                  className="mb-5 block aspect-[3/2] overflow-hidden rounded-[18px] bg-white"
+                  className="mb-5 block overflow-hidden rounded-[18px]"
                 >
                   <img
                     src={post.featuredImage}
                     alt={post.title}
-                    className="block h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-105"
                     loading={i < 2 ? "eager" : "lazy"}
                   />
                 </Link>
