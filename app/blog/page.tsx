@@ -56,11 +56,13 @@ function readingTime(html: string): number {
 }
 
 export default function BlogIndexPage() {
-  // Le blog est entièrement dynamique : à chaque nouvel article ajouté dans
-  // app/lib/blog.ts (via le script parse-blog.mjs), il apparaît automatiquement
-  // ici (article en featured si plus récent, ou en grille sinon).
-  const featured = blogPosts[0];
-  const others = blogPosts.slice(1);
+  // Tri anti-chronologique : le dernier article publié prend la une et la
+  // grille suit du plus récent au plus ancien (à date égale, l'id tranche).
+  const parDate = [...blogPosts].sort(
+    (a, b) => b.date.localeCompare(a.date) || b.id - a.id
+  );
+  const featured = parDate[0];
+  const others = parDate.slice(1);
 
   return (
     <main className="bg-kinome-cream">
