@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, getPostBySlug } from "../../lib/blog";
+import CorpsCarteVoeux, { CrossSellVoeux } from "./CorpsCarteVoeux";
 import {
   buildMetadata,
   breadcrumbJsonLd,
@@ -26,8 +27,14 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
   if (!post) return { title: "Article — Kinome" };
 
+  // La balise <title> privilégie `fullTitle` (variante courte optimisée SERP,
+  // sans le suffixe qui est réapposé par buildMetadata) ; le H1 garde `title`.
+  const titreBalise = post.fullTitle
+    ? post.fullTitle.replace(/ \| Kinome$/, "")
+    : post.title;
+
   return buildMetadata({
-    title: post.title,
+    title: titreBalise,
     description: post.description,
     path: `/blog/${post.slug}/`,
     ogType: "article",
@@ -194,12 +201,18 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       {/* CONTENU — 2 colonnes desktop : article + sidebar sticky */}
       <section className="mx-auto max-w-[1300px] px-[5%] pb-[80px]">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_280px]">
-          {/* Colonne principale : contenu de l'article */}
+          {/* Colonne principale : contenu de l'article. L'article carte de
+              vœux a un corps maquetté sur mesure (Figma Tanguy 2228:5486) ;
+              les autres gardent le rendu .blog-prose générique. */}
           <article className="min-w-0">
-            <div
-              className="blog-prose"
-              dangerouslySetInnerHTML={{ __html: post.articleHtml }}
-            />
+            {post.slug === "carte-de-voeux-entreprise" ? (
+              <CorpsCarteVoeux post={post} />
+            ) : (
+              <div
+                className="blog-prose"
+                dangerouslySetInnerHTML={{ __html: post.articleHtml }}
+              />
+            )}
 
             {/* Tags + partage */}
             <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-[#e0ddd6] pt-8">
@@ -322,6 +335,9 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           </aside>
         </div>
       </section>
+
+      {/* Cross-sell services de la maquette carte de vœux, pleine largeur */}
+      {post.slug === "carte-de-voeux-entreprise" && <CrossSellVoeux />}
 
       {/* Articles liés */}
       <section className="bg-white py-[clamp(50px,10vw,100px)]">
