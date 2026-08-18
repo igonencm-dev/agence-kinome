@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Reveal from "../../components/Reveal";
 import { type BlogPost } from "../../lib/blog";
+import { jsonLdScript, SITE } from "../../lib/seo";
 
 /**
  * Corps enrichi de l'article « Carte de vœux d'entreprise », d'après la
@@ -106,9 +107,46 @@ const ATOUTS_CREATIF = [
   "Un message qui évite les formules toutes faites, pensé pour votre année et vos clients réels.",
 ];
 
+/** JSON-LD VideoObject des deux vœux animés : éligibilité Google Vidéos. */
+const VIDEOS_LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Vœux animés La Voyagiste : Paris s'illumine",
+    description:
+      "Carte de vœux en motion design créée par l'agence Kinome pour La Voyagiste : les toits de Paris et la tour Eiffel s'illuminent d'un feu d'artifice.",
+    thumbnailUrl: `${SITE.url}/assets/blog/voeux/poster-voeux-paris.webp`,
+    contentUrl: `${SITE.url}/assets/blog/voeux/motion-voeux-la-voyagiste-paris.mp4`,
+    uploadDate: "2026-08-18",
+    duration: "PT20S",
+    inLanguage: "fr",
+    publisher: { "@id": `${SITE.url}/#organization` },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Vœux animés La Voyagiste : la montgolfière au clair de lune",
+    description:
+      "Second vœu animé créé par Kinome pour La Voyagiste : une montgolfière survole la mer au clair de lune.",
+    thumbnailUrl: `${SITE.url}/assets/blog/voeux/poster-voeux-montgolfiere.webp`,
+    contentUrl: `${SITE.url}/assets/blog/voeux/motion-voeux-la-voyagiste-montgolfiere.mp4`,
+    uploadDate: "2026-08-18",
+    duration: "PT14S",
+    inLanguage: "fr",
+    publisher: { "@id": `${SITE.url}/#organization` },
+  },
+];
+
 export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
   return (
     <div className="min-w-0">
+      {VIDEOS_LD.map((v) => (
+        <script
+          key={v.name}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(v) }}
+        />
+      ))}
       {/* ------------------------------ Introduction ------------------------------ */}
       <Reveal>
         <p className={`${BODY} font-medium`}>
@@ -294,18 +332,115 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
             </ul>
           </div>
         </Reveal>
-        <Reveal delay={120}>
-          <div className="mt-[clamp(28px,4vw,48px)] overflow-hidden rounded-[20px]">
+        {/* ---------- Vitrine : la carte Kinome 2026 ---------- */}
+        <Reveal delay={100}>
+          <h3
+            id="carte-kinome-2026"
+            className="mt-[clamp(36px,5vw,64px)] scroll-mt-28 font-heading text-[clamp(20px,1.9vw,28px)] font-semibold leading-[1.3] text-kinome-black"
+          >
+            La carte Kinome 2026, par exemple
+          </h3>
+          <p className={`${BODY} mt-4`}>
+            Notre propre carte pour 2026&nbsp;: un lettrage doré entrelacé sur
+            papier violet profond, décliné de notre identité, imprimé sur un
+            papier épais qu'on a envie de garder. Exactement le niveau de soin
+            que nous mettons dans celles de nos clients.
+          </p>
+        </Reveal>
+        <Reveal delay={140}>
+          <div className="mt-[clamp(20px,2.5vw,36px)] overflow-hidden rounded-[20px]">
             <img
-              src="/assets/blog/carte-voeux-rms-nuit.webp"
-              alt="Carte de vœux illustrée bleu nuit créée par Kinome, posée sur une table"
-              width={1756}
-              height={856}
+              src="/assets/blog/voeux/carte-kinome-2026-1.webp"
+              alt="Carte de vœux Kinome 2026 : lettrage 2026 doré entrelacé sur papier violet profond"
+              width={1476}
+              height={1107}
               loading="lazy"
               className="block h-auto w-full"
             />
           </div>
+          <div className="mt-4 grid grid-cols-3 gap-4">
+            {[
+              {
+                src: "/assets/blog/voeux/carte-kinome-2026-2.webp",
+                alt: "Intérieur de la carte de vœux Kinome 2026, avec le mot de l'équipe",
+              },
+              {
+                src: "/assets/blog/voeux/carte-kinome-2026-3.webp",
+                alt: "Carte de vœux Kinome 2026 ouverte, posée en équilibre",
+              },
+              {
+                src: "/assets/blog/voeux/carte-kinome-2026-4.webp",
+                alt: "Dos de la carte de vœux Kinome 2026, motif doré posé à plat",
+              },
+            ].map((c) => (
+              <div key={c.src} className="overflow-hidden rounded-[14px]">
+                <img
+                  src={c.src}
+                  alt={c.alt}
+                  width={1476}
+                  height={1107}
+                  loading="lazy"
+                  className="block h-auto w-full transition-transform duration-500 hover:scale-[1.04]"
+                />
+              </div>
+            ))}
+          </div>
         </Reveal>
+
+        {/* ---------- Vitrine : les vœux en motion design ---------- */}
+        <Reveal delay={100}>
+          <h3
+            id="motion-design"
+            className="mt-[clamp(36px,5vw,64px)] scroll-mt-28 font-heading text-[clamp(20px,1.9vw,28px)] font-semibold leading-[1.3] text-kinome-black"
+          >
+            Et en motion design&nbsp;: des vœux qui s'animent
+          </h3>
+          <p className={`${BODY} mt-4`}>
+            Une carte peut aussi prendre vie. Pour{" "}
+            <Link
+              href="/projets/la-voyagiste/"
+              className="underline decoration-kinome-accent underline-offset-4 hover:text-kinome-accent"
+            >
+              La Voyagiste
+            </Link>
+            , nous avons animé les vœux en courtes séquences illustrées,
+            partagées par e-mail et sur les réseaux&nbsp;: le format idéal pour
+            toucher largement, en prolongement de la carte imprimée.
+          </p>
+        </Reveal>
+        {[
+          {
+            src: "/assets/blog/voeux/motion-voeux-la-voyagiste-paris.mp4",
+            poster: "/assets/blog/voeux/poster-voeux-paris.webp",
+            label:
+              "Vœux animés créés pour La Voyagiste : les toits de Paris et la tour Eiffel s'illuminent d'un feu d'artifice",
+          },
+          {
+            src: "/assets/blog/voeux/motion-voeux-la-voyagiste-montgolfiere.mp4",
+            poster: "/assets/blog/voeux/poster-voeux-montgolfiere.webp",
+            label:
+              "Vœux animés La Voyagiste : une montgolfière survole la mer au clair de lune",
+          },
+        ].map((v, i) => (
+          <Reveal key={v.src} delay={i * 120}>
+            <div className="mt-[clamp(20px,2.5vw,36px)] overflow-hidden rounded-[20px] bg-kinome-dark">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={v.poster}
+                width={1280}
+                height={720}
+                aria-label={v.label}
+                className="block h-auto w-full"
+              >
+                <source src={v.src} type="video/mp4" />
+              </video>
+            </div>
+          </Reveal>
+        ))}
       </Section>
 
       {/* ------------------------ 04 · Nos conseils ------------------------ */}
