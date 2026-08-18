@@ -3,6 +3,7 @@ import Link from "next/link";
 import Reveal from "../../components/Reveal";
 import { type BlogPost } from "../../lib/blog";
 import { jsonLdScript, SITE } from "../../lib/seo";
+import MediaZoom from "./MediaZoom";
 
 /**
  * Corps enrichi de l'article « Carte de vœux d'entreprise », d'après la
@@ -348,17 +349,25 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
           </p>
         </Reveal>
         <Reveal delay={140}>
-          <div className="mt-[clamp(20px,2.5vw,36px)] overflow-hidden rounded-[20px]">
-            <img
-              src="/assets/blog/voeux/carte-kinome-2026-1.webp"
-              alt="Carte de vœux Kinome 2026 : lettrage 2026 doré entrelacé sur papier violet profond"
-              width={1476}
-              height={1107}
-              loading="lazy"
-              className="block h-auto w-full"
-            />
+          <div className="mt-[clamp(20px,2.5vw,36px)]">
+            <MediaZoom
+              type="image"
+              src="/assets/blog/voeux/carte-kinome-2026-4-zoom.webp"
+              label="Carte de vœux Kinome 2026 posée à plat : lettrage 2026 doré entrelacé sur papier violet profond"
+            >
+              <span className="block overflow-hidden rounded-[20px]">
+                <img
+                  src="/assets/blog/voeux/carte-kinome-2026-4.webp"
+                  alt="Carte de vœux Kinome 2026 posée à plat : lettrage 2026 doré entrelacé sur papier violet profond"
+                  width={1476}
+                  height={1107}
+                  loading="lazy"
+                  className="block h-auto w-full"
+                />
+              </span>
+            </MediaZoom>
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-4">
+          <div className="mt-4 grid grid-cols-2 gap-4">
             {[
               {
                 src: "/assets/blog/voeux/carte-kinome-2026-2.webp",
@@ -368,21 +377,24 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
                 src: "/assets/blog/voeux/carte-kinome-2026-3.webp",
                 alt: "Carte de vœux Kinome 2026 ouverte, posée en équilibre",
               },
-              {
-                src: "/assets/blog/voeux/carte-kinome-2026-4.webp",
-                alt: "Dos de la carte de vœux Kinome 2026, motif doré posé à plat",
-              },
             ].map((c) => (
-              <div key={c.src} className="overflow-hidden rounded-[14px]">
-                <img
-                  src={c.src}
-                  alt={c.alt}
-                  width={1476}
-                  height={1107}
-                  loading="lazy"
-                  className="block h-auto w-full transition-transform duration-500 hover:scale-[1.04]"
-                />
-              </div>
+              <MediaZoom
+                key={c.src}
+                type="image"
+                src={c.src.replace(".webp", "-zoom.webp")}
+                label={c.alt}
+              >
+                <span className="block overflow-hidden rounded-[14px]">
+                  <img
+                    src={c.src}
+                    alt={c.alt}
+                    width={1476}
+                    height={1107}
+                    loading="lazy"
+                    className="block h-auto w-full transition-transform duration-500 hover:scale-[1.04]"
+                  />
+                </span>
+              </MediaZoom>
             ))}
           </div>
         </Reveal>
@@ -423,21 +435,25 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
           },
         ].map((v, i) => (
           <Reveal key={v.src} delay={i * 120}>
-            <div className="mt-[clamp(20px,2.5vw,36px)] overflow-hidden rounded-[20px] bg-kinome-dark">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster={v.poster}
-                width={1280}
-                height={720}
-                aria-label={v.label}
-                className="block h-auto w-full"
-              >
-                <source src={v.src} type="video/mp4" />
-              </video>
+            <div className="mt-[clamp(20px,2.5vw,36px)]">
+              <MediaZoom type="video" src={v.src} poster={v.poster} label={v.label}>
+                <span className="block overflow-hidden rounded-[20px] bg-kinome-dark">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    poster={v.poster}
+                    width={1280}
+                    height={720}
+                    aria-label={v.label}
+                    className="block h-auto w-full"
+                  >
+                    <source src={v.src} type="video/mp4" />
+                  </video>
+                </span>
+              </MediaZoom>
             </div>
           </Reveal>
         ))}
