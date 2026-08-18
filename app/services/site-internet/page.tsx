@@ -472,10 +472,10 @@ export default function SiteInternetPage() {
               className="group aspect-[516/777] overflow-hidden rounded-[20px]"
             >
               <img
-                src="/assets/services/site/mockup-nocode.webp"
-                alt="Site internet responsive affiché sur une tablette"
-                width={1100}
-                height={619}
+                src="/assets/services/site/mockup-cryo-portrait.webp"
+                alt="Site e-commerce de Cryo Control affiché sur une tablette, conçu par Kinome"
+                width={716}
+                height={1078}
                 loading="lazy"
                 className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
               />
@@ -552,10 +552,10 @@ export default function SiteInternetPage() {
             <Reveal effect="fade-left" className="lg:sticky lg:top-24">
               <div className="group aspect-[516/779] overflow-hidden rounded-[20px]">
                 <img
-                  src="/assets/services/site/mockup-vp-conseils.webp"
-                  alt="Site internet réalisé par Kinome affiché sur un ordinateur portable"
-                  width={1100}
-                  height={619}
+                  src="/assets/services/site/mockup-causerie-portrait.webp"
+                  alt="Site internet de Causerie Bot affiché sur un ordinateur portable"
+                  width={716}
+                  height={1078}
                   loading="lazy"
                   className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
