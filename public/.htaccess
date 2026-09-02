@@ -95,6 +95,23 @@ RewriteRule ^assets/blog/carte-voeux-rms-(vert|nuit)\.webp$    /assets/blog/voeu
 RewriteRule ^(wp-content|wp-includes|wp-admin|wp-json)(/|$) - [G,L]
 RewriteRule ^(xmlrpc\.php|wp-login\.php)$                  - [G,L]
 
+# ============================================================================
+# 404 remontées par Search Console (export du 2 septembre 2026)
+# ============================================================================
+# Restes WordPress : index.php, flux RSS, pages auteur, scripts wp-*.php
+RewriteRule ^index\.php$                              /                              [L,R=301]
+RewriteRule ^(.*)/feed/?$                             -                              [G,L]
+RewriteRule ^feed/?$                                  -                              [G,L]
+RewriteRule ^author/[^/]+/?$                          /a-propos/                     [L,R=301]
+RewriteRule ^wp-[a-z-]*\.php$                          -                              [G,L]
+# Ancien slug de l'article communication 360
+RewriteRule ^blog/agence-communication-360-definition/?$  /blog/communication-360-geneve/ [L,R=301]
+# Page anglaise du dossier de presse
+RewriteRule ^en/dossier-presse/?$                     /en/press-kit/                 [L,R=301]
+# Articles sans version anglaise : /en/blog/<slug>/ n'existe pas -> article FR
+RewriteCond %{DOCUMENT_ROOT}/en/blog/$1/index.html !-f
+RewriteRule ^en/blog/([a-z0-9-]+)/?$                  /blog/$1/                      [L,R=301]
+
 RewriteRule ^nocodeia/?$              /projets/no-code/             [L,R=301]
 
 # Pages principales renommées

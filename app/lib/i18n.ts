@@ -75,7 +75,27 @@ export function getAlternateUrl(pathname: string): string {
     const stripped = pathname.replace(/^\/en/, "") || "/";
     return reverseSlugFr(stripped);
   }
+  // Pages FR sans jumelle anglaise : on renvoie vers la page EN la plus
+  // proche plutôt que vers une adresse /en/... inexistante. Search Console
+  // remontait des 404 sur /en/blog/<article>/ générées par ce sélecteur.
+  if (!hasEnTwin(pathname)) {
+    if (pathname.startsWith("/blog/")) return "/en/blog/";
+    if (pathname.startsWith("/services/")) return "/en/services/";
+    return "/en/";
+  }
   return mapSlugToEn(pathname);
+}
+
+/**
+ * Vrai si la page FR a une vraie traduction anglaise à la même position
+ * (routes miroir, pages mappées, fiches projet). Les articles de blog et les
+ * landings services n'en ont pas encore : pas de hreflang pour eux.
+ */
+export function hasEnTwin(pathname: string): boolean {
+  if (pathname.startsWith("/en")) return true;
+  if (pathname.startsWith("/blog/") && pathname !== "/blog/") return false;
+  if (pathname.startsWith("/services/") && pathname !== "/services/") return false;
+  return true;
 }
 
 const FR_TO_EN_SLUG: Record<string, string> = {
@@ -84,6 +104,7 @@ const FR_TO_EN_SLUG: Record<string, string> = {
   "/partenaires/": "/partners/",
   "/mentions-legales/": "/legal/",
   "/politique-de-confidentialite/": "/privacy/",
+  "/dossier-presse/": "/press-kit/",
 };
 const EN_TO_FR_SLUG: Record<string, string> = Object.fromEntries(
   Object.entries(FR_TO_EN_SLUG).map(([fr, en]) => [en, fr])
