@@ -58,6 +58,43 @@ RewriteRule ^no-code/?$               /projets/no-code/             [L,R=301]
 RewriteRule ^nocode/?$                /projets/no-code/             [L,R=301]
 RewriteRule ^nocode-ia/?$             /projets/no-code/             [L,R=301]
 RewriteRule ^no-code-ia/?$            /projets/no-code/             [L,R=301]
+
+# ============================================================================
+# Images remplacées lors de la livraison des visuels HD (août 2026) : Googlebot
+# revient chercher les anciens fichiers indexés, on le renvoie vers les
+# remplaçants pour éviter les 404 en boucle dans les statistiques de crawl.
+# ============================================================================
+RewriteRule ^assets/services/identite/photo-hero\.webp$        /assets/services/identite/hero-identite-hd.webp       [L,R=301]
+RewriteRule ^assets/services/identite/photo-portrait1\.webp$   /assets/services/identite/totebag-authentik-peak.webp [L,R=301]
+RewriteRule ^assets/services/identite/photo-portrait2\.webp$   /assets/services/identite/badges-cinars.webp          [L,R=301]
+RewriteRule ^assets/services/site/photo-hero\.webp$            /assets/services/site/hero-site-cryo.webp             [L,R=301]
+RewriteRule ^assets/services/site/hero-site-hd\.webp$          /assets/services/site/hero-site-cryo.webp             [L,R=301]
+RewriteRule ^assets/services/site/photo-portrait1\.webp$       /assets/services/site/mockup-nocode-portrait.webp     [L,R=301]
+RewriteRule ^assets/services/site/mockup-nocode\.webp$         /assets/services/site/mockup-nocode-portrait.webp     [L,R=301]
+RewriteRule ^assets/services/site/mockup-cryo-portrait\.webp$  /assets/services/site/hero-site-cryo.webp             [L,R=301]
+RewriteRule ^assets/services/site/photo-portrait2\.webp$       /assets/services/site/mockup-causerie-portrait.webp   [L,R=301]
+RewriteRule ^assets/services/site/mockup-vp-conseils\.webp$    /assets/services/site/mockup-causerie-portrait.webp   [L,R=301]
+RewriteRule ^assets/services/seo/photo-hero\.webp$             /assets/services/seo/hero-seo-hd.webp                 [L,R=301]
+RewriteRule ^assets/services/seo/photo-portrait1\.webp$        /assets/services/seo/analyse-seo.webp                 [L,R=301]
+RewriteRule ^assets/services/seo/photo-portrait2\.webp$        /assets/services/seo/redaction-contenu.webp           [L,R=301]
+RewriteRule ^assets/services/marque/photo-hero\.webp$          /assets/services/marque/hero-marque-hd.webp           [L,R=301]
+RewriteRule ^assets/services/marque/photo-portrait1\.webp$     /assets/services/marque/atelier-post-its.webp         [L,R=301]
+RewriteRule ^assets/services/marque/photo-portrait2\.webp$     /assets/services/marque/plateforme-marque.webp        [L,R=301]
+RewriteRule ^assets/services/social/photo-hero\.webp$          /assets/services/social/hero-social-hd.webp           [L,R=301]
+RewriteRule ^assets/services/social/photo-portrait1\.webp$     /assets/services/social/grille-dl.webp                [L,R=301]
+RewriteRule ^assets/services/social/photo-portrait2\.webp$     /assets/services/social/grille-a4.webp                [L,R=301]
+RewriteRule ^assets/services/logo/hero-creation-logo\.webp$    /assets/services/logo/hero-creation-logo-hd.webp      [L,R=301]
+RewriteRule ^assets/services/logo/icone-app-codecircle\.webp$  /assets/services/logo/icone-app-elips.webp            [L,R=301]
+RewriteRule ^assets/services/logo/brandboard-tampon-audition\.webp$ /assets/services/logo/brandboard-tampon-audition-hd.webp [L,R=301]
+RewriteRule ^assets/projets/(causerie-bot|no-code)/([1-6])\.png$ /assets/projets/$1/$2.webp                          [L,R=301]
+RewriteRule ^assets/blog/carte-de-voeux-entreprise\.webp$      /assets/blog/voeux/hero-carte-kinome-2026.webp        [L,R=301]
+RewriteRule ^assets/blog/carte-voeux-rms-(vert|nuit)\.webp$    /assets/blog/voeux/hero-carte-kinome-2026.webp        [L,R=301]
+
+# Chemins de l'ancien WordPress qui n'existeront plus jamais : 410 Gone, pour
+# que Google les retire de son index au lieu de les re-tester en 404.
+RewriteRule ^(wp-content|wp-includes|wp-admin|wp-json)(/|$) - [G,L]
+RewriteRule ^(xmlrpc\.php|wp-login\.php)$                  - [G,L]
+
 RewriteRule ^nocodeia/?$              /projets/no-code/             [L,R=301]
 
 # Pages principales renommées
