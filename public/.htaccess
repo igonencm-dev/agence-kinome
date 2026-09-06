@@ -23,6 +23,8 @@ RewriteRule ^(.*)$ https://agence-kinome.ch/$1 [L,R=301]
 # verrouillé plus bas via FilesMatch.
 # ============================================================================
 RewriteRule ^api/lib/ - [F,L]
+# Compteurs de vues / j'aime (JSON écrit par /api/stats.php) : jamais servis
+RewriteRule ^api/data/ - [F,L]
 
 # ============================================================================
 # REDIRECTIONS 301 — ancien WordPress → nouvelle structure Next.js

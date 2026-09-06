@@ -44,6 +44,10 @@ jobs:
             exit 1
           fi
           echo "✓ out/api/config.php absent — config Hostinger préservé."
+          if [ -d out/api/data ]; then
+            echo "::error::out/api/data/ est présent ! Cela écraserait les compteurs de vues en production."
+            exit 1
+          fi
 
       # Déploiement via SSH/rsync — auth par clé privée (jamais par mdp).
       #   - rsync ne supprime PAS les fichiers distants (préserve config.php et tout fichier ajouté à la main)
@@ -60,7 +64,7 @@ jobs:
           # Options rsync : archive, verbose, compression, raccourcir output.
           #   --no-perms / --no-times : Hostinger n'autorise pas chmod arbitraire
           #   --exclude : double-protection du config.php
-          ARGS: "-rlzv --no-perms --no-times --exclude='api/config.php'"
+          ARGS: "-rlzv --no-perms --no-times --exclude='api/config.php' --exclude='api/data/'"
 
       # IndexNow : notifie Bing / Yandex / Seznam des URLs du sitemap après
       # chaque déploiement (le script lit le sitemap fraîchement déployé en

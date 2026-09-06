@@ -4,6 +4,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, getPostBySlug } from "../../lib/blog";
 import CorpsCarteVoeux, { CrossSellVoeux } from "./CorpsCarteVoeux";
+import ArticlesPopulaires from "../../components/ArticlesPopulaires";
+import Sommaire from "../../components/Sommaire";
+import StatsArticle from "../../components/StatsArticle";
+import { CATEGORIES, resumer, trierParPopulariteInitiale } from "../../lib/populaires";
+import { preparerSommaire, type EntreeSommaire } from "../../lib/sommaire";
+import { dimensionsImage } from "../../lib/dimensions-image";
 import {
   buildMetadata,
   breadcrumbJsonLd,
@@ -74,6 +80,24 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     .slice(0, 3);
   const minutes = readingTime(post.articleHtml);
 
+  // Sommaire : les H2 du corps reçoivent une ancre garantie (lib/sommaire).
+  // L'article carte de vœux a un corps maquetté dont les sections portent
+  // déjà leurs ids : on décrit son sommaire à la main.
+  const corps = preparerSommaire(post.articleHtml);
+  const sommaireVoeux: EntreeSommaire[] = [
+    { id: "pourquoi", texte: "Pourquoi envoyer une carte de vœux a encore du sens" },
+    { id: "calendrier", texte: "Pourquoi il faut s'y prendre tôt ?" },
+    { id: "creatif", texte: "Pourquoi se faire accompagner par un créatif change tout" },
+    { id: "conseils", texte: "Nos conseils pour une carte de vœux réussie" },
+    { id: "faq", texte: "Questions fréquentes" },
+  ];
+  const entrees =
+    post.slug === "carte-de-voeux-entreprise" ? sommaireVoeux : corps.entrees;
+
+  // Articles populaires : ordre de repli Search Console, reclassé côté
+  // client d'après les vues réelles (api/stats.php).
+  const populaires = trierParPopulariteInitiale(blogPosts).map(resumer);
+
   // Author par défaut = Mathias (directeur marketing = éditeur en chef du blog).
   // Chaque article peut surcharger via `authorSlug` dans lib/blog.ts.
   const authorSlug = post.authorSlug ?? "mathias";
@@ -91,8 +115,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     image: {
       "@type": "ImageObject",
       url: `${SITE.url}${post.featuredImage}`,
-      width: 1200,
-      height: 750,
+      ...(dimensionsImage(post.featuredImage) ?? { width: 1600, height: 900 }),
     },
     datePublished: post.date,
     dateModified: post.lastModified ?? post.date,
@@ -101,7 +124,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     mainEntityOfPage: `${SITE.url}/blog/${post.slug}/`,
     inLanguage: "fr",
     keywords: post.focusKeyword,
-    articleSection: "Communication, branding, web",
+    articleSection: CATEGORIES[post.categorie],
     wordCount: post.articleHtml.split(/\s+/).length,
     about: { "@type": "Thing", name: post.focusKeyword },
     contentLocation: { "@type": "Place", name: "Genève, Suisse" },
@@ -170,6 +193,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             <span className="font-body text-[0.88rem] text-kinome-grey">
               · L&rsquo;équipe Kinome
             </span>
+            <StatsArticle slug={post.slug} variante="meta" />
           </div>
 
           {/* H1 GRAND */}
@@ -205,14 +229,17 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               vœux a un corps maquetté sur mesure (Figma Tanguy 2228:5486) ;
               les autres gardent le rendu .blog-prose générique. */}
           <article className="min-w-0">
+            <Sommaire entrees={entrees} />
             {post.slug === "carte-de-voeux-entreprise" ? (
               <CorpsCarteVoeux post={post} />
             ) : (
               <div
                 className="blog-prose"
-                dangerouslySetInnerHTML={{ __html: post.articleHtml }}
+                dangerouslySetInnerHTML={{ __html: corps.html }}
               />
             )}
+
+            <StatsArticle slug={post.slug} variante="fin" />
 
             {/* Tags + partage */}
             <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-[#e0ddd6] pt-8">
@@ -261,61 +288,16 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             </div>
           </article>
 
-          {/* Colonne droite : sticky author card + CTA contact */}
+          {/* Colonne droite (desktop) : articles les plus lus puis CTA
+              contact avec la signature, le tout collé sous le header. */}
           <aside className="hidden lg:block">
-            <div className="sticky top-32 space-y-5">
-              <div className="rounded-[20px] bg-white p-6">
-                <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
-                  Écrit par
-                </p>
-                <p className="font-heading text-[clamp(16px,1.3vw,19px)] font-semibold text-kinome-black">
-                  L&rsquo;équipe Kinome
-                </p>
-                <p className="mt-1 font-body text-[0.85rem] leading-[1.6] text-kinome-grey">
-                  Agence de communication indépendante basée à Genève.
-                </p>
-                <Link
-                  href="/a-propos/"
-                  className="mt-4 inline-flex items-center gap-1 font-heading text-[0.85rem] font-semibold text-kinome-accent hover:underline"
-                >
-                  En savoir plus →
-                </Link>
-              </div>
-
-              {/* Card "Explorer Kinome" : maillage interne automatique vers
-                  pages clés (services + processus + portfolio). Présente sur
-                  TOUS les articles → boost SEO pages conversion + transparence. */}
-              <div className="rounded-[20px] bg-kinome-cream p-6">
-                <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
-                  Explorer Kinome
-                </p>
-                <ul className="space-y-2 font-body text-[0.9rem]">
-                  <li>
-                    <Link
-                      href="/services/"
-                      className="inline-flex items-center gap-1 text-kinome-black hover:text-kinome-accent hover:underline"
-                    >
-                      → Nos services
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/processus/"
-                      className="inline-flex items-center gap-1 text-kinome-black hover:text-kinome-accent hover:underline"
-                    >
-                      → Notre processus
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/portfolio/"
-                      className="inline-flex items-center gap-1 text-kinome-black hover:text-kinome-accent hover:underline"
-                    >
-                      → Nos réalisations
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+            <div className="sticky top-28 space-y-5">
+              <ArticlesPopulaires
+                articles={populaires}
+                exclure={post.slug}
+                limite={5}
+                variante="sidebar"
+              />
 
               <div className="rounded-[20px] bg-kinome-dark p-6 text-white">
                 <p className="mb-3 font-heading text-[clamp(15px,1.1vw,17px)] font-semibold leading-[1.3]">
@@ -330,6 +312,13 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 >
                   Nous contacter
                 </Link>
+                <p className="mt-5 border-t border-white/15 pt-4 font-body text-[0.78rem] font-light leading-[1.5] text-white/70">
+                  Écrit par{" "}
+                  <Link href="/a-propos/" className="font-medium text-white hover:underline">
+                    l&rsquo;équipe Kinome
+                  </Link>
+                  , agence de communication indépendante à Genève.
+                </p>
               </div>
             </div>
           </aside>

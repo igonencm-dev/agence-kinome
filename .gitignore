@@ -37,6 +37,8 @@ yarn-error.log*
 
 # Secrets back-end PHP (SMTP) — ne jamais commit
 /public/api/config.php
+# Compteurs de vues / j'aime : données de production, jamais versionnées
+/public/api/data/
 
 # Audits visuels locaux (screenshots Figma)
 /.figma-audit/

@@ -3,6 +3,9 @@ import Link from "next/link";
 import { blogPosts } from "../lib/blog";
 import { buildMetadata, jsonLdScript, SITE } from "../lib/seo";
 import ResponsiveBr from "../components/ResponsiveBr";
+import ArticlesPopulaires from "../components/ArticlesPopulaires";
+import GrilleArticles, { type ArticleCarte } from "../components/GrilleArticles";
+import { CATEGORIES, resumer, trierParPopulariteInitiale } from "../lib/populaires";
 
 export const metadata = buildMetadata({
   title: "Blog Kinome — branding & web à Genève",
@@ -36,6 +39,7 @@ function blogJsonLd() {
       description: p.description,
       image: `${SITE.url}${p.featuredImage}`,
       datePublished: p.date,
+      articleSection: CATEGORIES[p.categorie],
       author: { "@id": `${SITE.url}/#organization` },
       mainEntityOfPage: `${SITE.url}/blog/${p.slug}/`,
     })),
@@ -63,6 +67,22 @@ export default function BlogIndexPage() {
   );
   const featured = parDate[0];
   const others = parDate.slice(1);
+
+  // Les plus lus : ordre de repli Search Console, reclassé côté client
+  // d'après les vues réelles (api/stats.php).
+  const populaires = trierParPopulariteInitiale(blogPosts).map(resumer);
+
+  // Cartes de la grille filtrable (données sérialisables pour le client).
+  const cartes: ArticleCarte[] = others.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    featuredImage: p.featuredImage,
+    date: p.date,
+    dateAffichee: formatDate(p.date),
+    minutes: readingTime(p.articleHtml),
+    categorie: p.categorie,
+  }));
 
   return (
     <main className="bg-kinome-cream">
@@ -138,66 +158,29 @@ export default function BlogIndexPage() {
         </section>
       )}
 
-      {/* Grille des autres articles — affichés à 3 par ligne en desktop */}
+      {/* Les plus lus : 4 cartes classées d'après les vues réelles */}
+      <section className="mx-auto max-w-[1300px] px-[5%] pb-[clamp(60px,10vw,100px)]">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-x-8 gap-y-2">
+          <h2 className="font-heading text-[clamp(22px,2.2vw,30px)] font-normal leading-[1.2] text-kinome-black">
+            Les articles les plus lus
+          </h2>
+          <p className="font-body text-[0.9rem] font-light text-kinome-grey">
+            Classement d&rsquo;après les lectures réelles sur le site.
+          </p>
+        </div>
+        <ArticlesPopulaires articles={populaires} limite={4} variante="cartes" />
+      </section>
+
+      {/* Tous les articles, filtrables par rubrique (3 par ligne en desktop) */}
       {others.length > 0 && (
-        <section className="mx-auto max-w-[1300px] px-[5%] pb-[clamp(60px,12vw,120px)]">
-          <h2 className="mb-12 font-heading text-[clamp(22px,2.2vw,30px)] font-normal leading-[1.2] text-kinome-black">
+        <section
+          id="articles"
+          className="mx-auto max-w-[1300px] px-[5%] pb-[clamp(60px,12vw,120px)]"
+        >
+          <h2 className="mb-8 font-heading text-[clamp(22px,2.2vw,30px)] font-normal leading-[1.2] text-kinome-black">
             Tous nos articles
           </h2>
-
-          <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
-            {others.map((post, i) => (
-              <article key={post.slug} className="group flex flex-col">
-                <Link
-                  href={`/blog/${post.slug}/`}
-                  aria-label={`Lire : ${post.title}`}
-                  className="mb-5 block overflow-hidden rounded-[18px]"
-                >
-                  <img
-                    src={post.featuredImage}
-                    alt={post.title}
-                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-105"
-                    loading={i < 2 ? "eager" : "lazy"}
-                  />
-                </Link>
-
-                <div className="mb-3 flex items-center gap-2 text-[0.8rem]">
-                  <span className="font-heading font-semibold uppercase tracking-[0.06em] text-kinome-accent">
-                    {post.focusKeyword.split(" ").slice(0, 3).join(" ")}
-                  </span>
-                  <span aria-hidden="true" className="text-kinome-grey">
-                    ·
-                  </span>
-                  <time dateTime={post.date} className="text-kinome-grey">
-                    {formatDate(post.date)}
-                  </time>
-                </div>
-
-                <h3 className="mb-3 font-heading text-[clamp(18px,1.5vw,22px)] font-semibold leading-[1.3] text-kinome-black transition-colors group-hover:text-kinome-accent">
-                  <Link href={`/blog/${post.slug}/`} className="line-clamp-3">
-                    {post.title}
-                  </Link>
-                </h3>
-
-                <p className="mb-4 line-clamp-3 font-body text-[0.95rem] font-light leading-[1.6] text-kinome-grey">
-                  {post.excerpt}
-                </p>
-
-                <Link
-                  href={`/blog/${post.slug}/`}
-                  className="mt-auto inline-flex items-center gap-1.5 font-heading text-[0.85rem] font-semibold text-kinome-black underline-offset-4 hover:underline"
-                >
-                  Lire l&rsquo;article
-                  <span
-                    aria-hidden="true"
-                    className="transition-transform group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
-                </Link>
-              </article>
-            ))}
-          </div>
+          <GrilleArticles articles={cartes} />
         </section>
       )}
 

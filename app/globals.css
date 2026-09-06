@@ -266,6 +266,11 @@ body.no-scroll {
   border-top: 1px solid #ece8df;
 }
 
+.blog-prose h2 {
+  /* Ancres du sommaire : le titre s'arrête sous le header fixe */
+  scroll-margin-top: 120px;
+}
+
 .blog-prose h2:first-of-type {
   margin-top: 0;
   border-top: none;
