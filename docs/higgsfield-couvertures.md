@@ -1,6 +1,6 @@
 # Couvertures d'articles générées avec Higgsfield
 
-Série réalisée le 6 septembre 2026 (modèle `nano_banana_pro`, 16:9, 2K, 2 crédits par image),
+Série réalisée le 6 septembre 2026, complétée le 20 septembre 2026 (4 articles) (modèle `nano_banana_pro`, 16:9, 2K, 2 crédits par image),
 convertie en WebP 1600x900 dans `public/assets/blog/couvertures/`.
 Les visuels réels (cartes de vœux Kinome, logo Tampon Audition) sont conservés tels quels.
 
@@ -37,6 +37,10 @@ Hand-drawn editorial illustration in fine black ink lines with soft flat fills, 
 | `agence-communication-suisse-romande` | `1b587e48-d288-4302-aaf4-80a8ab7a2bb6` | a stylised hand-drawn map of western Switzerland around Lake Geneva with several coral red location pins connected by thin lines, the Alps sketched behind, a small Swiss cross badge, a pencil resting on the map |
 | `prix-referencement-seo-suisse` | `2307e1a9-d3eb-4a69-84be-99a8c8ef185a` | a laptop showing a rising line chart, stacked Swiss franc coins, a magnifying glass, a blank monthly calendar page and a small plant sprouting from a pot |
 | `seo-ou-google-ads` | `eb109b5d-d3f6-44b0-a4ff-fce5886979b8` | a fork in a road with two blank wooden signposts: one topped with a coral red megaphone symbol, the other with a growing plant sprout, a laptop on a small table in front, hills in the background |
+| `a-qui-confier-refonte-site-internet-geneve` | `f1400f21-ff37-457d-a669-bf941c194ab1` | two screens side by side on a desk: on the left an old bulky monitor showing a dated cluttered web layout made of many tiny grey boxes, on the right a sleek laptop showing a clean modern layout with one coral red button, between them three blank business cards fanned out with one card highlighted in coral red suggesting the choice of a provider, the Jet d'Eau fountain of Geneva sketched faintly through a window behind |
+| `audit-seo-suisse-contenu-prix` | `d172a796-c66b-4591-b400-cc5eabd71b77` | a clipboard holding a checklist made only of ruled lines and ticked check boxes, a large magnifying glass inspecting a laptop screen that shows a site structure tree diagram of connected boxes, a stethoscope lying on the desk, a small speedometer gauge dial with a coral red needle, and a short stack of Swiss franc coins |
+| `etre-cite-par-chatgpt-perplexity-google-ia` | `8c615321-1b71-4101-952f-4f6fc1ef042d` | an open laptop with a large speech bubble rising from the screen, the bubble contains a four-pointed sparkle star, thin dotted lines link the bubble to three floating paper documents drawn with ruled lines, one document highlighted in coral red with a small bookmark ribbon, a plant sprout in a small pot beside the laptop |
+| `communication-fin-annee-entreprise` | `1828fe58-03e9-4a77-a4d0-cae4c8b5d656` | a desk scene for end of year communication: a standing desk calendar with an empty grid and one square circled in coral red, a smartphone showing a blank social media post layout with a small heart icon, an upright greeting card decorated with an abstract golden star pattern, a small wrapped gift with a coral red ribbon, a fir branch and a few tiny stars |
 
 ## Regénérer une couverture
 

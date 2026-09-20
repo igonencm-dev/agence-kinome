@@ -412,6 +412,18 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
               .
             </Coche>
             <Coche>
+              Inscrivez la carte dans un ensemble&nbsp;: publications,
+              signature e-mail, vœux de janvier. Nos douze idées sont dans le
+              guide de la{" "}
+              <a
+                href="https://agence-kinome.ch/blog/communication-fin-annee-entreprise/"
+                className="underline decoration-kinome-accent underline-offset-4 hover:text-kinome-accent"
+              >
+                communication de fin d'année
+              </a>
+              .
+            </Coche>
+            <Coche>
               Prévoyez une marge de sécurité sur les délais de production et
               d'envoi, pour ne jamais arriver après les fêtes.
             </Coche>

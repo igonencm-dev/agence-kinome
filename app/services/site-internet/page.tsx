@@ -261,12 +261,20 @@ const BLOG_LINKS = [
     label: "Prix d'un site internet en Suisse : les fourchettes réelles",
   },
   {
+    href: "/blog/a-qui-confier-refonte-site-internet-geneve/",
+    label: "À qui confier la refonte de son site à Genève ?",
+  },
+  {
     href: "/blog/wordpress-webflow-sur-mesure-comparatif/",
     label: "WordPress, Webflow ou sur-mesure : quelle techno choisir ?",
   },
   {
     href: "/blog/erreurs-refonte-site-web/",
     label: "Refonte de site : 6 erreurs à éviter sans perdre son SEO",
+  },
+  {
+    href: "/blog/creer-site-ecommerce-suisse/",
+    label: "Créer une boutique en ligne en Suisse : coûts et plateformes",
   },
 ];
 

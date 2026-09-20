@@ -45,6 +45,10 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "ClaudeBot", ...commonRule },
       { userAgent: "anthropic-ai", ...commonRule },
       { userAgent: "Claude-Web", ...commonRule },
+      // Noms actuels (doc Anthropic) : Claude-SearchBot indexe pour la
+      // recherche, Claude-User visite une page à la demande d'un utilisateur.
+      { userAgent: "Claude-SearchBot", ...commonRule },
+      { userAgent: "Claude-User", ...commonRule },
 
       // Perplexity
       { userAgent: "PerplexityBot", ...commonRule },

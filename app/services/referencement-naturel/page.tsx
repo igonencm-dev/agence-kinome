@@ -260,12 +260,20 @@ const BLOG_LINKS = [
     label: "SEO à Genève : les 3 piliers, les délais et les coûts réels",
   },
   {
-    href: "/blog/referencement-local-google-maps-geneve/",
-    label: "Référencement local : entrer dans le top 3 de Google Maps",
+    href: "/blog/audit-seo-suisse-contenu-prix/",
+    label: "Audit SEO : ce qu'il contient et combien il coûte en Suisse",
   },
   {
-    href: "/blog/creation-site-internet-geneve-guide/",
-    label: "Créer un site internet à Genève : le guide complet",
+    href: "/blog/prix-referencement-seo-suisse/",
+    label: "Prix du SEO en Suisse : audit, mandat mensuel, tarifs en CHF",
+  },
+  {
+    href: "/blog/etre-cite-par-chatgpt-perplexity-google-ia/",
+    label: "Être cité par ChatGPT, Perplexity et les IA de Google",
+  },
+  {
+    href: "/blog/referencement-local-google-maps-geneve/",
+    label: "Référencement local : entrer dans le top 3 de Google Maps",
   },
   {
     href: "/blog/erreurs-refonte-site-web/",

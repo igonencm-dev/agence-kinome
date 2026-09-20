@@ -246,6 +246,14 @@ const BLOG_LINKS = [
     label: "Communication 360° à Genève : canaux et budget",
   },
   {
+    href: "/blog/communication-fin-annee-entreprise/",
+    label: "Communication de fin d'année : 12 idées et le calendrier",
+  },
+  {
+    href: "/blog/carte-de-voeux-entreprise/",
+    label: "Carte de vœux d'entreprise : le guide pour bien la préparer",
+  },
+  {
     href: "/blog/strategie-branding-geneve/",
     label: "Stratégie de marque : le guide du branding pour PME",
   },
