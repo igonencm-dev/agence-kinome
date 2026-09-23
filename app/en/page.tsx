@@ -15,7 +15,7 @@ import {
 } from "../lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Independent communication agency in Geneva",
+  title: "Communication agency in Geneva | Kinome",
   bareTitle: true,
   description:
     "Kinome is an independent communication agency based in Geneva. Branding, visual identity, logo design, websites and brand strategy for businesses and freelancers across French-speaking Switzerland.",
@@ -49,12 +49,17 @@ const faqHome = [
   {
     question: "How much does a logo cost with Kinome in Geneva?",
     answer:
-      "The price of a logo design depends on the scope: logo only, complete visual identity, or full brand system including guidelines and applications. We provide a tailored quote after the discovery call, taking into account your constraints, expected variants and timeline. A professional logo project in Geneva typically starts from a few thousand Swiss francs.",
+      "The price of a logo design depends on the scope: logo only, complete visual identity, or full brand system including guidelines and applications. We provide a tailored quote after the discovery call, taking into account your constraints, expected variants and timeline. Expect CHF 1,500 to 5,000 for a professional logo in Geneva, and CHF 4,000 to 15,000 for a complete visual identity.",
   },
   {
     question: "Why choose an independent agency in Geneva?",
     answer:
       "An independent agency like Kinome offers direct contact with the creatives, with no intermediaries. You benefit from faster response times, real listening and a personalised process from start to finish. In Geneva, where brand image quality is essential to stand out, this collaboration mode delivers a result truly aligned with your identity rather than a templated output.",
+  },
+  {
+    question: "Where is Kinome located?",
+    answer:
+      "Kinome is based at Route de Jussy 35, 1226 Thônex, in the canton of Geneva, about fifteen minutes from the city centre. We meet by appointment from Monday to Friday, 9 am to 6 pm, and we travel to clients in Geneva, the canton of Vaud and Haute-Savoie. A first call can also take place by video.",
   },
 ];
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { contact } from "../lib/contact";
 import { getLocaleFromPath, ROUTES, t } from "../lib/i18n";
+import { BUSINESS } from "../lib/seo";
 import ManageCookiesButton from "./ManageCookiesButton";
 import WhatsAppLink from "./WhatsAppLink";
 
@@ -36,6 +37,14 @@ export default function Footer() {
 
         <div className="space-y-3 font-body text-[18px] font-light leading-[26px]">
           <p className="font-semibold">{contact.agency.name}</p>
+          {/* Signature + adresse : cohérence nom, adresse, téléphone sur
+              toutes les pages (signal local pour Google et les assistants). */}
+          <p className="text-[15px] leading-[22px] text-kinome-cream/70">
+            {t("footer_tagline", locale)}
+            <br />
+            {BUSINESS.street}, {BUSINESS.postalCode} {BUSINESS.city},{" "}
+            {BUSINESS.region}
+          </p>
           <ul className="space-y-2">
             {navLinks.map((link) => (
               <li key={link.href}>

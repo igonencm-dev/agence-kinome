@@ -15,12 +15,16 @@ import {
 } from "./lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Agence de communication à Genève",
+  // Titre complet en bareTitle : le gabarit « %s | Kinome » du layout ne
+  // s'applique pas au segment racine (layout et page sont le même segment).
+  title: "Agence de communication à Genève | Kinome",
   bareTitle: true,
   description:
-    "Agence de communication indépendante à Genève : branding, identité visuelle, création de logo et sites internet pour PME et marques en Suisse romande.",
+    "Kinome, agence de communication à Genève : stratégie de marque, logo, identité visuelle, site internet et SEO pour les PME romandes. Diagnostic offert.",
   path: "/",
   keywords: [
+    "agence de communication Genève",
+    "agence de communication Thônex",
     "agence Kinome",
     "agence communication indépendante",
     "communication Genève",
@@ -50,7 +54,12 @@ const faqHome = [
   {
     question: "Combien coûte la création d'un logo à Genève avec Kinome ?",
     answer:
-      "Le tarif d'une création de logo dépend du périmètre : logo seul, identité visuelle complète, ou système de marque incluant la charte et les déclinaisons. Nous établissons un devis personnalisé après l'appel de découverte, qui prend en compte vos contraintes, le nombre de variantes attendues et le délai. Un projet de logo professionnel à Genève démarre généralement à partir de quelques milliers de francs suisses.",
+      "Le tarif d'une création de logo dépend du périmètre : logo seul, identité visuelle complète, ou système de marque incluant la charte et les déclinaisons. Comptez entre 1 500 et 5 000 CHF pour un logo professionnel à Genève, et de 4 000 à 15 000 CHF pour une identité visuelle complète. Nous établissons un devis personnalisé après l'appel de découverte, qui prend en compte vos contraintes, le nombre de variantes attendues et le délai.",
+  },
+  {
+    question: "Où se trouve l'agence Kinome ?",
+    answer:
+      "Kinome est installée route de Jussy 35, 1226 Thônex, dans le canton de Genève, à une quinzaine de minutes du centre-ville. Nous recevons sur rendez-vous du lundi au vendredi, de 9 h à 18 h, et nous nous déplaçons chez nos clients à Genève, dans le canton de Vaud et en Haute-Savoie. Un premier échange peut aussi se faire en visioconférence.",
   },
   {
     question: "Pourquoi choisir une agence indépendante à Genève ?",
@@ -197,9 +206,9 @@ export default function Home() {
               <ResponsiveBr />à Genève — <HeroAnimatedWord />
             </h1>
             <p className="mb-[35px] max-w-[520px] text-center text-[clamp(16px,1.3vw,19px)] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] md:text-left">
-              Branding, identité visuelle et sites internet{" "}
-              <ResponsiveBr />
-              en alliant stratégie et émotion, depuis la Suisse romande.
+              Stratégie de marque, identité visuelle, sites internet et
+              référencement pour les PME et les indépendants de Genève et de
+              Suisse romande.
             </p>
             <div className="flex flex-wrap justify-center gap-5 md:justify-start">
               {/* Bouton 1 (primaire) : fond blanc/texte noir + ombre pour
@@ -247,7 +256,7 @@ export default function Home() {
                   1
                 </p>
                 <p className="mt-2 font-body text-[clamp(11px,1vw,14px)] font-medium uppercase tracking-[0.05em] text-kinome-grey">
-                  Bureau local
+                  Bureau à Genève
                 </p>
               </div>
               <div className="text-center md:text-left">
@@ -270,8 +279,9 @@ export default function Home() {
           </div>
           <div>
             <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.6] text-kinome-grey">
-              Kinome est une jeune agence créative et polyvalente, spécialisée
-              en identité, campagne et website.
+              Kinome est une agence de communication indépendante installée à
+              Thônex, aux portes de Genève, spécialisée en identité de marque,
+              campagnes et sites internet.
             </p>
             <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.6] text-kinome-grey">
               Notre volonté est de faire du beau, du moderne et de
@@ -384,6 +394,154 @@ export default function Home() {
           >
             Découvrir nos projets
           </Link>
+        </div>
+      </section>
+
+      {/* Ancrage local : adresse, zone d'intervention, clients de la région
+          et services. Section pensée pour la requête « agence de communication
+          genève » (Search Console au 20/09/2026 : 109 impressions par mois en
+          position 41). Uniquement des faits vérifiables : adresse Local.ch,
+          projets du portfolio, horaires du JSON-LD. */}
+      <section
+        id="geneve"
+        className="mx-auto mb-[60px] max-w-[1300px] rounded-[20px] bg-white px-[clamp(20px,5vw,60px)] py-[clamp(50px,8vw,80px)]"
+      >
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+          <div>
+            <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
+              Thônex, canton de Genève
+            </p>
+            <h2 className="mb-8 font-heading text-[clamp(28px,4.5vw,52px)] font-normal leading-[1.1] text-kinome-black">
+              Une agence de communication ancrée à Genève
+            </h2>
+            <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
+              Kinome est installée route de Jussy, à Thônex, à quelques
+              minutes du centre de Genève. Nous travaillons avec des
+              entreprises de tout le canton, avec des clients de Lausanne et
+              de Suisse romande, et avec les sociétés frontalières de
+              Haute-Savoie qui s&rsquo;adressent au marché genevois.
+            </p>
+            <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
+              Être une agence de communication à Genève, c&rsquo;est
+              connaître le terrain&nbsp;: une clientèle internationale et
+              exigeante, des supports souvent bilingues, des secteurs comme le
+              conseil, la santé, la formation, l&rsquo;immobilier ou le
+              logiciel, et une attente de qualité suisse sur chaque livrable.
+              C&rsquo;est aussi pouvoir se rencontrer&nbsp;: les ateliers de
+              cadrage se tiennent chez vous ou à l&rsquo;agence.
+            </p>
+            <p className="mb-8 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-black">
+              <strong className="font-semibold">Diagnostic stratégique offert&nbsp;:</strong>{" "}
+              trente minutes pour faire le point sur votre image, votre site
+              et votre visibilité, réponse sous 24&nbsp;h.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 md:justify-start">
+              <Link
+                href="#contact"
+                className="inline-flex min-w-[240px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              >
+                Parler de votre projet
+              </Link>
+              <Link
+                href="/portfolio/"
+                className="inline-flex min-w-[240px] items-center justify-center btn-fill-dark rounded-full border-2 border-kinome-black bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
+              >
+                Voir nos réalisations
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-5">
+            <div className="rounded-[18px] bg-kinome-cream p-6">
+              <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
+                Notre bureau
+              </p>
+              <p className="font-body text-[clamp(16px,1.15vw,18px)] leading-[1.6] text-kinome-black">
+                Route de Jussy 35
+                <br />
+                1226 Thônex, Genève
+              </p>
+              <p className="mt-2 font-body text-[0.95rem] leading-[1.6] text-kinome-grey">
+                Du lundi au vendredi, 9&nbsp;h à 18&nbsp;h, sur rendez-vous.
+              </p>
+              <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-body text-[0.95rem]">
+                <a
+                  href="https://maps.app.goo.gl/Ge2EH3UVP2mfAZej9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-kinome-black underline underline-offset-4 hover:text-kinome-accent"
+                >
+                  Voir sur Google Maps
+                </a>
+                <a
+                  href={`tel:${contact.phones.mathias.e164}`}
+                  className="font-medium text-kinome-black underline underline-offset-4 hover:text-kinome-accent"
+                >
+                  {contact.phones.mathias.display}
+                </a>
+              </p>
+            </div>
+
+            <div className="rounded-[18px] bg-kinome-cream p-6">
+              <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
+                Des clients de la région
+              </p>
+              <ul className="space-y-2 font-body text-[0.95rem] leading-[1.55] text-kinome-grey">
+                <li>
+                  <Link href="/projets/adapt-project/" className="font-medium text-kinome-black hover:text-kinome-accent hover:underline">
+                    Adapt Project
+                  </Link>
+                  , assistance à maîtrise d&rsquo;ouvrage à Thônex
+                </li>
+                <li>
+                  <Link href="/projets/vp-conseils/" className="font-medium text-kinome-black hover:text-kinome-accent hover:underline">
+                    VP Conseils
+                  </Link>
+                  , conseil immobilier et financier pour les frontaliers, entre Genève et la Haute-Savoie
+                </li>
+                <li>
+                  <Link href="/projets/microclimat/" className="font-medium text-kinome-black hover:text-kinome-accent hover:underline">
+                    Microclimat
+                  </Link>
+                  , agence d&rsquo;architecture en Haute-Savoie
+                </li>
+                <li>
+                  Et des marques suivies à distance, de Paris à La Réunion&nbsp;:{" "}
+                  <Link href="/portfolio/" className="font-medium text-kinome-black hover:text-kinome-accent hover:underline">
+                    toutes nos réalisations
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="rounded-[18px] bg-kinome-cream p-6">
+              <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
+                Ce que nous faisons à Genève
+              </p>
+              <ul className="grid grid-cols-1 gap-x-6 gap-y-2 font-body text-[0.95rem] sm:grid-cols-2">
+                {[
+                  ["/services/strategie-de-marque/", "Stratégie de marque"],
+                  ["/services/identite-visuelle/", "Identité visuelle"],
+                  ["/services/creation-logo/", "Création de logo"],
+                  ["/services/site-internet/", "Site internet et e-commerce"],
+                  ["/services/referencement-naturel/", "Référencement naturel"],
+                  ["/services/reseaux-sociaux/", "Réseaux sociaux"],
+                ].map(([href, label]) => (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      className="group inline-flex items-center gap-1.5 text-kinome-black hover:text-kinome-accent"
+                    >
+                      <span aria-hidden="true" className="text-kinome-accent transition-transform group-hover:translate-x-0.5">
+                        →
+                      </span>
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 

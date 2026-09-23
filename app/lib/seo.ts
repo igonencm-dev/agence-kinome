@@ -57,10 +57,13 @@ export const BUSINESS = {
   areaServed: [
     "Genève",
     "Thônex",
+    "Carouge",
+    "Nyon",
     "Lausanne",
     "Vaud",
     "Suisse romande",
     "Suisse",
+    "Haute-Savoie",
     "France",
   ],
   // CHF est la devise réelle — €€ était un héritage. Schema.org accepte les
@@ -290,6 +293,7 @@ export function organizationJsonLd() {
           opens: "09:00",
           closes: "18:00",
         })),
+        hasMap: "https://maps.app.goo.gl/Ge2EH3UVP2mfAZej9",
         sameAs: [
           "https://www.linkedin.com/company/agence-kinome",
           "https://www.instagram.com/agencekinome/",

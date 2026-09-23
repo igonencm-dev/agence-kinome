@@ -455,9 +455,15 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
             Une carte de vœux qui vous ressemble, cette année
           </h2>
           <p className="mx-auto mt-5 max-w-[620px] font-body text-[clamp(15px,1.3vw,19px)] font-light leading-[1.55] text-white/85">
-            Parlons-en dès maintenant&nbsp;: nous cadrons le concept avec vous
-            et vous accompagnons jusqu'à l'envoi, sans course contre la montre
-            en décembre.
+            Parlons-en dès maintenant&nbsp;:{" "}
+            <a
+              href="https://agence-kinome.ch/"
+              className="underline decoration-white/40 underline-offset-4 hover:decoration-white"
+            >
+              Kinome, agence de communication à Genève
+            </a>
+            , cadre le concept avec vous et vous accompagne jusqu'à l'envoi,
+            sans course contre la montre en décembre.
           </p>
           <div className="mt-[clamp(24px,3vw,40px)]">
             <Link

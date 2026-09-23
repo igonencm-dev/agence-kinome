@@ -143,6 +143,7 @@ const fr: Dict = {
   footer_manage_cookies: "Gérer les cookies",
   footer_press_kit: "Dossier de presse",
   footer_follow: "Suivez-nous",
+  footer_tagline: "Agence de communication à Genève",
   footer_rights: "Tous droits réservés.",
 
   // Cookies banner
@@ -245,6 +246,7 @@ const en: Dict = {
   footer_manage_cookies: "Manage cookies",
   footer_press_kit: "Press kit",
   footer_follow: "Follow us",
+  footer_tagline: "Communication agency in Geneva",
   footer_rights: "All rights reserved.",
 
   // Cookies banner
