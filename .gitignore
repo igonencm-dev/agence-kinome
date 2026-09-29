@@ -39,6 +39,8 @@ yarn-error.log*
 /public/api/config.php
 # Compteurs de vues / j'aime : données de production, jamais versionnées
 /public/api/data/
+# Base du suivi et config de /admin/ : vivent hors du dépôt (domains/agence-kinome.ch/data/)
+/data/
 
 # Audits visuels locaux (screenshots Figma)
 /.figma-audit/

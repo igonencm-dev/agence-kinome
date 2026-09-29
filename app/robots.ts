@@ -23,7 +23,7 @@ export default function robots(): MetadataRoute.Robots {
     // `/signature/` héberge les assets de la signature mail de Mathias.
     // On ne veut pas que ces images soient indexées ni associées au site
     // dans les SERP / images.
-    disallow: ["/api/", "/_next/", "/signature/"],
+    disallow: ["/api/", "/_next/", "/signature/", "/admin/"],
   };
 
   return {

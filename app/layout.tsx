@@ -6,6 +6,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import HorsAdmin from "./components/HorsAdmin";
+import Suivi from "./components/Suivi";
 import CauserieBotWidget from "./components/CauserieBotWidget";
 import MobileStickyCta from "./components/MobileStickyCta";
 import {
@@ -155,19 +157,31 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-kinome-cream text-kinome-black">
-        <Header />
+        {/* Sur /admin/ (tableau de bord interne), ni en-tête, ni pied de page,
+            ni bandeau, ni mesure : voir HorsAdmin. */}
+        <HorsAdmin>
+          <Header />
+        </HorsAdmin>
         {children}
-        <Footer />
-        <CookieConsent />
-        <GoogleAnalytics />
+        <HorsAdmin>
+          <Footer />
+          <CookieConsent />
+          <GoogleAnalytics />
+          {/* Suivi first-party du tableau de bord /admin/ (app/lib/suivi.ts) */}
+          <Suivi />
+        </HorsAdmin>
 
         {/* Chatbot CauserieBot : chargé après la 1ère interaction utilisateur
             ou 8 s d'inactivité — préserve les Core Web Vitals (TBT, LCP). */}
-        <CauserieBotWidget />
+        <HorsAdmin>
+          <CauserieBotWidget />
+        </HorsAdmin>
 
         {/* Barre CTA collante mobile : apparaît au scroll, se cache près du
             formulaire de contact, dismissible. Mobile uniquement. */}
-        <MobileStickyCta />
+        <HorsAdmin>
+          <MobileStickyCta />
+        </HorsAdmin>
       </body>
     </html>
   );

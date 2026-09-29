@@ -24,6 +24,7 @@ import {
   publier,
   type Compteurs,
 } from "../lib/stats-client";
+import { suivre } from "../lib/suivi";
 
 function useCompteurs(slug: string, enregistrerVue: boolean) {
   const [compteurs, setCompteurs] = useState<Compteurs | null>(null);
@@ -67,6 +68,7 @@ function useCompteurs(slug: string, enregistrerVue: boolean) {
     const prochain = !aime;
     setAime(prochain);
     ecrireStockage(`kinome-jaime:${slug}`, prochain ? "1" : null);
+    suivre("jaime", { slug, action: prochain ? "ajout" : "retrait" });
     if (compteurs) {
       publier(slug, {
         vues: compteurs.vues,

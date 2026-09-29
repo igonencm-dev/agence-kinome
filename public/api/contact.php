@@ -371,6 +371,28 @@ if (!$internalOk) {
 // 2) Confirmation au visiteur (best-effort, on ne bloque pas la réponse si elle rate)
 sendMail($config, $email, $fullName, $confirmSubject, $confirmHtml, $confirmText);
 
+// 3) Enregistrement dans le tableau de bord /admin/ (best-effort : l'email est
+//    déjà parti, une erreur de base ne doit jamais changer la réponse)
+try {
+    require_once __DIR__ . '/_lib.php';
+    kn_enregistrer_lead([
+        'formulaire' => 'contact',
+        'nom'        => $fullName,
+        'email'      => $email,
+        'entreprise' => $societe,
+        'projet'     => $besoin,
+        'message'    => $message,
+        'origine'    => $data['origine'] ?? null,
+        's'          => $data['s'] ?? null,
+        'v'          => $data['v'] ?? null,
+        'ref'        => $data['ref'] ?? null,
+        'utm'        => $data['utm'] ?? null,
+        'chemin'     => $data['chemin'] ?? null,
+    ]);
+} catch (Throwable $e) {
+    // la demande est déjà dans la boîte mail
+}
+
 // --- Mise à jour du rate limit ---------------------------------------------
 $hits[] = $now;
 @file_put_contents($rateFile, json_encode($hits));

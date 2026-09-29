@@ -14,6 +14,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Reveal from "../../components/Reveal";
+import { suivre } from "../../lib/suivi";
 
 type Media = {
   type: "image" | "video";
@@ -122,7 +123,10 @@ export default function VisionneuseVoeux({
     return (
       <button
         type="button"
-        onClick={() => setIndex(i)}
+        onClick={() => {
+          setIndex(i);
+          suivre("media", { media: m.legende.slice(0, 90), type: m.type });
+        }}
         aria-label={`Ouvrir dans la visionneuse : ${m.legende}`}
         className="group/zoom relative block w-full cursor-zoom-in appearance-none border-0 bg-transparent p-0 text-left"
       >

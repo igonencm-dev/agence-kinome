@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { getLocaleFromPath, t } from "../lib/i18n";
+import { contexteSuivi, formulaireEnvoye } from "../lib/suivi";
 
 type Etat = "idle" | "envoi" | "succes" | "erreur";
 
@@ -37,6 +38,11 @@ export default function ContactForm() {
       message:
         ((data.get("message") as string) ?? "") +
         (source ? `\n\nComment nous avez-vous connus : ${source}` : ""),
+      // Tableau de bord /admin/ : la demande est reliée à la visite (et à
+      // tout le parcours du visiteur s'il a accepté la mesure d'audience).
+      origine: source,
+      chemin: window.location.pathname,
+      ...contexteSuivi(),
     };
 
     setEtat("envoi");
@@ -54,6 +60,7 @@ export default function ContactForm() {
       } | null;
 
       if (res.ok && json?.ok) {
+        formulaireEnvoye("contact");
         setEtat("succes");
         form.reset();
       } else {
@@ -110,7 +117,7 @@ export default function ContactForm() {
       <h2 className="mb-10 text-center font-heading text-[2.2rem] font-semibold">
         {t("form_title", locale)}
       </h2>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate data-suivi-form="contact">
         {/* Honeypot caché — les bots le remplissent, pas les humains */}
         <div
           aria-hidden="true"

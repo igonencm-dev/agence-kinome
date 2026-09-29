@@ -62,6 +62,17 @@ export default function PrivacyPolicyEN() {
               data (truncated IP), pages visited, duration, traffic source,
               device type.
             </li>
+            <li>
+              <strong>In-house audience measurement:</strong> our own tool,
+              hosted on our website&rsquo;s server, with no third party: pages
+              viewed, reading time, scrolling, clicks on contact buttons,
+              forms started (never their content) and where the visit came
+              from. Without your consent, each visit stays isolated: no
+              cookie, no IP address kept, no link between two visits. If you
+              accept audience measurement in the banner, a random identifier
+              stored in your browser links your visits for 13 months at most,
+              so that we know how you found us when you write to us.
+            </li>
           </ul>
         </section>
 
@@ -106,6 +117,11 @@ export default function PrivacyPolicyEN() {
             <li>
               <strong>Audience cookies:</strong> 13 months maximum (CNIL
               recommendation).
+            </li>
+            <li>
+              <strong>In-house audience measurement:</strong> visits and
+              events deleted automatically after 25 months; visitor
+              identifier kept for 13 months at most in your browser.
             </li>
           </ul>
         </section>
@@ -169,7 +185,7 @@ export default function PrivacyPolicyEN() {
             7. Cookies
           </h2>
           <p className="mb-3 font-body text-[1rem] leading-[1.7] text-kinome-black">
-            Our site uses two categories of cookies:
+            Our site uses the following cookies and trackers:
           </p>
           <ul className="list-disc space-y-2 pl-6 font-body text-[1rem] leading-[1.7] text-kinome-black">
             <li>
@@ -183,6 +199,14 @@ export default function PrivacyPolicyEN() {
               us understand site usage in an anonymised way. You can withdraw
               your consent at any time by clicking "Manage cookies" at the
               bottom of the page.
+            </li>
+            <li>
+              <strong>In-house audience measurement trackers:</strong> a visit
+              identifier (30 minutes of inactivity) stored in your browser,
+              exempt from consent because it is limited to measuring this
+              site&rsquo;s audience. The 13-month visitor identifier is only
+              created with your consent and is erased as soon as you withdraw
+              it.
             </li>
           </ul>
           <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-black">

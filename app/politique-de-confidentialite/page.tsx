@@ -66,6 +66,19 @@ export default function PolitiqueConfidentialitePage() {
               cookies. Données pseudonymisées (IP tronquée), pages visitées,
               durée, source de trafic, type d&rsquo;appareil.
             </li>
+            <li>
+              <strong>Mesure d&rsquo;audience interne :</strong> notre propre
+              outil, hébergé sur le serveur de notre site, sans aucun tiers :
+              pages vues, temps de lecture, défilement, clics sur les boutons
+              de contact, formulaires commencés (jamais leur contenu) et
+              provenance de la visite. Sans votre accord, chaque visite reste
+              isolée : aucun cookie, aucune adresse IP conservée, aucun lien
+              entre deux visites. Si vous acceptez la mesure d&rsquo;audience
+              dans le bandeau, un identifiant aléatoire stocké dans votre
+              navigateur relie vos visites pendant 13 mois au plus, ce qui
+              nous permet de savoir comment vous nous avez connus lorsque vous
+              nous écrivez.
+            </li>
           </ul>
         </section>
 
@@ -112,6 +125,11 @@ export default function PolitiqueConfidentialitePage() {
             <li>
               <strong>Cookies de mesure d&rsquo;audience :</strong> 13 mois
               maximum (recommandation CNIL).
+            </li>
+            <li>
+              <strong>Mesure d&rsquo;audience interne :</strong> visites et
+              événements effacés automatiquement après 25 mois ; identifiant
+              de visiteur conservé 13 mois au plus dans votre navigateur.
             </li>
           </ul>
         </section>
@@ -178,7 +196,7 @@ export default function PolitiqueConfidentialitePage() {
             7. Cookies
           </h2>
           <p className="mb-3 font-body text-[1rem] leading-[1.7] text-kinome-black">
-            Notre site utilise deux catégories de cookies :
+            Notre site utilise les cookies et traceurs suivants :
           </p>
           <ul className="list-disc space-y-2 pl-6 font-body text-[1rem] leading-[1.7] text-kinome-black">
             <li>
@@ -193,6 +211,14 @@ export default function PolitiqueConfidentialitePage() {
               de manière anonymisée. Vous pouvez retirer votre consentement
               à tout moment en cliquant sur « Gérer mes cookies » en bas de
               page.
+            </li>
+            <li>
+              <strong>Traceurs de la mesure d&rsquo;audience interne :</strong>{" "}
+              un identifiant de visite (30 minutes d&rsquo;inactivité) stocké
+              dans votre navigateur, exempté de consentement car limité à la
+              mesure d&rsquo;audience de ce site. L&rsquo;identifiant de
+              visiteur de 13 mois n&rsquo;est créé qu&rsquo;avec votre accord
+              et il est effacé dès que vous le retirez.
             </li>
           </ul>
           <p className="mt-4 font-body text-[1rem] leading-[1.7] text-kinome-black">
