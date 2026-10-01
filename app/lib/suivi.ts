@@ -13,8 +13,9 @@
 // Ce qui est suivi : pages vues, temps de lecture réel (onglet visible),
 // profondeur de défilement, clics sur téléphone, email, liens sortants et
 // boutons d'action, ouverture du chatbot, formulaires commencés et abandonnés
-// (jamais leur contenu), WhatsApp, j'aime sur les articles et médias ouverts
-// dans la visionneuse.
+// (jamais leur contenu), WhatsApp, liens internes suivis, ancres, boutons,
+// fichiers téléchargés, j'aime sur les articles et médias ouverts dans la
+// visionneuse. Tout est exportable depuis /admin/ > Exports.
 
 const BASE = ""; // site servi à la racine du domaine
 const ENDPOINT = `${BASE}/api/t.php`;
@@ -313,6 +314,9 @@ function installer() {
       }
       const el = cible.closest("a, button");
       if (!el) return;
+      // Le bandeau cookies, les boîtes de dialogue et les éléments qui ont
+      // déjà leur propre mesure (j'aime, visionneuse) ne sont pas doublés.
+      if (el.closest('[aria-describedby="cookie-consent-desc"], [role="dialog"], [data-suivi-ignorer]')) return;
       const suivi = el.getAttribute("data-suivi");
       if (el instanceof HTMLAnchorElement) {
         const href = el.getAttribute("href") || "";
@@ -321,15 +325,22 @@ function installer() {
         try {
           const u = new URL(el.href);
           if (/(^|\.)wa\.me$|(^|\.)whatsapp\.com$/.test(u.hostname)) return suivre("clic", { cible: "whatsapp", libelle: libelle(el) });
+          if (/\.(pdf|zip|docx?|xlsx?|pptx?)$/i.test(u.pathname)) return suivre("clic", { cible: "fichier", libelle: libelle(el), href: u.hostname + u.pathname });
           if (u.hostname !== window.location.hostname) return suivre("clic", { cible: "externe", libelle: libelle(el), href: u.hostname + u.pathname });
           const p = u.pathname.replace(BASE, "");
           const versContact = /^\/(en\/)?contact\//.test(p) || u.hash === "#contact";
           if (suivi || versContact) return suivre("clic", { cible: "cta", libelle: suivi || libelle(el), vers: u.hash === "#contact" ? `${p}#contact` : p });
+          const ici = window.location.pathname.replace(BASE, "") || "/";
+          if (p === ici && u.hash) return suivre("clic", { cible: "ancre", libelle: libelle(el) || u.hash, vers: `${p}${u.hash}` });
+          return suivre("clic", { cible: "lien", libelle: libelle(el), vers: p });
         } catch {
           // lien sans URL valide
         }
       } else if (suivi) {
         suivre("clic", { cible: "cta", libelle: suivi });
+      } else {
+        const l = libelle(el);
+        if (l) suivre("clic", { cible: "bouton", libelle: l });
       }
     },
     { capture: true },

@@ -137,6 +137,7 @@ export default function StatsArticle({
         type="button"
         onClick={basculerJaime}
         aria-pressed={aime}
+        data-suivi-ignorer=""
         className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-heading text-[0.9rem] font-semibold transition-all hover:scale-105 ${
           aime
             ? "bg-kinome-accent text-white"

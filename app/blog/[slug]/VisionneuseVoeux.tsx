@@ -128,6 +128,7 @@ export default function VisionneuseVoeux({
           suivre("media", { media: m.legende.slice(0, 90), type: m.type });
         }}
         aria-label={`Ouvrir dans la visionneuse : ${m.legende}`}
+        data-suivi-ignorer=""
         className="group/zoom relative block w-full cursor-zoom-in appearance-none border-0 bg-transparent p-0 text-left"
       >
         <span className={`block overflow-hidden ${arrondi} ${m.type === "video" ? "bg-kinome-dark" : ""}`}>

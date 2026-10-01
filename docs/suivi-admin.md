@@ -25,6 +25,18 @@ architecture que codecircle.fr et causeriebot.com).
 - Les compteurs de vues et j'aime du blog restent dans `public_html/api/data/stats.json`
   (`public/api/stats.php`) ; le tableau de bord les affiche aussi.
 
+## Exports (onglet Exports de /admin/)
+
+- `admin.php?a=export&quoi=visites&j=30` : CSV des visites (j=0 pour tout).
+- `quoi=evenements` : CSV des interactions, une ligne par événement avec le canal et
+  la source de la visite ; `quoi=demandes` : CSV des demandes (toutes périodes) ;
+  `quoi=tout` : JSON visites + interactions + demandes + compteurs du blog ;
+  `quoi=base` : copie cohérente de `kinome.sqlite` (VACUUM INTO).
+- Depuis le 01/10/2026, tous les clics sont mesurés : liens internes (cible `lien`),
+  ancres de sommaire (`ancre`), boutons (`bouton`), fichiers (`fichier`), en plus de
+  tel, mail, whatsapp, externe et cta. Les éléments portant `data-suivi-ignorer` et
+  les boîtes de dialogue ne sont pas doublés.
+
 ## Mot de passe
 
 - Défini par Mathias avec `bash scripts/admin-motdepasse.sh` : saisie sans écho,

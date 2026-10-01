@@ -289,20 +289,98 @@ if ($action === 'session') {
 }
 
 // --- Export et compte ------------------------------------------------------------
+// --- Exports --------------------------------------------------------------------
+// quoi = demandes (toutes), visites et evenements (période choisie, j=0 pour
+// tout), tout (JSON des trois, plus le blog), base (copie de la base SQLite).
 if ($action === 'export') {
-    header('Content-Type: text/csv; charset=utf-8');
-    header('Content-Disposition: attachment; filename="leads-kinome-' . date('Y-m-d') . '.csv"');
-    header('Cache-Control: no-store');
-    $sortie = fopen('php://output', 'w');
-    fwrite($sortie, "\xEF\xBB\xBF");
-    $colonnes = ['id', 'date', 'formulaire', 'nom', 'email', 'telephone', 'entreprise', 'projet', 'site', 'origine_declaree', 'canal', 'source',
-        'premier_canal', 'premiere_source', 'nb_visites', 'statut', 'valeur', 'notes', 'message'];
-    fputcsv($sortie, $colonnes, ';', '"', '');
-    foreach (kn_tous($db, 'SELECT ' . implode(', ', $colonnes) . ' FROM leads ORDER BY date DESC') as $l) {
-        $l['date'] = date('Y-m-d H:i', (int) ($l['date'] / 1000));
-        fputcsv($sortie, $l, ';', '"', '');
+    $quoi = (string) ($_GET['quoi'] ?? 'demandes');
+    $jour = date('Y-m-d');
+    $pDebut = $jours > 0 ? $debut : 0;
+    $horodatage = fn($ms) => $ms === null ? null : date('Y-m-d H:i:s', (int) ((int) $ms / 1000));
+
+    $csv = function (string $nom, array $colonnes, iterable $lignes) {
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="' . $nom . '"');
+        header('Cache-Control: no-store');
+        $sortie = fopen('php://output', 'w');
+        fwrite($sortie, "\xEF\xBB\xBF");
+        fputcsv($sortie, $colonnes, ';', '"', '');
+        foreach ($lignes as $l) {
+            fputcsv($sortie, array_map(fn($c) => $l[$c] ?? null, $colonnes), ';', '"', '');
+        }
+        exit;
+    };
+
+    if ($quoi === 'visites') {
+        $q = $db->prepare('SELECT *, CAST((fin - debut) / 1000 AS INTEGER) AS duree_s FROM sessions WHERE debut >= ? AND debut < ? ORDER BY debut DESC');
+        $q->execute([$pDebut, $fin]);
+        $lignes = (function () use ($q, $horodatage) {
+            while ($l = $q->fetch()) {
+                $l['debut'] = $horodatage($l['debut']);
+                $l['fin'] = $horodatage($l['fin']);
+                yield $l;
+            }
+        })();
+        $csv("visites-kinome-$jour.csv", ['id', 'visiteur', 'debut', 'fin', 'duree_s', 'pages', 'canal', 'source', 'referrer', 'utm', 'atterrissage',
+            'appareil', 'navigateur', 'os', 'ecran', 'langue', 'visite_n', 'lead_id'], $lignes);
     }
-    exit;
+    if ($quoi === 'evenements') {
+        $q = $db->prepare('SELECT e.id, e.date, e.session, s.visiteur, s.canal, s.source, s.appareil, s.atterrissage, e.type, e.chemin, e.donnees
+            FROM evenements e LEFT JOIN sessions s ON s.id = e.session WHERE e.date >= ? AND e.date < ? ORDER BY e.date');
+        $q->execute([$pDebut, $fin]);
+        $lignes = (function () use ($q, $horodatage) {
+            while ($l = $q->fetch()) {
+                $l['date'] = $horodatage($l['date']);
+                yield $l;
+            }
+        })();
+        $csv("interactions-kinome-$jour.csv", ['id', 'date', 'session', 'visiteur', 'canal', 'source', 'appareil', 'atterrissage', 'type', 'chemin', 'donnees'], $lignes);
+    }
+    if ($quoi === 'tout') {
+        header('Content-Type: application/json; charset=utf-8');
+        header('Content-Disposition: attachment; filename="kinome-donnees-' . $jour . '.json"');
+        header('Cache-Control: no-store');
+        $blog = [];
+        if (is_file(__DIR__ . '/data/stats.json')) {
+            $blog = json_decode((string) file_get_contents(__DIR__ . '/data/stats.json'), true)['articles'] ?? [];
+        }
+        echo json_encode([
+            'site' => 'agence-kinome.ch',
+            'exporte_le' => date('c'),
+            'periode' => ['debut' => $horodatage($pDebut), 'fin' => $horodatage($fin), 'jours' => $jours],
+            'sessions' => kn_tous($db, 'SELECT * FROM sessions WHERE debut >= ? AND debut < ? ORDER BY debut', [$pDebut, $fin]),
+            'evenements' => kn_tous($db, 'SELECT id, session, date, type, chemin, donnees FROM evenements WHERE date >= ? AND date < ? ORDER BY date', [$pDebut, $fin]),
+            'leads' => kn_tous($db, 'SELECT * FROM leads ORDER BY date'),
+            'blog' => $blog,
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        exit;
+    }
+    if ($quoi === 'base') {
+        // Copie cohérente de la base (VACUUM INTO), puis envoi et suppression
+        $copie = sys_get_temp_dir() . '/kinome-export-' . bin2hex(random_bytes(6)) . '.sqlite';
+        try {
+            $db->exec('VACUUM INTO ' . $db->quote($copie));
+        } catch (Throwable $e) {
+            $db->exec('PRAGMA wal_checkpoint(TRUNCATE)');
+            copy(kn_dossier_donnees() . '/kinome.sqlite', $copie);
+        }
+        header('Content-Type: application/vnd.sqlite3');
+        header('Content-Disposition: attachment; filename="kinome-' . $jour . '.sqlite"');
+        header('Content-Length: ' . filesize($copie));
+        header('Cache-Control: no-store');
+        readfile($copie);
+        @unlink($copie);
+        exit;
+    }
+    // demandes (toutes périodes)
+    $colonnes = ['id', 'date', 'formulaire', 'nom', 'email', 'telephone', 'entreprise', 'projet', 'site', 'origine_declaree', 'canal', 'source',
+        'premier_canal', 'premiere_source', 'premiere_visite', 'nb_visites', 'statut', 'valeur', 'notes', 'message'];
+    $lignes = array_map(function ($l) use ($horodatage) {
+        $l['date'] = $horodatage($l['date']);
+        $l['premiere_visite'] = $horodatage($l['premiere_visite']);
+        return $l;
+    }, kn_tous($db, 'SELECT ' . implode(', ', $colonnes) . ' FROM leads ORDER BY date DESC'));
+    $csv("demandes-kinome-$jour.csv", $colonnes, $lignes);
 }
 
 if ($action === 'motdepasse' && $methode === 'POST') {

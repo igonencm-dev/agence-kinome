@@ -224,6 +224,10 @@ export function decrire(type: string, chemin: string | null, brut: string | null
       if (d.cible === "tel") return { icone: "☎", texte: `A cliqué sur le téléphone (${d.libelle})` };
       if (d.cible === "mail") return { icone: "✉", texte: `A cliqué sur l'email (${d.libelle})` };
       if (d.cible === "externe") return { icone: "↗", texte: `Lien sortant : ${d.href}` };
+      if (d.cible === "fichier") return { icone: "⤓", texte: `A téléchargé ${d.href}` };
+      if (d.cible === "lien") return { icone: "→", texte: `A suivi le lien « ${d.libelle} » vers ${d.vers}` };
+      if (d.cible === "ancre") return { icone: "⤵", texte: `A sauté à la section « ${d.libelle} »` };
+      if (d.cible === "bouton") return { icone: "▢", texte: `A cliqué sur « ${d.libelle} »` };
       return { icone: "➜", texte: `Bouton « ${d.libelle} »${d.vers ? ` vers ${d.vers}` : ""}` };
     case "formulaire":
       if (d.etape === "debut") return { icone: "✎", texte: `A commencé le formulaire ${d.form}` };

@@ -75,7 +75,7 @@ const PERIODES = [
   { j: 365, l: "12 mois" },
   { j: 0, l: "Tout" },
 ];
-const ONGLETS = ["Vue d'ensemble", "Demandes", "Visites", "Réglages"] as const;
+const ONGLETS = ["Vue d'ensemble", "Demandes", "Visites", "Exports", "Réglages"] as const;
 type Onglet = (typeof ONGLETS)[number];
 
 const champCls = "w-full rounded-xl border border-[#e7e3da] bg-white px-3.5 py-2.5 text-[0.9rem] outline-none focus:border-kinome-black";
@@ -176,6 +176,7 @@ export default function Admin() {
           ) : (
             <ListeSessions jours={jours} onOuvrir={setSessionOuverte} onDeconnecte={deconnecte} />
           ))}
+        {onglet === "Exports" && <Exports jours={jours} />}
         {onglet === "Réglages" && <Reglages />}
       </main>
     </div>
@@ -856,6 +857,55 @@ function FicheSession({ id, onRetour, onLead }: { id: string; onRetour: () => vo
           </button>
         ) : null}
         <Chronologie sessions={[s]} evenements={data.evenements.map((e) => ({ ...e, session: s.id }))} />
+      </Carte>
+    </div>
+  );
+}
+
+// --- Exports --------------------------------------------------------------------
+function Exports({ jours }: { jours: number }) {
+  const periode = PERIODES.find((p) => p.j === jours)?.l ?? `${jours} jours`;
+  const lien = (quoi: string, tout = false) => `${API}?a=export&quoi=${quoi}&j=${tout ? 0 : jours}`;
+  const lienCls = `${boutonCls} inline-block text-center`;
+  return (
+    <div className="grid max-w-3xl gap-5">
+      <Carte
+        titre="Exporter les données"
+        aide={`Fichiers CSV (séparateur point-virgule) prêts pour Excel, Numbers ou une analyse par Claude. La période se choisit en haut à droite : ${periode}.`}
+      >
+        <div className="grid gap-3 sm:grid-cols-2">
+          <a href={lien("visites")} className={lienCls}>
+            Visites · {periode}
+          </a>
+          <a href={lien("evenements")} className={lienCls}>
+            Interactions · {periode}
+          </a>
+          <a href={lien("demandes")} className={lienCls}>
+            Demandes · tout
+          </a>
+          <a href={lien("tout")} className={lienCls}>
+            Tout en JSON · {periode}
+          </a>
+        </div>
+        <ul className="mt-5 grid list-disc gap-1.5 pl-5 text-[0.85rem] leading-relaxed text-kinome-grey">
+          <li>
+            <strong className="text-kinome-black">Visites</strong> : une ligne par visite, avec début, durée, pages, canal et source (ChatGPT, Google, LinkedIn, annuaire…), page d&apos;entrée, appareil, navigateur, écran, langue, numéro de visite et demande liée.
+          </li>
+          <li>
+            <strong className="text-kinome-black">Interactions</strong> : une ligne par événement, dans l&apos;ordre : page vue, temps de lecture et défilement, clic (téléphone, email, WhatsApp, lien, ancre, bouton, fichier, lien sortant), formulaire commencé, abandonné ou envoyé, chatbot, copie, j&apos;aime, visionneuse, demande. Le détail est dans la colonne « donnees » (JSON).
+          </li>
+          <li>
+            <strong className="text-kinome-black">Demandes</strong> : les messages du formulaire avec leur provenance, le tout premier contact, le statut, la valeur et les notes.
+          </li>
+          <li>
+            <strong className="text-kinome-black">Tout en JSON</strong> : visites, interactions, demandes et compteurs du blog dans un seul fichier.
+          </li>
+        </ul>
+      </Carte>
+      <Carte titre="Base complète" aide="Copie de la base SQLite, toutes les tables et toutes les périodes. S'ouvre avec DB Browser for SQLite, Python ou Claude.">
+        <a href={lien("base", true)} className={lienCls}>
+          Télécharger kinome.sqlite
+        </a>
       </Carte>
     </div>
   );
