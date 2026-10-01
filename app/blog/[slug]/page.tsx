@@ -187,6 +187,12 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             <span className="font-body text-[0.88rem] text-kinome-grey">
               <time dateTime={post.date}>{formatDate(post.date)}</time>
             </span>
+            {post.lastModified && post.lastModified > post.date && (
+              <span className="font-body text-[0.88rem] text-kinome-grey">
+                · Mis à jour le{" "}
+                <time dateTime={post.lastModified}>{formatDate(post.lastModified)}</time>
+              </span>
+            )}
             <span className="font-body text-[0.88rem] text-kinome-grey">
               · {minutes} min de lecture
             </span>

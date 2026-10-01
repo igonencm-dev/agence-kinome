@@ -26,7 +26,7 @@ import {
 // ---------------------------------------------------------------------------
 
 export const metadata = buildMetadata({
-  title: "Référencement naturel à Genève",
+  title: "Agence SEO à Genève : référencement naturel, audit dès 800 CHF",
   description:
     "Agence SEO à Genève : audit technique, mots-clés, contenu et netlinking. Premiers résultats durables en 3 à 6 mois. Audit dès 800 CHF, suivi dès 800 CHF/mois.",
   path: "/services/referencement-naturel/",

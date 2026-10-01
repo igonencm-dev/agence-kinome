@@ -418,8 +418,11 @@ export default function Home() {
               Kinome est installée route de Jussy, à Thônex, à quelques
               minutes du centre de Genève. Nous travaillons avec des
               entreprises de tout le canton, avec des clients de Lausanne et
-              de Suisse romande, et avec les sociétés frontalières de
-              Haute-Savoie qui s&rsquo;adressent au marché genevois.
+              de Suisse romande, et avec les{" "}
+              <Link href="/agence-communication-haute-savoie/" className="underline decoration-kinome-accent underline-offset-4 hover:text-kinome-accent">
+                sociétés frontalières de Haute-Savoie
+              </Link>{" "}
+              qui s&rsquo;adressent au marché genevois.
             </p>
             <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
               Être une agence de communication à Genève, c&rsquo;est

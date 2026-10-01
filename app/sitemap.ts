@@ -185,5 +185,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...pairedPages, ...servicePages, ...projetPages, ...blogPages];
+  // Page d'ancrage Grand Genève et Haute-Savoie (FR uniquement)
+  const pagesLocales: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/agence-communication-haute-savoie/`,
+      lastModified: new Date("2026-10-01"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+  ];
+
+  return [...pairedPages, ...servicePages, ...pagesLocales, ...projetPages, ...blogPages];
 }

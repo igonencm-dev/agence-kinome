@@ -15,7 +15,7 @@ import {
 } from "../lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Communication agency in Geneva | Kinome",
+  title: "Creative communication agency in Geneva | Kinome",
   bareTitle: true,
   description:
     "Kinome is an independent communication agency based in Geneva. Branding, visual identity, logo design, websites and brand strategy for businesses and freelancers across French-speaking Switzerland.",
@@ -169,9 +169,8 @@ export default function HomeEN() {
               <ResponsiveBr />in Geneva — <HeroAnimatedWord />
             </h1>
             <p className="mb-[35px] max-w-[520px] text-center text-[clamp(16px,1.3vw,19px)] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] md:text-left">
-              Branding, visual identity and websites{" "}
-              <ResponsiveBr />
-              blending strategy and emotion, from French-speaking Switzerland.
+              Brand strategy, visual identity, websites and SEO for SMEs and
+              founders in Geneva and French-speaking Switzerland.
             </p>
             <div className="flex flex-wrap justify-center gap-5 md:justify-start">
               <Link
@@ -232,8 +231,9 @@ export default function HomeEN() {
           </div>
           <div>
             <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.6] text-kinome-grey">
-              Kinome is a young, versatile creative agency specialising in
-              identity, campaigns and websites.
+              Kinome is an independent creative communication agency based in
+              Thônex, at the gates of Geneva, specialising in brand identity,
+              campaigns and websites.
             </p>
             <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.6] text-kinome-grey">
               Our ambition: do beautiful, modern, original work. Keep, nurture
@@ -340,6 +340,141 @@ export default function HomeEN() {
           >
             Discover our projects
           </Link>
+        </div>
+      </section>
+
+      {/* Rooted in Geneva: address, region, clients, services. Mirror of the
+          French section (queries "creative agency geneva", "communication
+          agency geneva"). Facts only, all published elsewhere on the site. */}
+      <section
+        id="geneva"
+        className="mx-auto mb-[60px] max-w-[1300px] rounded-[20px] bg-white px-[clamp(20px,5vw,60px)] py-[clamp(50px,8vw,80px)]"
+      >
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+          <div>
+            <p className="mb-4 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-kinome-accent">
+              Thônex, canton of Geneva
+            </p>
+            <h2 className="mb-8 font-heading text-[clamp(28px,4.5vw,52px)] font-normal leading-[1.1] text-kinome-black">
+              A creative agency rooted in Geneva
+            </h2>
+            <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
+              Kinome works from Route de Jussy in Thônex, a few minutes from the
+              centre of Geneva. We serve companies across the canton, clients in
+              Lausanne and French-speaking Switzerland, and cross-border
+              businesses in Haute-Savoie that sell to the Geneva market.
+            </p>
+            <p className="mb-5 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-grey">
+              Being a communication agency in Geneva means knowing the ground:
+              an international, demanding clientele, materials that are often
+              bilingual, sectors such as consulting, healthcare, training, real
+              estate or software, and an expectation of Swiss quality on every
+              deliverable. It also means meeting in person: kick-off workshops
+              take place at your office or at ours.
+            </p>
+            <p className="mb-8 font-body text-[clamp(16px,1.2vw,18px)] leading-[1.7] text-kinome-black">
+              <strong className="font-semibold">Free strategic diagnosis:</strong>{" "}
+              thirty minutes to review your brand, your website and your
+              visibility, answer within 24 hours.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 md:justify-start">
+              <Link
+                href="#contact"
+                className="inline-flex min-w-[240px] items-center justify-center btn-fill-accent rounded-full bg-kinome-black px-8 py-4 text-center font-heading text-[1rem] font-semibold text-white transition-[transform,background-color] hover:scale-105 hover:bg-[#333]"
+              >
+                Tell us about your project
+              </Link>
+              <Link
+                href="/en/portfolio/"
+                className="inline-flex min-w-[240px] items-center justify-center btn-fill-dark rounded-full border-2 border-kinome-black bg-transparent px-8 py-4 text-center font-heading text-[1rem] font-semibold text-kinome-black transition-transform hover:scale-105"
+              >
+                See our work
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-5">
+            <div className="rounded-[18px] bg-kinome-cream p-6">
+              <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
+                Our office
+              </p>
+              <p className="font-body text-[clamp(16px,1.15vw,18px)] leading-[1.6] text-kinome-black">
+                Route de Jussy 35
+                <br />
+                1226 Thônex, Geneva
+              </p>
+              <p className="mt-2 font-body text-[0.95rem] leading-[1.6] text-kinome-grey">
+                Monday to Friday, 9 am to 6 pm, by appointment.
+              </p>
+              <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-body text-[0.95rem]">
+                <a
+                  href="https://maps.app.goo.gl/Ge2EH3UVP2mfAZej9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-kinome-black underline underline-offset-4 hover:text-kinome-accent"
+                >
+                  Open in Google Maps
+                </a>
+                <a
+                  href={`tel:${contact.phones.mathias.e164}`}
+                  className="font-medium text-kinome-black underline underline-offset-4 hover:text-kinome-accent"
+                >
+                  {contact.phones.mathias.display}
+                </a>
+              </p>
+            </div>
+
+            <div className="rounded-[18px] bg-kinome-cream p-6">
+              <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
+                Clients in the region
+              </p>
+              <ul className="space-y-2 font-body text-[0.95rem] leading-[1.55] text-kinome-grey">
+                <li>
+                  <Link href="/en/projets/adapt-project/" className="font-medium text-kinome-black hover:text-kinome-accent hover:underline">
+                    Adapt Project
+                  </Link>
+                  , project management consultancy in Thônex
+                </li>
+                <li>
+                  <Link href="/en/projets/vp-conseils/" className="font-medium text-kinome-black hover:text-kinome-accent hover:underline">
+                    VP Conseils
+                  </Link>
+                  , real estate and financial advice for cross-border workers, between Geneva and Haute-Savoie
+                </li>
+                <li>
+                  <Link href="/en/projets/microclimat/" className="font-medium text-kinome-black hover:text-kinome-accent hover:underline">
+                    Microclimat
+                  </Link>
+                  , architecture practice in Haute-Savoie
+                </li>
+                <li>
+                  And brands we work with remotely, from Paris to La Réunion:{" "}
+                  <Link href="/en/portfolio/" className="font-medium text-kinome-black hover:text-kinome-accent hover:underline">
+                    all our work
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="rounded-[18px] bg-kinome-cream p-6">
+              <p className="mb-3 font-heading text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-kinome-grey">
+                What we do in Geneva
+              </p>
+              <ul className="grid grid-cols-1 gap-x-6 gap-y-2 font-body text-[0.95rem] text-kinome-black sm:grid-cols-2">
+                {["Brand strategy", "Visual identity", "Logo design", "Websites and e-commerce", "Search engine optimisation", "Social media"].map((label) => (
+                  <li key={label} className="flex items-center gap-1.5">
+                    <span aria-hidden="true" className="text-kinome-accent">
+                      →
+                    </span>
+                    {label}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/en/services/" className="mt-4 inline-flex items-center gap-1 font-heading text-[0.85rem] font-semibold text-kinome-accent hover:underline">
+                All our services →
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
