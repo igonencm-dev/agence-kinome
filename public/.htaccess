@@ -115,6 +115,13 @@ RewriteRule ^en/dossier-presse/?$                     /en/press-kit/            
 # Articles sans version anglaise : /en/blog/<slug>/ n'existe pas -> article FR
 RewriteCond %{DOCUMENT_ROOT}/en/blog/$1/index.html !-f
 RewriteRule ^en/blog/([a-z0-9-]+)/?$                  /blog/$1/                      [L,R=301]
+# Services sans version anglaise : /en/services/<slug>/ n'existe pas -> page
+# service FR du même service. Ces adresses ont été diffusées par l'ancien
+# sélecteur de langue (juin au 2 septembre 2026) et Google les connaît encore.
+# La règle s'efface d'elle-même si une page anglaise est créée un jour.
+RewriteCond %{DOCUMENT_ROOT}/en/services/$1/index.html !-f
+RewriteCond %{DOCUMENT_ROOT}/services/$1/index.html -f
+RewriteRule ^en/services/([a-z0-9-]+)/?$              /services/$1/                  [L,R=301]
 
 RewriteRule ^nocodeia/?$              /projets/no-code/             [L,R=301]
 
