@@ -50,3 +50,10 @@ higgsfield generate create nano_banana_pro --aspect_ratio 16:9 --resolution 2k -
 ```
 
 Puis conversion : PIL, recadrage 16:9, 1600x900, WebP qualité 82.
+
+## Couvertures du 5 octobre 2026 (hors Higgsfield)
+
+Les crédits Higgsfield étaient épuisés le 5 octobre 2026.
+
+- `identite-visuelle-decalee` : composition des vraies images de quatre projets (Cabinet Faraday, Alministratif, Authentik Peak, Black Sheep Valley) en grille 2 x 2 sur fond crème, aucune image générée.
+- `vendre-en-ligne-suisse-checklist` : générée par le compte ChatGPT de Mathias (Codex de l'app ChatGPT, image_gen), même préfixe de style que la série, sujet : presse-papiers avec cases cochées, colis au ruban corail sur une balance, téléphone avec coche de paiement, facture QR, badge suisse, camionnette en arrière-plan.

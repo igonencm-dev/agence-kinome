@@ -259,6 +259,14 @@ const BLOG_LINKS = [
     href: "/blog/refonte-identite-visuelle-quand-repenser-marque/",
     label: "Refonte d'identité : 6 signaux qu'il est temps",
   },
+  {
+    href: "/blog/identite-visuelle-decalee/",
+    label: "Identité visuelle décalée : 4 exemples et la méthode",
+  },
+  {
+    href: "/blog/creation-logo-geneve-processus/",
+    label: "Création de logo à Genève : prix et 5 étapes",
+  },
 ];
 
 /* --------------------------------- Styles --------------------------------- */

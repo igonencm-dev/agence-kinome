@@ -265,8 +265,8 @@ const BLOG_LINKS = [
     label: "À qui confier la refonte de son site à Genève ?",
   },
   {
-    href: "/blog/wordpress-webflow-sur-mesure-comparatif/",
-    label: "WordPress, Webflow ou sur-mesure : quelle techno choisir ?",
+    href: "/blog/vendre-en-ligne-suisse-checklist/",
+    label: "Vendre en ligne en Suisse : la checklist 2026",
   },
   {
     href: "/blog/erreurs-refonte-site-web/",

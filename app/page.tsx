@@ -120,7 +120,10 @@ const expertises = [
 // dans le blog (cohérence + zéro duplication).
 import { blogPosts as _blogPosts } from "./lib/blog";
 import ResponsiveBr from "./components/ResponsiveBr";
-const nouvelles = _blogPosts.slice(0, 3).map((p) => ({
+const nouvelles = [..._blogPosts]
+  .sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id)
+  .slice(0, 3)
+  .map((p) => ({
   title: p.title,
   excerpt: p.excerpt,
   href: `/blog/${p.slug}/`,
