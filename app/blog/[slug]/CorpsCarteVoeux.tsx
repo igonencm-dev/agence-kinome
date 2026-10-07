@@ -388,6 +388,14 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
             <Coche>
               Choisissez un message sincère plutôt qu'une formule
               générique&nbsp;: parlez de votre année, pas juste du calendrier.
+              Pour démarrer, piochez dans nos{" "}
+              <a
+                href="https://agence-kinome.ch/blog/textes-voeux-professionnels/"
+                className="underline decoration-kinome-accent underline-offset-4 hover:text-kinome-accent"
+              >
+                50 textes de vœux professionnels
+              </a>
+              , à personnaliser.
             </Coche>
             <Coche>
               Restez fidèle à votre{" "}
