@@ -331,6 +331,17 @@ body.no-scroll {
   padding-left: 0.5em;
 }
 
+/* Le preflight de Tailwind v4 retire les puces (list-style: none) : sans ces
+   deux règles, les ::marker corail ci-dessous ne s'affichent pas et les listes
+   numérotées des articles (formules, étapes) perdent leurs numéros. */
+.blog-prose ul {
+  list-style-type: disc;
+}
+
+.blog-prose ol {
+  list-style-type: decimal;
+}
+
 .blog-prose ul li,
 .blog-prose ol li {
   margin-bottom: 0.6em;
