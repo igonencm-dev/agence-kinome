@@ -2,6 +2,9 @@
 import Link from "next/link";
 import Reveal from "../../components/Reveal";
 import Testimonials from "../../components/Testimonials";
+import QuestionsAssistant from "../../components/QuestionsAssistant";
+import InvitationAssistant from "../../components/InvitationAssistant";
+import { IDENTITE_VISUELLE } from "../../lib/questions-assistant";
 import {
   buildMetadata,
   serviceJsonLd,
@@ -623,6 +626,9 @@ export default function IdentiteVisuellePage() {
               </Reveal>
             ))}
           </ol>
+          <Reveal className="mx-auto mt-[clamp(8px,1.5vw,24px)] max-w-[1330px]">
+            <QuestionsAssistant bloc={IDENTITE_VISUELLE.processus} fond="creme" />
+          </Reveal>
         </div>
       </section>
 
@@ -793,7 +799,10 @@ export default function IdentiteVisuellePage() {
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-[clamp(36px,5vw,70px)] flex justify-center">
+          <Reveal className="mt-[clamp(36px,5vw,70px)]">
+            <QuestionsAssistant bloc={IDENTITE_VISUELLE.faq} fond="creme" />
+          </Reveal>
+          <Reveal className="mt-[clamp(28px,3.5vw,48px)] flex justify-center">
             <Link href="/contact/" className={PILL_DARK}>
               D&apos;autres questions&nbsp;?
             </Link>
@@ -862,6 +871,9 @@ export default function IdentiteVisuellePage() {
           </div>
         </Reveal>
       </section>
+
+      {/* Invitation à poser une question, après un vrai temps de lecture */}
+      <InvitationAssistant invitation={IDENTITE_VISUELLE.invitation} />
     </main>
   );
 }

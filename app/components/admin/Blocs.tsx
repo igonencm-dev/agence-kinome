@@ -238,6 +238,10 @@ export function decrire(type: string, chemin: string | null, brut: string | null
     case "media":
       return { icone: "▣", texte: `A ouvert en plein écran : ${d.media}` };
     case "chatbot":
+      if (d.action === "question") return { icone: "💬", texte: `A posé une question à l'assistant (${d.emplacement}) : « ${d.question} »` };
+      if (d.action === "invitation") return { icone: "💭", texte: "A vu l'invitation à poser une question" };
+      if (d.action === "invitation-fermee") return { icone: "✕", texte: "A fermé l'invitation à poser une question" };
+      if (d.action === "invitation-ecrire") return { icone: "💬", texte: "A ouvert le chat depuis l'invitation pour écrire sa question" };
       return { icone: "💬", texte: "A ouvert le chatbot" };
     case "copie":
       return { icone: "⧉", texte: `A copié ${d.quoi === "email" ? "l'adresse email" : "le numéro de téléphone"}` };

@@ -9,6 +9,7 @@ import GoogleAnalytics from "./components/GoogleAnalytics";
 import HorsAdmin from "./components/HorsAdmin";
 import Suivi from "./components/Suivi";
 import CauserieBotWidget from "./components/CauserieBotWidget";
+import OuvrirAssistant from "./components/OuvrirAssistant";
 import MobileStickyCta from "./components/MobileStickyCta";
 import {
   SITE,
@@ -175,6 +176,8 @@ export default function RootLayout({
             ou 8 s d'inactivité — préserve les Core Web Vitals (TBT, LCP). */}
         <HorsAdmin>
           <CauserieBotWidget />
+          {/* Boutons « posez la question à l'assistant » des pages (lib/questions-assistant.ts) */}
+          <OuvrirAssistant />
         </HorsAdmin>
 
         {/* Barre CTA collante mobile : apparaît au scroll, se cache près du
