@@ -242,6 +242,10 @@ const FAQ = [
 
 const BLOG_LINKS = [
   {
+    href: "/blog/strategie-editoriale-b2b-geneve/",
+    label: "Stratégie éditoriale B2B : la méthode et le calendrier 2027",
+  },
+  {
     href: "/blog/communication-360-geneve/",
     label: "Communication 360° à Genève : canaux et budget",
   },
@@ -260,10 +264,6 @@ const BLOG_LINKS = [
   {
     href: "/blog/tarifs-agence-communication-geneve/",
     label: "Les tarifs d'une agence de communication à Genève",
-  },
-  {
-    href: "/blog/tendances-design-graphique-2026/",
-    label: "Tendances design graphique 2026",
   },
 ];
 
