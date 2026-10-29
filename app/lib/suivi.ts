@@ -82,6 +82,8 @@ export function suiviActif(): boolean {
   try {
     if (window.localStorage.getItem("kn-ignorer") === "1") return false;
     if (navigator.webdriver && window.localStorage.getItem("kn-test") !== "1") return false;
+    // Navigateurs sans écran ou sans tête (29/10/2026 : rafale de robots sur /en/)
+    if (!window.screen.width || !window.screen.height || /HeadlessChrome/i.test(navigator.userAgent)) return false;
   } catch {
     // Stockage bloqué : on suit quand même, en mémoire
   }

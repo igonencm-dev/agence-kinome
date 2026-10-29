@@ -270,6 +270,12 @@ function VueEnsemble({ jours, onDeconnecte, onLead }: { jours: number; onDeconne
         <Tuile label="Durée moyenne" valeur={t.duree_moyenne_s} avant={av?.duree_moyenne_s} format={duree} />
         <Tuile label="Rebond" valeur={t.rebond} avant={av?.rebond} format={(v) => `${String(v).replace(".", ",")} %`} inverse />
       </div>
+      {t.eclair > 0 && (
+        <p className="-mt-2 text-[0.8rem] text-kinome-grey">
+          {`${nb(t.eclair)} visite${t.eclair > 1 ? "s" : ""} éclair écartée${t.eclair > 1 ? "s" : ""} de ces chiffres : moins de 3 secondes, une page, aucune action. ` +
+            "Ce sont surtout des robots qui se font passer pour des navigateurs ; elles restent visibles dans l'onglet Visites."}
+        </p>
+      )}
 
       <div className="grid gap-5 lg:grid-cols-3">
         <Carte titre="Visites par jour" aide="Survolez une barre pour le détail. Pastille orange : demandes reçues ce jour-là." className="lg:col-span-2">
@@ -793,9 +799,13 @@ function Chronologie({ sessions, evenements }: { sessions: Ligne[]; evenements: 
 // --- Visites --------------------------------------------------------------------
 function ListeSessions({ jours, onOuvrir, onDeconnecte }: { jours: number; onOuvrir: (id: string) => void; onDeconnecte: () => void }) {
   const [canal, setCanal] = useState("");
+  const [voirEclair, setVoirEclair] = useState(false);
   const { data, erreur } = useApi<{ sessions: Ligne[] }>("sessions", { j: jours, canal }, onDeconnecte);
   if (erreur) return <p className="text-[#b91c1c]">{erreur}</p>;
   if (!data) return <p className="text-kinome-grey">Chargement…</p>;
+  // Visites éclair (moins de 3 s, une page, aucune action) : surtout des robots, masquées par défaut
+  const eclairs = data.sessions.filter((s) => Number(s.eclair) === 1).length;
+  const lignes = voirEclair ? data.sessions : data.sessions.filter((s) => Number(s.eclair) !== 1);
   return (
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center gap-2">
@@ -805,7 +815,14 @@ function ListeSessions({ jours, onOuvrir, onDeconnecte }: { jours: number; onOuv
           </button>
         ))}
       </div>
-      <p className="text-[0.85rem] text-kinome-grey">{data.sessions.length} visite(s), les 300 plus récentes au maximum</p>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.85rem] text-kinome-grey">
+        <span>{lignes.length} visite(s), les 300 plus récentes au maximum</span>
+        {eclairs > 0 && (
+          <button type="button" onClick={() => setVoirEclair((v) => !v)} className="rounded-full border border-[#e7e3da] bg-white px-3 py-1 text-[0.8rem] font-semibold text-kinome-black hover:border-kinome-black">
+            {voirEclair ? `Masquer les ${eclairs} visites éclair` : `Afficher les ${eclairs} visites éclair (robots probables)`}
+          </button>
+        )}
+      </div>
       <div className="overflow-x-auto rounded-2xl border border-[#e7e3da] bg-white">
         <table className="w-full text-left text-[0.85rem]">
           <thead className="text-[0.75rem] text-kinome-grey">
@@ -818,8 +835,8 @@ function ListeSessions({ jours, onOuvrir, onDeconnecte }: { jours: number; onOuv
             </tr>
           </thead>
           <tbody>
-            {data.sessions.map((s) => (
-              <tr key={String(s.id)} onClick={() => onOuvrir(String(s.id))} className="cursor-pointer border-t border-[#e7e3da] hover:bg-kinome-black/[0.03]">
+            {lignes.map((s) => (
+              <tr key={String(s.id)} onClick={() => onOuvrir(String(s.id))} className={`cursor-pointer border-t border-[#e7e3da] hover:bg-kinome-black/[0.03] ${Number(s.eclair) === 1 ? "text-kinome-grey" : ""}`}>
                 <td className="whitespace-nowrap px-3 py-2">{date(s.debut as number)}</td>
                 <td className="px-3 py-2"><Canal canal={s.canal as string} source={s.source as string} /></td>
                 <td className="px-3 py-2">{String(s.atterrissage ?? "")}</td>
@@ -827,12 +844,15 @@ function ListeSessions({ jours, onOuvrir, onDeconnecte }: { jours: number; onOuv
                 <td className="whitespace-nowrap px-3 py-2">{duree((Number(s.fin) - Number(s.debut)) / 1000)}</td>
                 <td className="px-3 py-2">{String(s.appareil ?? "")}</td>
                 <td className="px-3 py-2">{s.visite_n ? String(s.visite_n) : ""}</td>
-                <td className="px-3 py-2">{s.lead_id ? <span className="rounded-full bg-kinome-accent px-2 py-0.5 text-[0.72rem] font-bold text-white">Demande</span> : null}</td>
+                <td className="px-3 py-2">
+                  {s.lead_id ? <span className="rounded-full bg-kinome-accent px-2 py-0.5 text-[0.72rem] font-bold text-white">Demande</span> : null}
+                  {Number(s.eclair) === 1 ? <span className="rounded-full border border-[#e7e3da] px-2 py-0.5 text-[0.72rem]">Éclair</span> : null}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {!data.sessions.length && <p className="p-5 text-[0.9rem] text-kinome-grey">Aucune visite mesurée sur la période.</p>}
+        {!lignes.length && <p className="p-5 text-[0.9rem] text-kinome-grey">Aucune visite mesurée sur la période.</p>}
       </div>
     </div>
   );
@@ -889,7 +909,7 @@ function Exports({ jours }: { jours: number }) {
         </div>
         <ul className="mt-5 grid list-disc gap-1.5 pl-5 text-[0.85rem] leading-relaxed text-kinome-grey">
           <li>
-            <strong className="text-kinome-black">Visites</strong> : une ligne par visite, avec début, durée, pages, canal et source (ChatGPT, Google, LinkedIn, annuaire…), page d&apos;entrée, appareil, navigateur, écran, langue, numéro de visite et demande liée.
+            <strong className="text-kinome-black">Visites</strong> : une ligne par visite, avec début, durée, pages, canal et source (ChatGPT, Google, LinkedIn, annuaire…), page d&apos;entrée, appareil, navigateur, écran, langue, numéro de visite, demande liée et colonne « eclair » (1 = visite de moins de 3 s sans action, robot probable).
           </li>
           <li>
             <strong className="text-kinome-black">Interactions</strong> : une ligne par événement, dans l&apos;ordre : page vue, temps de lecture et défilement, clic (téléphone, email, WhatsApp, lien, ancre, bouton, fichier, lien sortant), formulaire commencé, abandonné ou envoyé, chatbot, copie, j&apos;aime, visionneuse, demande. Le détail est dans la colonne « donnees » (JSON).

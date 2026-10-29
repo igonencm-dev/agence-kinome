@@ -142,6 +142,27 @@ function kn_migrer(PDO $db): void
         SQL);
         $db->exec('PRAGMA user_version = 1');
     }
+    if ($version < 2) {
+        // 29/10/2026. Visite éclair : moins de 3 s, une page au plus, aucune action (clic,
+        // copie, formulaire, chatbot, j'aime, visionneuse), pas de demande. Le plus souvent
+        // un robot qui exécute le JavaScript (rafale sur /en/ du 29/10) : les statistiques
+        // de l'admin lisent cette vue, la liste des visites les montre à part.
+        $db->exec(<<<SQL
+            CREATE VIEW IF NOT EXISTS sessions_utiles AS
+              SELECT * FROM sessions
+              WHERE (fin - debut) >= 3000 OR pages > 1 OR lead_id IS NOT NULL
+                 OR EXISTS (SELECT 1 FROM evenements x WHERE x.session = sessions.id
+                            AND x.type IN ('clic', 'copie', 'formulaire', 'chatbot', 'jaime', 'media'));
+
+            CREATE TABLE IF NOT EXISTS limites (
+                cle TEXT NOT NULL,
+                fenetre INTEGER NOT NULL,
+                n INTEGER NOT NULL DEFAULT 0,
+                PRIMARY KEY (cle, fenetre)
+            );
+        SQL);
+        $db->exec('PRAGMA user_version = 2');
+    }
 }
 
 /** Réponse JSON, jamais mise en cache (LiteSpeed cache agressivement). */
@@ -281,7 +302,44 @@ function kn_classer(?string $referrer, array $utm): array
 
 function kn_est_robot(string $ua): bool
 {
-    return $ua === '' || (bool) preg_match('/bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|facebookexternalhit|curl|wget|python|axios|node-fetch|go-http|java\//i', $ua);
+    return $ua === '' || (bool) preg_match('/bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|facebookexternalhit|curl|wget|python|axios|node-fetch|go-http|java\/|phantom|puppeteer|playwright|selenium|electron|scrapy|httpclient|okhttp|libwww|monitor|uptime|pingdom|gtmetrix/i', $ua);
+}
+
+/**
+ * Navigateur automatisé qui se fait passer pour un vrai visiteur (29/10/2026, rafale sur
+ * /en/ : écran 0x0, langue « en-US@posix », téléphone annoncé avec un écran d'ordinateur).
+ * Ces signes ne se rencontrent pas chez un humain : la visite n'est pas enregistrée.
+ */
+function kn_session_automatisee(array $meta, string $ua): bool
+{
+    if (!preg_match('/^(\d{2,5})x(\d{2,5})$/', (string) ($meta['ecran'] ?? ''), $m)) {
+        return true;
+    }
+    $largeur = (int) $m[1];
+    $hauteur = (int) $m[2];
+    if ($largeur < 200 || $hauteur < 200) {
+        return true;
+    }
+    if (str_contains((string) ($meta['lang'] ?? ''), '@')) {
+        return true;
+    }
+    return (bool) preg_match('/iPhone|Android.*Mobile/i', $ua) && min($largeur, $hauteur) > 900;
+}
+
+/**
+ * Garde-fou contre l'inondation d'un point d'entrée public : au-delà de $max requêtes
+ * par clé (empreinte d'IP salée) dans une fenêtre de $fenetreMs, renvoie true.
+ */
+function kn_trop_de_requetes(PDO $db, string $cle, int $max, int $fenetreMs): bool
+{
+    $fenetre = intdiv(kn_maintenant(), $fenetreMs) * $fenetreMs;
+    $db->prepare('INSERT INTO limites (cle, fenetre, n) VALUES (?, ?, 1)
+        ON CONFLICT(cle, fenetre) DO UPDATE SET n = n + 1')->execute([$cle, $fenetre]);
+    $q = $db->prepare('SELECT n FROM limites WHERE cle = ? AND fenetre = ?');
+    $q->execute([$cle, $fenetre]);
+    $n = (int) $q->fetchColumn();
+    $q->closeCursor();
+    return $n > $max;
 }
 
 /** @return array{0:string,1:string,2:string} [appareil, navigateur, os] */
@@ -324,6 +382,7 @@ function kn_purger_parfois(PDO $db): void
     $db->prepare('DELETE FROM sessions WHERE fin < ? AND lead_id IS NULL')->execute([$limite]);
     $db->prepare('DELETE FROM jetons WHERE expire < ?')->execute([kn_maintenant()]);
     $db->prepare('DELETE FROM connexions WHERE date < ?')->execute([kn_maintenant() - 30 * 86400 * 1000]);
+    $db->prepare('DELETE FROM limites WHERE fenetre < ?')->execute([kn_maintenant() - 86400 * 1000]);
 }
 
 

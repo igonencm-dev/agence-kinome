@@ -106,17 +106,19 @@ function kn_un(PDO $db, string $sql, array $params = [])
 /** Totaux d'une période, réutilisés pour comparer avec la période précédente. */
 function kn_totaux(PDO $db, int $debut, int $fin): array
 {
-    $sessions = (int) kn_un($db, 'SELECT COUNT(*) FROM sessions WHERE debut >= ? AND debut < ?', [$debut, $fin]);
+    $sessions = (int) kn_un($db, 'SELECT COUNT(*) FROM sessions_utiles WHERE debut >= ? AND debut < ?', [$debut, $fin]);
     $leads = (int) kn_un($db, "SELECT COUNT(*) FROM leads WHERE date >= ? AND date < ? AND statut != 'spam'", [$debut, $fin]);
     return [
         'sessions' => $sessions,
-        'visiteurs' => (int) kn_un($db, 'SELECT COUNT(DISTINCT COALESCE(visiteur, id)) FROM sessions WHERE debut >= ? AND debut < ?', [$debut, $fin]),
-        'pages' => (int) kn_un($db, 'SELECT COALESCE(SUM(pages), 0) FROM sessions WHERE debut >= ? AND debut < ?', [$debut, $fin]),
+        'visiteurs' => (int) kn_un($db, 'SELECT COUNT(DISTINCT COALESCE(visiteur, id)) FROM sessions_utiles WHERE debut >= ? AND debut < ?', [$debut, $fin]),
+        'pages' => (int) kn_un($db, 'SELECT COALESCE(SUM(pages), 0) FROM sessions_utiles WHERE debut >= ? AND debut < ?', [$debut, $fin]),
         'leads' => $leads,
         'conversion' => $sessions > 0 ? round($leads / $sessions * 100, 2) : 0,
-        'duree_moyenne_s' => (int) round((float) kn_un($db, 'SELECT AVG(fin - debut) FROM sessions WHERE debut >= ? AND debut < ?', [$debut, $fin]) / 1000),
-        'rebond' => $sessions > 0 ? round((int) kn_un($db, 'SELECT COUNT(*) FROM sessions WHERE debut >= ? AND debut < ? AND pages <= 1', [$debut, $fin]) / $sessions * 100, 1) : 0,
-        'ia' => (int) kn_un($db, "SELECT COUNT(*) FROM sessions WHERE debut >= ? AND debut < ? AND canal = 'IA'", [$debut, $fin]),
+        'duree_moyenne_s' => (int) round((float) kn_un($db, 'SELECT AVG(fin - debut) FROM sessions_utiles WHERE debut >= ? AND debut < ?', [$debut, $fin]) / 1000),
+        'rebond' => $sessions > 0 ? round((int) kn_un($db, 'SELECT COUNT(*) FROM sessions_utiles WHERE debut >= ? AND debut < ? AND pages <= 1', [$debut, $fin]) / $sessions * 100, 1) : 0,
+        'ia' => (int) kn_un($db, "SELECT COUNT(*) FROM sessions_utiles WHERE debut >= ? AND debut < ? AND canal = 'IA'", [$debut, $fin]),
+        // Visites éclair (vue sessions_utiles, _lib.php) : écartées des chiffres ci-dessus
+        'eclair' => (int) kn_un($db, 'SELECT COUNT(*) FROM sessions WHERE debut >= ? AND debut < ?', [$debut, $fin]) - $sessions,
     ];
 }
 
@@ -128,31 +130,34 @@ if ($action === 'stats') {
     // Série par jour (heure de Paris)
     $serie = kn_tous($db, "SELECT date(debut / 1000, 'unixepoch', $tz) AS jour, COUNT(*) AS sessions,
             SUM(CASE WHEN lead_id IS NOT NULL THEN 1 ELSE 0 END) AS leads
-        FROM sessions WHERE debut >= ? AND debut < ? GROUP BY jour ORDER BY jour", $p);
+        FROM sessions_utiles WHERE debut >= ? AND debut < ? GROUP BY jour ORDER BY jour", $p);
 
     $canaux = kn_tous($db, "SELECT s.canal, COUNT(*) AS sessions, SUM(CASE WHEN s.lead_id IS NOT NULL THEN 1 ELSE 0 END) AS leads,
             ROUND(AVG(s.pages), 1) AS pages_moy, CAST(AVG(s.fin - s.debut) / 1000 AS INTEGER) AS duree_moy
-        FROM sessions s WHERE s.debut >= ? AND s.debut < ? GROUP BY s.canal ORDER BY sessions DESC", $p);
+        FROM sessions_utiles s WHERE s.debut >= ? AND s.debut < ? GROUP BY s.canal ORDER BY sessions DESC", $p);
     $sources = kn_tous($db, 'SELECT canal, source, COUNT(*) AS sessions, SUM(CASE WHEN lead_id IS NOT NULL THEN 1 ELSE 0 END) AS leads
-        FROM sessions WHERE debut >= ? AND debut < ? GROUP BY canal, source ORDER BY sessions DESC LIMIT 40', $p);
+        FROM sessions_utiles WHERE debut >= ? AND debut < ? GROUP BY canal, source ORDER BY sessions DESC LIMIT 40', $p);
     $entrees = kn_tous($db, 'SELECT atterrissage AS chemin, COUNT(*) AS sessions, SUM(CASE WHEN lead_id IS NOT NULL THEN 1 ELSE 0 END) AS leads,
             ROUND(100.0 * SUM(CASE WHEN pages <= 1 THEN 1 ELSE 0 END) / COUNT(*), 0) AS rebond
-        FROM sessions WHERE debut >= ? AND debut < ? GROUP BY atterrissage ORDER BY sessions DESC LIMIT 25', $p);
+        FROM sessions_utiles WHERE debut >= ? AND debut < ? GROUP BY atterrissage ORDER BY sessions DESC LIMIT 25', $p);
     $pages = kn_tous($db, "SELECT e.chemin, COUNT(*) AS vues, COUNT(DISTINCT e.session) AS sessions,
             CAST((SELECT SUM(json_extract(l.donnees, '$.duree')) FROM evenements l
-              WHERE l.type = 'lecture' AND l.chemin = e.chemin AND l.date >= ? AND l.date < ?) / COUNT(*) / 1000 AS INTEGER) AS lecture_moy,
+              WHERE l.type = 'lecture' AND l.chemin = e.chemin AND l.date >= ? AND l.date < ?
+                AND l.session IN (SELECT id FROM sessions_utiles)) / COUNT(*) / 1000 AS INTEGER) AS lecture_moy,
             (SELECT CAST(AVG(json_extract(l.donnees, '$.scroll')) AS INTEGER) FROM evenements l
-              WHERE l.type = 'lecture' AND l.chemin = e.chemin AND l.date >= ? AND l.date < ?) AS scroll_moy
-        FROM evenements e WHERE e.type = 'vue' AND e.date >= ? AND e.date < ? GROUP BY e.chemin ORDER BY vues DESC LIMIT 30",
+              WHERE l.type = 'lecture' AND l.chemin = e.chemin AND l.date >= ? AND l.date < ?
+                AND l.session IN (SELECT id FROM sessions_utiles)) AS scroll_moy
+        FROM evenements e WHERE e.type = 'vue' AND e.date >= ? AND e.date < ?
+          AND e.session IN (SELECT id FROM sessions_utiles) GROUP BY e.chemin ORDER BY vues DESC LIMIT 30",
         [$debut, $fin, $debut, $fin, $debut, $fin]);
     $appareils = kn_tous($db, 'SELECT appareil, COUNT(*) AS sessions, SUM(CASE WHEN lead_id IS NOT NULL THEN 1 ELSE 0 END) AS leads
-        FROM sessions WHERE debut >= ? AND debut < ? GROUP BY appareil ORDER BY sessions DESC', $p);
+        FROM sessions_utiles WHERE debut >= ? AND debut < ? GROUP BY appareil ORDER BY sessions DESC', $p);
     $clics = kn_tous($db, "SELECT json_extract(donnees, '$.cible') AS cible, json_extract(donnees, '$.libelle') AS libelle, COUNT(*) AS n
         FROM evenements WHERE type = 'clic' AND date >= ? AND date < ? GROUP BY cible, libelle ORDER BY n DESC LIMIT 25", $p);
 
     // Entonnoir : visite, page de conversion vue, formulaire commencé, demande envoyée
     $entonnoir = [
-        ['etape' => 'Visites', 'n' => (int) kn_un($db, 'SELECT COUNT(*) FROM sessions WHERE debut >= ? AND debut < ?', $p)],
+        ['etape' => 'Visites', 'n' => (int) kn_un($db, 'SELECT COUNT(*) FROM sessions_utiles WHERE debut >= ? AND debut < ?', $p)],
         ['etape' => 'Ont vu la page contact', 'n' => (int) kn_un($db, "SELECT COUNT(DISTINCT session) FROM evenements
             WHERE type = 'vue' AND chemin IN ('/contact/', '/en/contact/') AND date >= ? AND date < ?", $p)],
         ['etape' => 'Ont commencé un formulaire', 'n' => (int) kn_un($db, "SELECT COUNT(DISTINCT session) FROM evenements
@@ -179,8 +184,8 @@ if ($action === 'stats') {
         FROM leads WHERE date >= ? AND date < ? AND statut != 'spam' GROUP BY origine ORDER BY leads DESC", $p);
     $statuts = kn_tous($db, "SELECT statut, COUNT(*) AS n, COALESCE(SUM(valeur), 0) AS valeur FROM leads WHERE date >= ? AND date < ? GROUP BY statut", $p);
     $heures = kn_tous($db, "SELECT CAST(strftime('%H', debut / 1000, 'unixepoch', $tz) AS INTEGER) AS heure, COUNT(*) AS sessions
-        FROM sessions WHERE debut >= ? AND debut < ? GROUP BY heure ORDER BY heure", $p);
-    $enDirect = (int) kn_un($db, 'SELECT COUNT(*) FROM sessions WHERE fin > ?', [$fin - 5 * 60 * 1000]);
+        FROM sessions_utiles WHERE debut >= ? AND debut < ? GROUP BY heure ORDER BY heure", $p);
+    $enDirect = (int) kn_un($db, 'SELECT COUNT(*) FROM sessions_utiles WHERE fin > ?', [$fin - 5 * 60 * 1000]);
 
     kn_json(['ok' => true] + compact('jours', 'serie', 'canaux', 'sources', 'entrees', 'pages', 'appareils', 'clics',
         'entonnoir', 'abandons', 'blog', 'origines', 'statuts', 'heures', 'precedente') + [
@@ -266,7 +271,8 @@ if ($action === 'ajout' && $methode === 'POST') {
 // --- Visites ---------------------------------------------------------------------
 if ($action === 'sessions') {
     $filtre = (string) ($_GET['canal'] ?? '');
-    $sql = 'SELECT s.*, (SELECT COUNT(*) FROM evenements e WHERE e.session = s.id) AS nb_evenements
+    $sql = 'SELECT s.*, (SELECT COUNT(*) FROM evenements e WHERE e.session = s.id) AS nb_evenements,
+            CASE WHEN s.id IN (SELECT id FROM sessions_utiles) THEN 0 ELSE 1 END AS eclair
         FROM sessions s WHERE s.debut >= ? AND s.debut < ?';
     $params = [$debut, $fin];
     if ($filtre !== '') {
@@ -312,7 +318,9 @@ if ($action === 'export') {
     };
 
     if ($quoi === 'visites') {
-        $q = $db->prepare('SELECT *, CAST((fin - debut) / 1000 AS INTEGER) AS duree_s FROM sessions WHERE debut >= ? AND debut < ? ORDER BY debut DESC');
+        $q = $db->prepare('SELECT *, CAST((fin - debut) / 1000 AS INTEGER) AS duree_s,
+            CASE WHEN id IN (SELECT id FROM sessions_utiles) THEN 0 ELSE 1 END AS eclair
+            FROM sessions WHERE debut >= ? AND debut < ? ORDER BY debut DESC');
         $q->execute([$pDebut, $fin]);
         $lignes = (function () use ($q, $horodatage) {
             while ($l = $q->fetch()) {
@@ -322,7 +330,7 @@ if ($action === 'export') {
             }
         })();
         $csv("visites-kinome-$jour.csv", ['id', 'visiteur', 'debut', 'fin', 'duree_s', 'pages', 'canal', 'source', 'referrer', 'utm', 'atterrissage',
-            'appareil', 'navigateur', 'os', 'ecran', 'langue', 'visite_n', 'lead_id'], $lignes);
+            'appareil', 'navigateur', 'os', 'ecran', 'langue', 'visite_n', 'lead_id', 'eclair'], $lignes);
     }
     if ($quoi === 'evenements') {
         $q = $db->prepare('SELECT e.id, e.date, e.session, s.visiteur, s.canal, s.source, s.appareil, s.atterrissage, e.type, e.chemin, e.donnees

@@ -254,7 +254,7 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 # Verrouille les fichiers sensibles (config PHP, dotfiles, etc.)
-<FilesMatch "^(\.htaccess|\.htpasswd|\.env.*|config\.php|composer\..*|package.*\.json|.*\.lock|README\.md|DEPLOYMENT\.md)$">
+<FilesMatch "^(\.htaccess|\.htpasswd|\.env.*|config\.php|config\.example\.php|composer\..*|package.*\.json|.*\.lock|README\.md|DEPLOYMENT\.md)$">
   Require all denied
 </FilesMatch>
 

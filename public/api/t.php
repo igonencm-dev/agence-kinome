@@ -21,6 +21,15 @@ $session = kn_id_valide($meta['id'] ?? null);
 if (!$session || !$evenements) {
     kn_json(['ok' => false], 400);
 }
+// Robots qui se font passer pour un navigateur : même réponse, rien d'écrit
+if (kn_session_automatisee($meta, $ua)) {
+    kn_json(['ok' => true]);
+}
+// Garde-fou : 300 envois par adresse et par tranche de 10 minutes (un lecteur très actif
+// en envoie une centaine). Au-delà, on répond « ok » sans écrire.
+if (kn_trop_de_requetes(kn_db(), 't:' . kn_empreinte_ip(), 300, 600_000)) {
+    kn_json(['ok' => true]);
+}
 
 // Les horodatages du navigateur ne servent qu'à l'ordre relatif : on les
 // recale sur l'heure du serveur pour ne pas dépendre de l'horloge du visiteur.
