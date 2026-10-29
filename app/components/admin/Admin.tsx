@@ -267,7 +267,7 @@ function VueEnsemble({ jours, onDeconnecte, onLead }: { jours: number; onDeconne
         <Tuile label="Pages vues" valeur={t.pages} avant={av?.pages} />
         <Tuile label="Conversion" valeur={t.conversion} avant={av?.conversion} format={(v) => `${String(v).replace(".", ",")} %`} />
         <Tuile label="Visites depuis une IA" valeur={t.ia} avant={av?.ia} />
-        <Tuile label="Durée moyenne" valeur={t.duree_moyenne_s} avant={av?.duree_moyenne_s} format={duree} />
+        <Tuile label="Lecture moyenne" valeur={t.duree_moyenne_s} avant={av?.duree_moyenne_s} format={duree} />
         <Tuile label="Rebond" valeur={t.rebond} avant={av?.rebond} format={(v) => `${String(v).replace(".", ",")} %`} inverse />
       </div>
       {t.eclair > 0 && (
@@ -307,7 +307,7 @@ function VueEnsemble({ jours, onDeconnecte, onLead }: { jours: number; onDeconne
               { cle: "leads", label: "Demandes", droite: true, rendu: (l) => <strong className={Number(l.leads) ? "text-kinome-accent" : ""}>{nb(l.leads as number)}</strong> },
               { cle: "conv", label: "Conv.", droite: true, rendu: (l) => `${Number(l.sessions) ? ((Number(l.leads) / Number(l.sessions)) * 100).toFixed(1).replace(".", ",") : 0} %` },
               { cle: "pages_moy", label: "Pages", droite: true },
-              { cle: "duree_moy", label: "Durée", droite: true, rendu: (l) => duree(l.duree_moy as number) },
+              { cle: "duree_moy", label: "Lecture", droite: true, rendu: (l) => duree(l.duree_moy as number) },
             ]}
           />
         </Carte>
@@ -765,11 +765,20 @@ function Chronologie({ sessions, evenements }: { sessions: Ligne[]; evenements: 
     <ol className="grid gap-5">
       {sessions.map((s, i) => {
         const evts = evenements.filter((e) => e.session === s.id);
+        // Temps de lecture réel (page visible), pas l'écart entre premier et dernier envoi
+        const lecture = evts.reduce((total, e) => {
+          if (e.type !== "lecture") return total;
+          try {
+            return total + (Number(JSON.parse(String(e.donnees ?? "{}")).duree) || 0);
+          } catch {
+            return total;
+          }
+        }, 0);
         return (
           <li key={String(s.id)} className="relative border-l-2 border-[#e7e3da] pl-4">
             <span className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-kinome-black" />
             <p className="text-[0.85rem] font-bold">
-              Visite {i + 1} · {date(s.debut as number)} · {duree((Number(s.fin) - Number(s.debut)) / 1000)}
+              Visite {i + 1} · {date(s.debut as number)} · {`${duree(lecture / 1000)} de lecture`}
             </p>
             <p className="mt-1 flex flex-wrap items-center gap-2 text-[0.8rem] text-kinome-grey">
               <Canal canal={s.canal as string} source={s.source as string} />
@@ -827,7 +836,7 @@ function ListeSessions({ jours, onOuvrir, onDeconnecte }: { jours: number; onOuv
         <table className="w-full text-left text-[0.85rem]">
           <thead className="text-[0.75rem] text-kinome-grey">
             <tr>
-              {["Début", "Canal", "Page d'arrivée", "Pages", "Durée", "Appareil", "Visite n°", ""].map((h) => (
+              {["Début", "Canal", "Page d'arrivée", "Pages", "Lecture", "Appareil", "Visite n°", ""].map((h) => (
                 <th key={h} className="px-3 py-2.5 font-semibold">
                   {h}
                 </th>
@@ -841,7 +850,7 @@ function ListeSessions({ jours, onOuvrir, onDeconnecte }: { jours: number; onOuv
                 <td className="px-3 py-2"><Canal canal={s.canal as string} source={s.source as string} /></td>
                 <td className="px-3 py-2">{String(s.atterrissage ?? "")}</td>
                 <td className="px-3 py-2 tabular-nums">{String(s.pages)}</td>
-                <td className="whitespace-nowrap px-3 py-2">{duree((Number(s.fin) - Number(s.debut)) / 1000)}</td>
+                <td className="whitespace-nowrap px-3 py-2">{duree(Number(s.lecture_ms ?? 0) / 1000)}</td>
                 <td className="px-3 py-2">{String(s.appareil ?? "")}</td>
                 <td className="px-3 py-2">{s.visite_n ? String(s.visite_n) : ""}</td>
                 <td className="px-3 py-2">
@@ -909,7 +918,7 @@ function Exports({ jours }: { jours: number }) {
         </div>
         <ul className="mt-5 grid list-disc gap-1.5 pl-5 text-[0.85rem] leading-relaxed text-kinome-grey">
           <li>
-            <strong className="text-kinome-black">Visites</strong> : une ligne par visite, avec début, durée, pages, canal et source (ChatGPT, Google, LinkedIn, annuaire…), page d&apos;entrée, appareil, navigateur, écran, langue, numéro de visite, demande liée et colonne « eclair » (1 = visite de moins de 3 s sans action, robot probable).
+            <strong className="text-kinome-black">Visites</strong> : une ligne par visite, avec début, durée (écart entre le premier et le dernier envoi, onglet ouvert compris), temps de lecture réel (lecture_s), pages, canal et source (ChatGPT, Google, LinkedIn, annuaire…), page d&apos;entrée, appareil, navigateur, écran, langue, numéro de visite, demande liée et colonne « eclair » (1 = visite de moins de 3 s sans action, robot probable).
           </li>
           <li>
             <strong className="text-kinome-black">Interactions</strong> : une ligne par événement, dans l&apos;ordre : page vue, temps de lecture et défilement, clic (téléphone, email, WhatsApp, lien, ancre, bouton, fichier, lien sortant), formulaire commencé, abandonné ou envoyé, chatbot, copie, j&apos;aime, visionneuse, demande. Le détail est dans la colonne « donnees » (JSON).

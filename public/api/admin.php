@@ -114,7 +114,12 @@ function kn_totaux(PDO $db, int $debut, int $fin): array
         'pages' => (int) kn_un($db, 'SELECT COALESCE(SUM(pages), 0) FROM sessions_utiles WHERE debut >= ? AND debut < ?', [$debut, $fin]),
         'leads' => $leads,
         'conversion' => $sessions > 0 ? round($leads / $sessions * 100, 2) : 0,
-        'duree_moyenne_s' => (int) round((float) kn_un($db, 'SELECT AVG(fin - debut) FROM sessions_utiles WHERE debut >= ? AND debut < ?', [$debut, $fin]) / 1000),
+        // Temps de lecture réel (29/10/2026) : page visible au premier plan, additionné par visite
+        // et plafonné à 30 minutes. L'écart entre premier et dernier envoi comptait les onglets
+        // restés ouverts (une nuit entière parfois) : 69 minutes de « durée moyenne » sur 30 jours.
+        'duree_moyenne_s' => (int) round((float) kn_un($db, "SELECT AVG(MIN(COALESCE(l.total, 0), 1800000)) FROM sessions_utiles s
+            LEFT JOIN (SELECT session, SUM(json_extract(donnees, '$.duree')) AS total FROM evenements WHERE type = 'lecture' GROUP BY session) l ON l.session = s.id
+            WHERE s.debut >= ? AND s.debut < ?", [$debut, $fin]) / 1000),
         'rebond' => $sessions > 0 ? round((int) kn_un($db, 'SELECT COUNT(*) FROM sessions_utiles WHERE debut >= ? AND debut < ? AND pages <= 1', [$debut, $fin]) / $sessions * 100, 1) : 0,
         'ia' => (int) kn_un($db, "SELECT COUNT(*) FROM sessions_utiles WHERE debut >= ? AND debut < ? AND canal = 'IA'", [$debut, $fin]),
         // Visites éclair (vue sessions_utiles, _lib.php) : écartées des chiffres ci-dessus
@@ -133,8 +138,9 @@ if ($action === 'stats') {
         FROM sessions_utiles WHERE debut >= ? AND debut < ? GROUP BY jour ORDER BY jour", $p);
 
     $canaux = kn_tous($db, "SELECT s.canal, COUNT(*) AS sessions, SUM(CASE WHEN s.lead_id IS NOT NULL THEN 1 ELSE 0 END) AS leads,
-            ROUND(AVG(s.pages), 1) AS pages_moy, CAST(AVG(s.fin - s.debut) / 1000 AS INTEGER) AS duree_moy
-        FROM sessions_utiles s WHERE s.debut >= ? AND s.debut < ? GROUP BY s.canal ORDER BY sessions DESC", $p);
+            ROUND(AVG(s.pages), 1) AS pages_moy, CAST(AVG(MIN(COALESCE(l.total, 0), 1800000)) / 1000 AS INTEGER) AS duree_moy
+        FROM sessions_utiles s LEFT JOIN (SELECT session, SUM(json_extract(donnees, '$.duree')) AS total FROM evenements WHERE type = 'lecture' GROUP BY session) l ON l.session = s.id
+        WHERE s.debut >= ? AND s.debut < ? GROUP BY s.canal ORDER BY sessions DESC", $p);
     $sources = kn_tous($db, 'SELECT canal, source, COUNT(*) AS sessions, SUM(CASE WHEN lead_id IS NOT NULL THEN 1 ELSE 0 END) AS leads
         FROM sessions_utiles WHERE debut >= ? AND debut < ? GROUP BY canal, source ORDER BY sessions DESC LIMIT 40', $p);
     $entrees = kn_tous($db, 'SELECT atterrissage AS chemin, COUNT(*) AS sessions, SUM(CASE WHEN lead_id IS NOT NULL THEN 1 ELSE 0 END) AS leads,
@@ -272,7 +278,8 @@ if ($action === 'ajout' && $methode === 'POST') {
 if ($action === 'sessions') {
     $filtre = (string) ($_GET['canal'] ?? '');
     $sql = 'SELECT s.*, (SELECT COUNT(*) FROM evenements e WHERE e.session = s.id) AS nb_evenements,
-            CASE WHEN s.id IN (SELECT id FROM sessions_utiles) THEN 0 ELSE 1 END AS eclair
+            CASE WHEN s.id IN (SELECT id FROM sessions_utiles) THEN 0 ELSE 1 END AS eclair,
+            (SELECT COALESCE(SUM(json_extract(l.donnees, \'$.duree\')), 0) FROM evenements l WHERE l.session = s.id AND l.type = \'lecture\') AS lecture_ms
         FROM sessions s WHERE s.debut >= ? AND s.debut < ?';
     $params = [$debut, $fin];
     if ($filtre !== '') {
@@ -319,7 +326,9 @@ if ($action === 'export') {
 
     if ($quoi === 'visites') {
         $q = $db->prepare('SELECT *, CAST((fin - debut) / 1000 AS INTEGER) AS duree_s,
-            CASE WHEN id IN (SELECT id FROM sessions_utiles) THEN 0 ELSE 1 END AS eclair
+            CASE WHEN id IN (SELECT id FROM sessions_utiles) THEN 0 ELSE 1 END AS eclair,
+            CAST((SELECT COALESCE(SUM(json_extract(l.donnees, \'$.duree\')), 0) FROM evenements l
+              WHERE l.session = sessions.id AND l.type = \'lecture\') / 1000 AS INTEGER) AS lecture_s
             FROM sessions WHERE debut >= ? AND debut < ? ORDER BY debut DESC');
         $q->execute([$pDebut, $fin]);
         $lignes = (function () use ($q, $horodatage) {
@@ -329,7 +338,7 @@ if ($action === 'export') {
                 yield $l;
             }
         })();
-        $csv("visites-kinome-$jour.csv", ['id', 'visiteur', 'debut', 'fin', 'duree_s', 'pages', 'canal', 'source', 'referrer', 'utm', 'atterrissage',
+        $csv("visites-kinome-$jour.csv", ['id', 'visiteur', 'debut', 'fin', 'duree_s', 'lecture_s', 'pages', 'canal', 'source', 'referrer', 'utm', 'atterrissage',
             'appareil', 'navigateur', 'os', 'ecran', 'langue', 'visite_n', 'lead_id', 'eclair'], $lignes);
     }
     if ($quoi === 'evenements') {
