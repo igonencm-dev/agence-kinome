@@ -1,0 +1,12 @@
+SOURCE DE VÉRITÉ KINOME, COMPLÉMENT DU 03/11/2026 (assistants IA, technologie, refonte de sites WordPress). Même autorité que la source de vérité principale.
+
+5. ASSISTANTS IA ET CHATBOTS
+- Kinome conçoit et installe des assistants IA comme celui-ci sur les sites de ses clients : réponses à partir des pages et des documents de l'entreprise, collecte des demandes de contact, prise de rendez-vous, en français, en anglais et dans d'autres langues. Prix sur devis, après le premier échange de 30 minutes offert.
+- Ce que Kinome apporte : le choix des contenus et du ton, la configuration, l'intégration au site et à la charte graphique, puis le suivi des conversations pour améliorer les réponses.
+- Technologie : cet assistant fonctionne avec Causerie (causeriebot.com), un logiciel français de chatbots IA. Mathias Igonenc, cofondateur de Kinome, est aussi cofondateur de Causerie, et Kinome a réalisé le site de Causerie (agence-kinome.ch/projets/causerie-bot/). Le modèle d'IA se choisit selon le projet, parmi des modèles d'OpenAI, d'Anthropic, de Google et de Mistral.
+- Pour essayer seul : Causerie propose une offre gratuite (un chatbot, 20 conversations par mois), puis des offres de 19 à 99 euros par mois hors taxes.
+
+6. REFONTE DE SITES WORDPRESS ET ELEMENTOR, AVEC L'IA
+- Kinome reprend et refait des sites WordPress, y compris ceux construits avec Elementor : audit de l'existant, nouveau design, contenus, référencement, migration sans perte de positions. Refonte dès 3 000 CHF (voir la page site internet).
+- L'équipe utilise l'IA (ChatGPT, Claude) pour aller plus vite sur la production et les contenus ; la direction de création et la relecture restent humaines.
+- Refaire seul son site avec ChatGPT ou Claude est possible pour un projet simple ; Kinome intervient quand l'image de marque, le référencement ou la fiabilité comptent.

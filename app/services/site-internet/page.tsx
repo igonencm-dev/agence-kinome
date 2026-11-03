@@ -276,6 +276,14 @@ const BLOG_LINKS = [
     href: "/blog/creer-site-ecommerce-suisse/",
     label: "Créer une boutique en ligne en Suisse : coûts et plateformes",
   },
+  {
+    href: "/blog/refaire-site-chatgpt-claude/",
+    label: "Refaire son site avec ChatGPT ou Claude : seul ou en agence ?",
+  },
+  {
+    href: "/blog/chatbot-ia-site-internet-suisse/",
+    label: "Un chatbot IA sur votre site : prix, données et mise en place",
+  },
 ];
 
 /* --------------------------------- Styles --------------------------------- */
