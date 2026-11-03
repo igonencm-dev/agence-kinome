@@ -79,6 +79,16 @@ export default function PolitiqueConfidentialitePage() {
               nous permet de savoir comment vous nous avez connus lorsque vous
               nous écrivez.
             </li>
+            <li>
+              <strong>Assistant IA (fenêtre de discussion) :</strong> les
+              messages que vous écrivez à l&rsquo;assistant et, si vous
+              choisissez de les laisser dans son formulaire, votre nom, votre
+              entreprise, votre e-mail, votre téléphone et la description de
+              votre besoin. Les réponses sont rédigées automatiquement par un
+              modèle d&rsquo;intelligence artificielle ; l&rsquo;assistant ne
+              prend aucune décision vous concernant. Évitez d&rsquo;y écrire
+              des informations sensibles.
+            </li>
           </ul>
         </section>
 
@@ -90,6 +100,15 @@ export default function PolitiqueConfidentialitePage() {
             <li>
               <strong>Répondre à vos demandes :</strong> exécution de mesures
               précontractuelles à votre demande (art. 6.1.b RGPD).
+            </li>
+            <li>
+              <strong>
+                Répondre à vos questions par l&rsquo;assistant IA et transmettre
+                vos demandes à l&rsquo;équipe :
+              </strong>{" "}
+              exécution de mesures précontractuelles à votre demande (art.
+              6.1.b RGPD) ou intérêt légitime à vous renseigner (art. 6.1.f
+              RGPD).
             </li>
             <li>
               <strong>Vous adresser nos offres et publications :</strong>{" "}
@@ -147,15 +166,38 @@ export default function PolitiqueConfidentialitePage() {
             <li>
               Nos sous-traitants techniques :{" "}
               <strong>Hostinger</strong> (hébergement, e-mail), <strong>Google</strong>{" "}
-              (Analytics, si consentement). Ces prestataires agissent
-              uniquement selon nos instructions et offrent des garanties
-              suffisantes de sécurité.
+              (Analytics, si consentement ; messagerie qui reçoit les demandes
+              laissées dans l&rsquo;assistant IA), <strong>Causerie</strong>{" "}
+              (logiciel de l&rsquo;assistant IA, France). Ces prestataires
+              agissent uniquement selon nos instructions et offrent des
+              garanties suffisantes de sécurité.
             </li>
           </ul>
           <p className="mt-3 font-body text-[1rem] leading-[1.7] text-kinome-black">
             En cas de transfert hors UE/Suisse (par exemple via Google), il
             s&rsquo;appuie sur les clauses contractuelles types validées par
             la Commission européenne.
+          </p>
+          <p className="mt-3 font-body text-[1rem] leading-[1.7] text-kinome-black">
+            Les conversations avec l&rsquo;assistant IA sont hébergées et
+            traitées en Europe : l&rsquo;application Causerie fonctionne sur
+            un serveur en France et sa base de données se trouve à Francfort
+            (Allemagne), et les réponses sont rédigées par un modèle de
+            Mistral AI (France) servi depuis l&rsquo;Union européenne et
+            l&rsquo;AELE. Ces États figurent sur la liste des pays dont le
+            Conseil fédéral reconnaît le niveau de protection des données.
+            Lorsque vous laissez vos coordonnées, votre demande et la
+            discussion nous sont transmises par e-mail, envoyé par Brevo
+            (France). Causerie publie la{" "}
+            <a
+              href="https://causeriebot.com/fonctionnalites/securite-donnees/"
+              className="underline text-kinome-accent"
+              target="_blank"
+              rel="noopener"
+            >
+              liste complète de ses sous-traitants
+            </a>
+            .
           </p>
         </section>
 
@@ -252,7 +294,7 @@ export default function PolitiqueConfidentialitePage() {
         </section>
 
         <p className="mt-10 font-body text-[0.85rem] italic text-kinome-grey">
-          Dernière mise à jour : 11 mai 2026.
+          Dernière mise à jour : 3 novembre 2026.
         </p>
 
         <div className="mt-12 border-t border-[#e0ddd6] pt-8 text-center">
