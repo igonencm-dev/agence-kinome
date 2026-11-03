@@ -56,7 +56,7 @@ p { margin: 0 0 2.6mm; }
 .carte .n { font-family: 'Krub', sans-serif; font-size: 25pt; font-weight: 600; line-height: 1; }
 .carte .l { font-size: 8.4pt; margin-top: 1.6mm; line-height: 1.3; }
 .carte .c { font-size: 7.6pt; color: #6b6a66; margin-top: 1.4mm; }
-.carte .c b { color: #e04034; font-weight: 600; }
+.carte .c b { color: #1f7a4d; font-weight: 600; }
 .sombre { background: #222222; color: #ffffff; border-radius: 16px; padding: 6mm 7mm; }
 .sombre .sur { color: #f2a59f; }
 .sombre p { margin: 0; font-size: 11pt; line-height: 1.5; }
@@ -117,7 +117,7 @@ def graphe_semaines():
     for i, (lab, c, imp, m) in enumerate(sem):
         x = i * pas + (pas - larg) / 2
         h = (bas - haut) * c / maxi
-        coul = {"s": "#cfc9bb", "m": "#e9a39d", "o": "#e04034"}[m]
+        coul = {"s": "#cfc9bb", "m": "#9fcfb3", "o": "#1f7a4d"}[m]
         out.append(f'<rect x="{x:.1f}" y="{bas - h:.1f}" width="{larg:.1f}" height="{h:.1f}" rx="3" fill="{coul}"/>')
         out.append(f'<text x="{x + larg / 2:.1f}" y="{bas - h - 4:.1f}" text-anchor="middle" font-size="11" font-weight="600" fill="#111">{c}</text>')
         out.append(f'<text x="{x + larg / 2:.1f}" y="{bas + 13:.1f}" text-anchor="middle" font-size="8.2" fill="#555">{lab}</text>')
@@ -142,7 +142,7 @@ def graphe_ia():
         out.append(f'<text x="0" y="{y + 12:.1f}" font-size="9.4" fill="#111">{p}</text>')
         wo = zone * o / maxi
         ws = zone * s / maxi
-        out.append(f'<rect x="{lab_w}" y="{y + 2:.1f}" width="{max(wo, 1):.1f}" height="10" rx="2.5" fill="#e04034"/>')
+        out.append(f'<rect x="{lab_w}" y="{y + 2:.1f}" width="{max(wo, 1):.1f}" height="10" rx="2.5" fill="#1f7a4d"/>')
         out.append(f'<text x="{lab_w + wo + 5:.1f}" y="{y + 11:.1f}" font-size="9" font-weight="600" fill="#111">{o}</text>')
         out.append(f'<rect x="{lab_w}" y="{y + 14:.1f}" width="{max(ws, 1):.1f}" height="6" rx="2" fill="#cfc9bb"/>')
         out.append(f'<text x="{lab_w + ws + 5:.1f}" y="{y + 20.5:.1f}" font-size="7.6" fill="#6b6a66">{s}</text>')
@@ -186,7 +186,7 @@ P.append(page(2, f"""
 </ol>
 <h3>Clics Google semaine par semaine</h3>
 <div class="bloc" style="padding:3mm 5mm 1mm">{graphe_semaines()}</div>
-<p class="note">Septembre en gris, octobre en rouge ; la semaine du 28 septembre au 4 octobre est à cheval. Sous chaque barre : les affichages de la semaine.</p>
+<p class="note">Septembre en gris, octobre en vert ; la semaine du 28 septembre au 4 octobre est à cheval. Sous chaque barre : les affichages de la semaine.</p>
 <h3>Ce qui s'est passé chaque semaine</h3>
 {tableau(["Semaine", "Clics", "Affichages", "Visites utiles", "Sur le site"], [
  ["1-4 oct.", "1", "641", "10", "Page Grand Genève et Haute-Savoie, home anglaise, grille de prix en PDF (1er oct.)"],
@@ -361,7 +361,7 @@ P.append(page(7, f"""
 <p class="chapo">L'AEO et le GEO, c'est être cité quand quelqu'un pose sa question à une IA plutôt qu'à un moteur de recherche. Trois mesures : les réponses IA de Google, les visites venues des assistants, les passages de leurs robots sur le site.</p>
 <h3>Dans les réponses IA de Google : 744 affichages, contre 416 (+79 %)</h3>
 <div class="bloc" style="padding:4mm 5mm 3mm">{graphe_ia()}</div>
-<p class="note">Rouge : octobre ; gris : septembre. 81 % des affichages viennent de Suisse (602) et 11 % de France (83) ; 89 % sur ordinateur. Google ne donne pas les clics liés à ces affichages.</p>
+<p class="note">Vert : octobre ; gris : septembre. 81 % des affichages viennent de Suisse (602) et 11 % de France (83) ; 89 % sur ordinateur. Google ne donne pas les clics liés à ces affichages.</p>
 <div class="deux" style="margin-top:3mm">
 <div>
 <h3 style="margin-top:0">Les visites venues des assistants</h3>
