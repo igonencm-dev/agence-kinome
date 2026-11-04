@@ -44,7 +44,7 @@ function kn_session(PDO $db): ?array
         $r = kn_tous($db, 'SELECT j.compte, c.nom, c.identifiant FROM jetons j LEFT JOIN comptes c ON c.id = j.compte
             WHERE j.empreinte = ? AND j.expire > ?', [hash('sha256', $jeton), kn_maintenant()])[0] ?? null;
         if ($r && ($r['compte'] === null || $r['nom'] !== null)) {
-            return ['compte' => $r['compte'] === null ? null : (int) $r['compte'], 'nom' => $r['nom'] ?? 'Équipe',
+            return ['compte' => $r['compte'] === null ? null : (int) $r['compte'], 'nom' => kn_crm_prenom($r['nom']) ?? 'Équipe',
                 'identifiant' => $r['identifiant'], 'cle' => false];
         }
     }
@@ -306,13 +306,18 @@ if ($action === 'fichier_suppr' && $methode === 'POST') {
 
 // Comptes personnels : chacun signe ses messages dans le fil
 if ($action === 'comptes') {
-    kn_json(['ok' => true, 'comptes' => kn_tous($db, 'SELECT id, identifiant, nom, cree, derniere_connexion FROM comptes ORDER BY nom')]);
+    $comptes = kn_tous($db, 'SELECT id, identifiant, nom, cree, derniere_connexion FROM comptes ORDER BY nom');
+    foreach ($comptes as &$c) {
+        $c['nom'] = kn_crm_prenom($c['nom']);
+    }
+    unset($c);
+    kn_json(['ok' => true, 'comptes' => $comptes]);
 }
 
 if ($action === 'compte_ajout' && $methode === 'POST') {
     $e = kn_entree(2048);
     $identifiant = strtolower(trim((string) ($e['identifiant'] ?? '')));
-    $nom = kn_texte($e['nom'] ?? null, 40);
+    $nom = kn_crm_prenom(kn_texte($e['nom'] ?? null, 40));
     $mdp = (string) ($e['motdepasse'] ?? '');
     if (!preg_match('/^[a-z0-9._-]{2,30}$/', $identifiant) || $nom === null) {
         kn_json(['ok' => false, 'erreur' => 'Identifiant (lettres, chiffres, point, tiret) et nom requis.'], 400);

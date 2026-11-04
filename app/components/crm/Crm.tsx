@@ -343,9 +343,10 @@ function Prospects({
   const filtres = useMemo(() => {
     const q = recherche.trim().toLowerCase();
     return (leads ?? []).filter((l) => {
-      if (qui === "moi" && l.responsable !== moi?.nom) return false;
-      if (qui === "aucun" && l.responsable) return false;
-      if (!["tous", "moi", "aucun"].includes(qui) && l.responsable !== qui) return false;
+      const resp = String(l.responsable ?? "").toLowerCase();
+      if (qui === "moi" && resp !== String(moi?.nom ?? "").toLowerCase()) return false;
+      if (qui === "aucun" && resp) return false;
+      if (!["tous", "moi", "aucun"].includes(qui) && resp !== qui.toLowerCase()) return false;
       if (q && ![l.nom, l.entreprise, l.email, l.projet, l.extrait, l.dernier_suivi].some((v) => String(v ?? "").toLowerCase().includes(q))) return false;
       return true;
     });
@@ -506,7 +507,8 @@ function Relances({ leads, onOuvrir }: { leads: Ligne[]; onOuvrir: (id: number) 
     ["Aujourd'hui", tries.filter((l) => echeance(l.prochaine_date, auj) === 0)],
     ["Dans les 7 jours", tries.filter((l) => echeance(l.prochaine_date, auj) === 1 && jourIso(l.prochaine_date) <= dans7)],
     ["Plus tard", tries.filter((l) => echeance(l.prochaine_date, auj) === 1 && jourIso(l.prochaine_date) > dans7)],
-    ["Sans prochaine action", tries.filter((l) => !l.prochaine_date)],
+    ["À dater", tries.filter((l) => !l.prochaine_date && l.prochaine_action)],
+    ["Sans prochaine action", tries.filter((l) => !l.prochaine_date && !l.prochaine_action)],
   ];
   return (
     <div className="grid gap-5 lg:grid-cols-2">

@@ -67,7 +67,7 @@ function kn_crm_par_cle(PDO $db): ?array
         return null;
     }
     $db->prepare('UPDATE cles_api SET derniere = ? WHERE id = ?')->execute([kn_maintenant(), $r['id']]);
-    return ['compte' => (int) $r['compte'], 'nom' => (string) $r['nom'], 'identifiant' => (string) $r['identifiant'], 'cle' => true];
+    return ['compte' => (int) $r['compte'], 'nom' => kn_crm_prenom($r['nom']) ?? 'Équipe', 'identifiant' => (string) $r['identifiant'], 'cle' => true];
 }
 
 function kn_crm_nouvelle_cle(): string
@@ -111,12 +111,25 @@ function kn_crm_suivi(PDO $db, int $lead, string $type, ?string $texte, ?string 
         ->execute([$lead, kn_maintenant(), $auteur, $type, $texte]);
 }
 
-/** Noms proposés comme responsables : les deux associés, plus les comptes personnels créés. */
+/** Prénom affiché avec sa majuscule (« tanguy » devient « Tanguy »). */
+function kn_crm_prenom(?string $nom): ?string
+{
+    $nom = $nom === null ? '' : trim($nom);
+    return $nom === '' ? null : mb_strtoupper(mb_substr($nom, 0, 1)) . mb_substr($nom, 1);
+}
+
+/** Noms proposés comme responsables : les deux associés, plus les comptes personnels créés (sans doublon de casse). */
 function kn_crm_equipe(PDO $db): array
 {
-    $noms = array_unique(array_merge(['Mathias', 'Tanguy'], array_column(kn_tous($db, 'SELECT nom FROM comptes'), 'nom')));
+    $noms = [];
+    foreach (array_merge(['Mathias', 'Tanguy'], array_column(kn_tous($db, 'SELECT nom FROM comptes'), 'nom')) as $n) {
+        if (($n = kn_crm_prenom($n)) !== null) {
+            $noms[mb_strtolower($n)] ??= $n;
+        }
+    }
+    $noms = array_values($noms);
     sort($noms, SORT_LOCALE_STRING);
-    return array_values($noms);
+    return $noms;
 }
 
 // --- Lecture --------------------------------------------------------------------------
