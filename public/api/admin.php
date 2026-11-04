@@ -1,22 +1,27 @@
 <?php
-// API du tableau de bord /admin/. Authentification par mot de passe : le
-// hash vit dans data/config.php (ou dans la base après un changement), la
-// session est un jeton aléatoire dont seule l'empreinte est stockée. Cookie
-// HttpOnly, Secure, SameSite=Strict, limité à /api/. Cinq échecs en quinze
-// minutes bloquent la connexion depuis cette adresse.
+// API du tableau de bord /admin/ et du CRM /crm/. Authentification par mot de
+// passe commun (hash dans data/config.php, ou dans la base après un changement)
+// ou par compte personnel (table comptes, 04/11/2026). La session est un jeton
+// aléatoire dont seule l'empreinte est stockée. Cookie HttpOnly, Secure,
+// SameSite=Strict, limité à /api/. Cinq échecs en quinze minutes bloquent la
+// connexion depuis cette adresse. Claude peut aussi appeler les actions du CRM
+// avec une clé d'accès personnelle (_crm.php), jamais les exports ni les réglages.
 declare(strict_types=1);
 require __DIR__ . '/_lib.php';
+require __DIR__ . '/_crm.php';
 
 const KN_COOKIE = 'kn_admin';
 const KN_DUREE_JETON_MS = 30 * 24 * 3600 * 1000;
-const KN_STATUTS = ['nouveau', 'contacte', 'rdv', 'devis', 'gagne', 'perdu', 'spam'];
+// Ce qu'une clé d'accès (Claude) a le droit de faire
+const KN_ACTIONS_CLE = ['moi', 'crm', 'lead', 'ajout', 'maj', 'note', 'fichier_get'];
 
 $db = kn_db();
 $action = (string) ($_GET['a'] ?? '');
 $methode = (string) ($_SERVER['REQUEST_METHOD'] ?? 'GET');
 
-// Toute écriture exige l'en-tête maison : un formulaire tiers ne peut pas le poser
-if ($methode === 'POST' && ($_SERVER['HTTP_X_KN'] ?? '') !== '1') {
+// Toute écriture exige l'en-tête maison : un formulaire tiers ne peut pas le poser.
+// Une clé d'accès n'est jamais envoyée d'office par un navigateur : elle en est dispensée.
+if ($methode === 'POST' && ($_SERVER['HTTP_X_KN'] ?? '') !== '1' && kn_cle_api_recue() === null) {
     kn_json(['ok' => false], 403);
 }
 
@@ -26,15 +31,24 @@ function kn_hash_mot_de_passe(PDO $db): ?string
     return $q ?: (kn_config()['mot_de_passe'] ?? null);
 }
 
-function kn_connecte(PDO $db): bool
+/** Qui est connecté : compte personnel, mot de passe commun (« Équipe ») ou clé d'accès. null sinon. */
+function kn_session(PDO $db): ?array
 {
-    $jeton = (string) ($_COOKIE[KN_COOKIE] ?? '');
-    if (strlen($jeton) !== 64) {
-        return false;
+    // Une requête qui porte une clé n'est jugée que sur elle, jamais sur le cookie :
+    // la dispense d'en-tête X-KN ne profite ainsi qu'aux clés valides.
+    if (kn_cle_api_recue() !== null) {
+        return kn_crm_par_cle($db);
     }
-    $q = $db->prepare('SELECT 1 FROM jetons WHERE empreinte = ? AND expire > ?');
-    $q->execute([hash('sha256', $jeton), kn_maintenant()]);
-    return (bool) $q->fetchColumn();
+    $jeton = (string) ($_COOKIE[KN_COOKIE] ?? '');
+    if (strlen($jeton) === 64) {
+        $r = kn_tous($db, 'SELECT j.compte, c.nom, c.identifiant FROM jetons j LEFT JOIN comptes c ON c.id = j.compte
+            WHERE j.empreinte = ? AND j.expire > ?', [hash('sha256', $jeton), kn_maintenant()])[0] ?? null;
+        if ($r && ($r['compte'] === null || $r['nom'] !== null)) {
+            return ['compte' => $r['compte'] === null ? null : (int) $r['compte'], 'nom' => $r['nom'] ?? 'Équipe',
+                'identifiant' => $r['identifiant'], 'cle' => false];
+        }
+    }
+    return null;
 }
 
 function kn_poser_cookie(string $valeur, int $expire): void
@@ -57,15 +71,31 @@ if ($action === 'connexion' && $methode === 'POST') {
         kn_json(['ok' => false, 'erreur' => 'Trop de tentatives, réessayez dans 15 minutes.'], 429);
     }
     $entree = kn_entree(2048);
-    $hash = kn_hash_mot_de_passe($db);
-    $ok = $hash && password_verify((string) ($entree['motdepasse'] ?? ''), $hash);
+    $motDePasse = (string) ($entree['motdepasse'] ?? '');
+    $identifiant = kn_texte($entree['identifiant'] ?? null, 60);
+    $hash = null;
+    $compte = null;
+    if ($identifiant !== null) {
+        // Compte personnel (CRM) : identifiant et mot de passe
+        $c = kn_tous($db, 'SELECT id, hash FROM comptes WHERE identifiant = ?', [$identifiant])[0] ?? null;
+        $ok = $c !== null && password_verify($motDePasse, (string) $c['hash']);
+        $compte = $ok ? (int) $c['id'] : null;
+    } else {
+        $hash = kn_hash_mot_de_passe($db);
+        $ok = $hash && password_verify($motDePasse, $hash);
+    }
     $db->prepare('INSERT INTO connexions (ip, date, reussie) VALUES (?, ?, ?)')->execute([$ip, kn_maintenant(), $ok ? 1 : 0]);
     if (!$ok) {
         usleep(400000);
-        kn_json(['ok' => false, 'erreur' => $hash ? 'Mot de passe incorrect.' : 'Aucun mot de passe configuré sur le serveur.'], 401);
+        kn_json(['ok' => false, 'erreur' => $identifiant !== null ? 'Identifiant ou mot de passe incorrect.'
+            : ($hash ? 'Mot de passe incorrect.' : 'Aucun mot de passe configuré sur le serveur.')], 401);
     }
     $jeton = bin2hex(random_bytes(32));
-    $db->prepare('INSERT INTO jetons (empreinte, expire) VALUES (?, ?)')->execute([hash('sha256', $jeton), kn_maintenant() + KN_DUREE_JETON_MS]);
+    $db->prepare('INSERT INTO jetons (empreinte, expire, compte) VALUES (?, ?, ?)')
+        ->execute([hash('sha256', $jeton), kn_maintenant() + KN_DUREE_JETON_MS, $compte]);
+    if ($compte !== null) {
+        $db->prepare('UPDATE comptes SET derniere_connexion = ? WHERE id = ?')->execute([kn_maintenant(), $compte]);
+    }
     kn_poser_cookie($jeton, time() + 30 * 86400);
     kn_json(['ok' => true]);
 }
@@ -78,30 +108,21 @@ if ($action === 'deconnexion' && $methode === 'POST') {
     kn_json(['ok' => true]);
 }
 
-if (!kn_connecte($db)) {
+$moi = kn_session($db);
+if ($moi === null) {
     kn_json(['ok' => false, 'erreur' => 'non_connecte'], 401);
+}
+if ($moi['cle'] && !in_array($action, KN_ACTIONS_CLE, true)) {
+    kn_json(['ok' => false, 'erreur' => 'Action réservée à l\'interface.'], 403);
 }
 
 // --- Outils de requête -------------------------------------------------------
 // Décalage horaire de Genève (heure d'été comprise) pour regrouper par jour et par heure
-date_default_timezone_set('Europe/Zurich');
+// (fuseau posé par _crm.php ; kn_tous et kn_un y sont définis)
 $tz = sprintf("'%+d seconds'", (int) date('Z'));
 $jours = max(0, min(3650, (int) ($_GET['j'] ?? 30)));
 $fin = kn_maintenant();
 $debut = $jours > 0 ? $fin - $jours * 86400 * 1000 : 0;
-
-function kn_tous(PDO $db, string $sql, array $params = []): array
-{
-    $q = $db->prepare($sql);
-    $q->execute($params);
-    return $q->fetchAll();
-}
-function kn_un(PDO $db, string $sql, array $params = [])
-{
-    $q = $db->prepare($sql);
-    $q->execute($params);
-    return $q->fetchColumn();
-}
 
 /** Totaux d'une période, réutilisés pour comparer avec la période précédente. */
 function kn_totaux(PDO $db, int $debut, int $fin): array
@@ -228,50 +249,147 @@ if ($action === 'lead') {
         $marques = implode(',', array_fill(0, count($ids), '?'));
         $evenements = kn_tous($db, "SELECT session, date, type, chemin, donnees FROM evenements WHERE session IN ($marques) ORDER BY date LIMIT 3000", $ids);
     }
-    kn_json(['ok' => true, 'lead' => $lead, 'sessions' => $sessions, 'evenements' => $evenements]);
+    // CRM : fil de suivi et PDF joints
+    $fiche = kn_crm_fiche($db, $id);
+    kn_json(['ok' => true, 'lead' => $lead, 'sessions' => $sessions, 'evenements' => $evenements,
+        'suivis' => $fiche['suivis'] ?? [], 'fichiers' => $fiche['fichiers'] ?? []]);
 }
 
 if ($action === 'maj' && $methode === 'POST') {
     $e = kn_entree(16384);
     $id = (int) ($e['id'] ?? 0);
-    $champs = [];
-    $valeurs = [];
-    if (isset($e['statut']) && in_array($e['statut'], KN_STATUTS, true)) {
-        $champs[] = 'statut = ?';
-        $valeurs[] = $e['statut'];
+    if ($id <= 0 || !kn_crm_maj($db, $id, $e, $moi['nom'])) {
+        kn_json(['ok' => false, 'erreur' => 'Fiche introuvable.'], 404);
     }
-    if (array_key_exists('valeur', $e)) {
-        $champs[] = 'valeur = ?';
-        $valeurs[] = is_numeric($e['valeur']) ? max(0, (int) $e['valeur']) : null;
-    }
-    foreach (['notes' => 8000, 'origine_declaree' => 120, 'entreprise' => 150] as $champ => $max) {
-        if (array_key_exists($champ, $e)) {
-            $champs[] = "$champ = ?";
-            $valeurs[] = kn_texte($e[$champ], $max);
-        }
-    }
-    if (!$champs || $id <= 0) {
-        kn_json(['ok' => false], 400);
-    }
-    $champs[] = 'maj = ?';
-    $valeurs[] = kn_maintenant();
-    $valeurs[] = $id;
-    $db->prepare('UPDATE leads SET ' . implode(', ', $champs) . ' WHERE id = ?')->execute($valeurs);
     kn_json(['ok' => true]);
 }
 
 if ($action === 'ajout' && $methode === 'POST') {
-    // Lead saisi à la main (appel, recommandation, salon…)
+    // Fiche saisie à la main (appel, recommandation, rencontre…)
+    $id = kn_crm_ajouter($db, kn_entree(16384), $moi['nom']);
+    if ($id === null) {
+        kn_json(['ok' => false, 'erreur' => 'Indiquez au moins une entreprise ou un nom.'], 400);
+    }
+    kn_json(['ok' => true, 'id' => $id]);
+}
+
+// --- CRM (/crm/) -------------------------------------------------------------------
+if ($action === 'crm') {
+    kn_json(['ok' => true, 'leads' => kn_crm_liste($db, [
+        'statut' => (string) ($_GET['statut'] ?? ''),
+        'responsable' => (string) ($_GET['responsable'] ?? ''),
+        'recherche' => kn_texte($_GET['q'] ?? null, 100),
+    ]), 'equipe' => kn_crm_equipe($db)]);
+}
+
+if ($action === 'note' && $methode === 'POST') {
     $e = kn_entree(16384);
-    $db->prepare("INSERT INTO leads (date, formulaire, nom, email, telephone, entreprise, projet, message, origine_declaree, canal, source, premier_canal, premiere_source, statut, maj, import)
-        VALUES (?, 'manuel', ?, ?, ?, ?, ?, ?, ?, 'Hors site', ?, 'Hors site', ?, ?, ?, 'manuel')")->execute([
-        is_numeric($e['date'] ?? null) ? (int) $e['date'] : kn_maintenant(),
-        kn_texte($e['nom'] ?? null, 150), kn_texte($e['email'] ?? null, 200), kn_texte($e['telephone'] ?? null, 40),
-        kn_texte($e['entreprise'] ?? null, 150), kn_texte($e['projet'] ?? null, 120), kn_texte($e['message'] ?? null, 6000),
-        kn_texte($e['origine'] ?? null, 120), kn_texte($e['origine'] ?? null, 120) ?? 'Hors site', kn_texte($e['origine'] ?? null, 120) ?? 'Hors site',
-        in_array($e['statut'] ?? '', KN_STATUTS, true) ? $e['statut'] : 'nouveau', kn_maintenant(),
-    ]);
-    kn_json(['ok' => true, 'id' => (int) $db->lastInsertId()]);
+    if (!kn_crm_noter($db, (int) ($e['id'] ?? 0), $e['texte'] ?? null, $moi['nom'])) {
+        kn_json(['ok' => false, 'erreur' => 'Message vide ou fiche introuvable.'], 400);
+    }
+    kn_json(['ok' => true]);
+}
+
+if ($action === 'fichier' && $methode === 'POST') {
+    $r = kn_crm_joindre($db, (int) ($_POST['id'] ?? 0), (array) ($_FILES['fichier'] ?? []), $moi['nom']);
+    kn_json($r, $r['ok'] ? 200 : 400);
+}
+
+if ($action === 'fichier_get') {
+    kn_crm_envoyer_fichier($db, (int) ($_GET['id'] ?? 0));
+}
+
+if ($action === 'fichier_suppr' && $methode === 'POST') {
+    $e = kn_entree(1024);
+    kn_json(['ok' => kn_crm_retirer_fichier($db, (int) ($e['id'] ?? 0), $moi['nom'])]);
+}
+
+// Comptes personnels : chacun signe ses messages dans le fil
+if ($action === 'comptes') {
+    kn_json(['ok' => true, 'comptes' => kn_tous($db, 'SELECT id, identifiant, nom, cree, derniere_connexion FROM comptes ORDER BY nom')]);
+}
+
+if ($action === 'compte_ajout' && $methode === 'POST') {
+    $e = kn_entree(2048);
+    $identifiant = strtolower(trim((string) ($e['identifiant'] ?? '')));
+    $nom = kn_texte($e['nom'] ?? null, 40);
+    $mdp = (string) ($e['motdepasse'] ?? '');
+    if (!preg_match('/^[a-z0-9._-]{2,30}$/', $identifiant) || $nom === null) {
+        kn_json(['ok' => false, 'erreur' => 'Identifiant (lettres, chiffres, point, tiret) et nom requis.'], 400);
+    }
+    if (mb_strlen($mdp) < 12) {
+        kn_json(['ok' => false, 'erreur' => 'Mot de passe : 12 caractères minimum.'], 400);
+    }
+    if (kn_un($db, 'SELECT 1 FROM comptes WHERE identifiant = ?', [$identifiant])) {
+        kn_json(['ok' => false, 'erreur' => 'Cet identifiant existe déjà.'], 400);
+    }
+    $db->prepare('INSERT INTO comptes (identifiant, nom, hash, cree) VALUES (?, ?, ?, ?)')
+        ->execute([$identifiant, $nom, password_hash($mdp, PASSWORD_DEFAULT), kn_maintenant()]);
+    kn_json(['ok' => true]);
+}
+
+if ($action === 'compte_suppr' && $methode === 'POST') {
+    $id = (int) (kn_entree(1024)['id'] ?? 0);
+    if ($id === $moi['compte']) {
+        kn_json(['ok' => false, 'erreur' => 'Impossible de supprimer son propre compte.'], 400);
+    }
+    $db->prepare('DELETE FROM jetons WHERE compte = ?')->execute([$id]);
+    $db->prepare('DELETE FROM cles_api WHERE compte = ?')->execute([$id]);
+    $db->prepare('DELETE FROM comptes WHERE id = ?')->execute([$id]);
+    kn_json(['ok' => true]);
+}
+
+if ($action === 'compte_mdp' && $methode === 'POST') {
+    // Mot de passe du compte personnel connecté (le mot de passe commun se change par « motdepasse »)
+    $e = kn_entree(2048);
+    $hashCompte = $moi['compte'] !== null ? kn_un($db, 'SELECT hash FROM comptes WHERE id = ?', [$moi['compte']]) : null;
+    if (!$hashCompte || !password_verify((string) ($e['actuel'] ?? ''), (string) $hashCompte)) {
+        kn_json(['ok' => false, 'erreur' => 'Mot de passe actuel incorrect.'], 400);
+    }
+    if (mb_strlen((string) ($e['nouveau'] ?? '')) < 12) {
+        kn_json(['ok' => false, 'erreur' => '12 caractères minimum.'], 400);
+    }
+    $db->prepare('UPDATE comptes SET hash = ? WHERE id = ?')->execute([password_hash((string) $e['nouveau'], PASSWORD_DEFAULT), $moi['compte']]);
+    $db->prepare('DELETE FROM jetons WHERE compte = ? AND empreinte != ?')->execute([$moi['compte'], hash('sha256', (string) ($_COOKIE[KN_COOKIE] ?? ''))]);
+    kn_json(['ok' => true]);
+}
+
+// Clés d'accès pour Claude : rattachées au compte personnel, affichées une seule fois
+if ($action === 'cles') {
+    kn_json(['ok' => true, 'cles' => $moi['compte'] === null ? []
+        : kn_tous($db, 'SELECT id, libelle, cree, derniere FROM cles_api WHERE compte = ? ORDER BY cree DESC', [$moi['compte']])]);
+}
+
+if ($action === 'cle_creer' && $methode === 'POST') {
+    if ($moi['compte'] === null) {
+        kn_json(['ok' => false, 'erreur' => 'Connectez-vous avec votre compte personnel pour créer une clé.'], 400);
+    }
+    $cle = kn_crm_nouvelle_cle();
+    $db->prepare('INSERT INTO cles_api (empreinte, compte, libelle, cree) VALUES (?, ?, ?, ?)')
+        ->execute([hash('sha256', $cle), $moi['compte'], kn_texte(kn_entree(1024)['libelle'] ?? null, 60) ?? 'Claude', kn_maintenant()]);
+    kn_json(['ok' => true, 'cle' => $cle]);
+}
+
+if ($action === 'cle_suppr' && $methode === 'POST') {
+    $db->prepare('DELETE FROM cles_api WHERE id = ? AND compte = ?')->execute([(int) (kn_entree(1024)['id'] ?? 0), $moi['compte']]);
+    kn_json(['ok' => true]);
+}
+
+// Webhook Causerie (contacts du chatbot, causerie.php) : secret collé par Mathias, jamais réaffiché
+if ($action === 'secret_causerie' && $methode === 'POST') {
+    $secret = trim((string) (kn_entree(2048)['secret'] ?? ''));
+    if (strlen($secret) < 16 || strlen($secret) > 200) {
+        kn_json(['ok' => false, 'erreur' => 'Secret invalide : copiez-le depuis le dashboard Causerie.'], 400);
+    }
+    $db->prepare("INSERT INTO reglages (cle, valeur) VALUES ('causerie_secret', ?) ON CONFLICT(cle) DO UPDATE SET valeur = excluded.valeur")->execute([$secret]);
+    kn_json(['ok' => true]);
+}
+
+if ($action === 'etat_causerie') {
+    kn_json(['ok' => true,
+        'secret' => (bool) kn_un($db, "SELECT 1 FROM reglages WHERE cle = 'causerie_secret'"),
+        'dernier_test' => (int) (kn_un($db, "SELECT valeur FROM reglages WHERE cle = 'causerie_test'") ?: 0),
+        'dernier_contact' => (int) (kn_un($db, "SELECT MAX(date) FROM leads WHERE formulaire = 'chatbot'") ?: 0)]);
 }
 
 // --- Visites ---------------------------------------------------------------------
@@ -419,7 +537,8 @@ if ($action === 'motdepasse' && $methode === 'POST') {
 }
 
 if ($action === 'moi') {
-    kn_json(['ok' => true]);
+    kn_json(['ok' => true, 'moi' => ['nom' => $moi['nom'], 'identifiant' => $moi['identifiant'], 'compte' => $moi['compte']],
+        'equipe' => kn_crm_equipe($db)]);
 }
 
 kn_json(['ok' => false, 'erreur' => 'action_inconnue'], 404);

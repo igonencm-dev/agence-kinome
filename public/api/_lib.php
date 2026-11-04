@@ -163,6 +163,72 @@ function kn_migrer(PDO $db): void
         SQL);
         $db->exec('PRAGMA user_version = 2');
     }
+    if ($version < 3) {
+        // 04/11/2026. CRM /crm/ (_crm.php) : comptes personnels (Mathias, Tanguy), clés d'accès
+        // pour Claude, fil de suivi de chaque demande, PDF joints (rangés hors du web), livraisons
+        // du webhook Causerie (chacune traitée une seule fois), responsable et prochaine action.
+        $db->exec(<<<SQL
+            CREATE TABLE IF NOT EXISTS comptes (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                identifiant TEXT NOT NULL UNIQUE COLLATE NOCASE,
+                nom TEXT NOT NULL,
+                hash TEXT NOT NULL,
+                cree INTEGER NOT NULL,
+                derniere_connexion INTEGER
+            );
+
+            CREATE TABLE IF NOT EXISTS cles_api (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                empreinte TEXT NOT NULL UNIQUE,
+                compte INTEGER NOT NULL,
+                libelle TEXT,
+                cree INTEGER NOT NULL,
+                derniere INTEGER
+            );
+
+            CREATE TABLE IF NOT EXISTS suivis (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                lead INTEGER NOT NULL,
+                date INTEGER NOT NULL,
+                auteur TEXT,
+                type TEXT NOT NULL,
+                texte TEXT
+            );
+            CREATE INDEX IF NOT EXISTS idx_suivis_lead ON suivis(lead, date);
+
+            CREATE TABLE IF NOT EXISTS fichiers (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                lead INTEGER NOT NULL,
+                date INTEGER NOT NULL,
+                auteur TEXT,
+                nom TEXT NOT NULL,
+                taille INTEGER NOT NULL,
+                cle TEXT NOT NULL UNIQUE
+            );
+            CREATE INDEX IF NOT EXISTS idx_fichiers_lead ON fichiers(lead);
+
+            CREATE TABLE IF NOT EXISTS livraisons (
+                id TEXT PRIMARY KEY,
+                date INTEGER NOT NULL
+            );
+        SQL);
+        kn_ajouter_colonne($db, 'jetons', 'compte', 'INTEGER');
+        kn_ajouter_colonne($db, 'leads', 'responsable', 'TEXT');
+        kn_ajouter_colonne($db, 'leads', 'prochaine_action', 'TEXT');
+        kn_ajouter_colonne($db, 'leads', 'prochaine_date', 'INTEGER');
+        $db->exec('PRAGMA user_version = 3');
+    }
+}
+
+/** Ajoute une colonne si elle manque : un palier interrompu peut être rejoué sans erreur. */
+function kn_ajouter_colonne(PDO $db, string $table, string $colonne, string $type): void
+{
+    $q = $db->query("PRAGMA table_info($table)");
+    $existe = in_array($colonne, array_column($q->fetchAll(), 'name'), true);
+    $q->closeCursor();
+    if (!$existe) {
+        $db->exec("ALTER TABLE $table ADD COLUMN $colonne $type");
+    }
 }
 
 /** Réponse JSON, jamais mise en cache (LiteSpeed cache agressivement). */

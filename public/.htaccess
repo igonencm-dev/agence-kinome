@@ -3,6 +3,10 @@
 
 RewriteEngine On
 
+# Clé d'accès du CRM (« Authorization: Bearer … ») : transmise à PHP, que
+# certains serveurs mutualisés reçoivent sans cet en-tête (api/_crm.php).
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
 # Canoniser host + protocole en UNE redirection (évite les chaînes
 # http://www → https://www → https://apex qui faisaient 3 sauts sur les
 # anciens slugs WP ; ici : 1 saut pour l'hôte, +1 éventuel pour le slug).

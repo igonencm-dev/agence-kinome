@@ -151,6 +151,9 @@ export default function Admin() {
                 ))}
               </select>
             )}
+            <a href="/crm/" className="rounded-full bg-kinome-accent px-3.5 py-1.5 text-[0.85rem] font-bold text-white">
+              CRM
+            </a>
             <button
               type="button"
               onClick={() => api("deconnexion", {}, {}).finally(deconnecte)}
@@ -672,6 +675,9 @@ function FicheLead({ id, onRetour, onDeconnecte }: { id: number; onRetour: () =>
         <div className="grid gap-5 self-start">
           <Carte titre="Suivi commercial">
             <div className="grid gap-3">
+              <a href={`/crm/#lead-${String(l.id)}`} className="justify-self-start text-[0.85rem] font-semibold underline">
+                Suivre dans le CRM (fil, responsable, PDF)
+              </a>
               <div className="flex flex-wrap gap-1.5">
                 {Object.entries(STATUTS).map(([k, v]) => (
                   <button
