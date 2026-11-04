@@ -16,6 +16,8 @@ même connexion que le tableau de bord /admin/ ; rien n'est indexé ni mesuré s
 
 Nouveau, Contacté, Rendez-vous, Devis envoyé, Gagné, Perdu (et Spam, hors colonnes). Chaque changement
 d'étape, de responsable, de montant ou de prochaine action s'écrit tout seul dans le fil.
+Sur ordinateur, dans la vue Colonnes, on peut aussi glisser une carte d'une colonne à l'autre
+pour changer son étape (le changement s'écrit dans le fil de la même façon).
 
 ## Mise en route (une fois)
 

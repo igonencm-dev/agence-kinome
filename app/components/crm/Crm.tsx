@@ -316,7 +316,7 @@ function useProspects(onDeconnecte: () => void) {
   useEffect(() => {
     recharger();
   }, [recharger]);
-  return { leads, erreur, recharger };
+  return { leads, setLeads, erreur, recharger };
 }
 
 function Prospects({
@@ -336,9 +336,30 @@ function Prospects({
   onCreer: () => void;
   onDeconnecte: () => void;
 }) {
-  const { leads, erreur } = useProspects(onDeconnecte);
+  const { leads, setLeads, erreur, recharger } = useProspects(onDeconnecte);
   const [recherche, setRecherche] = useState("");
   const [qui, setQui] = useState("tous");
+  const [alerte, setAlerte] = useState("");
+
+  // Glisser-déposer entre colonnes : la carte change de colonne tout de suite,
+  // l'étape s'enregistre (et s'écrit dans le fil) ; en cas d'échec, retour en arrière.
+  const deplacer = useCallback(
+    (id: number, statut: string) => {
+      const avant = leads;
+      const l = (avant ?? []).find((x) => Number(x.id) === id);
+      if (!l || l.statut === statut) return;
+      setAlerte("");
+      setLeads((ls) => (ls ?? []).map((x) => (Number(x.id) === id ? { ...x, statut } : x)));
+      api("maj", {}, { id, statut })
+        .then(() => recharger())
+        .catch((e) => {
+          if (e instanceof NonConnecte) return onDeconnecte();
+          setLeads(avant);
+          setAlerte(`Étape non enregistrée : ${e.message}`);
+        });
+    },
+    [leads, setLeads, recharger, onDeconnecte],
+  );
 
   const filtres = useMemo(() => {
     const q = recherche.trim().toLowerCase();
@@ -393,18 +414,39 @@ function Prospects({
       <p className="text-[0.85rem] text-kinome-grey">
         {actifs.length} prospect{actifs.length > 1 ? "s" : ""} en cours
         {enJeu ? ` · ${chf(enJeu)} en jeu` : ""} · {filtres.filter((l) => l.statut === "gagne").length} gagné(s)
+        {vue === "colonnes" && <span className="hidden md:inline"> · glissez une carte d&apos;une colonne à l&apos;autre pour changer d&apos;étape</span>}
       </p>
+      {alerte && <p className="text-[0.85rem] text-[#b91c1c]">{alerte}</p>}
 
-      {vue === "colonnes" && <Colonnes leads={filtres} onOuvrir={onOuvrir} />}
+      {vue === "colonnes" && <Colonnes leads={filtres} onOuvrir={onOuvrir} onDeplacer={deplacer} />}
       {vue === "liste" && <Liste leads={filtres} onOuvrir={onOuvrir} />}
       {vue === "relances" && <Relances leads={actifs} onOuvrir={onOuvrir} />}
     </div>
   );
 }
 
-function CarteProspect({ l, onOuvrir }: { l: Ligne; onOuvrir: (id: number) => void }) {
+function CarteProspect({ l, onOuvrir, onGlisser, glissee }: { l: Ligne; onOuvrir: (id: number) => void; onGlisser?: (id: number | null) => void; glissee?: boolean }) {
+  const id = Number(l.id);
   return (
-    <button type="button" onClick={() => onOuvrir(Number(l.id))} className="grid w-full gap-1.5 rounded-xl border border-[#e7e3da] bg-white p-3 text-left transition-shadow hover:shadow-md">
+    <div
+      role="button"
+      tabIndex={0}
+      draggable={Boolean(onGlisser)}
+      onDragStart={(e) => {
+        e.dataTransfer.setData("text/plain", String(id));
+        e.dataTransfer.effectAllowed = "move";
+        onGlisser?.(id);
+      }}
+      onDragEnd={() => onGlisser?.(null)}
+      onClick={() => onOuvrir(id)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOuvrir(id);
+        }
+      }}
+      className={`grid w-full gap-1.5 rounded-xl border border-[#e7e3da] bg-white p-3 text-left transition-shadow hover:shadow-md ${onGlisser ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"} ${glissee ? "opacity-40" : ""}`}
+    >
       <div className="flex items-start justify-between gap-2">
         <strong className="text-[0.92rem] leading-snug">{titre(l)}</strong>
         {l.valeur ? <span className="whitespace-nowrap text-[0.8rem] font-semibold">{chf(l.valeur as number)}</span> : null}
@@ -424,11 +466,17 @@ function CarteProspect({ l, onOuvrir }: { l: Ligne; onOuvrir: (id: number) => vo
           {Number(l.nb_fichiers) ? ` · ${l.nb_fichiers} PDF` : ""}
         </span>
       </div>
-    </button>
+    </div>
   );
 }
 
-function Colonnes({ leads, onOuvrir }: { leads: Ligne[]; onOuvrir: (id: number) => void }) {
+function Colonnes({ leads, onOuvrir, onDeplacer }: { leads: Ligne[]; onOuvrir: (id: number) => void; onDeplacer: (id: number, statut: string) => void }) {
+  const [glisse, setGlisse] = useState<number | null>(null);
+  const [survol, setSurvol] = useState<string | null>(null);
+  const glisser = (id: number | null) => {
+    setGlisse(id);
+    if (id === null) setSurvol(null);
+  };
   return (
     <div className="-mx-4 overflow-x-auto px-4 pb-2">
       <div className="grid min-w-[1150px] grid-cols-6 gap-3">
@@ -436,7 +484,26 @@ function Colonnes({ leads, onOuvrir }: { leads: Ligne[]; onOuvrir: (id: number) 
           const col = leads.filter((l) => l.statut === k);
           const total = col.reduce((s, l) => s + Number(l.valeur ?? 0), 0);
           return (
-            <section key={k} className="grid content-start gap-2 rounded-2xl bg-kinome-black/[0.035] p-2.5">
+            <section
+              key={k}
+              aria-label={LIBELLES[k]}
+              onDragOver={(e) => {
+                if (glisse === null) return;
+                e.preventDefault();
+                e.dataTransfer.dropEffect = "move";
+                if (survol !== k) setSurvol(k);
+              }}
+              onDragLeave={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setSurvol((s) => (s === k ? null : s));
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                const id = Number(e.dataTransfer.getData("text/plain"));
+                glisser(null);
+                if (id) onDeplacer(id, k);
+              }}
+              className={`grid content-start gap-2 rounded-2xl p-2.5 transition-colors ${survol === k ? "bg-kinome-accent/10 ring-2 ring-kinome-accent/40" : "bg-kinome-black/[0.035]"}`}
+            >
               <div className="flex items-baseline justify-between px-1">
                 <h2 className="text-[0.85rem] font-bold">
                   {LIBELLES[k]} <span className="font-normal text-kinome-grey">{col.length}</span>
@@ -444,7 +511,7 @@ function Colonnes({ leads, onOuvrir }: { leads: Ligne[]; onOuvrir: (id: number) 
                 {total ? <span className="text-[0.75rem] text-kinome-grey">{chf(total)}</span> : null}
               </div>
               {col.map((l) => (
-                <CarteProspect key={String(l.id)} l={l} onOuvrir={onOuvrir} />
+                <CarteProspect key={String(l.id)} l={l} onOuvrir={onOuvrir} onGlisser={glisser} glissee={glisse === Number(l.id)} />
               ))}
               {!col.length && <p className="px-1 py-3 text-[0.78rem] text-kinome-grey">Aucun prospect</p>}
             </section>
