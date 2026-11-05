@@ -218,6 +218,17 @@ function kn_migrer(PDO $db): void
         kn_ajouter_colonne($db, 'leads', 'prochaine_date', 'INTEGER');
         $db->exec('PRAGMA user_version = 3');
     }
+    if ($version < 4) {
+        // 05/11/2026. Visites de l'équipe écartées par adresse (réglage ip_equipe) : on ne garde
+        // que l'identifiant de la visite et sa date, pour afficher combien ont été écartées.
+        $db->exec(<<<SQL
+            CREATE TABLE IF NOT EXISTS sessions_equipe (
+                id TEXT PRIMARY KEY,
+                debut INTEGER NOT NULL
+            );
+        SQL);
+        $db->exec('PRAGMA user_version = 4');
+    }
 }
 
 /** Ajoute une colonne si elle manque : un palier interrompu peut être rejoué sans erreur. */
@@ -437,6 +448,57 @@ function kn_empreinte_ip(): string
     return substr(hash('sha256', $sel . ($_SERVER['REMOTE_ADDR'] ?? '')), 0, 24);
 }
 
+/** Clé réseau d'une adresse : l'IPv4 entière, ou le préfixe /64 en IPv6 (les adresses IPv6
+ * temporaires d'une box changent chaque jour, le préfixe reste). null si illisible. */
+function kn_cle_reseau(string $ip): ?string
+{
+    $bin = @inet_pton($ip);
+    if ($bin === false) {
+        return null;
+    }
+    return strlen($bin) === 4 ? $ip : bin2hex(substr($bin, 0, 8)) . '/64';
+}
+
+/** Empreinte salée du réseau de la requête : l'adresse elle-même n'est jamais enregistrée. */
+function kn_empreinte_reseau(): ?string
+{
+    $cle = kn_cle_reseau((string) ($_SERVER['REMOTE_ADDR'] ?? ''));
+    if ($cle === null) {
+        return null;
+    }
+    return substr(hash('sha256', 'equipe|' . (string) (kn_config()['sel'] ?? 'kinome') . '|' . $cle), 0, 32);
+}
+
+/** Adresse de la requête à demi masquée (« 90.18.x.x »), pour que l'équipe reconnaisse la sienne. */
+function kn_ip_masquee(): string
+{
+    $ip = (string) ($_SERVER['REMOTE_ADDR'] ?? '');
+    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+        $p = explode('.', $ip);
+        return "$p[0].$p[1].x.x";
+    }
+    $p = explode(':', $ip);
+    return ($p[0] ?? '') . ':' . ($p[1] ?? '') . ':…';
+}
+
+/** Réseaux de l'équipe (réglage ip_equipe) : [{cle, nom, type, ajout, par}]. */
+function kn_ip_equipe(PDO $db): array
+{
+    $q = $db->prepare("SELECT valeur FROM reglages WHERE cle = 'ip_equipe'");
+    $q->execute();
+    $v = $q->fetchColumn();
+    $q->closeCursor();
+    $liste = $v ? json_decode((string) $v, true) : [];
+    return is_array($liste) ? $liste : [];
+}
+
+/** La requête vient-elle d'un réseau de l'équipe ? */
+function kn_est_equipe(PDO $db): bool
+{
+    $ici = kn_empreinte_reseau();
+    return $ici !== null && in_array($ici, array_column(kn_ip_equipe($db), 'cle'), true);
+}
+
 /** Purge occasionnelle (1 requête sur 200) des données trop anciennes. */
 function kn_purger_parfois(PDO $db): void
 {
@@ -446,6 +508,7 @@ function kn_purger_parfois(PDO $db): void
     $limite = kn_maintenant() - KN_RETENTION_EVENEMENTS_MS;
     $db->prepare('DELETE FROM evenements WHERE date < ?')->execute([$limite]);
     $db->prepare('DELETE FROM sessions WHERE fin < ? AND lead_id IS NULL')->execute([$limite]);
+    $db->prepare('DELETE FROM sessions_equipe WHERE debut < ?')->execute([$limite]);
     $db->prepare('DELETE FROM jetons WHERE expire < ?')->execute([kn_maintenant()]);
     $db->prepare('DELETE FROM connexions WHERE date < ?')->execute([kn_maintenant() - 30 * 86400 * 1000]);
     $db->prepare('DELETE FROM limites WHERE fenetre < ?')->execute([kn_maintenant() - 86400 * 1000]);

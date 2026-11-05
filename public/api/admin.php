@@ -541,6 +541,42 @@ if ($action === 'motdepasse' && $methode === 'POST') {
     kn_json(['ok' => true]);
 }
 
+// Réseaux de l'équipe dont les visites ne sont pas comptées (Réglages). Seule une empreinte
+// salée du réseau est gardée ; l'adresse s'affiche à demi masquée pour être reconnue.
+if ($action === 'ip_equipe') {
+    $liste = kn_ip_equipe($db);
+    $ici = kn_empreinte_reseau();
+    if ($methode === 'POST') {
+        $e = kn_entree(2048);
+        $op = (string) ($e['op'] ?? '');
+        if ($op === 'ajouter') {
+            if ($ici === null) {
+                kn_json(['ok' => false, 'erreur' => 'Adresse de connexion illisible.'], 400);
+            }
+            if (!in_array($ici, array_column($liste, 'cle'), true)) {
+                $liste[] = [
+                    'cle' => $ici,
+                    'nom' => kn_texte($e['nom'] ?? null, 60) ?? $moi['nom'],
+                    'type' => filter_var((string) ($_SERVER['REMOTE_ADDR'] ?? ''), FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ? 'IPv4' : 'IPv6',
+                    'masque' => kn_ip_masquee(),
+                    'ajout' => kn_maintenant(),
+                    'par' => $moi['nom'],
+                ];
+            }
+        } elseif ($op === 'retirer') {
+            $cle = (string) ($e['cle'] ?? '');
+            $liste = array_values(array_filter($liste, fn($x) => ($x['cle'] ?? '') !== $cle));
+        } else {
+            kn_json(['ok' => false, 'erreur' => 'Opération inconnue.'], 400);
+        }
+        $db->prepare("INSERT INTO reglages (cle, valeur) VALUES ('ip_equipe', ?) ON CONFLICT(cle) DO UPDATE SET valeur = excluded.valeur")
+            ->execute([json_encode($liste, JSON_UNESCAPED_UNICODE)]);
+    }
+    $n = kn_tous($db, 'SELECT COUNT(*) AS n FROM sessions_equipe WHERE debut > ?', [kn_maintenant() - 30 * 86400 * 1000])[0]['n'] ?? 0;
+    kn_json(['ok' => true, 'liste' => $liste, 'ecartees_30j' => (int) $n,
+        'ici' => ['present' => $ici !== null && in_array($ici, array_column($liste, 'cle'), true), 'masque' => kn_ip_masquee(), 'cle' => $ici]]);
+}
+
 if ($action === 'moi') {
     kn_json(['ok' => true, 'moi' => ['nom' => $moi['nom'], 'identifiant' => $moi['identifiant'], 'compte' => $moi['compte']],
         'equipe' => kn_crm_equipe($db)]);

@@ -25,6 +25,21 @@ if (!$session || !$evenements) {
 if (kn_session_automatisee($meta, $ua)) {
     kn_json(['ok' => true]);
 }
+// Visites de l'équipe (réseau listé dans Réglages) : non comptées. Une visite commencée
+// avant l'ajout du réseau est retirée des statistiques, sauf si elle est liée à une demande.
+if (kn_est_equipe(kn_db())) {
+    $db = kn_db();
+    $db->prepare('INSERT OR IGNORE INTO sessions_equipe (id, debut) VALUES (?, ?)')->execute([$session, kn_maintenant()]);
+    $lien = $db->prepare('SELECT lead_id FROM sessions WHERE id = ?');
+    $lien->execute([$session]);
+    $lead = $lien->fetchColumn();
+    $lien->closeCursor();
+    if (!$lead) {
+        $db->prepare('DELETE FROM evenements WHERE session = ?')->execute([$session]);
+        $db->prepare('DELETE FROM sessions WHERE id = ?')->execute([$session]);
+    }
+    kn_json(['ok' => true]);
+}
 // Garde-fou : 300 envois par adresse et par tranche de 10 minutes (un lecteur très actif
 // en envoie une centaine). Au-delà, on répond « ok » sans écrire.
 if (kn_trop_de_requetes(kn_db(), 't:' . kn_empreinte_ip(), 300, 600_000)) {

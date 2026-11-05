@@ -984,6 +984,7 @@ function Reglages() {
           {ignore ? "Cet appareil est exclu ✓ (cliquer pour le recompter)" : "Exclure cet appareil"}
         </button>
       </Carte>
+      <VisitesEquipe />
       <Carte titre="Changer le mot de passe">
         <form onSubmit={changer} className="grid gap-3">
           <input name="actuel" type="password" required placeholder="Mot de passe actuel" autoComplete="current-password" className={champCls} />
@@ -1001,9 +1002,82 @@ function Reglages() {
           <li>Sans consentement : chaque visite isolée (pages, lecture, clics, formulaires), sans cookie, sans IP, sans lien entre deux visites.</li>
           <li>Avec « Tout accepter » : un identifiant de visiteur de 13 mois relie ses visites, d&apos;où le « tout premier contact » des demandes.</li>
           <li>Visites et événements effacés automatiquement après 25 mois. Les demandes restent jusqu&apos;à suppression.</li>
-          <li>Vos visites (cet appareil) et les robots ne sont pas comptés.</li>
+          <li>Vos visites (cet appareil et les réseaux de l&apos;équipe) et les robots ne sont pas comptés.</li>
         </ul>
       </Carte>
     </div>
+  );
+}
+
+// Réseaux de l'équipe (05/11/2026) : toute visite venue de ces adresses n'est pas comptée,
+// quel que soit l'appareil (téléphone, autre navigateur). Seule une empreinte est gardée.
+type ReseauEquipe = { cle: string; nom: string; type: string; masque?: string; ajout: number; par: string };
+function VisitesEquipe() {
+  const [data, setData] = useState<{ liste: ReseauEquipe[]; ecartees_30j: number; ici: { present: boolean; masque: string; cle: string | null } } | null>(null);
+  const [nom, setNom] = useState("");
+  const [msg, setMsg] = useState("");
+  const charger = useCallback(() => {
+    api<{ liste: ReseauEquipe[]; ecartees_30j: number; ici: { present: boolean; masque: string; cle: string | null } }>("ip_equipe")
+      .then(setData)
+      .catch((e) => setMsg(e instanceof Error ? e.message : "Erreur"));
+  }, []);
+  useEffect(() => {
+    charger();
+  }, [charger]);
+  async function envoyer(corps: Record<string, string>) {
+    setMsg("");
+    try {
+      setData(await api("ip_equipe", {}, corps));
+      setNom("");
+    } catch (e) {
+      setMsg(e instanceof Error ? e.message : "Erreur");
+    }
+  }
+  return (
+    <Carte
+      titre="Visites de l'équipe"
+      aide="Les visites venues de ces connexions ne sont pas comptées, sur tous les appareils (ordinateur, téléphone sur le Wi-Fi). À ajouter depuis la box de chacun, à la maison. Jamais une connexion partagée : 4G ou 5G, Wi-Fi public, réseau du Booster où d'autres entreprises visitent aussi le site."
+    >
+      {!data ? (
+        <p className="text-[0.88rem] text-kinome-grey">{msg || "Chargement…"}</p>
+      ) : (
+        <div className="grid gap-3 text-[0.88rem]">
+          {data.liste.length ? (
+            <ul className="grid gap-2">
+              {data.liste.map((r) => (
+                <li key={r.cle} className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-[#e7e3da] px-3 py-2">
+                  <span>
+                    <strong>{r.nom}</strong> · {r.type}
+                    {r.masque ? ` (${r.masque})` : ""} · ajouté le {date(r.ajout)} par {r.par}
+                    {data.ici.cle === r.cle ? " · votre connexion actuelle" : ""}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => confirm(`Recompter les visites de « ${r.nom} » ?`) && envoyer({ op: "retirer", cle: r.cle })}
+                    className="text-[0.82rem] font-semibold text-kinome-grey hover:text-kinome-black"
+                  >
+                    Retirer
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-kinome-grey">Aucun réseau pour l&apos;instant.</p>
+          )}
+          {data.ici.present ? (
+            <p>Votre connexion actuelle ({data.ici.masque}) est écartée ✓</p>
+          ) : (
+            <div className="flex flex-wrap items-center gap-2">
+              <input value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Nom (ex. Box de Mathias)" className={`${champCls} max-w-xs`} />
+              <button type="button" onClick={() => envoyer({ op: "ajouter", nom })} className={boutonCls}>
+                Écarter ma connexion actuelle ({data.ici.masque})
+              </button>
+            </div>
+          )}
+          <p className="text-kinome-grey">{nb(data.ecartees_30j)} visite(s) de l&apos;équipe écartée(s) sur 30 jours.</p>
+          {msg && <p className="text-[#b91c1c]">{msg}</p>}
+        </div>
+      )}
+    </Carte>
   );
 }
