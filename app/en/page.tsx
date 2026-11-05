@@ -15,10 +15,10 @@ import {
 } from "../lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Creative communication agency in Geneva | Kinome",
+  title: "Communication agency in Geneva: branding, web, SEO | Kinome",
   bareTitle: true,
   description:
-    "Kinome is an independent communication agency based in Geneva. Branding, visual identity, logo design, websites and brand strategy for businesses and freelancers across French-speaking Switzerland.",
+    "Kinome is an independent communication agency in Geneva: branding, visual identity, logo design, websites and SEO for businesses across French-speaking Switzerland.",
   path: "/en/",
   keywords: [
     "Kinome agency",

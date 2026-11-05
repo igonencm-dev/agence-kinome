@@ -6,6 +6,9 @@ import { blogPosts, getPostBySlug } from "../../lib/blog";
 import CorpsCarteVoeux, { CrossSellVoeux } from "./CorpsCarteVoeux";
 import ArticlesPopulaires from "../../components/ArticlesPopulaires";
 import Sommaire from "../../components/Sommaire";
+import QuestionsAssistant from "../../components/QuestionsAssistant";
+import InvitationAssistant from "../../components/InvitationAssistant";
+import { ARTICLES_ASSISTANT } from "../../lib/questions-assistant";
 import StatsArticle from "../../components/StatsArticle";
 import { CATEGORIES, resumer, trierParPopulariteInitiale } from "../../lib/populaires";
 import { preparerSommaire, type EntreeSommaire } from "../../lib/sommaire";
@@ -245,6 +248,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               />
             )}
 
+            {ARTICLES_ASSISTANT[post.slug] && (
+              <QuestionsAssistant bloc={ARTICLES_ASSISTANT[post.slug].bloc} fond="creme" className="mt-14 rounded-[20px] bg-kinome-cream px-6 py-10" />
+            )}
+
             <StatsArticle slug={post.slug} variante="fin" />
 
             {/* Tags + partage */}
@@ -377,6 +384,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           </div>
         </div>
       </section>
+      {ARTICLES_ASSISTANT[post.slug] && <InvitationAssistant invitation={ARTICLES_ASSISTANT[post.slug].invitation} />}
     </main>
   );
 }

@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Reveal from "../../components/Reveal";
+import QuestionsAssistant from "../../components/QuestionsAssistant";
+import InvitationAssistant from "../../components/InvitationAssistant";
+import { STRATEGIE_MARQUE } from "../../lib/questions-assistant";
 import Testimonials from "../../components/Testimonials";
 import {
   buildMetadata,
@@ -777,7 +780,10 @@ export default function StrategieDeMarquePage() {
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-[clamp(36px,5vw,70px)] flex justify-center">
+          <Reveal className="mt-[clamp(36px,5vw,70px)]">
+            <QuestionsAssistant bloc={STRATEGIE_MARQUE.faq} fond="creme" />
+          </Reveal>
+          <Reveal className="mt-[clamp(28px,3.5vw,48px)] flex justify-center">
             <Link href="/contact/" className={PILL_DARK}>
               D&apos;autres questions&nbsp;?
             </Link>
@@ -846,6 +852,9 @@ export default function StrategieDeMarquePage() {
           </div>
         </Reveal>
       </section>
+
+      {/* Invitation à poser une question, après un vrai temps de lecture */}
+      <InvitationAssistant invitation={STRATEGIE_MARQUE.invitation} />
     </main>
   );
 }

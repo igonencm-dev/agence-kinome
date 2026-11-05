@@ -54,3 +54,148 @@ export const IDENTITE_VISUELLE = {
     ],
   } satisfies Invitation,
 };
+
+// Pages service et articles de prix (05/11/2026, plan de novembre, action 3).
+
+export const CREATION_LOGO = {
+  faq: {
+    emplacement: "faq",
+    titre: "Votre question n'est pas dans la liste ?",
+    texte: "Posez-la à notre assistant, il vous répond tout de suite.",
+    questions: [
+      "Quel budget prévoir pour mon logo ?",
+      "Pouvez-vous moderniser mon logo actuel ?",
+      "Que vais-je recevoir à la fin du projet ?",
+    ],
+  } satisfies BlocQuestions,
+  invitation: {
+    titre: "Une question sur votre logo ?",
+    texte: "Notre assistant vous répond tout de suite.",
+    questions: [
+      "Quel budget prévoir pour mon logo ?",
+      "Combien de temps faut-il compter ?",
+      "Comment se passe le premier échange offert ?",
+    ],
+  } satisfies Invitation,
+};
+
+export const SITE_INTERNET = {
+  faq: {
+    emplacement: "faq",
+    titre: "Votre question n'est pas dans la liste ?",
+    texte: "Posez-la à notre assistant, il vous répond tout de suite.",
+    questions: [
+      "Quel budget prévoir pour mon site ?",
+      "Pouvez-vous reprendre mon site actuel ?",
+      "Combien de temps pour mettre mon site en ligne ?",
+    ],
+  } satisfies BlocQuestions,
+  invitation: {
+    titre: "Une question sur votre site ?",
+    texte: "Notre assistant vous répond tout de suite.",
+    questions: [
+      "Quel budget prévoir pour mon site ?",
+      "Combien de temps faut-il compter ?",
+      "Comment se passe le premier échange offert ?",
+    ],
+  } satisfies Invitation,
+};
+
+export const REFERENCEMENT = {
+  faq: {
+    emplacement: "faq",
+    titre: "Votre question n'est pas dans la liste ?",
+    texte: "Posez-la à notre assistant, il vous répond tout de suite.",
+    questions: [
+      "Combien coûte un audit SEO de mon site ?",
+      "En combien de temps voit-on des résultats ?",
+      "Pouvez-vous aider mon site à être cité par ChatGPT ?",
+    ],
+  } satisfies BlocQuestions,
+  invitation: {
+    titre: "Une question sur votre référencement ?",
+    texte: "Notre assistant vous répond tout de suite.",
+    questions: [
+      "Combien coûte un audit SEO de mon site ?",
+      "En combien de temps voit-on des résultats ?",
+      "Comment se passe le premier échange offert ?",
+    ],
+  } satisfies Invitation,
+};
+
+export const STRATEGIE_MARQUE = {
+  faq: {
+    emplacement: "faq",
+    titre: "Votre question n'est pas dans la liste ?",
+    texte: "Posez-la à notre assistant, il vous répond tout de suite.",
+    questions: [
+      "Quel budget prévoir pour une stratégie de marque ?",
+      "Par quoi commencer si ma marque existe déjà ?",
+      "Travaillez-vous avec des entreprises hors de Genève ?",
+    ],
+  } satisfies BlocQuestions,
+  invitation: {
+    titre: "Une question sur votre marque ?",
+    texte: "Notre assistant vous répond tout de suite.",
+    questions: [
+      "Quel budget prévoir pour mon projet ?",
+      "Combien de temps faut-il compter ?",
+      "Comment se passe le premier échange offert ?",
+    ],
+  } satisfies Invitation,
+};
+
+export const RESEAUX_SOCIAUX = {
+  faq: {
+    emplacement: "faq",
+    titre: "Votre question n'est pas dans la liste ?",
+    texte: "Posez-la à notre assistant, il vous répond tout de suite.",
+    questions: [
+      "Quel budget prévoir pour nos réseaux sociaux ?",
+      "Par quels réseaux commencer pour mon entreprise ?",
+      "Travaillez-vous avec des entreprises hors de Genève ?",
+    ],
+  } satisfies BlocQuestions,
+  invitation: {
+    titre: "Une question sur vos réseaux sociaux ?",
+    texte: "Notre assistant vous répond tout de suite.",
+    questions: [
+      "Quel budget prévoir pour mon projet ?",
+      "Par quels réseaux commencer ?",
+      "Comment se passe le premier échange offert ?",
+    ],
+  } satisfies Invitation,
+};
+
+/** Articles de prix : bloc après le texte et invitation après lecture. */
+const BLOC_PRIX = (titre: string, questions: string[]) => ({
+  bloc: {
+    emplacement: "article",
+    titre,
+    texte: "Notre assistant vous répond tout de suite, sans formulaire.",
+    questions,
+  } satisfies BlocQuestions,
+  invitation: {
+    titre,
+    texte: "Notre assistant vous répond tout de suite.",
+    questions,
+  } satisfies Invitation,
+});
+
+export const ARTICLES_ASSISTANT: Record<string, { bloc: BlocQuestions; invitation: Invitation }> = {
+  "tarifs-agence-communication-geneve": BLOC_PRIX("Une question sur le budget de votre projet ?", [
+    "Quel budget prévoir pour mon projet ?",
+    "Combien de temps faut-il compter ?",
+    "Comment se passe le premier échange offert ?",
+  ]),
+  "creation-logo-geneve-processus": BLOC_PRIX("Une question sur le prix de votre logo ?", [
+    "Quel budget prévoir pour mon logo ?",
+    "Combien de temps faut-il compter ?",
+    "Pouvez-vous moderniser mon logo actuel ?",
+  ]),
+  "prix-referencement-seo-suisse": BLOC_PRIX("Une question sur le prix de votre référencement ?", [
+    "Combien coûte un audit SEO de mon site ?",
+    "En combien de temps voit-on des résultats ?",
+    "Comment se passe le premier échange offert ?",
+  ]),
+};

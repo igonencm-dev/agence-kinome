@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Reveal from "../../components/Reveal";
+import QuestionsAssistant from "../../components/QuestionsAssistant";
+import InvitationAssistant from "../../components/InvitationAssistant";
+import { SITE_INTERNET } from "../../lib/questions-assistant";
 import AvisMarquee from "../../components/AvisMarquee";
 import {
   buildMetadata,
@@ -823,7 +826,10 @@ export default function SiteInternetPage() {
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-[clamp(36px,5vw,70px)] flex justify-center">
+          <Reveal className="mt-[clamp(36px,5vw,70px)]">
+            <QuestionsAssistant bloc={SITE_INTERNET.faq} fond="creme" />
+          </Reveal>
+          <Reveal className="mt-[clamp(28px,3.5vw,48px)] flex justify-center">
             <Link href="/contact/" className={PILL_DARK}>
               D&apos;autres questions&nbsp;?
             </Link>
@@ -892,6 +898,9 @@ export default function SiteInternetPage() {
           </div>
         </Reveal>
       </section>
+
+      {/* Invitation à poser une question, après un vrai temps de lecture */}
+      <InvitationAssistant invitation={SITE_INTERNET.invitation} />
     </main>
   );
 }
