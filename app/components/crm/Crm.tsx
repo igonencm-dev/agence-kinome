@@ -649,7 +649,7 @@ function Creation({ moi, equipe, onFermer, onCree }: { moi: Moi | null; equipe: 
             </option>
           ))}
         </select>
-        <input name="valeur" type="number" min={0} step={100} placeholder="Montant estimé (CHF HT)" className={champCls} />
+        <input name="valeur" type="number" min={0} step={1} placeholder="Montant estimé (CHF HT)" className={champCls} />
         <input name="prochaine_action" placeholder="Prochaine action (rappeler, envoyer le devis…)" className={champCls} />
         <input name="prochaine_date" type="date" className={champCls} aria-label="Date de la prochaine action" />
         <textarea name="note" rows={3} placeholder="Où ça en est : premier message du fil" className={`${champCls} md:col-span-2`} />
@@ -837,7 +837,7 @@ function Fiche({ id, equipe, onRetour, onDeconnecte }: { id: number; equipe: str
                   key={`v${String(l.valeur)}`}
                   type="number"
                   min={0}
-                  step={100}
+                  step={1}
                   defaultValue={l.valeur == null ? "" : String(l.valeur)}
                   onBlur={(e) => e.target.value !== (l.valeur == null ? "" : String(l.valeur)) && maj({ valeur: e.target.value === "" ? null : Number(e.target.value) })}
                   className={`${champCls} mt-1`}
