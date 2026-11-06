@@ -248,6 +248,10 @@ const FAQ = [
 
 const BLOG_LINKS = [
   {
+    href: "/blog/meilleures-agences-branding-suisse-romande/",
+    label: "Les meilleures agences de branding en Suisse romande",
+  },
+  {
     href: "/blog/strategie-branding-geneve/",
     label: "Stratégie de marque à Genève : le guide du branding pour PME",
   },

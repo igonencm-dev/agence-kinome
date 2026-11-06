@@ -245,6 +245,10 @@ const FAQ = [
 
 const BLOG_LINKS = [
   {
+    href: "/blog/prix-community-manager-geneve/",
+    label: "Prix d'un community manager à Genève en 2026",
+  },
+  {
     href: "/blog/strategie-editoriale-b2b-geneve/",
     label: "Stratégie éditoriale B2B : la méthode et le calendrier 2027",
   },

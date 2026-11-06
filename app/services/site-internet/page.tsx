@@ -256,6 +256,10 @@ const FAQ = [
 
 const BLOG_LINKS = [
   {
+    href: "/blog/prix-site-multilingue-suisse/",
+    label: "Prix d'un site multilingue en Suisse (FR, DE, EN)",
+  },
+  {
     href: "/blog/creation-site-internet-geneve-guide/",
     label: "Créer un site internet à Genève : le guide complet",
   },

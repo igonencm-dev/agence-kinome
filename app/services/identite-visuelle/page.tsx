@@ -247,6 +247,10 @@ const FAQ = [
 
 const BLOG_LINKS = [
   {
+    href: "/blog/meilleures-agences-branding-suisse-romande/",
+    label: "Les meilleures agences de branding en Suisse romande",
+  },
+  {
     href: "/blog/creer-identite-visuelle-entreprise-geneve/",
     label: "Créer une identité visuelle d'entreprise : le guide complet",
   },

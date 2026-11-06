@@ -254,6 +254,10 @@ const FAQ = [
 
 const BLOG_LINKS = [
   {
+    href: "/blog/creer-logo-chatgpt-droits-marque/",
+    label: "Créer son logo avec ChatGPT : droits et dépôt de marque",
+  },
+  {
     href: "/blog/etude-de-cas-logo-tampon-audition/",
     label: "Étude de cas : le logo de Tampon Audition, du croquis à l'enseigne",
   },
