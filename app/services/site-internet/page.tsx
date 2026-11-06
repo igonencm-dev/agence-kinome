@@ -256,6 +256,10 @@ const FAQ = [
 
 const BLOG_LINKS = [
   {
+    href: "/blog/site-internet-nlpd-cookies-confidentialite/",
+    label: "Site internet et nLPD : cookies et confidentialité",
+  },
+  {
     href: "/blog/prix-site-multilingue-suisse/",
     label: "Prix d'un site multilingue en Suisse (FR, DE, EN)",
   },

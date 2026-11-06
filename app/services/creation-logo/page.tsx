@@ -254,6 +254,10 @@ const FAQ = [
 
 const BLOG_LINKS = [
   {
+    href: "/blog/prix-refonte-logo-suisse/",
+    label: "Prix d'une refonte de logo en Suisse",
+  },
+  {
     href: "/blog/creer-logo-chatgpt-droits-marque/",
     label: "Créer son logo avec ChatGPT : droits et dépôt de marque",
   },

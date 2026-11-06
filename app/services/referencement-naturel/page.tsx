@@ -259,6 +259,10 @@ const FAQ = [
 
 const BLOG_LINKS = [
   {
+    href: "/blog/accompagnement-mensuel-agence-prix/",
+    label: "Accompagnement mensuel d'une agence : prix et contenu",
+  },
+  {
     href: "/blog/seo-referencement-naturel-geneve/",
     label: "SEO à Genève : les 3 piliers, les délais et les coûts réels",
   },
