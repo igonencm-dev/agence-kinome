@@ -7,7 +7,7 @@
  * Retour de Mathias sur la première version (médias à peine agrandis) : la
  * taille de l'aperçu est désormais calculée directement contre le viewport
  * (~92 % de la fenêtre, borné par le ratio du média), et l'aperçu devient une
- * vraie visionneuse : navigation entre les cinq médias aux flèches (boutons et
+ * vraie visionneuse : navigation entre tous les médias aux flèches (boutons et
  * clavier), compteur, légende, fermeture par Échap, clic sur le fond ou bouton.
  * Le défilement de la page est verrouillé pendant l'ouverture.
  */
@@ -29,6 +29,34 @@ type Media = {
 };
 
 const MEDIAS: Media[] = [
+  {
+    type: "image",
+    apercu: "/assets/blog/voeux/carte-kinome-2027-couverture.webp",
+    source: "/assets/blog/voeux/carte-kinome-2027-couverture.webp",
+    legende: "Carte de vœux Kinome 2027 fermée : une trame de points en dégradé gris sur une grille, papier noir",
+    ratio: 4 / 3,
+  },
+  {
+    type: "image",
+    apercu: "/assets/blog/voeux/carte-kinome-2027-ouverte.webp",
+    source: "/assets/blog/voeux/carte-kinome-2027-ouverte.webp",
+    legende: "Carte de vœux Kinome 2027 ouverte : le logo Kinome à gauche, le message « Une formidable première année ! » à droite",
+    ratio: 4 / 3,
+  },
+  {
+    type: "image",
+    apercu: "/assets/blog/voeux/carte-kinome-2027-interieur.webp",
+    source: "/assets/blog/voeux/carte-kinome-2027-interieur.webp",
+    legende: "Intérieur de la carte de vœux Kinome 2027, avec le mot de l'équipe pour la fin d'année 2026",
+    ratio: 4 / 3,
+  },
+  {
+    type: "image",
+    apercu: "/assets/blog/voeux/carte-kinome-2027-dos.webp",
+    source: "/assets/blog/voeux/carte-kinome-2027-dos.webp",
+    legende: "Dos de la carte de vœux Kinome 2027 : code QR vers agence-kinome.ch, adresse de l'agence et coordonnées des deux fondateurs",
+    ratio: 4 / 3,
+  },
   {
     type: "image",
     apercu: "/assets/blog/voeux/carte-kinome-2026-4.webp",
@@ -87,9 +115,12 @@ function IndiceZoom() {
 
 export default function VisionneuseVoeux({
   texteCartes,
+  texteCartesAvant,
   texteMotion,
 }: {
   texteCartes: React.ReactNode;
+  /** La carte de l'année précédente, montrée plus petit après la carte de l'année. */
+  texteCartesAvant: React.ReactNode;
   texteMotion: React.ReactNode;
 }) {
   const [index, setIndex] = useState<number | null>(null);
@@ -168,17 +199,26 @@ export default function VisionneuseVoeux({
       {texteCartes}
       <Reveal delay={140}>
         <div className="mt-[clamp(20px,2.5vw,36px)]">{vignette(0, "rounded-[20px]")}</div>
-        <div className="mt-4 grid grid-cols-2 gap-4">
+        <div className="mt-4 grid grid-cols-3 gap-4">
           <div>{vignette(1, "rounded-[14px]", true)}</div>
           <div>{vignette(2, "rounded-[14px]", true)}</div>
+          <div>{vignette(3, "rounded-[14px]", true)}</div>
+        </div>
+      </Reveal>
+      {texteCartesAvant}
+      <Reveal delay={140}>
+        <div className="mt-[clamp(20px,2.5vw,36px)] grid grid-cols-3 gap-4">
+          <div>{vignette(4, "rounded-[14px]", true)}</div>
+          <div>{vignette(5, "rounded-[14px]", true)}</div>
+          <div>{vignette(6, "rounded-[14px]", true)}</div>
         </div>
       </Reveal>
       {texteMotion}
       <Reveal delay={100}>
-        <div className="mt-[clamp(20px,2.5vw,36px)]">{vignette(3, "rounded-[20px]")}</div>
+        <div className="mt-[clamp(20px,2.5vw,36px)]">{vignette(7, "rounded-[20px]")}</div>
       </Reveal>
       <Reveal delay={160}>
-        <div className="mt-[clamp(20px,2.5vw,36px)]">{vignette(4, "rounded-[20px]")}</div>
+        <div className="mt-[clamp(20px,2.5vw,36px)]">{vignette(8, "rounded-[20px]")}</div>
       </Reveal>
 
       {/* ------------------------------ Visionneuse ------------------------------ */}

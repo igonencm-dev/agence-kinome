@@ -338,17 +338,28 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
           texteCartes={
             <Reveal delay={100}>
               <h3
-                id="carte-kinome-2026"
+                id="carte-kinome-2027"
                 className="mt-[clamp(36px,5vw,64px)] scroll-mt-28 font-heading text-[clamp(20px,1.9vw,28px)] font-semibold leading-[1.3] text-kinome-black"
               >
-                La carte Kinome 2026, par exemple
+                La carte Kinome 2027, par exemple
               </h3>
               <p className={`${BODY} mt-4`}>
-                Notre propre carte pour 2026&nbsp;: un lettrage doré entrelacé
-                sur papier violet profond, décliné de notre identité, imprimé
-                sur un papier épais qu'on a envie de garder. Exactement le
-                niveau de soin que nous mettons dans celles de nos clients.
-                Cliquez sur les visuels pour les voir en plein écran.
+                Notre carte pour la fin d&apos;année 2026 et les vœux
+                2027&nbsp;: une trame de points en dégradé gris sur papier
+                noir, un message de l&apos;équipe pour remercier celles et
+                ceux qui nous ont fait confiance cette année, et un code QR au
+                dos vers notre site. Exactement le niveau de soin que nous
+                mettons dans celles de nos clients. Cliquez sur les visuels
+                pour les voir en plein écran.
+              </p>
+            </Reveal>
+          }
+          texteCartesAvant={
+            <Reveal delay={100}>
+              <p id="carte-kinome-2026" className={`${BODY} mt-[clamp(28px,3.5vw,48px)] scroll-mt-28`}>
+                Et notre carte 2026&nbsp;: un lettrage doré entrelacé sur
+                papier violet profond, décliné de notre identité, imprimé sur
+                un papier épais qu&apos;on a envie de garder.
               </p>
             </Reveal>
           }
