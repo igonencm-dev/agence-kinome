@@ -58,28 +58,6 @@ const MEDIAS: Media[] = [
     ratio: 4 / 3,
   },
   {
-    type: "image",
-    apercu: "/assets/blog/voeux/carte-kinome-2026-4.webp",
-    source: "/assets/blog/voeux/carte-kinome-2026-4-zoom.webp",
-    legende:
-      "Carte de vœux Kinome 2026 posée à plat : lettrage doré entrelacé sur papier violet profond",
-    ratio: 4 / 3,
-  },
-  {
-    type: "image",
-    apercu: "/assets/blog/voeux/carte-kinome-2026-2.webp",
-    source: "/assets/blog/voeux/carte-kinome-2026-2-zoom.webp",
-    legende: "Intérieur de la carte de vœux Kinome 2026, avec le mot de l'équipe",
-    ratio: 4 / 3,
-  },
-  {
-    type: "image",
-    apercu: "/assets/blog/voeux/carte-kinome-2026-3.webp",
-    source: "/assets/blog/voeux/carte-kinome-2026-3-zoom.webp",
-    legende: "Carte de vœux Kinome 2026 ouverte, posée en équilibre",
-    ratio: 4 / 3,
-  },
-  {
     type: "video",
     apercu: "/assets/blog/voeux/motion-voeux-la-voyagiste-paris.mp4",
     source: "/assets/blog/voeux/motion-voeux-la-voyagiste-paris.mp4",
@@ -115,12 +93,9 @@ function IndiceZoom() {
 
 export default function VisionneuseVoeux({
   texteCartes,
-  texteCartesAvant,
   texteMotion,
 }: {
   texteCartes: React.ReactNode;
-  /** La carte de l'année précédente, montrée plus petit après la carte de l'année. */
-  texteCartesAvant: React.ReactNode;
   texteMotion: React.ReactNode;
 }) {
   const [index, setIndex] = useState<number | null>(null);
@@ -205,20 +180,12 @@ export default function VisionneuseVoeux({
           <div>{vignette(3, "rounded-[14px]", true)}</div>
         </div>
       </Reveal>
-      {texteCartesAvant}
-      <Reveal delay={140}>
-        <div className="mt-[clamp(20px,2.5vw,36px)] grid grid-cols-3 gap-4">
-          <div>{vignette(4, "rounded-[14px]", true)}</div>
-          <div>{vignette(5, "rounded-[14px]", true)}</div>
-          <div>{vignette(6, "rounded-[14px]", true)}</div>
-        </div>
-      </Reveal>
       {texteMotion}
       <Reveal delay={100}>
-        <div className="mt-[clamp(20px,2.5vw,36px)]">{vignette(7, "rounded-[20px]")}</div>
+        <div className="mt-[clamp(20px,2.5vw,36px)]">{vignette(4, "rounded-[20px]")}</div>
       </Reveal>
       <Reveal delay={160}>
-        <div className="mt-[clamp(20px,2.5vw,36px)]">{vignette(8, "rounded-[20px]")}</div>
+        <div className="mt-[clamp(20px,2.5vw,36px)]">{vignette(5, "rounded-[20px]")}</div>
       </Reveal>
 
       {/* ------------------------------ Visionneuse ------------------------------ */}

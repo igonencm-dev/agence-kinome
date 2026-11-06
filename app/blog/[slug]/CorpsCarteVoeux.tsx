@@ -354,15 +354,6 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
               </p>
             </Reveal>
           }
-          texteCartesAvant={
-            <Reveal delay={100}>
-              <p id="carte-kinome-2026" className={`${BODY} mt-[clamp(28px,3.5vw,48px)] scroll-mt-28`}>
-                Et notre carte 2026&nbsp;: un lettrage doré entrelacé sur
-                papier violet profond, décliné de notre identité, imprimé sur
-                un papier épais qu&apos;on a envie de garder.
-              </p>
-            </Reveal>
-          }
           texteMotion={
             <Reveal delay={100}>
               <h3
