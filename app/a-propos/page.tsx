@@ -50,6 +50,7 @@ const personsLd = {
       sameAs: [
         contact.social.linkedinMathias,
         "https://codecircle.fr/",
+        "https://mathiasigonenc.com/",
       ],
       knowsAbout: [
         "Marketing digital",
@@ -316,6 +317,19 @@ export default function AProposPage() {
                 d&rsquo;entreprise pour construire des stratégies de
                 communication qui génèrent des résultats mesurables, du
                 branding au social media.
+              </p>
+              {/* Lien vers son site personnel (demande de Mathias, 09/11/2026) */}
+              <p className="mb-4 font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+                Auteur du livre «&nbsp;Remplaçable&nbsp;», sur l&rsquo;IA et
+                le travail&nbsp;:{" "}
+                <a
+                  href="https://mathiasigonenc.com/"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-bold underline hover:opacity-70"
+                >
+                  mathiasigonenc.com
+                </a>
               </p>
               <a
                 href={contact.social.linkedinMathias}

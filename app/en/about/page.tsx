@@ -40,6 +40,7 @@ const personsLd = {
       sameAs: [
         contact.social.linkedinMathias,
         "https://codecircle.fr/",
+        "https://mathiasigonenc.com/",
       ],
       knowsAbout: [
         "Digital marketing",
@@ -227,6 +228,18 @@ export default function AboutPageEN() {
               </p>
               <p className="mb-4 font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
                 Meeting Tanguy led to the creation of Kinome, a 360° communication agency based in Geneva. Convinced that every project deserves personalised attention, Mathias works with SMEs, small businesses and entrepreneurs to build communication strategies that deliver measurable results — from branding to social media.
+              </p>
+              {/* Lien vers son site personnel (demande de Mathias, 09/11/2026) */}
+              <p className="mb-4 font-body text-[clamp(16px,1.2vw,18px)] font-light leading-[1.55] text-kinome-dark">
+                Author of &ldquo;Remplaçable&rdquo;, a book in French on AI and work:{" "}
+                <a
+                  href="https://mathiasigonenc.com/"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-bold underline hover:opacity-70"
+                >
+                  mathiasigonenc.com
+                </a>
               </p>
               <a
                 href={contact.social.linkedinMathias}
