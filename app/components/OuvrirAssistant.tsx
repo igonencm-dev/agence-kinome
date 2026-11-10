@@ -10,12 +10,17 @@
  * - la question part quand le fil est prêt, et les suggestions de l'accueil du chat
  *   (.cz-suggestions) s'effacent, comme après un clic sur l'une d'elles.
  * Le clic est compté dans /admin/ (événement chatbot, action question).
+ *
+ * 10/11/2026 : le nouveau widget (écran d'accueil, onglets) s'ouvre sur l'accueil et ne
+ * montre plus le champ du chat ; il expose window.Causerie.ask(question), qui ouvre la
+ * conversation et envoie la question. On l'utilise quand il existe, l'ancienne méthode
+ * (champ #causerie-input) reste en secours.
  */
 
 import { useEffect } from "react";
 import { suivre } from "../lib/suivi";
 
-type Registre = { _bots?: unknown[]; open: () => void };
+type Registre = { _bots?: unknown[]; open: () => void; ask?: (question: string) => void };
 
 /** Lu par InvitationAssistant : une fois le chat ouvert, plus d'invitation. */
 export const CLE_CHAT_OUVERT = "kn-assistant-ouvert";
@@ -45,7 +50,22 @@ function quandPret(suite?: () => void) {
 }
 
 export function ouvrirEtPoser(question: string) {
-  quandPret(() => poser(question));
+  const debut = Date.now();
+  const tenter = () => {
+    const registre = (window as unknown as { Causerie?: Registre }).Causerie;
+    if (!registre?._bots?.length) {
+      if (Date.now() - debut < 12000) window.setTimeout(tenter, 150);
+      return;
+    }
+    document.getElementById("causerie-bubble")?.classList.add("hidden");
+    if (typeof registre.ask === "function") {
+      registre.ask(question);
+      return;
+    }
+    registre.open();
+    poser(question);
+  };
+  tenter();
 }
 
 /** Ouvre le chat sans question : le visiteur écrit la sienne. */
