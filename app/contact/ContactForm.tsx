@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { getLocaleFromPath, t } from "../lib/i18n";
 import { contexteSuivi, formulaireEnvoye } from "../lib/suivi";
@@ -13,6 +13,13 @@ export default function ContactForm() {
 
   // Détection de la locale via le path. Marche pour /contact/ ET /en/contact/.
   const locale = getLocaleFromPath(usePathname() ?? "/");
+
+  // Besoin prérempli depuis un lien d'offre (11/11/2026) : /contact/?besoin=Carte%20de%20vœux%202027
+  const [besoin, setBesoin] = useState("");
+  useEffect(() => {
+    const valeur = new URLSearchParams(window.location.search).get("besoin");
+    if (valeur) setBesoin(valeur.slice(0, 200));
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -63,6 +70,7 @@ export default function ContactForm() {
         formulaireEnvoye("contact");
         setEtat("succes");
         form.reset();
+        setBesoin("");
       } else {
         setEtat("erreur");
         setErreurMsg(json?.error ?? t("form_error_generic", locale));
@@ -207,6 +215,8 @@ export default function ContactForm() {
             id="cf-besoin"
             type="text"
             name="besoin"
+            value={besoin}
+            onChange={(e) => setBesoin(e.target.value)}
             placeholder={t("form_need", locale)}
             maxLength={200}
             className="w-full rounded-[12px] bg-kinome-cream px-5 py-4 font-body text-[1rem] text-kinome-black outline-none placeholder:text-[#9f9f9f] focus-visible:ring-2 focus-visible:ring-kinome-accent"

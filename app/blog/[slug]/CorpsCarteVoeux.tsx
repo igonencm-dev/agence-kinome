@@ -437,6 +437,18 @@ export default function CorpsCarteVoeux({ post }: { post: BlogPost }) {
               Prévoyez une marge de sécurité sur les délais de production et
               d'envoi, pour ne jamais arriver après les fêtes.
             </Coche>
+            <Coche>
+              Budgétez l&apos;ensemble, pas seulement la création&nbsp;:
+              impression, enveloppes et timbres, qui augmentent au 1er janvier
+              2027. Les prix relevés en novembre 2026 sont dans notre guide du{" "}
+              <a
+                href="https://agence-kinome.ch/blog/prix-carte-de-voeux-entreprise/"
+                className="underline decoration-kinome-accent underline-offset-4 hover:text-kinome-accent"
+              >
+                prix d&apos;une carte de vœux d&apos;entreprise
+              </a>
+              .
+            </Coche>
           </ul>
         </Reveal>
       </Section>

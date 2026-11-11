@@ -198,4 +198,70 @@ export const ARTICLES_ASSISTANT: Record<string, { bloc: BlocQuestions; invitatio
     "En combien de temps voit-on des résultats ?",
     "Comment se passe le premier échange offert ?",
   ]),
+  // 11/11/2026 : articles qui amènent le plus de visites (Search Console et /admin/).
+  "textes-voeux-professionnels": BLOC_PRIX("Une question sur votre carte de vœux ?", [
+    "Combien coûte une carte de vœux à notre image ?",
+    "Pouvez-vous nous aider à écrire le texte ?",
+    "Pouvez-vous aussi l'animer pour l'e-mail et LinkedIn ?",
+  ]),
+  "carte-de-voeux-entreprise": BLOC_PRIX("Une question sur votre carte de vœux ?", [
+    "Combien coûte une carte de vœux à notre image ?",
+    "Pouvez-vous partir de notre logo actuel ?",
+    "Pouvez-vous aussi l'animer pour l'e-mail et LinkedIn ?",
+  ]),
+  "communication-fin-annee-entreprise": BLOC_PRIX("Une question sur votre fin d'année ?", [
+    "Combien coûte une carte de vœux à notre image ?",
+    "Pouvez-vous animer nos vœux pour les réseaux sociaux ?",
+    "Comment se passe le premier échange offert ?",
+  ]),
+  "prix-community-manager-geneve": BLOC_PRIX("Une question sur vos réseaux sociaux ?", [
+    "Quel budget prévoir pour nos réseaux sociaux ?",
+    "Que comprend votre gestion des réseaux sociaux ?",
+    "Comment se passe le premier échange offert ?",
+  ]),
+  "deposer-marque-suisse-prix-ipi": BLOC_PRIX("Une question sur votre logo ?", [
+    "Quel budget prévoir pour mon logo ?",
+    "Pouvez-vous créer le logo avant le dépôt de la marque ?",
+    "Comment se passe le premier échange offert ?",
+  ]),
+  "meilleures-agences-web-geneve-lausanne": BLOC_PRIX("Une question sur votre site ?", [
+    "Quel budget prévoir pour mon site ?",
+    "Pouvez-vous refaire mon site WordPress ?",
+    "Combien de temps faut-il compter ?",
+  ]),
+  "creation-site-internet-geneve-guide": BLOC_PRIX("Une question sur votre site ?", [
+    "Quel budget prévoir pour mon site ?",
+    "Combien de temps faut-il compter ?",
+    "Comment se passe le premier échange offert ?",
+  ]),
+  "creer-site-ecommerce-suisse": BLOC_PRIX("Une question sur votre boutique en ligne ?", [
+    "Quel budget prévoir pour ma boutique en ligne ?",
+    "Combien de temps faut-il compter ?",
+    "Comment se passe le premier échange offert ?",
+  ]),
+  "refaire-site-chatgpt-claude": BLOC_PRIX("Une question sur votre site ?", [
+    "Quel budget prévoir pour refaire mon site ?",
+    "Pouvez-vous reprendre un site commencé avec l'IA ?",
+    "Comment se passe le premier échange offert ?",
+  ]),
+  "prix-refonte-logo-suisse": BLOC_PRIX("Une question sur votre logo ?", [
+    "Quel budget prévoir pour moderniser mon logo ?",
+    "Pouvez-vous garder l'esprit de mon logo actuel ?",
+    "Combien de temps faut-il compter ?",
+  ]),
+  "prix-carte-de-voeux-entreprise": BLOC_PRIX("Une question sur votre carte de vœux ?", [
+    "Combien coûte une carte de vœux à notre image ?",
+    "Pouvez-vous nous aider à écrire le texte ?",
+    "Pouvez-vous aussi l'animer pour l'e-mail et LinkedIn ?",
+  ]),
+  "prix-flyer-plaquette-suisse": BLOC_PRIX("Une question sur votre flyer ou votre plaquette ?", [
+    "Quel budget prévoir pour mon flyer ?",
+    "Pouvez-vous écrire les textes de ma plaquette ?",
+    "Comment se passe le premier échange offert ?",
+  ]),
+  "creer-identite-visuelle-entreprise-geneve": BLOC_PRIX("Une question sur votre identité visuelle ?", [
+    "Quel budget prévoir pour mon identité visuelle ?",
+    "Pouvez-vous partir de mon logo actuel ?",
+    "Combien de temps faut-il compter ?",
+  ]),
 };
