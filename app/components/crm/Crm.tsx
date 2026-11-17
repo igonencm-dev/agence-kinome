@@ -340,6 +340,7 @@ function Prospects({
   const [recherche, setRecherche] = useState("");
   const [qui, setQui] = useState("tous");
   const [alerte, setAlerte] = useState("");
+  const [voirSpams, setVoirSpams] = useState(false);
 
   // Glisser-déposer entre colonnes : la carte change de colonne tout de suite,
   // l'étape s'enregistre (et s'écrit dans le fil) ; en cas d'échec, retour en arrière.
@@ -364,6 +365,7 @@ function Prospects({
   const filtres = useMemo(() => {
     const q = recherche.trim().toLowerCase();
     return (leads ?? []).filter((l) => {
+      if (l.statut === "spam" && !voirSpams) return false;
       const resp = String(l.responsable ?? "").toLowerCase();
       if (qui === "moi" && resp !== String(moi?.nom ?? "").toLowerCase()) return false;
       if (qui === "aucun" && resp) return false;
@@ -371,12 +373,13 @@ function Prospects({
       if (q && ![l.nom, l.entreprise, l.email, l.projet, l.extrait, l.dernier_suivi].some((v) => String(v ?? "").toLowerCase().includes(q))) return false;
       return true;
     });
-  }, [leads, recherche, qui, moi]);
+  }, [leads, recherche, qui, moi, voirSpams]);
 
   if (erreur) return <p className="text-[#b91c1c]">{erreur}</p>;
   if (!leads) return <p className="text-kinome-grey">Chargement…</p>;
 
   const actifs = filtres.filter((l) => !["gagne", "perdu", "spam"].includes(String(l.statut)));
+  const nbSpams = (leads ?? []).filter((l) => l.statut === "spam").length;
   const enJeu = actifs.reduce((s, l) => s + Number(l.valeur ?? 0), 0);
 
   return (
@@ -414,6 +417,14 @@ function Prospects({
       <p className="text-[0.85rem] text-kinome-grey">
         {actifs.length} prospect{actifs.length > 1 ? "s" : ""} en cours
         {enJeu ? ` · ${chf(enJeu)} en jeu` : ""} · {filtres.filter((l) => l.statut === "gagne").length} gagné(s)
+        {nbSpams > 0 && (
+          <>
+            {" · "}
+            <button type="button" onClick={() => setVoirSpams((v) => !v)} className="underline underline-offset-2 hover:text-kinome-black">
+              {voirSpams ? "masquer les spams" : `${nbSpams} spam${nbSpams > 1 ? "s" : ""} masqué${nbSpams > 1 ? "s" : ""}`}
+            </button>
+          </>
+        )}
         {vue === "colonnes" && <span className="hidden md:inline"> · glissez une carte d&apos;une colonne à l&apos;autre pour changer d&apos;étape</span>}
       </p>
       {alerte && <p className="text-[0.85rem] text-[#b91c1c]">{alerte}</p>}
@@ -821,6 +832,25 @@ function Fiche({ id, equipe, onRetour, onDeconnecte }: { id: number; equipe: str
                   </button>
                 ))}
               </div>
+              {l.statut === "spam" ? (
+                <div className="flex flex-wrap items-center gap-2 rounded-xl bg-kinome-black/[0.04] px-3 py-2 text-[0.82rem]">
+                  <span className="text-kinome-grey">Classée en spam : masquée des colonnes, de la liste et des relances.</span>
+                  <button type="button" onClick={() => maj({ statut: "nouveau" })} className="font-semibold underline underline-offset-2 hover:text-kinome-accent">
+                    Ce n&apos;est pas un spam
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={async () => {
+                    await maj({ statut: "spam" });
+                    onRetour();
+                  }}
+                  className="justify-self-start text-[0.8rem] font-semibold text-kinome-grey underline underline-offset-2 hover:text-[#b91c1c]"
+                >
+                  Classer en spam (retire la fiche des listes)
+                </button>
+              )}
               <label className="text-[0.8rem] font-semibold">
                 Responsable
                 <select key={`r${String(l.responsable)}`} defaultValue={String(l.responsable ?? "")} onChange={(e) => maj({ responsable: e.target.value })} className={`${champCls} mt-1`}>
