@@ -242,13 +242,13 @@ ErrorDocument 404 /404.html
 # du serveur MCP (en-têtes Link, RFC 8288) ; les réponses varient selon Accept.
 <IfModule mod_headers.c>
   <FilesMatch "^index\.html$">
-    Header append Vary Accept
-    Header add Link "<index.md>; rel=\"alternate\"; type=\"text/markdown\""
-    Header add Link "</llms.txt>; rel=\"describedby\"; type=\"text/plain\""
-    Header add Link "</.well-known/mcp/server-card.json>; rel=\"service-desc\"; type=\"application/json\""
+    Header merge Vary Accept
+    Header add Link "<index.md>; rel=alternate; type=text/markdown"
+    Header add Link "</llms.txt>; rel=describedby; type=text/plain"
+    Header add Link "</.well-known/mcp/server-card.json>; rel=service-desc; type=application/json"
   </FilesMatch>
   <FilesMatch "\.md$">
-    Header append Vary Accept
+    Header merge Vary Accept
     Header set X-Robots-Tag "noindex"
     Header set Cache-Control "public, max-age=3600"
   </FilesMatch>
