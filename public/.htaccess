@@ -147,6 +147,13 @@ RewriteRule ^nos-partenaires/?$       /partenaires/                 [L,R=301]
 RewriteRule ^processus-client/?$      /processus/                   [L,R=301]
 RewriteRule ^homepage/?$              /                             [L,R=301]
 
+# Pages de confiance aux adresses anglaises courantes (25/11/2026) : les agents IA et les
+# outils d'audit les cherchent à ces chemins. La version française est la principale.
+RewriteRule ^about(-us)?/?$                    /a-propos/                     [L,R=301]
+RewriteRule ^(privacy|privacy-policy)/?$       /politique-de-confidentialite/ [L,R=301]
+RewriteRule ^(legal|terms|imprint)/?$          /mentions-legales/             [L,R=301]
+RewriteRule ^contact-us/?$                     /contact/                      [L,R=301]
+
 # Anciens slugs d'articles de blog (WordPress avait un slug bizarre pour celui-ci)
 RewriteRule ^agence-kinome-ch-blog-creation-site-internet-geneve-guide/?$  /blog/creation-site-internet-geneve-guide/  [L,R=301]
 # Variante préfixée /blog/ du même slug malformé (404 vu dans GSC « Page en double »)
@@ -168,6 +175,14 @@ RewriteRule ^retour-graphiplus/?$      /portfolio/                  [L,R=301]
 # WordPress feed / xmlrpc (Google les avait peut-être indexés)
 RewriteRule ^feed/?$                /sitemap.xml                    [L,R=301]
 RewriteRule ^xmlrpc\.php$           /                               [L,R=410]
+
+# Page introuvable en Markdown pour les agents IA (« Accept: text/markdown ») : statut 404
+# conservé, réponse courte avec liens vers llms.txt et le plan du site (api/404-agents.php).
+# Placée après toutes les redirections pour ne jamais les court-circuiter.
+RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /api/404-agents.php [L]
 
 # Index par défaut
 DirectoryIndex index.html index.php

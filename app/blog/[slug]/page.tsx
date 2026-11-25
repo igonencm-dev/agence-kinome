@@ -11,7 +11,7 @@ import InvitationAssistant from "../../components/InvitationAssistant";
 import { ARTICLES_ASSISTANT } from "../../lib/questions-assistant";
 import StatsArticle from "../../components/StatsArticle";
 import { CATEGORIES, resumer, trierParPopulariteInitiale } from "../../lib/populaires";
-import { preparerSommaire, type EntreeSommaire } from "../../lib/sommaire";
+import { preparerSommaire, suivreNiveaux, type EntreeSommaire } from "../../lib/sommaire";
 import { dimensionsImage } from "../../lib/dimensions-image";
 import {
   buildMetadata,
@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   // Sommaire : les H2 du corps reçoivent une ancre garantie (lib/sommaire).
   // L'article carte de vœux a un corps maquetté dont les sections portent
   // déjà leurs ids : on décrit son sommaire à la main.
-  const corps = preparerSommaire(post.articleHtml);
+  const corps = preparerSommaire(suivreNiveaux(post.articleHtml));
   const sommaireVoeux: EntreeSommaire[] = [
     { id: "pourquoi", texte: "Pourquoi envoyer une carte de vœux a encore du sens" },
     { id: "calendrier", texte: "Pourquoi il faut s'y prendre tôt ?" },

@@ -85,3 +85,37 @@ export function preparerSommaire(html: string): {
 
   return { html: htmlAvecAncres, entrees };
 }
+
+/**
+ * Niveaux de titres sans saut (25/11/2026) : les agents IA et les lecteurs d'écran lisent
+ * le plan d'une page par ses titres, et un saut (H1 → H3, H2 → H4) le casse. Les corps
+ * d'articles en contiennent : encadrés d'offre en H3 avant le premier H2, sous-parties en
+ * H4 directement sous un H2.
+ * - Un titre plus profond que son parent + 1 remonte d'un cran (H4 sous H2 → H3), et
+ *   ses frères suivants du même niveau le suivent.
+ * - Un titre placé avant le premier H2 (titre d'encadré) devient un paragraphe.
+ * L'aspect ne change pas : la classe t-h3 / t-h4 garde le style du niveau d'origine
+ * (globals.css, .blog-prose).
+ */
+export function suivreNiveaux(html: string): string {
+  const pile: { origine: number; niveau: number }[] = [];
+  return html.replace(
+    /<h([2-6])([^>]*)>([\s\S]*?)<\/h\1>/gi,
+    (_tout, n: string, attrs: string, contenu: string) => {
+      const origine = Number(n);
+      while (pile.length && pile[pile.length - 1].origine >= origine) pile.pop();
+      const parent = pile[pile.length - 1];
+      const avecClasse = (a: string) =>
+        /\sclass="/.test(a)
+          ? a.replace(/\sclass="([^"]*)"/, ` class="$1 t-h${origine}"`)
+          : `${a} class="t-h${origine}"`;
+      if (!parent && origine > 2) {
+        return `<p${avecClasse(attrs)}>${contenu}</p>`;
+      }
+      const niveau = parent ? parent.niveau + 1 : 2;
+      pile.push({ origine, niveau });
+      if (niveau === origine) return `<h${n}${attrs}>${contenu}</h${n}>`;
+      return `<h${niveau}${avecClasse(attrs)}>${contenu}</h${niveau}>`;
+    },
+  );
+}

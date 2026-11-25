@@ -280,9 +280,9 @@ export default function PortfolioMegaMenu({
               }}
             >
               <div>
-                <h3 className="font-heading text-[clamp(22px,2vw,32px)] font-semibold leading-[1.15] text-kinome-black transition-colors group-hover:text-kinome-accent">
+                <p className="font-heading text-[clamp(22px,2vw,32px)] font-semibold leading-[1.15] text-kinome-black transition-colors group-hover:text-kinome-accent">
                   {current.nom}
-                </h3>
+                </p>
                 <p className="mt-2 max-w-[560px] font-body text-[0.95rem] font-light leading-[1.55] text-kinome-grey">
                   {currentResume}
                 </p>

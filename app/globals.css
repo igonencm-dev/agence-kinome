@@ -277,7 +277,8 @@ body.no-scroll {
   padding-top: 0;
 }
 
-.blog-prose h3 {
+.blog-prose h3,
+.blog-prose .t-h3 {
   font-family: var(--font-heading);
   font-size: clamp(20px, 1.7vw, 26px);
   font-weight: 600;
@@ -287,13 +288,19 @@ body.no-scroll {
   margin-bottom: 0.5em;
 }
 
-.blog-prose h4 {
+.blog-prose h4,
+.blog-prose .t-h4 {
   font-family: var(--font-heading);
   font-size: clamp(18px, 1.4vw, 22px);
   font-weight: 600;
   line-height: 1.35;
   margin-top: 1.6em;
   margin-bottom: 0.4em;
+}
+
+/* Titre d'origine H4 rendu en H3 (suivreNiveaux) : couleur héritée, comme un H4 */
+.blog-prose h3.t-h4 {
+  color: inherit;
 }
 
 .blog-prose p {
@@ -563,8 +570,10 @@ body.no-scroll {
   z-index: 1;
 }
 
-.blog-prose .blog-cta h3 {
+.blog-prose .blog-cta h3,
+.blog-prose .blog-cta .t-h3 {
   margin: 0 0 12px 0;
+  max-width: none;
   font-family: var(--font-heading);
   font-size: clamp(22px, 2.6vw, 32px);
   font-weight: 600;

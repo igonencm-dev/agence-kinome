@@ -217,9 +217,9 @@ export default function ServicesMegaMenu({
             style={{ animation: "kinome-fade-in 350ms ease-out both" }}
           >
             <div>
-              <h3 className="font-heading text-[clamp(18px,1.6vw,24px)] font-semibold leading-[1.2] text-kinome-black transition-colors group-hover:text-kinome-accent">
+              <p className="font-heading text-[clamp(18px,1.6vw,24px)] font-semibold leading-[1.2] text-kinome-black transition-colors group-hover:text-kinome-accent">
                 {courant.titre}
-              </h3>
+              </p>
               <p className="mt-1.5 max-w-[520px] font-body text-[0.92rem] font-light leading-[1.5] text-kinome-grey">
                 {courant.resume}
               </p>

@@ -115,9 +115,9 @@ export default function PortfolioEN() {
                 />
               </div>
               <div className="px-6 py-5">
-                <h3 className="mb-1 font-heading text-[1.3rem] font-semibold text-kinome-black">
+                <h2 className="mb-1 font-heading text-[1.3rem] font-semibold text-kinome-black">
                   {p.nom}
-                </h3>
+                </h2>
                 <p className="mb-3 font-body text-[0.9rem] text-kinome-grey">
                   {p.resume_en ?? p.resume}
                 </p>
