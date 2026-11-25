@@ -7,6 +7,13 @@ import { contexteSuivi, formulaireEnvoye } from "../lib/suivi";
 
 type Etat = "idle" | "envoi" | "succes" | "erreur";
 
+// Attributs inconnus de React : passés tels quels au DOM.
+const OUTIL_FORMULAIRE = {
+  toolname: "demander_un_devis_kinome",
+  tooldescription:
+    "Envoyer une demande à l'Agence Kinome (agence de communication à Genève) : prénom, nom, e-mail, entreprise, besoin (logo, site, identité…) et message. Réponse sous 24 h ouvrées.",
+} as Record<string, string>;
+
 export default function ContactForm() {
   const [etat, setEtat] = useState<Etat>("idle");
   const [erreurMsg, setErreurMsg] = useState<string>("");
@@ -125,7 +132,9 @@ export default function ContactForm() {
       <h2 className="mb-10 text-center font-heading text-[2.2rem] font-semibold">
         {t("form_title", locale)}
       </h2>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate data-suivi-form="contact">
+      {/* Attributs WebMCP déclaratifs (25/11/2026) : un agent IA du navigateur peut proposer
+          de remplir ce formulaire pour le visiteur ; l'envoi reste celui du visiteur. */}
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate data-suivi-form="contact" {...OUTIL_FORMULAIRE}>
         {/* Honeypot caché — les bots le remplissent, pas les humains */}
         <div
           aria-hidden="true"

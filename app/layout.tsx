@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Krub, Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import OutilsAgents from "./components/OutilsAgents";
 import HorsAdmin from "./components/HorsAdmin";
 import Suivi from "./components/Suivi";
 import CauserieBotWidget from "./components/CauserieBotWidget";
@@ -147,11 +147,13 @@ export default function RootLayout({
         />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-        {/* JSON-LD Organization + LocalBusiness — visible sur toutes les pages */}
-        <Script
+        {/* JSON-LD Organization + LocalBusiness, sur toutes les pages. Balise <script>
+            simple (25/11/2026) : avec next/script « beforeInteractive », le JSON-LD
+            n'était pas une vraie balise du HTML et les agents qui lisent le HTML brut
+            ne le voyaient pas. */}
+        <script
           id="ld-organization"
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: jsonLdScript(organizationJsonLd()),
           }}
@@ -170,6 +172,8 @@ export default function RootLayout({
           <GoogleAnalytics />
           {/* Suivi first-party du tableau de bord /admin/ (app/lib/suivi.ts) */}
           <Suivi />
+          {/* Outils WebMCP pour les agents IA qui naviguent sur le site */}
+          <OutilsAgents />
         </HorsAdmin>
 
         {/* Chatbot CauserieBot : chargé après la 1ère interaction utilisateur

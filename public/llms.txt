@@ -20,6 +20,13 @@ L'agence se distingue par son approche humaine et indépendante : équipe à tai
 - [Partenaires](https://agence-kinome.ch/partenaires/) : réseau international de consultants (France, Canada, Chine, Suisse)
 - [Contact](https://agence-kinome.ch/contact/) : formulaire de prise de contact + coordonnées Genève
 
+## Pour les agents IA
+
+- [Serveur MCP public](https://agence-kinome.ch/mcp) : lecture seule, sans clé (présentation, prix 2026, recherche dans les articles, contact). Carte : https://agence-kinome.ch/.well-known/mcp/server-card.json
+- [Données de l'agence en JSON](https://agence-kinome.ch/agents/kinome.json) : présentation, prix 2026 en CHF hors TVA, contact
+- [Index des articles en JSON](https://agence-kinome.ch/agents/articles.json)
+- Chaque page existe en Markdown : ajoutez index.md à son adresse (ex. https://agence-kinome.ch/index.md) ou envoyez « Accept: text/markdown »
+
 ## Faits clés
 
 - Forme légale : Sàrl suisse (Agence Kinome Sàrl)

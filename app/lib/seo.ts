@@ -1,3 +1,4 @@
+import { PRESTATIONS } from "./agents";
 /**
  * Pivot SEO/AEO/GEO de l'Agence Kinome.
  *
@@ -431,6 +432,43 @@ export function serviceJsonLd(name: string, description: string) {
       name: n,
     })),
     serviceType: "Communication, branding, design",
+  };
+}
+
+export function catalogueJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${SITE.url}/#webpage`,
+        url: `${SITE.url}/`,
+        name: "Agence de communication à Genève | Kinome",
+        isPartOf: { "@id": `${SITE.url}/#website` },
+        about: { "@id": `${SITE.url}/#organization` },
+        inLanguage: "fr-CH",
+      },
+      {
+        "@type": "OfferCatalog",
+        "@id": `${SITE.url}/#catalogue`,
+        name: "Prestations et prix 2026 de l'Agence Kinome",
+        url: `${SITE.url}/documents/grille-tarifs-kinome-2026.pdf`,
+        itemListElement: PRESTATIONS.filter((c) => c.min).map((c) => ({
+          "@type": "Offer",
+          url: c.url,
+          seller: { "@id": `${SITE.url}/#organization` },
+          itemOffered: { "@type": "Service", name: c.nom, provider: { "@id": `${SITE.url}/#organization` } },
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            priceCurrency: "CHF",
+            minPrice: c.min,
+            ...(c.max ? { maxPrice: c.max } : {}),
+            valueAddedTaxIncluded: false,
+            ...(c.parMois ? { description: "par mois" } : {}),
+          },
+        })),
+      },
+    ],
   };
 }
 

@@ -33,6 +33,18 @@ RewriteRule ^api/data/ - [F,L]
 RewriteRule ^api/_ - [F,L]
 
 # ============================================================================
+# AGENTS IA (25/11/2026)
+# ============================================================================
+# Serveur MCP public en lecture seule (carte : /.well-known/mcp/server-card.json)
+RewriteRule ^mcp/?$ /api/mcp-agents.php [L]
+# Version Markdown d'une page (index.md produit au build par scripts/markdown-agents.mjs)
+# quand la requête l'accepte : « Accept: text/markdown ».
+RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+RewriteCond %{REQUEST_URI} /$
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}index.md -f
+RewriteRule ^(.*)$ /$1index.md [L]
+
+# ============================================================================
 # REDIRECTIONS 301 — ancien WordPress → nouvelle structure Next.js
 # Conserve le SEO accumulé par l'ancien site (Google transfère le jus
 # d'indexation via les 301 permanentes).
@@ -226,6 +238,29 @@ ErrorDocument 404 /404.html
   </FilesMatch>
 </IfModule>
 
+# Agents IA (25/11/2026) : chaque page annonce sa version Markdown, llms.txt et la carte
+# du serveur MCP (en-têtes Link, RFC 8288) ; les réponses varient selon Accept.
+<IfModule mod_headers.c>
+  <FilesMatch "^index\.html$">
+    Header append Vary Accept
+    Header add Link "<index.md>; rel=\"alternate\"; type=\"text/markdown\""
+    Header add Link "</llms.txt>; rel=\"describedby\"; type=\"text/plain\""
+    Header add Link "</.well-known/mcp/server-card.json>; rel=\"service-desc\"; type=\"application/json\""
+  </FilesMatch>
+  <FilesMatch "\.md$">
+    Header append Vary Accept
+    Header set X-Robots-Tag "noindex"
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+  <FilesMatch "^server-card\.json$">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+  <FilesMatch "^articles\.json$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
 # Headers de sécurité
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options    "nosniff"
@@ -264,6 +299,10 @@ ErrorDocument 404 /404.html
 
 # Forcer le bon Content-Type pour sitemap.xml et OG image
 <IfModule mod_mime.c>
+  AddType text/markdown .md
+  AddCharset utf-8 .md
+  AddType application/json .json
+  AddCharset utf-8 .json
   AddType application/xml .xml
   AddType image/png .png
 </IfModule>

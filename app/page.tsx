@@ -11,6 +11,7 @@ import {
   buildMetadata,
   faqJsonLd,
   serviceJsonLd,
+  catalogueJsonLd,
   jsonLdScript,
 } from "./lib/seo";
 
@@ -155,7 +156,7 @@ const portfolio = [
 export default function Home() {
   return (
     <>
-      {/* JSON-LD : FAQPage (AEO) + Service (déclinaison Genève) */}
+      {/* JSON-LD : FAQPage (AEO), Service (déclinaison Genève), page et catalogue des prix */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -172,6 +173,11 @@ export default function Home() {
             )
           ),
         }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(catalogueJsonLd()) }}
       />
 
       <SplashScreen />

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": {
+    "name": "agence-kinome",
+    "title": "Agence Kinome",
+    "version": "1.0.0"
+  },
+  "description": "Serveur MCP public et en lecture seule de l'Agence Kinome, agence de communication à Genève : présentation, prix 2026 en CHF, recherche dans les guides du blog et moyens de contact.",
+  "iconUrl": "https://agence-kinome.ch/icon.png",
+  "documentationUrl": "https://agence-kinome.ch/llms.txt",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://agence-kinome.ch/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "authentication": {
+    "required": false
+  },
+  "instructions": "Prix indicatifs en CHF hors TVA : pour un devis, renvoyer vers le premier échange offert (https://agence-kinome.ch/contact/). Ce serveur n'envoie aucun message.",
+  "tools": [
+    {
+      "name": "presentation_kinome",
+      "title": "Présentation de l'agence",
+      "description": "Qui est l'Agence Kinome (agence de communication à Genève) : activité, adresse, zones servies, langues, horaires, services et liens.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "tarifs_kinome",
+      "title": "Prix 2026",
+      "description": "Fourchettes de prix 2026 de l'agence en CHF hors TVA (logo, identité visuelle, site internet, SEO, réseaux sociaux…), avec délais indicatifs et source PDF.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "rechercher_articles",
+      "title": "Rechercher dans le blog",
+      "description": "Cherche dans les guides du blog de Kinome (prix, branding, sites, SEO, IA, vœux) et renvoie titres, adresses, versions Markdown et descriptions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "requete": {
+            "type": "string",
+            "description": "Mots-clés, par exemple « prix logo » ou « site multilingue »."
+          },
+          "limite": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20,
+            "description": "Nombre de résultats (5 par défaut)."
+          }
+        },
+        "required": [
+          "requete"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "contacter_kinome",
+      "title": "Moyens de contact",
+      "description": "Moyens de contacter l'agence (formulaire, e-mail, téléphone, WhatsApp). N'envoie aucun message.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "resources": [],
+  "prompts": []
+}
