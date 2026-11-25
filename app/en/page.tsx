@@ -169,7 +169,7 @@ export default function HomeEN() {
           <div className="max-w-[800px] text-left text-white">
             <h1 className="mb-[30px] text-center font-heading text-[clamp(38px,8vw,76px)] font-semibold leading-[1.05] [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] md:text-left">
               Communication agency{" "}
-              <ResponsiveBr />in Geneva — <HeroAnimatedWord />
+              <ResponsiveBr />in Geneva: <HeroAnimatedWord />
             </h1>
             <p className="mb-[35px] max-w-[520px] text-center text-[clamp(16px,1.3vw,19px)] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] md:text-left">
               Brand strategy, visual identity, websites and SEO for SMEs and
@@ -543,7 +543,7 @@ export default function HomeEN() {
                 />
                 <img
                   src="/assets/home-illustration.png"
-                  alt="Kinome illustration — creative studio"
+                  alt="Kinome illustration, creative studio"
                   width={840}
                   height={840}
                   loading="lazy"
@@ -564,7 +564,7 @@ export default function HomeEN() {
               Choosing us means getting the quality of a full agency, but on a
               human scale. Through our direct contact with clients, we can
               better understand needs and concerns. Our goal is to become a
-              trusted partner across the board — offering strategic, digital
+              trusted partner across the board, offering strategic, digital
               marketing and communication advice.
             </p>
           </div>

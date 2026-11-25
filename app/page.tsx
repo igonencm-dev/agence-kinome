@@ -212,7 +212,7 @@ export default function Home() {
                   ligne tout seul). Sur desktop on garde un <ResponsiveBr /> caché en
                   mobile (hidden md:inline) pour la composition voulue. */}
               Agence de communication{" "}
-              <ResponsiveBr />à Genève — <HeroAnimatedWord />
+              <ResponsiveBr />à Genève&nbsp;: <HeroAnimatedWord />
             </h1>
             <p className="mb-[35px] max-w-[520px] text-center text-[clamp(16px,1.3vw,19px)] leading-[1.7] [text-shadow:0_1px_10px_rgba(0,0,0,0.35)] md:text-left">
               Stratégie de marque, identité visuelle, sites internet et
@@ -623,7 +623,7 @@ export default function Home() {
                 />
                 <img
                   src="/assets/home-illustration.png"
-                  alt="Illustration Kinome — atelier créatif"
+                  alt="Illustration Kinome, atelier créatif"
                   width={840}
                   height={840}
                   loading="lazy"
